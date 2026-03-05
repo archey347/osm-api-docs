@@ -1,15 +1,90 @@
 openapi: 3.0.3
 info:
   title: Online Scout Manager API (Unofficial)
-  version: 0.2.0
+  version: 0.2.1
   description: |
-    Unofficial OpenAPI definition derived from the OSM API docs in this repo.
-    This describes only endpoints observed by City of Newcastle Scouts.
-    We highly recommend you read OSM's documentation on rate limits on APIs,
-    to avoid your account being locked out.
+    Unofficial, community-driven OpenAPI specification for the
+    [Online Scout Manager](https://www.onlinescoutmanager.co.uk) (OSM) API —
+    reverse-engineered from real traffic by the City of Newcastle Scouts Digital Team.
+
+    OSM does not publish a public API specification. This project exists to fill
+    that gap for developers building tools on top of OSM's platform.
+
+    > **This documentation is provided as-is with no guarantees.** OSM's API is
+    > undocumented and can change without notice. Endpoints, parameters, and
+    > response shapes described here were observed at the time of writing and may
+    > drift over time. Always test against the live API before relying on
+    > anything here.
+
+    ## Authentication
+
+    OSM uses **OAuth 2.0 (Authorization Code)** for API access. To get started:
+
+    1. Log in to OSM and navigate to **Settings → My Account Details → Developer Tools**.
+    2. Create an OAuth application to obtain your `client_id` and `client_secret`.
+    3. Implement the standard OAuth 2.0 authorization code flow — redirect users to
+       OSM's authorization endpoint, exchange the code for tokens via `/oauth/token`.
+    4. Include the access token as a **Bearer token** in the `Authorization` header
+       on every API request.
+    5. Tokens expire — use the refresh token flow to obtain new access tokens.
+
+    ## Using the API
+
+    Your browser uses a simple API for interacting with OSM, so although the API
+    is unsupported and undocumented, your application can do anything that you can
+    do on the website.
+
+    Use your browser's developer console to watch the network requests made when
+    you perform the actions you want to automate. Pay particular attention to
+    whether requests are **GET** or **POST**. Then use your OAuth client library
+    to create an authenticated request to the URL you discovered (which sets a
+    Bearer token in the Authorization header).
+
+    **Important:** All POST requests must use `application/x-www-form-urlencoded`
+    encoding, **not** JSON. Sending JSON bodies will result in your application
+    being blocked.
+
+    ## Rate limits
+
+    Please monitor the standard rate limit headers to ensure your application
+    does not get blocked automatically. Applications that are frequently blocked
+    will be **permanently blocked**.
+
+    | Header | Description |
+    |--------|-------------|
+    | `X-RateLimit-Limit` | Number of requests per hour your API can perform (per authenticated user) |
+    | `X-RateLimit-Remaining` | Requests remaining before the current user is blocked |
+    | `X-RateLimit-Reset` | Seconds until the rate limit resets back to the overall limit |
+
+    An **HTTP 429** status code is returned if the user exceeds the limit, along
+    with a `Retry-After` header indicating the number of seconds to wait.
+
+    Please also enforce your own lower rate limits, especially if you allow
+    unauthenticated users to manipulate your data (e.g. allowing members to join
+    a waiting list).
+
+    ## Other considerations
+
+    - **Check responses** — abort if they are not as expected. Your application
+      will be blocked if it frequently performs invalid requests.
+    - **`X-Deprecated` header** — anything with this header will be removed after
+      the date mentioned. Monitor for it.
+    - **`X-Blocked` header** — if set, your application has been blocked due to
+      invalid data or unauthorized access attempts. Continuing to use the API
+      after being blocked will automatically escalate to a **permanent block**.
+    - **Bot protection** — if you allow unauthenticated use of your application,
+      verify users are not bots.
+    - **Input validation** — always sanitise and validate data before sending it
+      to OSM. Invalid data will result in your application being blocked.
+    - **Privacy and GDPR** — these endpoints return personal data about young
+      people and their families. Handle it responsibly. Don't store what you
+      don't need, don't log PII, and follow your organisation's data protection
+      policies.
 servers:
   - url: https://www.onlinescoutmanager.co.uk
   - url: https://onlinescoutmanager.co.uk
+security:
+  - oauth2: [ ]
 tags:
   - name: Startup
     description: Session bootstrap and general metadata.
@@ -1909,6 +1984,24 @@ paths:
                   itemstore:
                     identifier: name
 components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: |
+        OSM uses OAuth 2.0 Authorization Code flow. Create an OAuth application
+        at **Settings → My Account Details → Developer Tools** in the OSM UI to
+        obtain your `client_id` and `client_secret`.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.onlinescoutmanager.co.uk/oauth/authorize
+          tokenUrl: https://www.onlinescoutmanager.co.uk/oauth/token
+          refreshUrl: https://www.onlinescoutmanager.co.uk/oauth/token
+          scopes:
+            section:member:read: Read member data for sections you have access to
+            section:member:write: Update member data (patrols, ranks, fields)
+            section:badge:read: Read badge records and progress
+            section:event:read: Read events and programme data
+            section:programme:read: Read programme summaries and meetings
   schemas:
     MembersList:
       type: object

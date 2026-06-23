@@ -32,28 +32,1127 @@ tags:
 paths:
   /ext/generic/startup/:
     get:
-      summary: Get general data
+      summary: Get startup data
       tags:
         - Startup
       description: |
-        Returns general startup data. The API returns JavaScript, not JSON.
-        The payload is typically a `var data_holder = { ... }` assignment.
+        Returns startup and session data depending on the `action` parameter.
+
+        **`action=getData` has been permanently removed** — this action was removed without
+        notice. HTTP 410 Gone is the only response you will ever receive for this action.
+        It will not be reinstated. Migrate to `action=getDataPayload`.
+
+        **`action=getDataPayload`** returns a JSON payload containing CDN resource URLs,
+        user globals, section roles and permissions, user preferences, terms, and session
+        metadata needed to bootstrap the application after login.
+
+        **`action=getConfigPayload`** returns global, non-user-specific site configuration:
+        section type definitions, patrol role labels, beta features, upgrade pricing, feature
+        flags, recipe metadata, and form configurations.
       parameters:
         - name: action
           in: query
           required: true
           schema:
             type: string
-            enum: [getData]
-          description: Must be `getData`.
+            enum: [getData, getDataPayload, getConfigPayload]
+          description: |
+            `getData` — **permanently removed**, HTTP 410 Gone is the only reply.
+            `getDataPayload` — returns the full JSON startup payload.
+            `getConfigPayload` — returns global site configuration.
       responses:
         "200":
-          description: JavaScript payload containing general data.
+          description: JSON startup payload (schema varies by `action`; see examples).
           content:
-            application/javascript:
+            application/json:
               schema:
-                type: string
-              example: "var data_holder = {\"globals\":{\"email\":\"leader@example.org\",\"firstname\":\"Alex\",\"fullname\":\"Alex Scout\",\"hasSectionAccess\":true}}"
+                oneOf:
+                  - $ref: "#/components/schemas/StartupDataPayload"
+                  - $ref: "#/components/schemas/StartupConfigPayload"
+              examples:
+                getDataPayload:
+                  summary: Response for action=getDataPayload
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      cdn: "https://oymcdn.co.uk/"
+                      resources:
+                        - "/built/postlogin-combined/postlogin-combined-abc123.js"
+                        - "/built/global/global-abc123.js"
+                        - "/built/style-main-blue/style-main-blue-abc123.css"
+                        - "/built/highcharts/highcharts-abc123.js"
+                        - "/built/vendors/vendors-abc123.js"
+                        - "/built/runtime/runtime-abc123.js"
+                        - "/built/menu/menu-abc123.js"
+                      config_hash: "abc123def456abc123def456abc123de"
+                      required_cdn_built_files:
+                        osm.js: "https://oymcdn.co.uk/built/osm/osm-abc123.js"
+                        react.js: "https://oymcdn.co.uk/built/react/react-abc123.js"
+                      cache_bust: "v=abc123"
+                      globals:
+                        post_login_action: false
+                        theme: "blue"
+                        userid: 100001
+                        roles:
+                          - groupname: "Example Scout Group"
+                            groupid: "10001"
+                            group_country: "uk"
+                            sectionid: "45001"
+                            sectionname: "Beavers"
+                            section: "beavers"
+                            isDefault: "0"
+                            permissions:
+                              badge: 20
+                              member: 20
+                              user: 100
+                              register: 20
+                              programme: 20
+                              events: 20
+                              flexi: 20
+                              finance: 100
+                              quartermaster: 20
+                            sectionConfig:
+                              subscription_level: 3
+                              subscription_expires: "2027-01-01"
+                              section_type: "beavers"
+                              sectionType: "beavers"
+                              parentSectionId: "0"
+                              subscription_active: false
+                              meeting_day: "Mon"
+                              hierarchy_lowest_level: false
+                              hierarchy_operating_level: "level_0"
+                          - groupname: "Example Scout Group"
+                            groupid: "10001"
+                            group_country: "uk"
+                            sectionid: "45002"
+                            sectionname: "Cubs"
+                            section: "cubs"
+                            isDefault: "1"
+                            permissions:
+                              badge: 20
+                              member: 20
+                              user: "100"
+                              register: 20
+                              programme: 20
+                              events: 20
+                              flexi: 20
+                              quartermaster: 20
+                              finance: 100
+                            sectionConfig:
+                              subscription_level: 3
+                              subscription_expires: "2027-01-01"
+                              section_type: "cubs"
+                              sectionType: "cubs"
+                              parentSectionId: "0"
+                              subscription_active: false
+                              meeting_day: "Wed"
+                              hierarchy_lowest_level: false
+                              hierarchy_operating_level: "level_0"
+                          - groupname: "Example Scout Group"
+                            groupid: "10001"
+                            group_country: "uk"
+                            sectionid: "45003"
+                            sectionname: "Leaders"
+                            section: "adults"
+                            isDefault: "0"
+                            permissions:
+                              badge: 100
+                              member: 100
+                              user: 100
+                              register: 100
+                              contact: 100
+                              programme: 100
+                              events: 100
+                              finance: 100
+                              flexi: 100
+                              quartermaster: 100
+                            sectionConfig:
+                              subscription_level: 1
+                              subscription_expires: "2027-01-01"
+                              section_type: "adults"
+                              sectionType: "adults"
+                              parentSectionId: "0"
+                              subscription_active: false
+                              hierarchy_lowest_level: false
+                              hierarchy_operating_level: "level_0"
+                        active_user_member: false
+                        associated_member_id: false
+                        email: "leader@example.org"
+                        firstname: "Alex"
+                        lastname: "Scout"
+                        fullname: "Alex Scout"
+                        preferences:
+                          logins: "100"
+                          theme: "blue"
+                          date: "uk"
+                          sort: "dob"
+                          has_assistive_technology: false
+                          hotkeys_enabled: false
+                          disable_animations: false
+                          beta: false
+                          beta_functions: []
+                        member_access:
+                          "45002":
+                            name: "Example Scout Group: Cubs"
+                            group: "Example Scout Group"
+                            section: "Cubs"
+                            abbrv: "Cubs"
+                            type: "cubs"
+                            label: "Cubs"
+                            members:
+                              "2100001":
+                                first_name: "Alex"
+                                last_name: "Scout"
+                                photo_guid: "00000000-0000-0000-0000-000000000000"
+                                abbrv_name: "Alex"
+                                chat_rooms: []
+                                access_type: "member"
+                                has_unread_chat_rooms: false
+                                permissions: true
+                                patrol: "Leaders"
+                            access: true
+                            config:
+                              badges: true
+                              programme: true
+                              emailbolton: true
+                              details: true
+                              events: true
+                              chat: false
+                              at_home: false
+                              email_address: "Example Scout Group Cubs <cubs@example.org>"
+                              giftaid: true
+                              payments: true
+                              attachments: false
+                              photos: true
+                            noticeboard: false
+                            patrol_label: "Six"
+                        member_access_unactivated: false
+                        terms:
+                          "45002":
+                            - termid: "200001"
+                              sectionid: "45002"
+                              name: "Summer 2025"
+                              startdate: "2025-04-01"
+                              enddate: "2025-07-31"
+                              master_term: null
+                              past: true
+                            - termid: "200002"
+                              sectionid: "45002"
+                              name: "Autumn 2025"
+                              startdate: "2025-09-01"
+                              enddate: "2025-12-31"
+                              master_term: null
+                              past: false
+                        global_roles: []
+                        hasSectionAccess: true
+                        notepads: []
+                        sockets: "45001-abc123,45002-abc123,45003-abc123"
+                        user_socket: "100001-abc123"
+                        session_id: "abc123def456abc123def456abc123def456abc123def456abc123def456abc1"
+                        security_prompt: false
+                        user_has_image: "/sites/onlinescoutmanager.co.uk/public/user_photos/100000/100001/00000000-0000-0000-0000-000000000000"
+                        user_hash: "abc123def456abc123def456abc123def456abc123def456abc123def456abc1"
+                        user_hash_legacy: "abc123def456abc123def456abc123def456abc123def456abc123def456abc1"
+                        language: "en-GB"
+                        gamification:
+                          "1":
+                            total_steps: 3
+                            steps_completed: 2
+                            id: 1
+                          events:
+                            total_steps: 10
+                            steps_completed: 7
+                            id: 2
+                        gamification_rank: 500
+                        gamification_total: 100000
+                        features_used:
+                          - "accessed"
+                          - "viewed events"
+                          - "edited attendance register"
+                          - "sent email"
+                        unread_message_count: 0
+                        client_time: "1700000000000"
+                      dojo:
+                        cacheBust: "v=abc123"
+                        locale: "en-gb"
+                    meta: []
+                getConfigPayload:
+                  summary: Response for action=getConfigPayload
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      site_type: "scouts"
+                      site_folder: "sites/onlinescoutmanager.co.uk/site"
+                      siteConfig:
+                        disableParentRota: false
+                        expense_cards:
+                          fees:
+                            card_issuing: 10
+                            lost_dispute: 20
+                            fx_percentage: 3
+                            cross_border:
+                              percentage: 2
+                              fixed: 0.3
+                          maximum_overdrawn_charges: 10
+                        online_payment_gateways:
+                          - "gocardless"
+                          - "stripe"
+                        beta:
+                          - key: "recipes"
+                            title: "Recipes & Event Menus"
+                            description: "Community driven recipe database with instructions for young people."
+                            role: "all"
+                            release_ts: 1638205905
+                          - key: "waiting_list_invites"
+                            title: "Waiting List Invites"
+                            description: "Adds survey and invitation features to waiting list Personal Details."
+                            role: "all"
+                            release_ts: 1772443731
+                            feedback:
+                              min_usage: 1
+                              mode: "new"
+                              feature: "waiting list survey or invitation"
+                          - key: "scheduled_emails"
+                            title: "Scheduled Emails"
+                            description: "Adds a Send later option when composing emails to members."
+                            role: "all"
+                            release_ts: 1779355830
+                            feedback:
+                              min_usage: 3
+                              mode: "new"
+                              feature: "scheduled email"
+                          - key: "back_button"
+                            title: "Browser's Back Button"
+                            description: "Browser back button now closes dialogs and navigates between tabs."
+                            role: "all"
+                            release_ts: 1782137873
+                            feedback:
+                              min_days: 14
+                              mode: "new"
+                        boltons:
+                          b: "badges"
+                          c: "campsiteexternalbookings"
+                          d: "details"
+                          e: "events"
+                          m: "emailbolton"
+                          p: "programme"
+                          a: "accounts"
+                          f: "filestorage"
+                          r: "chat"
+                          i: "ai"
+                          t: "tasks"
+                          h: "at_home"
+                        hasOnlinePayments: true
+                        upgrade_config:
+                          badges:
+                            price: 1
+                          events:
+                            price: 10
+                          ai:
+                            price: 7.5
+                          programme:
+                            price: 1
+                          details:
+                            price: 2.5
+                          emailbolton:
+                            price: 4.5
+                          filestorage:
+                            price: 5
+                          silver:
+                            price: 18
+                          gold:
+                            price: 24
+                          campsiteexternalbookings:
+                            price: 36
+                          chat:
+                            price: 2.5
+                          at_home:
+                            price: 10
+                          accounts:
+                            price: 20
+                          tasks:
+                            price: 2.5
+                        sms_prices:
+                          "250": 14.25
+                          "500": 28
+                          "1000": 55
+                        hideSmsOriginator: false
+                        filestorage_bolton: true
+                        chat_bolton: true
+                        whatsnew: true
+                        risk_assessments: true
+                        recipes:
+                          meals: ["breakfast", "snack", "lunch", "dinner", "pudding", "drink"]
+                          methods: ["stove", "oven", "fire", "dutch", "expedition", "no-cooking"]
+                          suitability: ["vegetarian", "vegan", "gluten", "dairy", "nuts", "wheat", "fish", "shellfish", "egg", "oatmeal", "soya"]
+                          allergies: ["meat", "animal", "gluten", "dairy", "nuts", "wheat", "fish", "shellfish", "egg", "oatmeal", "soya"]
+                          aisles: ["dairy", "deli", "bakery", "vegetable", "fruit", "fish", "frozen", "meat", "canned", "condiments", "dried", "drink", "snack", "simple", "cereal", "cleaning", "other"]
+                        hideMyPermissions: false
+                        events_attachments_quota: 50
+                        events_attachments_quota_private: -1
+                        user_can_delete_section: true
+                        add_invoices_to_events: false
+                        hide_user_active_subscriptions: false
+                        user_can_rename_self: true
+                        members_discoverable: false
+                        event_approvals_config:
+                          assign: false
+                        events_force_allow_changes: "configurable"
+                        events_prevent_deadline_change: false
+                        hide_age_after: 25
+                        hq_terms: false
+                        default_currency: "GBP"
+                        ask_communication_preferences: false
+                        email_list_domain: "lists.onlinescoutmanager.co.uk"
+                        waiting_list_application: ["contact_primary_1", "contact_primary_2"]
+                        myscout: "Parent Portal"
+                        communicatable_emails_use_opt_ins: []
+                        allowFutureJoinedMovement: false
+                        joinedMovementOptional: false
+                        hideExternalAccess: false
+                        support_network: false
+                        support_network_personal: false
+                        support_network_disabled_section_types: []
+                        event_shared_member_record_cards: false
+                        language: "en-GB"
+                        available_languages:
+                          en-GB: "English (British)"
+                        disable_patrol_points: false
+                        disable_help_videos: false
+                        file_proxy: "https://files.onlineyouthmanager.co.uk/"
+                        cdn: "oymcdn.co.uk"
+                        global_cdn: "oymcdn.co.uk"
+                        hide_upgrades: false
+                        root_url: "https://www.onlinescoutmanager.co.uk"
+                        url_www: "www.onlinescoutmanager.co.uk"
+                        fullname: "Online Scout Manager"
+                        myscout_email: "myscout@onlinescoutmanager.co.uk"
+                        section_types:
+                          uk:
+                            earlyyears: "Squirrels"
+                            beavers: "Beavers"
+                            cubs: "Cubs"
+                            scouts: "Scouts"
+                            explorers: "Explorers"
+                            network: "Network"
+                            adults: "Adults"
+                          navigators:
+                            juniornavigators: "Juniors"
+                            seniornavigators: "Seniors"
+                          au:
+                            ausscouts: "Scouts"
+                            aucubs: "Cubs"
+                            aujoeys: "Joeys"
+                        badge_types:
+                          uk: ["challenge", "staged", "core", "activity"]
+                          au: ["activity", "challenge"]
+                        adult_section_types: ["adults"]
+                        adult_section_types_emailable: ["adults"]
+                        youth_section_types: ["earlyyears", "beavers", "cubs", "scouts", "explorers", "network", "juniornavigators", "seniornavigators", "aujoeys", "aucubs", "ausscouts", "campsite"]
+                        free_sections: ["adults", "waiting", "campsite", "national"]
+                        abbr: "osm"
+                        facebookpage: "onlinescoutmanager"
+                        personaldetails_configurable: true
+                        colour_primary: "4d2177"
+                        colour_secondary: "84a40b"
+                        colour_tertiary: "8b0066"
+                        default_currency_symbol: "£"
+                        communicatable_contact_groups:
+                          default:
+                            contact_primary_1: "Primary Contact 1"
+                            contact_primary_2: "Primary Contact 2"
+                            contact_primary_member: "Member"
+                          campsite:
+                            contact_primary_campsite: "Customer"
+                        section_type_setup:
+                          beavers:
+                            ai_risk_activities: true
+                            programme: true
+                            events: true
+                            flexi: true
+                            quartermaster: true
+                            attendance: true
+                            finances: true
+                            giftaid: true
+                            patrols: true
+                            subscription: true
+                            badgeMenu: true
+                            isScout: true
+                            showStartedSection: true
+                            isDOBNeeded: true
+                            isWaiting: false
+                            isAdult: false
+                            useTerms: true
+                            showDetails: true
+                            campDirectory: true
+                            census: true
+                            allowSMS: true
+                            showCountry: true
+                            myscout: true
+                            onlinepayments: true
+                            waitingListType: "waiting"
+                            badgeTitle: "Badges"
+                            showSectionSizePredictor: true
+                            showBadgesByPerson: true
+                            sectionSizePredictor:
+                              earlyyears: 2190
+                              beavers: 2920
+                              cubs: 3832
+                              scouts: 5110
+                              explorers: 6570
+                              network: 9125
+                            section_colours_ages:
+                              earlyyears: ["#ca1a10", 4, 6]
+                              beavers: ["#0099FF", 6, 8]
+                              cubs: ["#33CC00", 8, 10.5]
+                              scouts: ["#006666", 10.5, 14]
+                              explorers: ["#999966", 14, 18]
+                              network: ["#4d2177", 18, 25]
+                              waiting: ["#999999", -1, -1]
+                            fileStorage: true
+                            badgeStock: true
+                            badges:
+                              challenge:
+                                type: "challenge"
+                                singular: "Challenge"
+                                menu: "Challenge"
+                                title: "Challenge Badges"
+                                type_id: 1
+                              activity:
+                                type: "activity"
+                                singular: "Activity"
+                                menu: "Activity"
+                                title: "Activity Badges"
+                                type_id: 2
+                              staged:
+                                type: "staged"
+                                singular: "Staged"
+                                menu: "Staged"
+                                title: "Staged Badges"
+                                type_id: 3
+                              core:
+                                type: "core"
+                                singular: "Core"
+                                menu: "Core"
+                                title: "Core Badges"
+                                type_id: 4
+                            audit_trail:
+                              member:
+                                note_types: ["notes", "received-email", "received-phonecall", "received-letter", "sent-email", "sent-phonecall", "sent-letter"]
+                              section:
+                                note_types: ["notes"]
+                            showParentPortalLoginHistory: true
+                            hasYoungLeadersPatrol: true
+                            hideUpgrades: false
+                          adults:
+                            programme: true
+                            events: true
+                            flexi: true
+                            quartermaster: true
+                            giftaid: true
+                            attendance: false
+                            finances: true
+                            badgeTitle: "Records"
+                            subscription: false
+                            badgeMenu: false
+                            isDOBNeeded: false
+                            isScout: false
+                            showStartedSection: true
+                            isAdult: true
+                            myscout: true
+                            patrols: true
+                            isWaiting: false
+                            showDetails: true
+                            useTerms: true
+                            waitingListType: "waiting"
+                            allowSMS: true
+                            showYouthBadgeLinks: false
+                            showCountry: true
+                            census: true
+                            onlinepayments: true
+                            fileStorage: true
+                            badges:
+                              challenge:
+                                type: "challenge"
+                                singular: "Records"
+                                menu: "Records"
+                                title: "Records"
+                                type_id: 1
+                            audit_trail:
+                              member:
+                                note_types: ["notes", "received-email", "received-phonecall", "received-letter", "sent-email", "sent-phonecall", "sent-letter"]
+                              section:
+                                note_types: ["notes"]
+                            showParentPortalLoginHistory: true
+                            excludeFromHierarchy: true
+                            hideUpgrades: false
+                          waiting:
+                            programme: false
+                            events: false
+                            flexi: true
+                            attendance: false
+                            patrols: false
+                            finances: false
+                            subscription: false
+                            badgeMenu: false
+                            isScout: false
+                            showStartedSection: false
+                            isDOBNeeded: true
+                            showSectionSizePredictor: true
+                            isAdult: false
+                            isWaiting: true
+                            showDetails: true
+                            useTerms: false
+                            allowSMS: true
+                            waitingListType: "waiting"
+                            showYouthBadgeLinks: false
+                            badges: []
+                            audit_trail:
+                              member:
+                                note_types: ["notes", "received-email", "received-phonecall", "received-letter", "sent-email", "sent-phonecall", "sent-letter"]
+                              section:
+                                note_types: ["notes"]
+                            showParentPortalLoginHistory: true
+                            excludeFromHierarchy: true
+                            hideUpgrades: false
+                          discount:
+                            programme: false
+                            events: false
+                            flexi: false
+                            attendance: false
+                            finances: false
+                            subscription: false
+                            badgeMenu: false
+                            isScout: false
+                            showStartedSection: false
+                            isDOBNeeded: false
+                            isAdult: false
+                            isWaiting: false
+                            isDiscount: true
+                            hideForum: true
+                            useTerms: false
+                            allowSMS: false
+                            hideUpgrades: true
+                            showDetails: false
+                            badges: []
+                            audit_trail:
+                              member:
+                                note_types: ["notes", "received-email", "received-phonecall", "received-letter", "sent-email", "sent-phonecall", "sent-letter"]
+                              section:
+                                note_types: ["notes"]
+                            showParentPortalLoginHistory: false
+                            excludeFromHierarchy: true
+                            disableOffline: true
+                        buy_links:
+                          due_badge_bags: "https://example.com/due-badge-bags"
+                        feature_preview: []
+                        risk_assessments_config:
+                          mode: "freeform"
+                          reuse_programme: true
+                          reuse_events: true
+                          residual_risk: false
+                          who: true
+                          has_generic_events: true
+                          has_activities: true
+                        tld: "onlinescoutmanager.co.uk"
+                        accounting: true
+                        accounting_expense_cards: true
+                        activity_database: true
+                        ai: true
+                        api_manage_hq: false
+                        badge_homework: true
+                        badge_show_completion_certificate: false
+                        badge_wizard: true
+                        campaign_template_designs: ["purpleandgreen", "lightblue", "darkblue", "turquoise", "purpleandpink", "purple", "default", "blank"]
+                        deletable_users: true
+                        duplicate_member_checks: false
+                        elearning_editor: false
+                        elearning_viewer: false
+                        email_from_reports: []
+                        email_signatures: true
+                        email_template_colours: ["#ffffff", "#000000", "#ffcd00", "#ff8200", "#ba0c2f", "#7C3A2D", "#AD1AAC", "#7413dc", "#4d2177", "#003DA5", "#002855", "#0095C8", "#004851", "#00594F", "#00a794", "#009A44", "#84A40B", "#8C857B"]
+                        event_directions: true
+                        event_duplicate: true
+                        event_types_single_select: false
+                        events_additional_information: []
+                        events_approvals: false
+                        events_at_home: true
+                        events_parent_rota: true
+                        events_past_read_only: false
+                        events_personal_details_confirmation_restriction: "standard_fields:confirmation:24267"
+                        events_summary_approval_status_highlights: []
+                        events_v2: true
+                        group_badges: true
+                        group_dashboard: true
+                        hasJoinedMovement: true
+                        has_main_section_per_person: false
+                        help_websites: false
+                        hierarchy_sms: false
+                        hq_support: false
+                        kill:
+                          built_files: false
+                          built_files_admin: false
+                          cdn: false
+                          cdn_admin: false
+                          extralogging: false
+                          extralogging_admin: false
+                          gilbert: false
+                          gilbert_admin: false
+                          gilbert_bedrock: false
+                          gilbert_bedrock_admin: false
+                          gilbert_support: false
+                          gilbert_support_admin: false
+                          gocardless: false
+                          gocardless_admin: false
+                          intrusiondetection: false
+                          intrusiondetection_admin: false
+                          offlinedata: false
+                          offlinedata_admin: false
+                          proxysql: false
+                          proxysql_admin: false
+                          sms: false
+                          sms_admin: false
+                        kit_lists: true
+                        leader_parent_portal_file_storage_without_upgrade: false
+                        lockdown_email_from_address: false
+                        member_deletion_review: true
+                        member_elsewhere_review: false
+                        member_erase_extra_data: ["badge", "events", "register", "finance"]
+                        member_removal_warn_if_active: false
+                        member_view_email_history: false
+                        member_view_own_badge_details: false
+                        members_users_linked: false
+                        members_users_linked_edit: false
+                        mymember_access_restrictions: "section"
+                        national_opt_in_or_out: false
+                        national_opt_in_or_out_sms: false
+                        national_parent_portal_file_storage: false
+                        organisation_import: false
+                        parent_portal_auto_join: "opt-in"
+                        parent_portal_date_of_birth_custom_data_group: "standard_fields"
+                        parent_portal_thank_you_messages: true
+                        prevent_import_spreadsheet: false
+                        prevent_leader_edit_portal_templates: false
+                        programme_primary_leader: true
+                        programmes_at_home: true
+                        purge_event_audit_trail: 3
+                        remove_member_allowed_functions:
+                          default: ["keepname", "keepcontact", "keepall", "delete", "erase"]
+                        require_global_role_inactive_searches: false
+                        schedule_emails: true
+                        section_edit_details: false
+                        section_edit_details_mode: "all_sections"
+                        section_editable_locations: false
+                        section_requires_two_admins: true
+                        shared_events_opt_in_email: true
+                        showCommentsOnAllDashboards: false
+                        show_additional_roles_dates_comments: false
+                        show_community_help_forum: true
+                        show_feature_requests: true
+                        summary_dashboards: false
+                        to_do_tasks: true
+                        urgent_event_approvals: -1
+                      patrolLabels:
+                        scouts:
+                          patrol: "Patrol"
+                          patrols: "Patrols"
+                        cubs:
+                          patrol: "Six"
+                          patrols: "Sixes"
+                        beavers:
+                          patrol: "Lodge"
+                          patrols: "Lodges"
+                        explorers:
+                          patrol: "Patrol"
+                          patrols: "Patrols"
+                        network:
+                          patrol: "Patrol"
+                          patrols: "Patrols"
+                        adults:
+                          patrol: "Section / Role"
+                          patrols: "Sections"
+                        earlyyears:
+                          patrol: "Nest"
+                          patrols: "Nests"
+                        juniornavigators:
+                          patrol: "Team"
+                          patrols: "Teams"
+                        seniornavigators:
+                          patrol: "Team"
+                          patrols: "Teams"
+                        aucubs:
+                          patrol: "Six"
+                          patrols: "Sixes"
+                      patrolRoles:
+                        scouts:
+                          - level: 0
+                            label: "Normal"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 1
+                            label: "Assistant Patrol Leader"
+                            abbr: "APL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 2
+                            label: "Patrol Leader"
+                            abbr: "PL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 3
+                            label: "Senior Patrol Leader"
+                            abbr: "SPL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                        cubs:
+                          - level: 0
+                            label: "Normal"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 1
+                            label: "Seconder"
+                            abbr: "2nd"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 2
+                            label: "Sixer"
+                            abbr: "6er"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 3
+                            label: "Senior Sixer"
+                            abbr: "S6er"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                        beavers:
+                          - level: 0
+                            label: "Normal"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 1
+                            label: "Assistant Lodge Leader"
+                            abbr: "ALL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 2
+                            label: "Lodge Leader"
+                            abbr: "LL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 3
+                            label: "Senior Lodge Leader"
+                            abbr: "SLL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                        explorers:
+                          - level: 0
+                            label: "Normal"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 1
+                            label: "Assistant Patrol Leader"
+                            abbr: "APL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 2
+                            label: "Patrol Leader"
+                            abbr: "PL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          - level: 3
+                            label: "Senior Patrol Leader"
+                            abbr: "SPL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                        earlyyears:
+                          - level: 0
+                            label: "Normal"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                        adults:
+                          "0":
+                            level: 0
+                            label: "Unspecified"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "1":
+                            level: 1
+                            label: "Section Team Member"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "2":
+                            level: 2
+                            label: "Section Team Leader"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "3":
+                            level: 3
+                            label: "Young Leader"
+                            abbr: "YL"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "6":
+                            level: 6
+                            label: "Group Lead Volunteer"
+                            abbr: "GLV"
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "7":
+                            level: 7
+                            label: "Chair"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "8":
+                            level: 8
+                            label: "Treasurer"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "9":
+                            level: 9
+                            label: "Secretary"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                          "15":
+                            level: 15
+                            label: "Trustee"
+                            abbr: ""
+                            changes: null
+                            census_costs: false
+                            visibility: 0
+                            allow_duplicates: true
+                            archived: 0
+                      extraSectionTypes:
+                        staged: "n/a"
+                        adults: "Adults"
+                        aucubs: "Australian Cubs"
+                        zadventure: "Adventure"
+                        campsite: "Campsite"
+                        national: "National Office"
+                      featurelevels:
+                        addbadge: 3
+                        badgeeligibility: 3
+                        badge_records: 1
+                        badgepdf: 3
+                        badgespreadsheet: 3
+                        calendarsync: 3
+                        census: 3
+                        eventdownload: 3
+                        events: 2
+                        eventsharing: 2
+                        exportemail: 2
+                        exportpatrolpdf: 3
+                        extrapdf: 3
+                        extras: 2
+                        filestorage: 3
+                        finances: 3
+                        genericpdf: 3
+                        giftaid: 3
+                        helloworld: 99
+                        ics: 3
+                        intouchpdf: 2
+                        mobile: 2
+                        outstanding: 2
+                        printoutstanding: 3
+                        programmepdf: 3
+                        quartermaster: 3
+                        recordcard: 3
+                        register: 2
+                        registerpdf: 3
+                        reporting: 1
+                        sendemail: 2
+                        sharebadgestock: 3
+                        showprogrammeinbadgerecords: 3
+                        spreadsheet: 3
+                        survey: 3
+                        recipes: 3
+                        risk_assessments: 3
+                        badgewizard: 3
+                        activity: 2
+                        badgestock: 1
+                        programme: 1
+                        accidentforms: 3
+                      changedlevels: []
+                      availableRoles:
+                        nobody: "Nobody"
+                        siteadministrator: "OSM Site Administrator"
+                      globalAccessRoles:
+                        - user_role: "siteadministrator"
+                          access_type: "kill_switches"
+                          id: "n/a"
+                        - user_role: "_support"
+                          access_type: "audit_member_support"
+                          id: "*"
+                        - user_role: "_support"
+                          access_type: "grant_access"
+                          id: "*"
+                        - user_role: "_all"
+                          access_type: "preview_badge_wizard"
+                          id: "n/a"
+                        - user_role: "badge_orders"
+                          access_type: "online_badge_order"
+                          id: "*"
+                      terminology:
+                        Level_1: "Group"
+                        Level_2: "District"
+                        Level_3: "County"
+                        Level_4: "Region/Area"
+                        Level_5: "Country"
+                        Level_6: "Association"
+                      forms:
+                        - name: "Accident Forms"
+                          menu_config:
+                            - reference: "ext.members.health"
+                              menu: "members"
+                              area: "members"
+                              offline: false
+                              order: 10
+                              subscription_feature: "accidentforms"
+                              title: "Accident Forms"
+                              title_is_translated: true
+                              react: "ext_forms_FormListPane"
+                        - name: "Medication History"
+                          menu_config:
+                            - reference: "ext.members.medication"
+                              menu: "members"
+                              area: "members"
+                              offline: false
+                              order: 11
+                              subscription_feature: "accidentforms"
+                              title: "Medication History"
+                              title_is_translated: true
+                              react: "ext_forms_FormListPane"
+                        - name: "Incident Logs"
+                          menu_config:
+                            - reference: "ext.members.incidents"
+                              menu: "members"
+                              area: "members"
+                              offline: false
+                              order: 15
+                              subscription_feature: "accidentforms"
+                              title: "Incident Logs"
+                              title_is_translated: true
+                              react: "ext_forms_FormListPane"
+                        - name: "Entrepreneur Fund"
+                          menu_config:
+                            - reference: "ext.forms.entrepreneur"
+                              menu: "sectionadmin"
+                              area: "grants"
+                              offline: false
+                              order: 1000
+                              subscription_feature: "accidentforms"
+                              title: "Entrepreneur Fund"
+                              title_is_translated: true
+                              react: "ext_forms_FormListPane"
+                      default_terminology:
+                        section: "section"
+                        sections: "sections"
+                        Section: "Section"
+                        Sections: "Sections"
+                        Group: "Group"
+                        group: "group"
+                        District: "District"
+                        Level_1: "Group"
+                        Level_2: "District"
+                        Level_3: "Area"
+                        Level_4: "Country"
+                        Level_5: ""
+                        Level_6: ""
+                      leaderPatrolIds:
+                        - -2
+                        - -3
+                    meta: []
+        "410":
+          description: |
+            Gone — `action=getData` has been permanently removed. HTTP 410 Gone is
+            the only reply you will ever receive for that action.
   /ext/members/contact/:
     get:
       summary: Get list of members or individual member details
@@ -1084,6 +2183,420 @@ paths:
                     identifier: name
 components:
   schemas:
+    StartupConfigPayload:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: object
+          properties:
+            site_type:
+              type: string
+              description: Site variant identifier (e.g., `scouts`).
+            site_folder:
+              type: string
+              description: Server-side folder path for site-specific assets.
+            siteConfig:
+              type: object
+              description: Global feature flags, upgrade pricing, section type definitions, and configuration.
+              properties:
+                expense_cards:
+                  type: object
+                  additionalProperties: true
+                online_payment_gateways:
+                  type: array
+                  items:
+                    type: string
+                beta:
+                  type: array
+                  description: Beta features available for opt-in.
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      role:
+                        type: string
+                      release_ts:
+                        type: integer
+                      feedback:
+                        type: object
+                        additionalProperties: true
+                    additionalProperties: true
+                boltons:
+                  type: object
+                  description: Short-code to bolton name mapping.
+                  additionalProperties:
+                    type: string
+                upgrade_config:
+                  type: object
+                  description: Subscription feature prices, keyed by feature name.
+                  additionalProperties:
+                    type: object
+                    properties:
+                      price:
+                        type: number
+                sms_prices:
+                  type: object
+                  description: SMS bundle prices keyed by credit quantity.
+                  additionalProperties:
+                    type: number
+                recipes:
+                  type: object
+                  description: Enumerated values for the recipe planner.
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                section_types:
+                  type: object
+                  description: Human-readable section type names keyed by country code then section type slug.
+                  additionalProperties:
+                    type: object
+                    additionalProperties:
+                      type: string
+                badge_types:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                section_type_setup:
+                  type: object
+                  description: Per-section-type capability flags and badge definitions.
+                  additionalProperties:
+                    type: object
+                    additionalProperties: true
+                kill:
+                  type: object
+                  description: Feature kill-switch states (all `false` means all services active).
+                  additionalProperties:
+                    type: boolean
+                buy_links:
+                  type: object
+                  additionalProperties:
+                    type: string
+                risk_assessments_config:
+                  type: object
+                  additionalProperties: true
+                communicatable_contact_groups:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    additionalProperties:
+                      type: string
+                email_template_colours:
+                  type: array
+                  items:
+                    type: string
+                campaign_template_designs:
+                  type: array
+                  items:
+                    type: string
+                remove_member_allowed_functions:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+              additionalProperties: true
+            patrolLabels:
+              type: object
+              description: Patrol/group label names per section type.
+              additionalProperties:
+                type: object
+                properties:
+                  patrol:
+                    type: string
+                  patrols:
+                    type: string
+            patrolRoles:
+              type: object
+              description: |
+                Patrol role definitions per section type. Youth sections use an array ordered by level;
+                adult sections use an object keyed by level number.
+              additionalProperties:
+                oneOf:
+                  - type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  - type: object
+                    additionalProperties:
+                      type: object
+                      additionalProperties: true
+            extraSectionTypes:
+              type: object
+              description: Display names for non-standard section types.
+              additionalProperties:
+                type: string
+            featurelevels:
+              type: object
+              description: Minimum subscription level required to access each feature.
+              additionalProperties:
+                type: integer
+            changedlevels:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+            availableRoles:
+              type: object
+              description: Global role slugs mapped to display names.
+              additionalProperties:
+                type: string
+            globalAccessRoles:
+              type: array
+              description: Access control rules granting global roles specific access types.
+              items:
+                type: object
+                properties:
+                  user_role:
+                    type: string
+                  access_type:
+                    type: string
+                  id:
+                    type: string
+                additionalProperties: true
+            terminology:
+              type: object
+              description: Hierarchy level names for the site (Group, District, County, etc.).
+              additionalProperties:
+                type: string
+            forms:
+              type: array
+              description: Dynamic form definitions (accident forms, medication history, etc.).
+              items:
+                type: object
+                additionalProperties: true
+            default_terminology:
+              type: object
+              additionalProperties:
+                type: string
+            leaderPatrolIds:
+              type: array
+              description: Patrol IDs reserved for leaders (typically -2 and -3).
+              items:
+                type: integer
+          additionalProperties: true
+        meta:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
+    StartupDataPayload:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: object
+          properties:
+            cdn:
+              type: string
+              description: Base CDN URL for static assets.
+            resources:
+              type: array
+              items:
+                type: string
+              description: Ordered list of JS/CSS resource paths to load on startup.
+            config_hash:
+              type: string
+              description: Hash representing the current server-side configuration state.
+            required_cdn_built_files:
+              type: object
+              additionalProperties:
+                type: string
+              description: Named CDN file URLs required for the app (e.g., `osm.js`, `react.js`).
+            cache_bust:
+              type: string
+              description: Query string cache-busting token derived from built file hashes.
+            globals:
+              type: object
+              properties:
+                post_login_action:
+                  description: Action to perform after login, or `false` if none.
+                  oneOf:
+                    - type: boolean
+                    - type: string
+                theme:
+                  type: string
+                  description: UI theme name (e.g., `blue`).
+                userid:
+                  type: integer
+                  description: Authenticated user's numeric ID.
+                roles:
+                  type: array
+                  description: Sections the user has access to, including permissions and config.
+                  items:
+                    type: object
+                    properties:
+                      groupname:
+                        type: string
+                      groupid:
+                        type: string
+                      group_country:
+                        type: string
+                      sectionid:
+                        type: string
+                      sectionname:
+                        type: string
+                      section:
+                        type: string
+                        description: Section type slug (e.g., `cubs`, `scouts`, `adults`, `waiting`).
+                      isDefault:
+                        type: string
+                      permissions:
+                        type: object
+                        additionalProperties: true
+                      sectionConfig:
+                        type: object
+                        additionalProperties: true
+                    additionalProperties: true
+                active_user_member:
+                  description: Whether the user is also a member record, or `false`.
+                  oneOf:
+                    - type: boolean
+                    - type: integer
+                associated_member_id:
+                  description: Associated member ID if applicable, or `false`.
+                  oneOf:
+                    - type: boolean
+                    - type: integer
+                email:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                fullname:
+                  type: string
+                preferences:
+                  type: object
+                  additionalProperties: true
+                  description: User-specific UI and behavioural preferences.
+                member_access:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    additionalProperties: true
+                  description: Sections where the user has parent-portal member access, keyed by section ID.
+                member_access_unactivated:
+                  description: Whether any member access is pending activation.
+                  oneOf:
+                    - type: boolean
+                    - type: object
+                      additionalProperties: true
+                terms:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        termid:
+                          type: string
+                        sectionid:
+                          type: string
+                        name:
+                          type: string
+                        startdate:
+                          type: string
+                        enddate:
+                          type: string
+                        master_term:
+                          nullable: true
+                        past:
+                          type: boolean
+                      additionalProperties: true
+                  description: Terms for each section, keyed by section ID.
+                global_roles:
+                  type: array
+                  items:
+                    type: object
+                    additionalProperties: true
+                hasSectionAccess:
+                  type: boolean
+                notepads:
+                  type: array
+                  items:
+                    type: object
+                    additionalProperties: true
+                sockets:
+                  type: string
+                  description: Comma-separated `sectionid-token` pairs for WebSocket connections.
+                user_socket:
+                  type: string
+                  description: Personal WebSocket token for the authenticated user.
+                session_id:
+                  type: string
+                security_prompt:
+                  type: boolean
+                user_has_image:
+                  type: string
+                  description: Path to the user's profile photo.
+                user_hash:
+                  type: string
+                  description: HMAC hash used for client-side identity verification.
+                user_hash_legacy:
+                  type: string
+                language:
+                  type: string
+                  example: "en-GB"
+                gamification:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      total_steps:
+                        type: integer
+                      steps_completed:
+                        type: integer
+                      id:
+                        oneOf:
+                          - type: integer
+                          - type: string
+                    additionalProperties: true
+                gamification_rank:
+                  type: integer
+                gamification_total:
+                  type: integer
+                features_used:
+                  type: array
+                  items:
+                    type: string
+                  description: Log of feature interactions recorded for this user account.
+                unread_message_count:
+                  type: integer
+                client_time:
+                  type: string
+                  description: Client Unix timestamp in milliseconds at the time of the request.
+              additionalProperties: true
+            dojo:
+              type: object
+              properties:
+                cacheBust:
+                  type: string
+                locale:
+                  type: string
+              additionalProperties: true
+          additionalProperties: true
+        meta:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
     MembersList:
       type: object
       properties:

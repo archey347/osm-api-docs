@@ -1,15 +1,90 @@
 openapi: 3.0.3
 info:
   title: Online Scout Manager API (Unofficial)
-  version: 0.2.0
+  version: 0.2.1
   description: |
-    Unofficial OpenAPI definition derived from the OSM API docs in this repo.
-    This describes only endpoints observed by City of Newcastle Scouts.
-    We highly recommend you read OSM's documentation on rate limits on APIs,
-    to avoid your account being locked out.
+    Unofficial, community-driven OpenAPI specification for the
+    [Online Scout Manager](https://www.onlinescoutmanager.co.uk) (OSM) API —
+    reverse-engineered from real traffic by the City of Newcastle Scouts Digital Team.
+
+    OSM does not publish a public API specification. This project exists to fill
+    that gap for developers building tools on top of OSM's platform.
+
+    > **This documentation is provided as-is with no guarantees.** OSM's API is
+    > undocumented and can change without notice. Endpoints, parameters, and
+    > response shapes described here were observed at the time of writing and may
+    > drift over time. Always test against the live API before relying on
+    > anything here.
+
+    ## Authentication
+
+    OSM uses **OAuth 2.0 (Authorization Code)** for API access. To get started:
+
+    1. Log in to OSM and navigate to **Settings → My Account Details → Developer Tools**.
+    2. Create an OAuth application to obtain your `client_id` and `client_secret`.
+    3. Implement the standard OAuth 2.0 authorization code flow — redirect users to
+       OSM's authorization endpoint, exchange the code for tokens via `/oauth/token`.
+    4. Include the access token as a **Bearer token** in the `Authorization` header
+       on every API request.
+    5. Tokens expire — use the refresh token flow to obtain new access tokens.
+
+    ## Using the API
+
+    Your browser uses a simple API for interacting with OSM, so although the API
+    is unsupported and undocumented, your application can do anything that you can
+    do on the website.
+
+    Use your browser's developer console to watch the network requests made when
+    you perform the actions you want to automate. Pay particular attention to
+    whether requests are **GET** or **POST**. Then use your OAuth client library
+    to create an authenticated request to the URL you discovered (which sets a
+    Bearer token in the Authorization header).
+
+    **Important:** All POST requests must use `application/x-www-form-urlencoded`
+    encoding, **not** JSON. Sending JSON bodies will result in your application
+    being blocked.
+
+    ## Rate limits
+
+    Please monitor the standard rate limit headers to ensure your application
+    does not get blocked automatically. Applications that are frequently blocked
+    will be **permanently blocked**.
+
+    | Header | Description |
+    |--------|-------------|
+    | `X-RateLimit-Limit` | Number of requests per hour your API can perform (per authenticated user) |
+    | `X-RateLimit-Remaining` | Requests remaining before the current user is blocked |
+    | `X-RateLimit-Reset` | Seconds until the rate limit resets back to the overall limit |
+
+    An **HTTP 429** status code is returned if the user exceeds the limit, along
+    with a `Retry-After` header indicating the number of seconds to wait.
+
+    Please also enforce your own lower rate limits, especially if you allow
+    unauthenticated users to manipulate your data (e.g. allowing members to join
+    a waiting list).
+
+    ## Other considerations
+
+    - **Check responses** — abort if they are not as expected. Your application
+      will be blocked if it frequently performs invalid requests.
+    - **`X-Deprecated` header** — anything with this header will be removed after
+      the date mentioned. Monitor for it.
+    - **`X-Blocked` header** — if set, your application has been blocked due to
+      invalid data or unauthorized access attempts. Continuing to use the API
+      after being blocked will automatically escalate to a **permanent block**.
+    - **Bot protection** — if you allow unauthenticated use of your application,
+      verify users are not bots.
+    - **Input validation** — always sanitise and validate data before sending it
+      to OSM. Invalid data will result in your application being blocked.
+    - **Privacy and GDPR** — these endpoints return personal data about young
+      people and their families. Handle it responsibly. Don't store what you
+      don't need, don't log PII, and follow your organisation's data protection
+      policies.
 servers:
   - url: https://www.onlinescoutmanager.co.uk
   - url: https://onlinescoutmanager.co.uk
+security:
+  - oauth2: [ ]
 tags:
   - name: Startup
     description: Session bootstrap and general metadata.
@@ -1168,7 +1243,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getListOfMembers, getIndividual, getMemberTransfers]
+            enum: [ getListOfMembers, getIndividual, getMemberTransfers ]
         - name: sectionid
           in: query
           required: false
@@ -1186,14 +1261,14 @@ paths:
           required: false
           schema:
             type: string
-            enum: [squirrels, beavers, cubs, scouts, explorers]
+            enum: [ squirrels, beavers, cubs, scouts, explorers ]
           description: Section type.
         - name: sort
           in: query
           required: false
           schema:
             type: string
-            enum: [dob, firstname, lastname, patrol]
+            enum: [ dob, firstname, lastname, patrol ]
           description: Sort order for list of members.
         - name: scoutid
           in: query
@@ -1206,7 +1281,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [members]
+            enum: [ members ]
           description: Context for member detail retrieval.
         - name: mode
           in: query
@@ -1254,7 +1329,7 @@ paths:
                   summary: Member detail
                   value:
                     ok: true
-                    read_only: []
+                    read_only: [ ]
                     data:
                       scoutid: "3100001"
                       firstname: Jamie
@@ -1263,7 +1338,7 @@ paths:
                       started: "2021-09-01"
                       sectionid: 45001
                       active: true
-                    meta: []
+                    meta: [ ]
                 memberTransfers:
                   summary: Member transfers
                   value:
@@ -1279,12 +1354,492 @@ paths:
                         date: "2024-01-15"
                         section_id: 65001
                         section_name:
-                          group: "Example Scout Group"
+                          group: "1st Riverside Scouts"
                           section: Scouts
-                        section_long: "Example Scout Group: Scouts"
+                        section_long: "1st Riverside Scouts: Scouts"
                         mode: outgoing
                         id: "outgoing-123456"
-                    meta: []
+                    meta: [ ]
+    post:
+      summary: Update a member field or contact details
+      tags:
+        - Members
+      description: |
+        Updates a single field on a member record, or updates contact details
+        for one of their linked contacts. The `action` query parameter must be
+        `update`. The body is sent as `application/x-www-form-urlencoded`.
+
+        **Member field mode** — send `scoutid`, `column`, `value`, `sectionid`,
+        `context=members`. Known columns:
+
+        | Column          | Value format | Notes |
+        |-----------------|-------------|-------|
+        | `firstname`     | string | |
+        | `lastname`      | string | |
+        | `dob`           | `yyyy-mm-dd` | |
+        | `started`       | `yyyy-mm-dd` | Date started Scouting. |
+        | `startedsection`| `yyyy-mm-dd` | Date started this section. |
+        | `patrolid`      | int | Must also provide `patrolleader` in the same request body. |
+        | `patrolleader`  | int | 0 = no rank, 1 = APL/Seconder, 2 = PL/Sixer, 3 = SPL/Senior Sixer. |
+
+        When setting `patrolid`, the body **must also include** `patrolleader`
+        (the rank level integer). Conversely, `patrolleader` can be set on its
+        own as `column` without changing the patrol.
+
+        **Contact update mode** — send `associated_type=member`,
+        `associated_id=<scoutid>`, `group_id=<contact_group>`, `context=members`,
+        and `data[field]=value` pairs for each field. Contact group IDs:
+
+        | group_id | Contact |
+        |----------|---------|
+        | 1 | Primary Contact 1 |
+        | 2 | Primary Contact 2 |
+        | 3 | Emergency Contact |
+        | 4 | Doctor's Surgery |
+        | 6 | Member's own details |
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ update ]
+          description: Must be `update`.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+              properties:
+                scoutid:
+                  type: integer
+                  description: Member unique identifier (member field mode).
+                column:
+                  type: string
+                  enum: [ firstname, lastname, dob, started, startedsection, patrolid, patrolleader ]
+                  description: The field to update (member field mode).
+                value:
+                  oneOf:
+                    - type: integer
+                    - type: string
+                  description: The new value.
+                sectionid:
+                  type: string
+                  description: Section ID the member belongs to.
+                context:
+                  type: string
+                  enum: [ members ]
+                  description: Must be `members`.
+                patrolleader:
+                  type: integer
+                  description: |
+                    Required when `column=patrolid`. Rank level:
+                    0 = none, 1 = APL/Seconder, 2 = PL/Sixer, 3 = SPL/Senior Sixer.
+                associated_type:
+                  type: string
+                  enum: [ member ]
+                  description: Contact update mode — must be `member`.
+                associated_id:
+                  type: integer
+                  description: Contact update mode — the member's scoutid.
+                group_id:
+                  type: integer
+                  enum: [ 1, 2, 3, 4, 6 ]
+                  description: Contact update mode — contact group ID.
+            examples:
+              memberFieldUpdate:
+                summary: Update a member field (e.g. patrol)
+                value:
+                  scoutid: 3100001
+                  column: patrolid
+                  value: "12002"
+                  sectionid: "45001"
+                  context: members
+                  patrolleader: 0
+              contactUpdate:
+                summary: Update a contact's details
+                value:
+                  associated_type: member
+                  associated_id: "3100001"
+                  group_id: "1"
+                  context: members
+                  "data[firstname]": "Sarah"
+                  "data[lastname]": "River"
+                  "data[email1]": "sarah.river@example.org"
+                  "data[phone1]": "07700900123"
+                  "data[phone1_sms]": "yes"
+      responses:
+        "200":
+          description: Update confirmation with last-updated metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  meta:
+                    type: object
+                    properties:
+                      last_updated:
+                        type: string
+                        description: Timestamp of the update (e.g. `2025-09-15 19:42:10`).
+                      last_updated_by_name:
+                        type: string
+                        description: Name of the user who made the update.
+                additionalProperties: true
+              example:
+                ok: true
+                meta:
+                  last_updated: "2025-09-15 19:42:10"
+                  last_updated_by_name: "Alex Scout"
+  /ext/members/contact/actions/:
+    post:
+      summary: Create, remove, or restore a member
+      tags:
+        - Members
+      description: |
+        Member lifecycle actions. The `action` query parameter controls the
+        behaviour. Body is `application/x-www-form-urlencoded`.
+
+        **`newMember`** — creates a new member in the section.
+
+        **`removeMember`** — removes a member from the section. The `type`
+        field controls how much data is retained:
+
+        | type | Effect |
+        |------|--------|
+        | `keepall` | Keep all data intact |
+        | `keepcontact` | Remove personal details except name and core details |
+        | `keepname` | Remove personal details except name |
+        | `delete` | Remove all personal details; use initials for names (member history retains names) |
+        | `erase` | Remove all personal details **including** names from history. **Irreversible.** |
+
+        When `type=erase`, an optional `additional_data_to_delete` array can
+        specify extra data categories to purge: `badge`, `events`, `finance`,
+        `register`. Each is optional.
+
+        **`returnMember`** — restores a previously removed member.
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ newMember, removeMember, returnMember ]
+        - name: sectionid
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Section ID (required for `removeMember`).
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+              properties:
+                firstname:
+                  type: string
+                  description: "`newMember` only. First name."
+                lastname:
+                  type: string
+                  description: "`newMember` only. Last name."
+                dob:
+                  type: string
+                  format: date
+                  description: "`newMember` only. Date of birth (`yyyy-mm-dd`)."
+                startedsection:
+                  type: string
+                  format: date
+                  description: "`newMember` only. Date started in this section."
+                started:
+                  type: string
+                  format: date
+                  description: "`newMember` only. Date started Scouting."
+                sectionid:
+                  type: string
+                  description: Section ID.
+                originating_section_id:
+                  type: string
+                  description: "`newMember` only. Usually same as `sectionid`."
+                term_id:
+                  type: string
+                  description: "`newMember` only. Term ID."
+                scouts:
+                  type: integer
+                  description: "`removeMember` / `returnMember`. Member scout ID."
+                from_section:
+                  type: string
+                  description: "`removeMember` only. Section ID to remove from."
+                date:
+                  type: string
+                  format: date
+                  description: "`removeMember` only. Effective removal date (`yyyy-mm-dd`)."
+                type:
+                  type: string
+                  enum: [ keepall, keepcontact, keepname, delete, erase ]
+                  description: "`removeMember` only. Data retention level."
+                additional_data_to_delete:
+                  type: array
+                  items:
+                    type: string
+                    enum: [ badge, events, finance, register ]
+                  description: "`removeMember` with `type=erase` only. Extra data to purge."
+            examples:
+              newMember:
+                summary: Create a new member
+                value:
+                  firstname: Robin
+                  lastname: Wells
+                  dob: "2016-06-15"
+                  startedsection: "2025-09-05"
+                  started: "2025-09-06"
+                  sectionid: "45001"
+                  originating_section_id: "45001"
+                  term_id: "67890"
+              removeMember:
+                summary: Remove a member (keep all data)
+                value:
+                  scouts: 3100005
+                  from_section: "45001"
+                  date: "2025-08-19"
+                  type: keepall
+              returnMember:
+                summary: Restore a removed member
+                value:
+                  scouts: 3100005
+      responses:
+        "200":
+          description: Action result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    description: "`newMember` response."
+                    properties:
+                      result:
+                        type: string
+                        enum: [ ok ]
+                      out_of_term:
+                        type: boolean
+                        description: Whether the start date falls outside the given term.
+                      scoutid:
+                        type: integer
+                        description: The newly assigned member ID.
+                      firstname:
+                        type: string
+                      lastname:
+                        type: string
+                  - type: object
+                    description: "`removeMember` / `returnMember` response."
+                    properties:
+                      ok:
+                        type: boolean
+                      scouts:
+                        type: array
+                        items:
+                          type: integer
+                        description: Scout IDs affected.
+              examples:
+                newMember:
+                  summary: New member created
+                  value:
+                    result: ok
+                    out_of_term: false
+                    scoutid: 3100005
+                    firstname: Robin
+                    lastname: Wells
+                removeMember:
+                  summary: Member removed
+                  value:
+                    ok: true
+                    scouts: [ 3100005 ]
+                returnMember:
+                  summary: Member restored
+                  value:
+                    ok: true
+                    scouts: [ 3100005 ]
+  /ext/badges/records/:
+    get:
+      summary: Get badge records or available badges
+      tags:
+        - Badges
+      description: |
+        Returns badge data. The `action` parameter controls the behavior:
+        - `getBadgeRecords` — returns per-member completion records for a specific badge.
+        - `getAvailableBadges` — returns the list of badges available for a section and type.
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ getBadgeRecords, getAvailableBadges ]
+        - name: section
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ squirrels, beavers, cubs, scouts, explorers ]
+          description: Section type.
+        - name: section_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Section ID (used with `getAvailableBadges`).
+        - name: sectionid
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Section ID (alternate naming, used with some actions).
+        - name: term_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Term ID.
+        - name: type_id
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ "1", "2", "3", "4" ]
+          description: |
+            Badge type ID.
+            1 = Challenge, 2 = Activity, 3 = Staged, 4 = Core.
+        - name: badge_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Badge ID (required for `getBadgeRecords`).
+        - name: badge_version
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Badge version (required for `getBadgeRecords`).
+        - name: payload
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "1" ]
+          description: Include full payload (observed value `1`).
+        - name: context
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ none ]
+          description: Context (observed value `none` for `getAvailableBadges`).
+        - name: member_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Member ID filter (observed value `0` for all members).
+      responses:
+        "200":
+          description: Badge records or available badges.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadgeRecordsResponse"
+              examples:
+                availableBadges:
+                  summary: Available badges list
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      - badge_id: 1001
+                        badge_version: 0
+                        name: "Teamwork"
+                        picture: "badges/teamwork.png"
+                        type_id: 1
+                        config: "{}"
+                        has_stock: false
+                    meta: [ ]
+                badgeRecords:
+                  summary: Badge records for a specific badge
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      - scoutid: 3100001
+                        firstname: "Jamie"
+                        lastname: "River"
+                        completed: "1"
+                        awarded: "1"
+                        status: 1
+                    meta: [ ]
+  /ext/badges/badgesbyperson/:
+    get:
+      summary: Load badges grouped by member
+      tags:
+        - Badges
+      description: |
+        Returns badge progress grouped by member. Each member entry includes
+        an array of their badge statuses across all badge types.
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ loadBadgesByMember ]
+          description: Must be `loadBadgesByMember`.
+        - name: section
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ squirrels, beavers, cubs, scouts, explorers ]
+          description: Section type.
+        - name: sectionid
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Section ID.
+        - name: term_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Term ID.
+      responses:
+        "200":
+          description: Badges by member.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadgesByMemberResponse"
+              example:
+                status: true
+                error: null
+                data:
+                  - scoutid: 3100001
+                    firstname: "Jamie"
+                    lastname: "River"
+                    patrol: "Blue"
+                    active: true
+                    badges:
+                      - badge_id: 1001
+                        badge_version: 0
+                        completed: "1"
+                        awarded: "1"
+                        status: 1
+                meta: [ ]
   /ext/members/email/:
     get:
       summary: Get selected contact emails
@@ -1296,7 +1851,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getSelectedEmailsFromContacts]
+            enum: [ getSelectedEmailsFromContacts ]
         - name: sectionid
           in: query
           required: true
@@ -1321,7 +1876,7 @@ paths:
                     photo_guid: "00000000-0000-0000-0000-000000000000"
                     member_id: 2526072
                 count: 2
-                blocks: []
+                blocks: [ ]
                 daily_limit_reached: false
     post:
       summary: Send an email template
@@ -1333,7 +1888,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [sendTemplate]
+            enum: [ sendTemplate ]
       requestBody:
         required: true
         content:
@@ -1342,10 +1897,10 @@ paths:
               type: object
               additionalProperties: true
             example:
-              subject: "Example Email"
-              sectionid: "45998"
+              subject: "Weekly Meeting Reminder"
+              sectionid: "45001"
               emails: "{\"2526072\":{\"firstname\":\"Jamie\",\"lastname\":\"River\",\"member_id\":2526072,\"emails\":[\"parent@example.org\"]}}"
-              edits: "{\"0\":{\"0\":{\"text\":\"<p>Example</p>\"}}}"
+              edits: "{\"0\":{\"0\":{\"text\":\"<p>Don't forget to bring your swimming kit this week!</p>\"}}}"
       responses:
         "200":
           description: Email send response.
@@ -1366,7 +1921,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getPatrolsWithPeople]
+            enum: [ getPatrolsWithPeople ]
         - name: sectionid
           in: query
           required: true
@@ -1384,7 +1939,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [y, n]
+            enum: [ y, n ]
           description: Include pseudo-patrol for members not in a patrol.
       responses:
         "200":
@@ -1402,7 +1957,7 @@ paths:
                   active: "1"
                   points: "0"
                   census_costs: false
-                  members: []
+                  members: [ ]
                 "12001":
                   patrolid: "12001"
                   sectionid: "45001"
@@ -1436,7 +1991,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getDetails]
+            enum: [ getDetails ]
         - name: sectionid
           in: query
           required: true
@@ -1468,7 +2023,7 @@ paths:
                     ethnicity: ""
                     disabilities: "Edit disabilities"
                     myscout: "Send Parent Portal email"
-                    raw_disabilities: []
+                    raw_disabilities: [ ]
                     _filterString: "sam lake"
   /ext/members/flexirecords/:
     get:
@@ -1481,7 +2036,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getPatrolsWithPeople]
+            enum: [ getPatrolsWithPeople ]
         - name: sectionid
           in: query
           required: true
@@ -1493,7 +2048,7 @@ paths:
           required: false
           schema:
             type: string
-            enum: [y, n]
+            enum: [ y, n ]
           description: Toggle archived flexi-records.
       responses:
         "200":
@@ -1523,7 +2078,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [get, getAttendanceBadgeRequirements]
+            enum: [ get, getAttendanceBadgeRequirements ]
         - name: sectionid
           in: query
           required: true
@@ -1571,7 +2126,7 @@ paths:
                     identifier: scoutid
                     label: name
                     items:
-                      - "2026-01-07": "Yes"
+                      - "2025-01-07": "Yes"
                         total: 2
                         firstname: "Robert"
                         lastname: "Baden Powell"
@@ -1579,7 +2134,7 @@ paths:
                         active: true
                         scoutid: 2015779
                     meetings:
-                      "2026-01-07": "Welcome Back!"
+                      "2025-01-07": "Welcome Back!"
                 badgeRequirements:
                   summary: Attendance badge requirements
                   value:
@@ -1587,9 +2142,9 @@ paths:
                       badgeName: "Communicator"
                       column_id: "100542"
                       name: "Code"
-                      meetingdate: "2026-01-14"
+                      meetingdate: "2025-01-14"
                       section: "cubs"
-                      sectionid: 45998
+                      sectionid: 12345
     post:
       summary: Update attendance
       tags:
@@ -1600,7 +2155,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [update]
+            enum: [ update ]
         - name: sectionid
           in: query
           required: true
@@ -1635,14 +2190,14 @@ paths:
                 customData:
                   type: string
                   description: JSON array of custom data updates.
-              required: [scouts, selectedDate, present, section, sectionid]
+              required: [ scouts, selectedDate, present, section, sectionid ]
               additionalProperties: true
             example:
               scouts: "[3008213]"
-              selectedDate: "2026-01-14"
+              selectedDate: "2025-01-14"
               present: "Absent"
               section: "cubs"
-              sectionid: "45998"
+              sectionid: "12345"
               completedBadges: "[]"
               customData: "[]"
       responses:
@@ -1663,7 +2218,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getData]
+            enum: [ getData ]
         - name: section_id
           in: query
           required: true
@@ -1681,7 +2236,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [member]
+            enum: [ member ]
         - name: associated_is_section
           in: query
           required: false
@@ -1701,7 +2256,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [members]
+            enum: [ members ]
         - name: group_order
           in: query
           required: false
@@ -1730,19 +2285,29 @@ paths:
                         label: "Gender"
                         value: "Male"
                 meta:
-                  group_name: "Example Scout Group"
+                  group_name: "1st Riverside Scouts"
                   section_name: "Cubs"
     post:
       summary: Update custom data for a member
       tags:
         - Custom Data
+      description: |
+        Updates custom data fields on a member. Two `action` values are supported:
+
+        - `update` — bulk update using `data[field]=value` pairs (e.g. contact details).
+        - `updateColumn` — update a single custom data column by `column_id`.
+
+        Column IDs are section-specific. The only well-known core column is
+        `column_id=34` for Gender (values: Male, Female, Self-identify,
+        Prefer not to say, Other, Unspecified). Other column IDs vary per
+        section — inspect HTTP traffic to discover them.
       parameters:
         - name: action
           in: query
           required: true
           schema:
             type: string
-            enum: [update]
+            enum: [ update, updateColumn ]
         - name: section_id
           in: query
           required: true
@@ -1756,32 +2321,368 @@ paths:
             schema:
               type: object
               additionalProperties: true
-            example:
-              associated_id: "2211629"
-              associated_type: "member"
-              group_id: "2"
-              context: "members"
-              service: "desktop"
-              "data[firstname]": "Test"
-              "data[lastname]": "Contact 3"
+              properties:
+                associated_id:
+                  type: string
+                  description: Member scout ID.
+                associated_type:
+                  type: string
+                  enum: [ member ]
+                associated_is_section:
+                  type: string
+                  description: Section association flag (observed `false`).
+                group_id:
+                  type: string
+                  description: |
+                    Custom data group ID. For `update` action this matches
+                    the contact group (1–6). For `updateColumn` this is the
+                    custom data group containing the column.
+                column_id:
+                  type: integer
+                  description: Column ID to update (`updateColumn` action only).
+                value:
+                  type: string
+                  description: New value for the column (`updateColumn` action only).
+                context:
+                  type: string
+                  enum: [ members ]
+            examples:
+              bulkUpdate:
+                summary: Bulk update contact details (action=update)
+                value:
+                  associated_id: "3100003"
+                  associated_type: "member"
+                  group_id: "2"
+                  context: "members"
+                  service: "desktop"
+                  "data[firstname]": "Helen"
+                  "data[lastname]": "Park"
+              updateColumn:
+                summary: Update a single custom column (action=updateColumn)
+                value:
+                  associated_type: member
+                  associated_id: "3100005"
+                  associated_is_section: "false"
+                  group_id: "7"
+                  column_id: 34
+                  value: "Male"
+                  context: members
       responses:
         "200":
           description: Custom data update response.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CustomDataUpdateResponse"
+                oneOf:
+                  - $ref: "#/components/schemas/CustomDataUpdateResponse"
+                  - $ref: "#/components/schemas/CustomDataColumnUpdateResponse"
+              examples:
+                bulkUpdate:
+                  summary: Bulk update response
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      lastname: "Park"
+                    meta:
+                      last_updated:
+                        last_updated: "2025-09-12 18:30:45"
+                        last_updated_by_name: "Alex Scout"
+                      updated:
+                        lastname: "Last Name"
+                columnUpdate:
+                  summary: Column update response
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      column_id: 34
+                      type: select
+                      required: "no"
+                      varname: gender
+                      label: Gender
+                      value: Male
+                      is_core: "yes"
+                      order: "12"
+                    meta:
+                      last_updated:
+                        last_updated: "2025-09-15 19:43:22"
+                        last_updated_by_name: "Alex Scout"
+  /ext/audittrail/:
+    post:
+      summary: Get audit trail for a member
+      tags:
+        - Members
+      description: |
+        Returns the audit trail (change history) for a member. Despite being
+        a POST, this is a read-only query — the body specifies which member
+        to look up. The response contains a chronological list of changes
+        including patrol moves, rank promotions, field edits, and section
+        additions.
+
+        Each entry has a `type` and `code` describing the kind of change:
+
+        | type | code | Meaning |
+        |------|------|---------|
+        | `members` | `add` | Member added to section |
+        | `details` | `field` | A member field was edited |
+        | `details` | `new` | A new detail was added (e.g. consent) |
+        | `patrols` | `add-to` | Member added to a patrol/six |
+        | `patrol-leader` | `promoted` | Rank promotion or demotion |
+
+        The `summary` field contains HTML with `<strong>` tags highlighting
+        names, fields, and values.
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ getAuditTrail ]
+          description: Must be `getAuditTrail`.
+        - name: section_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Section ID.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - section_id
+                - id
+                - type
+              properties:
+                section_id:
+                  type: string
+                  description: Section ID (repeated in body).
+                id:
+                  type: string
+                  description: Member scout ID.
+                type:
+                  type: string
+                  enum: [ member ]
+                  description: Must be `member`.
+            example:
+              section_id: "45001"
+              id: "3100001"
+              type: member
+      responses:
+        "200":
+          description: Audit trail entries for the member.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuditTrailResponse"
               example:
                 status: true
                 error: null
                 data:
-                  lastname: "Contact 3"
+                  - date: "15/09/2025 19:42"
+                    date_raw: "2025-09-15 19:42:10"
+                    summary: "<strong>Jamie River</strong> has had their <strong>Consents: Photographs</strong> added as <strong>Yes</strong> by <strong>Alex Scout</strong>"
+                    verbose: ""
+                    type: details
+                    code: new
+                    hidden: false
+                  - date: "15/09/2025 19:38"
+                    date_raw: "2025-09-15 19:38:31"
+                    summary: "<strong>Jamie River</strong> is now a <strong>Sixer</strong> in the Blue six in <strong>Cubs</strong> (previously <strong>Seconder</strong>), changed by <strong>Alex Scout</strong>."
+                    verbose: ""
+                    type: patrol-leader
+                    code: promoted
+                    hidden: false
+                  - date: "15/09/2025 19:37"
+                    date_raw: "2025-09-15 19:37:04"
+                    summary: "<strong>Jamie River</strong> was added to the <strong>Blue</strong> six."
+                    verbose: ""
+                    type: patrols
+                    code: add-to
+                    hidden: false
+                  - date: "15/09/2025 19:35"
+                    date_raw: "2025-09-15 19:35:54"
+                    summary: "<strong>Alex Scout</strong> updated <strong>Date of Birth</strong> for <strong>Jamie River</strong> from <strong>22/04/2015</strong> to <strong>23/04/2015</strong>"
+                    verbose: ""
+                    type: details
+                    code: field
+                    hidden: false
+                  - date: "15/09/2025 19:34"
+                    date_raw: "2025-09-15 19:34:07"
+                    summary: "<strong>Jamie River</strong> has been added to <strong>1st Riverside Scouts: Cubs</strong> by <strong>Alex Scout</strong>."
+                    verbose: ""
+                    type: members
+                    code: add
+                    hidden: false
                 meta:
-                  last_updated:
-                    last_updated: "2026-01-18 18:24:25"
-                    last_updated_by_name: "Example User"
-                  updated:
-                    lastname: "Last Name"
+                  hidden: false
+                  note_types:
+                    - notes
+                    - received-email
+                    - received-phonecall
+                    - received-letter
+                    - sent-email
+                    - sent-phonecall
+                    - sent-letter
+  /ext/settings/emails/:
+    get:
+      summary: Get email configuration for a section
+      tags:
+        - Email
+      description: |
+        Returns the email/newsletter configuration for a section, including
+        available events and patrols that can be used as recipient filters
+        when composing emails. Also indicates whether the section has a
+        newsletter slug configured and if it is live.
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ getConfig ]
+          description: Must be `getConfig`.
+        - name: sectionid
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Section ID.
+      responses:
+        "200":
+          description: Email configuration with events and patrols.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  found:
+                    type: boolean
+                  result:
+                    type: object
+                    properties:
+                      sectionid:
+                        type: string
+                      slug:
+                        type: string
+                        description: Newsletter slug for the section.
+                      numemails:
+                        type: string
+                        description: Number of emails sent (as string).
+                      live:
+                        type: string
+                        enum: [ "0", "1" ]
+                        description: Whether the newsletter is live.
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        slug:
+                          type: string
+                    description: Upcoming events that can be used as email filters.
+                  patrols:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        slug:
+                          type: string
+                    description: Patrols/sixes in the section.
+                  leaders:
+                    type: boolean
+                    description: Whether leaders are available as recipients.
+                additionalProperties: true
+              example:
+                found: true
+                result:
+                  sectionid: "45001"
+                  slug: "1stRiversideCubs"
+                  numemails: "0"
+                  live: "1"
+                events:
+                  - name: "Summer Camp 2025"
+                    slug: "SummerCamp2025"
+                  - name: "Investiture Ceremony"
+                    slug: "InvestitureCeremony"
+                patrols:
+                  - name: "Blue"
+                    slug: "Blue"
+                  - name: "Green"
+                    slug: "Green"
+                  - name: "Red"
+                    slug: "Red"
+                  - name: "Yellow"
+                    slug: "Yellow"
+                leaders: true
+  /v3/members/contact/{sectionid}/removalWarnings:
+    post:
+      summary: Get pre-removal warnings for a member
+      tags:
+        - Members
+      description: |
+        Checks whether there are any warnings before removing a member from a
+        section (e.g. outstanding payments). Call this before `removeMember`
+        to display confirmation prompts to the user.
+      parameters:
+        - name: sectionid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Section ID.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - "member_ids[0]"
+              properties:
+                "member_ids[0]":
+                  type: integer
+                  description: Scout ID of the member to check. Additional members can be sent as `member_ids[1]`, `member_ids[2]`, etc.
+            example:
+              "member_ids[0]": 3100005
+      responses:
+        "200":
+          description: Removal warnings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    nullable: true
+                  data:
+                    type: object
+                    properties:
+                      payments:
+                        type: boolean
+                        description: Whether the member has outstanding payments.
+                    additionalProperties: true
+                  meta:
+                    type: object
+                    properties:
+                      ok:
+                        type: boolean
+              example:
+                status: true
+                error: null
+                data:
+                  payments: false
+                meta:
+                  ok: true
   /v3/members/review/deletion/{sectionid}:
     get:
       summary: Get deletable members
@@ -1821,7 +2722,7 @@ paths:
                     lastname: Stone
                     date_deleted: "2023-10-01"
                     id: 3100004
-                meta: []
+                meta: [ ]
   /ext/programme/:
     get:
       summary: Programme endpoints
@@ -1943,7 +2844,7 @@ paths:
                         help:
                           - scoutid: "3100005"
                             scout: "Taylor Wood"
-                    badgelinks: {}
+                    badgelinks: { }
                 programmeParentRotaMembers:
                   summary: Parent rota members
                   value:
@@ -1955,7 +2856,7 @@ paths:
                         lastname: "Baden Powell"
                         photo_guid: "00000000-0000-0000-0000-000000000000"
                         patrol_id: -2
-                    meta: []
+                    meta: [ ]
     post:
       summary: Update programme meeting parts
       tags:
@@ -1966,7 +2867,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [editEveningParts]
+            enum: [ editEveningParts ]
       requestBody:
         required: true
         content:
@@ -1981,10 +2882,10 @@ paths:
                 parts:
                   type: string
                   description: JSON object of fields to update (e.g., title, notesforparents, primary_leader_id).
-              required: [sectionid, eveningid, parts]
+              required: [ sectionid, eveningid, parts ]
               additionalProperties: true
             example:
-              sectionid: "45998"
+              sectionid: "12345"
               eveningid: "9464403"
               parts: "{\"title\":\"Astronomy Night 2\"}"
       responses:
@@ -1997,12 +2898,12 @@ paths:
               example:
                 items:
                   - eveningid: "9464403"
-                    sectionid: "45998"
+                    sectionid: "12345"
                     title: "Astronomy Night"
-                    meetingdate: "2026-01-21"
+                    meetingdate: "2025-01-21"
                     starttime: "17:30:00"
                     endtime: "18:45:00"
-                badgelinks: []
+                badgelinks: [ ]
   /ext/programme/clouds/:
     get:
       summary: Get badge tag cloud
@@ -2014,7 +2915,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getBadgeTagCloud]
+            enum: [ getBadgeTagCloud ]
         - name: sectionid
           in: query
           required: true
@@ -2032,7 +2933,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [squirrels, beavers, cubs, scouts, explorers]
+            enum: [ squirrels, beavers, cubs, scouts, explorers ]
           description: Section type.
       responses:
         "200":
@@ -2058,7 +2959,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [getNextThings]
+            enum: [ getNextThings ]
         - name: sectionid
           in: query
           required: true
@@ -2076,7 +2977,7 @@ paths:
           required: true
           schema:
             type: string
-            enum: [squirrels, beavers, cubs, scouts, explorers]
+            enum: [ squirrels, beavers, cubs, scouts, explorers ]
           description: Section type.
       responses:
         "200":
@@ -2129,25 +3030,25 @@ paths:
                   raw: "0"
                   html: "<p></p>"
                 subscription_expiring_soon: false
-                programme_reviews: []
+                programme_reviews: [ ]
                 deletable_members:
                   count: 2
                 due_badges:
                   count: 5
                 expense_cards:
-                  cardholders: []
+                  cardholders: [ ]
                   number_cardholders: 0
                 feature_request_voting:
                   has_feature_request: false
                 pending_expense_cardholder_application:
                   data_required: false
                 thanks:
-                  messages: []
+                  messages: [ ]
                 unanswered_question:
                   has_questions: false
                 user_to_do_tasks:
-                  tasks: []
-                  users: {}
+                  tasks: [ ]
+                  users: { }
                 whats_new:
                   title: "Example Update"
                   msg: "<p>Example message.</p>"
@@ -2182,6 +3083,24 @@ paths:
                   itemstore:
                     identifier: name
 components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: |
+        OSM uses OAuth 2.0 Authorization Code flow. Create an OAuth application
+        at **Settings → My Account Details → Developer Tools** in the OSM UI to
+        obtain your `client_id` and `client_secret`.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.onlinescoutmanager.co.uk/oauth/authorize
+          tokenUrl: https://www.onlinescoutmanager.co.uk/oauth/token
+          refreshUrl: https://www.onlinescoutmanager.co.uk/oauth/token
+          scopes:
+            section:member:read: Read member data for sections you have access to
+            section:member:write: Update member data (patrols, ranks, fields)
+            section:badge:read: Read badge records and progress
+            section:event:read: Read events and programme data
+            section:programme:read: Read programme summaries and meetings
   schemas:
     StartupConfigPayload:
       type: object
@@ -2609,7 +3528,7 @@ components:
           items:
             type: object
             additionalProperties: true
-      required: [identifier, items]
+      required: [ identifier, items ]
       additionalProperties: true
     MemberDetail:
       type: object
@@ -2711,7 +3630,7 @@ components:
       properties:
         ok:
           type: boolean
-      required: [ok]
+      required: [ ok ]
       additionalProperties: true
     SelectedContactEmails:
       type: object
@@ -3034,4 +3953,158 @@ components:
         whats_new:
           type: object
           additionalProperties: true
+      additionalProperties: true
+    AuditTrailResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                description: Human-readable date (DD/MM/YYYY HH:MM).
+              date_raw:
+                type: string
+                description: Raw timestamp (YYYY-MM-DD HH:MM:SS).
+              summary:
+                type: string
+                description: HTML summary of the change with `<strong>` highlights.
+              verbose:
+                type: string
+                description: Extended details (usually empty).
+              type:
+                type: string
+                enum: [ members, details, patrols, patrol-leader ]
+                description: Category of change.
+              code:
+                type: string
+                enum: [ add, field, new, add-to, promoted ]
+                description: Specific action within the category.
+              hidden:
+                type: boolean
+        meta:
+          type: object
+          properties:
+            hidden:
+              type: boolean
+            note_types:
+              type: array
+              items:
+                type: string
+              description: Available note type filters.
+      additionalProperties: true
+    CustomDataColumnUpdateResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: object
+          properties:
+            column_id:
+              type: integer
+            type:
+              type: string
+              description: Column type (e.g. `select`, `text`).
+            required:
+              type: string
+              enum: [ "yes", "no" ]
+            varname:
+              type: string
+              description: Variable name (e.g. `gender`).
+            label:
+              type: string
+              description: Human-readable label.
+            value:
+              type: string
+              description: The updated value.
+            is_core:
+              type: string
+              enum: [ "yes", "no" ]
+            order:
+              type: string
+            config:
+              type: object
+              additionalProperties: true
+              description: Column configuration including options for select fields.
+          additionalProperties: true
+        meta:
+          type: object
+          properties:
+            last_updated:
+              type: object
+              properties:
+                last_updated:
+                  type: string
+                last_updated_by_name:
+                  type: string
+      additionalProperties: true
+    BadgeRecordsResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        meta:
+          type: array
+          items:
+            type: object
+      additionalProperties: true
+    BadgesByMemberResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+        error:
+          nullable: true
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              scoutid:
+                type: integer
+              firstname:
+                type: string
+              lastname:
+                type: string
+              patrol:
+                type: string
+              active:
+                type: boolean
+              badges:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    badge_id:
+                      type: integer
+                    badge_version:
+                      type: integer
+                    completed:
+                      type: string
+                    awarded:
+                      type: string
+                    status:
+                      type: number
+                  additionalProperties: true
+            additionalProperties: true
+        meta:
+          type: array
+          items:
+            type: object
       additionalProperties: true

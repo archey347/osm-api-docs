@@ -1,6 +1,6 @@
 {
   "name": "osm-api-client",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "gen:ts": "bun scripts/gen-typescript.ts",
     "changelog": "bun scripts/changelog.ts",
     "scan": "bun scripts/scan-observations.ts",
+    "coverage": "bun scripts/coverage.ts",
     "lint": "redocly lint openapi.yaml",
     "test": "bun test"
   },

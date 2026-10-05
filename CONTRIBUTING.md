@@ -8,7 +8,20 @@ If a call is missing or something in the spec is wrong, open an issue. Say which
 expect. Don't paste real data from OSM replies; describe the structure ("`data` is an array of objects with a
 `sectionid` string") instead.
 
-## 2. Edit a call
+## 2. Contribute observations
+
+If you use OSM, you can improve the spec from your own traffic. Save a HAR capture from your browser's dev tools and
+scan it locally:
+
+```
+bun run scan -- my-capture.har
+```
+
+This marks the calls you saw as **observed** and writes a report of how real replies differ from the docs
+(`.cache/observation-scan.md`, structure only). Fix the differences in the call and schema files (see
+[Edit a call](#3-edit-a-call)), then open a PR. See the `record-osm-observations` skill.
+
+## 3. Edit a call
 
 The spec is built from the files in `calls/`, `schemas/` and `templates/`. Edit those, not `openapi.yaml`. Layout and
 fields are in [FORMAT.md](FORMAT.md). There is also an `update-osm-api-spec` skill for Claude Code that follows these
@@ -28,19 +41,6 @@ bun test
 ```
 
 Commit the rebuilt `openapi.yaml` with your changes.
-
-## 3. Contribute observations
-
-If you use OSM, you can improve the spec from your own traffic. Save a HAR capture from your browser's dev tools and
-scan it locally:
-
-```
-bun run scan -- my-capture.har
-```
-
-This marks the calls you saw as **observed** and writes a report of how real replies differ from the docs
-(`.cache/observation-scan.md`, structure only). Fix the differences in the call and schema files, then open a PR. See
-the `record-osm-observations` skill.
 
 ## Never submit captures or personal data
 

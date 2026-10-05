@@ -1,0 +1,11 @@
+path: /ext/finances/invoices/
+method: POST
+summary: Edit invoices, records, budgets and attachments
+description: |-
+  `updateBatch` adds a record when `id` is `0`, otherwise edits it. `addInvoice`
+  edits an existing invoice when `invoiceid` is sent. The `put`, `commitTemp` and
+  `revertTemp` actions (and their `invoice`, `event` and `safeguarding` prefixed
+  variants, e.g. `invoiceAttachmentsPut`) belong to the file attachment widget.
+  `*Put` uploads a file (`qqfile`); large files are sent in chunks and finished
+  with `completePut` (an upload GUID) and `size`.
+response: Result.

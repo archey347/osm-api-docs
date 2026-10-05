@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/booking_time/{effectiveFromId}/add"
+summary: Add a booking-window rule
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  effectiveFromId:
+    type: string
+    description: Rule set (changeover date) ID.
+body:
+  params:
+    days_mode:
+      type: string
+      enum: [ minimum_days_before, maximum_days_before ]
+      required: true
+    days:
+      type: integer
+      required: true
+  example:
+    days_mode: minimum_days_before
+    days: 7
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

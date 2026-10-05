@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/elearning/viewer/
+action: getModule
+summary: Get a module to take
+tags: [ E-Learning ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    module_id:
+      type: string
+      required: true
+    demo:
+      type: string
+      enum: [ "true", "false" ]
+      description: "Not sent by `completeModule`."
+  example:
+    section_id: "45001"
+    module_id: "7100001"
+    demo: "false"
+response:
+  schema:
+    $ref: ELearningModuleResponseData
+  envelope: true
+sources: [ area.elearning.78729e36e08410a6eaec.js ]

@@ -1,0 +1,18 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+    campsite:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      additionalProperties: true
+  additionalProperties: true
+description: Bookings made by the current user, across campsites.

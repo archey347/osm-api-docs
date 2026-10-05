@@ -1,0 +1,6 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        description: "`reserved` when the member was placed on the waiting list."

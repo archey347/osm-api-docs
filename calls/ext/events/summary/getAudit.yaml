@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/events/summary/
+action: getAudit
+summary: List recent attendance changes
+description: "`get` lists the section's events for the term, `getEvents` a lighter list (`onlyArchived=1` for archived ones), `getAudit` recent attendance changes."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  type:
+    type: string
+    description: Kind of change to list.
+response:
+  schema:
+    $ref: EventSummaryAudit
+  examples:
+    getAudit:
+      value:
+        items:
+          - eventid: "9600001"
+            name: Summer Camp
+            generic_date: "2025-03-02 18:04:11"
+            member_id: "3100001"
+            firstname: Alex
+            lastname: Scout
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            type: attendance
+            desc: Attendance changed to Yes
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

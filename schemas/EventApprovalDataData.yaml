@@ -1,0 +1,18 @@
+type: object
+properties:
+  automatically_rejected:
+    description: "`false`, or a reason code when the event fails automatic checks."
+  approval_status:
+    type: object
+    properties:
+      overall:
+        type: string
+        description: "`pending` or `approved` among the values seen."
+    additionalProperties: true
+  event_type_qualifications_correct:
+    type: boolean
+  disclaimers:
+    type: array
+    items:
+      type: string
+additionalProperties: true

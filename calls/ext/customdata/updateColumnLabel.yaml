@@ -1,0 +1,47 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: updateColumnLabel
+summary: Rename a custom column
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    label:
+      type: string
+    associated_type:
+      type: string
+      enum: [ member ]
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+    column_id:
+      type: integer
+      description: "Column ID to update (`updateColumn` action only)."
+    context:
+      type: string
+      enum: [ members ]
+  example:
+    associated_type: member
+    group_id: "7"
+    column_id: 41
+    label: Swimming badge
+    context: members
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    structureWrite:
+      summary: "`createColumn`, `updateColumnLabel`, `deleteColumn`, `addOtherColumns`, `deleteInvisibleValue`, `saveStructureSettings`"
+      value: [ ]
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

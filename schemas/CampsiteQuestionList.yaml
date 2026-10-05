@@ -1,0 +1,10 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    question:
+      type: string
+  additionalProperties: true
+description: Questions in a question group.

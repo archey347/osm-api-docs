@@ -1,0 +1,49 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/financial_year/cashbook/transactions/{transactionId}"
+summary: Update a cashbook transaction
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  transactionId:
+    type: string
+    description: Cashbook transaction ID.
+body:
+  params:
+    description:
+      type: string
+      required: true
+    type:
+      type: string
+      enum: [ income, expense ]
+      required: true
+    date:
+      type: string
+      format: date
+      required: true
+    amount:
+      type: integer
+      required: true
+      description: Pence.
+    categories:
+      type: string
+      required: true
+      description: "JSON-encoded array of `{category_id, item_id, amount}` allocations."
+    attachments_id:
+      type: string
+      description: Client-generated GUID for attachments. Create only.
+    bank_account_transaction_id:
+      description: Bank transaction this entry is created from. Create only.
+  example:
+    description: Example supplies
+    type: expense
+    date: "2026-09-20"
+    amount: 2500
+    categories: "[{\"category_id\":3100040,\"item_id\":0,\"amount\":2500}]"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

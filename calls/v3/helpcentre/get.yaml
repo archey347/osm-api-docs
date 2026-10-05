@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: /v3/helpcentre
+summary: List help centre areas and topics
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: HelpCentreAreas
+  examples:
+    default:
+      value:
+        - id: 1
+          title: Getting started
+          order: 1
+          visibility: null
+          topics:
+            - id: 10
+              title: Add your first member
+              order: 1
+              help_centre_area_id: 1
+              visibility: null
+              created_at: "2024-01-01 00:00:00"
+              opens: [ ]
+  description: "Areas with their topics. `meta.announcement` is a banner message."
+sources: [ area.chat.6b506d390b35ea85d510.js, area.helpcentre.342e479358e7d16ec1b4.js ]

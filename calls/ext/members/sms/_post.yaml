@@ -1,0 +1,9 @@
+path: /ext/members/sms/
+method: POST
+summary: Count SMS recipients and send texts
+description: |-
+  SMS actions share this path with different `action` values.
+  `getNumbers` is a read: it counts recipients and remaining credits for
+  the given members. `sendText` sends to members of one section;
+  `sendGroupSMS` sends to members of several sections.
+response: Counts or send result.

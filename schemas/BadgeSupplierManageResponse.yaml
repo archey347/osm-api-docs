@@ -1,0 +1,18 @@
+type: object
+properties:
+  suppliers:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        name:
+          type: string
+        order_url:
+          type: string
+        owning_section_name:
+          type: string
+        status:
+          type: string
+      additionalProperties: true
+additionalProperties: true

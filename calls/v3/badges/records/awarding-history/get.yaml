@@ -1,0 +1,32 @@
+kind: v3-route
+method: GET
+path: /v3/badges/records/awarding-history
+summary: Get a member's awarding history for a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  badge_id:
+    type: string
+  badge_version:
+    type: string
+  member_id:
+    type: string
+  section_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeAwardingHistoryResponse
+  examples:
+    history:
+      summary: History
+      value:
+        - id: 8800001
+          user_name: Alex Scout
+          photo_url: ""
+          level: 1
+          awarded_date: "2025-02-01"
+          created_date: "2025-02-01 19:30:00"
+  description: Award history entries.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

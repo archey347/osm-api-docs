@@ -1,0 +1,9 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      sent_count: { }
+      failed_count: { }
+    additionalProperties: true
+additionalProperties: true

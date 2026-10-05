@@ -1,0 +1,17 @@
+kind: v3-route
+method: GET
+path: /v3/users/push_notifications/subscriptions
+summary: Get notification subscriptions
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: UserPushSubscriptions
+  examples:
+    default:
+      value:
+        example_topic: true
+  description: "Subscription values by topic, with the email-copy setting in `meta.emails`."
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

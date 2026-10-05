@@ -1,0 +1,9 @@
+path: /ext/finances/invoices/
+method: GET
+summary: Invoices, budgets and attachments
+description: |-
+  `finaliseInvoice` changes data despite being a GET. `printInvoice` returns a
+  printable document. The `config` and `manifest` actions belong to the file
+  attachment widget; the `invoice`, `event` and `safeguarding` prefixed variants
+  select which kind of attachment it is acting on.
+response: "Invoice data, an attachment manifest, or (`printInvoice`) a document."

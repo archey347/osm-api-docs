@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cards/{cardId}/delete"
+summary: Cancel a lost, stolen or undelivered card
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  cardId:
+    type: string
+    description: Expense card ID.
+body:
+  params:
+    reason:
+      type: string
+      enum: [ lost, stolen, never_arrived ]
+      required: true
+  example:
+    reason: lost
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

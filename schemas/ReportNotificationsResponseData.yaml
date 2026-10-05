@@ -1,0 +1,15 @@
+type: array
+description: Notification rules on the report.
+items:
+  type: object
+  properties:
+    id: { }
+    name:
+      type: string
+    schedule: { }
+    date_field: { }
+    date_starts: { }
+    date_ends: { }
+    email_enabled: { }
+    email_settings: { }
+  additionalProperties: true

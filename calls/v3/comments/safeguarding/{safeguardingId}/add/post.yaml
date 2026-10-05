@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/comments/safeguarding/{safeguardingId}/add"
+summary: Add a safeguarding record comment
+tags: [ Comments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  safeguardingId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    comment:
+      type: string
+      required: true
+  example:
+    comment: Email sent from template.
+response:
+  description: "Success when `status` is true."
+sources: [ "21.3e07bd5db1c55da1f0d3.js", osm-de353b59e43da8164ac0b179aadfacd1.js ]

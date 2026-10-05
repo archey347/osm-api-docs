@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getScheduleDetails
+summary: Get payment schedule details
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+  schedule_id:
+    type: string
+    description: "Scheme ID; `0` is used when no scheme is open."
+response:
+  schema:
+    $ref: FinanceOnlinePaymentScheduleDetailsData
+  envelope: true
+  examples:
+    getScheduleDetails:
+      summary: getScheduleDetails
+      value:
+        name: Termly subs
+        description: Subs for the term
+        account_id: "9810001"
+        pay_now: "14"
+        default_on: "1"
+        gateway: stripe
+        currency: GBP
+sources: [ ext.finances.9f318350fda4d977c688.js ]

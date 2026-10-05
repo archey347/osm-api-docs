@@ -1,0 +1,35 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/engage/{topicId}"
+summary: Like or vote on a topic
+description: "With no `action` this toggles a like."
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+body:
+  params:
+    action:
+      type: string
+      description: Engagement action, e.g. a feature-request vote type.
+    buttons_mode:
+      type: string
+      description: "The room's `buttons_mode`, e.g. `feature`."
+    member_id:
+      type: string
+  example:
+    action: upvote
+    buttons_mode: feature
+response:
+  schema:
+    $ref: ChatEngageResponse
+  examples:
+    default:
+      value:
+        number_likes: 3
+        action: like
+  description: "Toggle result; `action` is `deleted` when a like was removed."
+sources: [ area.chat.6b506d390b35ea85d510.js, ext.dashboard.82a61c008183022fe2cd.js ]

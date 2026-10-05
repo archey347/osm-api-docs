@@ -1,0 +1,9 @@
+type: array
+items:
+  type: object
+  properties:
+    price: { }
+    pack_size: { }
+    description:
+      type: string
+  additionalProperties: true

@@ -1,0 +1,7 @@
+type: object
+properties:
+  badge_id: { }
+  badge_version: { }
+  error:
+    type: string
+additionalProperties: true

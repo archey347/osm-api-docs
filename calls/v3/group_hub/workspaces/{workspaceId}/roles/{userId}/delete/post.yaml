@@ -1,0 +1,17 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/roles/{userId}/delete"
+summary: Remove a user's group-wide permissions
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+  userId:
+    type: string
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

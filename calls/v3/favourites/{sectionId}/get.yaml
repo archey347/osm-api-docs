@@ -1,0 +1,30 @@
+kind: v3-route
+method: GET
+path: "/v3/favourites/{sectionId}"
+summary: List pinned items
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  term_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: FavouriteListResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          items:
+            - id: 5400001
+              type: menu
+              target_id: ext.members.contact
+              label: Contacts
+  description: Pinned items in display order.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

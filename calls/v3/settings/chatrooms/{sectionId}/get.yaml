@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/settings/chatrooms/{sectionId}"
+summary: List chat rooms
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: SettingsChatRoomsResponse
+  examples:
+    default:
+      value:
+        chat_rooms:
+          - id: "9600001"
+            audience_type: portal
+            owning_section_id: 45001
+            chat_room_sections:
+              - section_id: 45001
+  description: Response.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

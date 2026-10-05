@@ -1,0 +1,8 @@
+type: object
+properties:
+  sent:
+    type: integer
+    description: Number of emails sent.
+  error:
+    description: Set when nothing was sent.
+additionalProperties: true

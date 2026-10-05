@@ -1,0 +1,39 @@
+path: /ext/members/contact/actions/
+method: POST
+summary: Create, remove, or restore a member
+description: |-
+  Member lifecycle actions. The `action` query parameter controls the
+  behaviour. Body is `application/x-www-form-urlencoded`.
+
+  **`newMember`** — creates a new member in the section.
+
+  **`removeMember`** — removes a member from the section. The `type`
+  field controls how much data is retained:
+
+  | type | Effect |
+  |------|--------|
+  | `keepall` | Keep all data intact |
+  | `keepcontact` | Remove personal details except name and core details |
+  | `keepname` | Remove personal details except name |
+  | `delete` | Remove all personal details; use initials for names (member history retains names) |
+  | `erase` | Remove all personal details **including** names from history. **Irreversible.** |
+
+  When `type=erase`, an optional `additional_data_to_delete` array can
+  specify extra data categories to purge: `badge`, `events`, `finance`,
+  `register`. Each is optional.
+
+  **`returnMember`** — restores a previously removed member.
+
+  **`transferMember`** — moves (`Transfer`) or copies (`Copy`) members to
+  another section.
+
+  **`deletePhoto`** — removes a member's photo.
+
+  **`acceptAndRejectTransfers`**, **`returnMembersFromTransfer`** — resolve
+  pending transfers from the members review screen.
+
+  `removeMember` can also receive `exit_survey[{scoutid}][{questionId}]`
+  answers, `access[{userId}]` choices and the confirmation flags
+  `remove_last_access_confirmed` / `remove_last_access_confirmed_final`
+  (`yes`) when the first response asks for them.
+response: Action result.

@@ -1,0 +1,51 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/cashbook/transactions/year/{financialYearId}"
+summary: List cashbook transactions
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+query:
+  page:
+    type: integer
+    description: "1-based page number."
+  per_page:
+    type: integer
+  sort_field:
+    type: string
+  sort_direction:
+    type: string
+  category_ids:
+    type: string
+    description: Comma-separated category IDs.
+  uncategorised:
+    type: string
+    enum: [ "true" ]
+  partially_categorised:
+    type: string
+    enum: [ "true" ]
+  attachments:
+    type: string
+    description: "Observed `all`; the web app omits it for `all`."
+response:
+  schema:
+    $ref: AccountingCashbookTransactionList
+  examples:
+    default:
+      value:
+        - id: 3100070
+          type: expense
+          description: Example supplies
+          date: "2026-09-20"
+          amount: 2500
+          categories:
+            - category_id: 3100040
+              item_id: 0
+              amount: 2500
+  description: Page of cashbook transactions.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

@@ -1,0 +1,82 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/
+action: newMember
+summary: Create a member
+description: "**`newMember`** — creates a new member in the section."
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+body:
+  params:
+    firstname:
+      type: string
+      description: "`newMember` only. First name."
+    lastname:
+      type: string
+      description: "`newMember` only. Last name."
+    dob:
+      type: string
+      format: date
+      description: "`newMember` only. Date of birth (`yyyy-mm-dd`)."
+    startedsection:
+      type: string
+      format: date
+      description: "`newMember` only. Date started in this section."
+    started:
+      type: string
+      format: date
+      description: "`newMember` only. Date started Scouting."
+    originating_section_id:
+      type: string
+      description: "`newMember` only. Usually same as `sectionid`."
+    term_id:
+      type: string
+      description: "`newMember` only. Term ID."
+    sectionid:
+      type: string
+      description: Section ID.
+    patrolleader:
+      type: string
+    "{group}:{varname}":
+      type: string
+      description: Custom data value for a contact group field, one per field.
+  example:
+    firstname: Robin
+    lastname: Wells
+    dob: "2016-06-15"
+    startedsection: "2025-09-05"
+    started: "2025-09-06"
+    sectionid: "45001"
+    originating_section_id: "45001"
+    term_id: "67890"
+response:
+  schema:
+    type: object
+    description: "`newMember` response."
+    properties:
+      result:
+        type: string
+        enum: [ ok ]
+      out_of_term:
+        type: boolean
+        description: Whether the start date falls outside the given term.
+      scoutid:
+        type: integer
+        description: The newly assigned member ID.
+      firstname:
+        type: string
+      lastname:
+        type: string
+  examples:
+    newMember:
+      summary: New member created
+      value:
+        result: ok
+        out_of_term: false
+        scoutid: 3100005
+        firstname: Robin
+        lastname: Wells
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

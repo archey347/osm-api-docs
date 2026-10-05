@@ -1,0 +1,7 @@
+type: object
+properties:
+  poll_options:
+    type: array
+    items:
+      $ref: ChatPollOption
+additionalProperties: true

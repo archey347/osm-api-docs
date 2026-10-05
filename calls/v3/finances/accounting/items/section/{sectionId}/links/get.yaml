@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/items/section/{sectionId}/links"
+summary: List events an item can link to
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        events:
+          - eventid: 3100090
+            name: Summer camp
+  description: Events in the section.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

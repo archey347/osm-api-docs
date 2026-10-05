@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/badges/due/
+action: downloadBags
+summary: Download badge bag labels
+description: "`get` lists completed badges that have not yet been awarded; `download` and `downloadBags` return documents instead of JSON."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+response:
+  document: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

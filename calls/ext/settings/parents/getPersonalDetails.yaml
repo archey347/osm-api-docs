@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/settings/parents/
+action: getPersonalDetails
+summary: Get parent personal details settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsParentPersonalDetails
+  examples:
+    getPersonalDetails:
+      summary: Personal details settings
+      value:
+        status: true
+        data:
+          has_parent_confirmation_field: true
+          parent_contact_changes_notifications: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js, ext.members.ca95317ad56b2f22a5e5.js ]

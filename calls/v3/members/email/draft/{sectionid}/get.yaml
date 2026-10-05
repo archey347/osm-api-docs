@@ -1,0 +1,20 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/draft/{sectionid}"
+summary: List email drafts
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: EmailDraftList
+  examples:
+    default:
+      value:
+        - emailid: 9100001
+  description: Drafts for the current user.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

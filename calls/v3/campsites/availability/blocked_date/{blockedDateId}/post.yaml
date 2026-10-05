@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/blocked_date/{blockedDateId}"
+summary: Edit a blocked date
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  blockedDateId:
+    type: string
+    description: Blocked date ID.
+body:
+  params:
+    unavailable_from:
+      type: string
+      required: true
+      description: First blocked date.
+    unavailable_to:
+      type: string
+      required: true
+      description: Last blocked date.
+  example:
+    unavailable_from: "2026-12-24"
+    unavailable_to: "2026-12-26"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

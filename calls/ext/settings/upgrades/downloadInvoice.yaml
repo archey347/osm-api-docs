@@ -1,0 +1,19 @@
+kind: ext-action
+method: GET
+path: /ext/settings/upgrades/
+action: downloadInvoice
+summary: Download an invoice
+description: "`downloadInvoice` returns an invoice document, opened in a new window."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  receipt_id:
+    type: string
+  upgrade_id:
+    type: string
+response:
+  document: true
+  content_type: application/octet-stream
+sources: [ area.settings_upgrades.17d3298d7edacc309869.js, ext.dashboard.82a61c008183022fe2cd.js ]

@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: /v3/badges/suppliers/manage
+summary: List badge suppliers for review
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: BadgeSupplierManageResponse
+  examples:
+    suppliers:
+      summary: Suppliers
+      value:
+        suppliers:
+          - id: 12001
+            name: Example Badge Shop
+            order_url: "https://shop.example.org/order"
+            owning_section_name: "1st Example Cubs"
+            status: submitted
+  description: Suppliers.
+sources: [ area.badges_suppliers.f5455082cbc7e23cd828.js ]

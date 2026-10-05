@@ -1,0 +1,21 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/notepads"
+summary: Get the event notepads
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventNotepads
+  examples:
+    default:
+      value:
+        private: "<p>Bring tent pegs.</p>"
+        public: "<p>Meet at the hut.</p>"
+  description: "Notepad HTML keyed by `private` and `public`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

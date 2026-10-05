@@ -1,0 +1,41 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/items/section/{sectionId}"
+summary: Create an item
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+    expense_category_id: { }
+    income_category_id: { }
+    expense_cardholder_id: { }
+    associated_type:
+      type: string
+      description: "Link type (observed `event`). Create only."
+    associated_id:
+      description: Linked event ID. Create only.
+    associated_section_id:
+      description: Section owning the linked event. Create only.
+  example:
+    name: Summer camp
+    expense_category_id: 3100041
+    income_category_id: 3100040
+    expense_cardholder_id: 0
+response:
+  schema:
+    $ref: AccountingItemSaved
+  examples:
+    default:
+      value:
+        id: 3100080
+  description: "`data.id` is the new item."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/census/igg/
+action: getDetails
+summary: Get census (IGG) status
+description: "`getDetails` returns the census status and any invoices."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberIggResponse
+  examples:
+    default:
+      summary: Census status
+      value:
+        status: true
+        error: null
+        data:
+          message: null
+          completed: true
+          invoices:
+            - invoice_id: 6100001
+              paid: false
+              date_paid: null
+              currency: GBP
+              total_cost: "12.00"
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

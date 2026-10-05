@@ -1,0 +1,23 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/
+action: getDetails
+summary: 'Get the parent portal account''s details'
+description: "`getDetails` is the legacy pane base-class call and no current screen is known to use it."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+    section_id:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

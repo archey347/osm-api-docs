@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_account_transactions/{transactionId}"
+summary: Set or clear internal transfer flag
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  transactionId:
+    type: string
+    description: Bank account transaction ID.
+body:
+  params:
+    is_transfer:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+  example:
+    is_transfer: "true"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

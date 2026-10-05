@@ -1,0 +1,20 @@
+type: object
+properties:
+  modules:
+    type: array
+    items:
+      type: object
+      properties:
+        module_letter:
+          type: string
+        custom_columns: { }
+        completed_into_column_id: { }
+        numeric_into_column_id: { }
+      additionalProperties: true
+  config:
+    type: object
+    description: "Logic settings; an empty array when unset."
+    additionalProperties: true
+  has_points:
+    type: boolean
+additionalProperties: true

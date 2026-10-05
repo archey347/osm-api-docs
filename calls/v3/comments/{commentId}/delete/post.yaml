@@ -1,0 +1,14 @@
+kind: v3-route
+method: POST
+path: "/v3/comments/{commentId}/delete"
+summary: Delete a comment
+tags: [ Comments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  commentId:
+    type: string
+response:
+  description: "Success when `status` is true."
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

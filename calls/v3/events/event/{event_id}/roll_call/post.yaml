@@ -1,0 +1,40 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/roll_call"
+summary: Record a roll call mark
+description: Queued offline by the app when there is no connection.
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    mode:
+      type: string
+    guid:
+      type: string
+      required: true
+      description: Client-generated GUID for the mark.
+    is_present:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+      description: "`false` marks the member as having left."
+  example:
+    member_id: "3100001"
+    guid: "00000000-0000-0000-0000-000000000000"
+    is_present: "true"
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: "Mark saved; on failure `status` is false."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

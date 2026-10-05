@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: saveActivityNotes
+summary: Save notes on a meeting activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    evening_id:
+      type: string
+    notes:
+      type: string
+    section_id:
+      type: string
+    activity_id:
+      type: string
+  example:
+    section_id: "45001"
+    evening_id: "9500001"
+    activity_id: "7100001"
+    notes: Bring spare ropes.
+response:
+  schema:
+    $ref: ProgrammeMeetingResponse
+  examples:
+    meetingWithActivities:
+      summary: "`deleteActivityFromEvening`, `saveActivityNotes`: the updated meeting"
+      value:
+        meeting:
+          eveningid: "9500001"
+          sectionid: "45001"
+          title: Camp Skills Night
+          meetingdate: "2024-11-01"
+          activities:
+            - activityid: "7100001"
+              activity_unique_id: "7200001"
+              title: Knots Relay
+              notes: Bring spare ropes.
+              programmes_at_home: "0"
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

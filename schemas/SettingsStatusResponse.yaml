@@ -1,0 +1,19 @@
+type: object
+description: "Generic envelope; `error` is present when `status` is false."
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    properties:
+      message:
+        type: string
+      code:
+        type: string
+    additionalProperties: true
+  data:
+    description: "Payload; shape varies by operation."
+  meta:
+    type: object
+    additionalProperties: true
+additionalProperties: true

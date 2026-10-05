@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/sections/{sectionId}/settings/{domain}"
+summary: Follow or stop following a workspace setting
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+  domain:
+    type: string
+    description: "Settings domain, as returned by the settings list (observed `risk_assessment_review_interval`, `data_retention`, `email_templates`, `terms_schedule`, `giftaid_charity`)."
+body:
+  params:
+    synced:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+      description: Whether the section follows the workspace's setting.
+  example:
+    synced: "true"
+response:
+  schema:
+    $ref: GroupHubManagedSettingsResult
+  examples:
+    default:
+      value:
+        managed_settings: { }
+  description: Updated managed settings.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

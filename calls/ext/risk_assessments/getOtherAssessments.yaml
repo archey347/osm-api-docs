@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/risk_assessments/
+action: getOtherAssessments
+summary: List assessments available for reuse
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  type:
+    type: string
+    description: "Kind of thing assessed. Observed `meeting`, `activity`, `programmes_at_home`. `getHazards` defaults to `setup`."
+  associated_id:
+    type: string
+    description: "ID of the meeting, activity or event. `0` when listing another section's assessments for reuse."
+response:
+  schema:
+    $ref: RiskAssessmentListData
+  envelope: true
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

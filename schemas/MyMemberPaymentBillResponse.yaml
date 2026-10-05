@@ -1,0 +1,32 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          giftaid:
+            type: boolean
+            description: Whether the Gift Aid dialog should follow.
+          bill:
+            type: object
+            properties:
+              status:
+                type: boolean
+              error:
+                type: string
+              error_message:
+                type: string
+              requires_client_action:
+                type: object
+                description: Stripe 3-D Secure step to complete in the browser.
+                properties:
+                  public_key:
+                    type: string
+                  stripe_account:
+                    type: string
+                  client_secret:
+                    type: string
+                additionalProperties: true
+            additionalProperties: true
+        additionalProperties: true

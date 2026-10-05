@@ -1,0 +1,12 @@
+type: object
+properties:
+  booking_statuses:
+    type: object
+    description: "Booking status name to `instant` or `none`."
+    additionalProperties: true
+  instructor_notifications:
+    type: object
+    description: "Notification type to `none`, `daily` or `weekly`."
+    additionalProperties: true
+additionalProperties: true
+description: Notification preferences of the current user.

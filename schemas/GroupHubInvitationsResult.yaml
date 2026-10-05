@@ -1,0 +1,9 @@
+type: object
+properties:
+  joined:
+    type: array
+    items: { }
+  invited:
+    type: array
+    items: { }
+additionalProperties: true

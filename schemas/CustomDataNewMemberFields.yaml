@@ -1,0 +1,12 @@
+type: array
+items:
+  type: object
+  properties:
+    group:
+      type: string
+    varname:
+      type: string
+    type:
+      type: string
+      description: "`date` fields start empty (null); others start as an empty string."
+  additionalProperties: true

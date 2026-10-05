@@ -1,0 +1,59 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: getActivity
+summary: Get an activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  id:
+    type: string
+    description: Activity ID.
+  version:
+    type: string
+    description: "`0` for the current version."
+  activity_unique_id:
+    type: string
+    description: "`0` when not known."
+  shared_only:
+    type: string
+    description: "Observed `1`."
+  mode:
+    type: string
+    description: "Observed `edit`."
+  section:
+    type: string
+    description: "Section type; limits results to activities suitable for it."
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivity
+  examples:
+    getActivity:
+      summary: Activity with versions and tags
+      value:
+        details:
+          id: "7200001"
+          activityid: "7100001"
+          version: "0"
+          title: Knots Relay
+          description: Teams race to tie set knots.
+          resources: Rope
+          instructions: Split into teams of four.
+          runningtime: "15"
+          location: indoors
+          shared: "0"
+          userid: "3100001"
+        sections: [ cubs, scouts ]
+        tags: [ skills ]
+        badges: [ ]
+        versions:
+          - value: "0"
+            selected: true
+        rated: "0"
+        rating: "0"
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

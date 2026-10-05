@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/members/census/
+action: sendMyScout
+summary: Send Parent Portal invitations from the census
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    "member_ids[]":
+      type: array
+      items:
+        type: string
+      description: Members to email the Parent Portal invitation.
+  example:
+    section_id: "45001"
+    "member_ids[]": [ "3100003" ]
+response:
+  schema:
+    $ref: CensusSendMyScoutResult
+  examples:
+    sendMyScout:
+      summary: Counts of emails sent and failed
+      value:
+        data:
+          sent_count: 1
+          failed_count: 0
+sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

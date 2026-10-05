@@ -1,0 +1,31 @@
+type: object
+properties:
+  name:
+    type: string
+  location:
+    type: string
+  start_date:
+    type: string
+  start_time:
+    type: string
+  end_date:
+    type: string
+  end_time:
+    type: string
+  attendance_limit:
+    type: integer
+  attendance_limit_includes_leaders:
+    type: boolean
+  cost:
+    description: Event cost.
+  approval_status:
+    type: string
+    description: "`pending` or `approved` lock editing."
+  properties:
+    type: object
+    description: Values of the additional-information fields.
+    additionalProperties: true
+  extra:
+    type: object
+    additionalProperties: true
+additionalProperties: true

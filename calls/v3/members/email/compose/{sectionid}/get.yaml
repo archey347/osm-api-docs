@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/compose/{sectionid}"
+summary: List members who can be emailed
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+query:
+  term_id:
+    type: string
+    required: true
+    description: "`-1` when the section has no current term."
+response:
+  schema:
+    $ref: EmailComposeMembers
+  examples:
+    default:
+      value:
+        - member_id: 3100001
+  description: Members available as recipients.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

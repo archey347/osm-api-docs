@@ -1,0 +1,10 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+  additionalProperties: true
+description: Named setup records (availability types, instructor types, price types, question groups or session types).

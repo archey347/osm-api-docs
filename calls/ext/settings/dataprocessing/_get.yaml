@@ -1,0 +1,5 @@
+path: /ext/settings/dataprocessing/
+method: GET
+summary: Get data processing agreement status
+description: "`viewAgreement` returns the agreement document, opened in a new window."
+response: "Status JSON for `getStatus`; a document for `viewAgreement`."

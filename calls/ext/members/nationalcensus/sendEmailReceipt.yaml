@@ -1,0 +1,19 @@
+kind: ext-action
+method: GET
+path: /ext/members/nationalcensus/
+action: sendEmailReceipt
+summary: Email a census receipt
+description: "`sendEmailReceipt` sends an email despite being a GET."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  invoice_id:
+    type: string
+    description: "Every action except `getMembers`."
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

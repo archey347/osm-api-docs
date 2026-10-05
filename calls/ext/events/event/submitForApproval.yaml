@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: submitForApproval
+summary: Submit an event for approval
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    event_id:
+      type: string
+  example:
+    section_id: "45001"
+    event_id: "9600001"
+response:
+  schema:
+    type: object
+    properties:
+      status:
+        type: string
+        enum: [ approved, rejected, pending ]
+        description: Outcome of the submission.
+    additionalProperties: true
+  envelope: true
+  examples:
+    submitForApproval:
+      value:
+        status: pending
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

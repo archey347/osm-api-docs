@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/menu"
+summary: Get the event menu
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+query:
+  shared:
+    type: string
+    enum: [ "true" ]
+    description: Read the shared (template) event's menu.
+response:
+  schema:
+    $ref: EventMenu
+  examples:
+    default:
+      value:
+        entries:
+          - id: 610001
+            day: 0
+            title: Spaghetti bolognese
+            description: ""
+            colour: "673ab7"
+            data:
+              meal: dinner
+              num_people: 18
+        costs: { }
+  description: Menu entries and costs.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

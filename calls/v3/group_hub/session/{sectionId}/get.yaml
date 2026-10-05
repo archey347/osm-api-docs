@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/session/{sectionId}"
+summary: Get a section's Group Hub workspace
+description: "`data.workspace` is `null` when the section is not in a workspace."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: GroupHubSession
+  examples:
+    default:
+      value:
+        is_full_section_admin: true
+        workspace:
+          id: 2100001
+          name: "1st Riverside Group"
+          my_section_status: active
+          is_owning_section: true
+          owning_section_id: 45001
+          owning_section_name: Cubs
+          can_administer: true
+          can_manage_access: true
+          group_permissions:
+            user: 100
+            finance: 100
+  description: Workspace membership for the section.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js, react.f8944691765f57115151.js ]

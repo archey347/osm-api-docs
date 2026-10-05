@@ -1,0 +1,42 @@
+kind: v3-route
+method: POST
+path: /v3/members/email/draft
+summary: Save an email draft
+description: "Creates the draft on first save; the web app saves again as the user edits."
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    guid:
+      type: string
+      required: true
+      description: Client-generated GUID for the email.
+    subject:
+      type: string
+      required: true
+    campaign_id:
+      type: string
+    edits:
+      type: string
+      required: true
+      description: "JSON object of snippet ID to bit to `{ text }`."
+  example:
+    section_id: "45001"
+    guid: "00000000-0000-0000-0000-000000000000"
+    subject: Weekly Meeting Reminder
+    campaign_id: "5100001"
+    edits: "{\"5200001\":{\"0\":{\"text\":\"<p>Hello</p>\"}}}"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value:
+        id: 9100001
+  description: The draft's ID.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

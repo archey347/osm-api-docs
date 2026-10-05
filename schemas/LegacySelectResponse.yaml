@@ -1,0 +1,18 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        value:
+          type: string
+          description: "Used by `getSelectOptions`."
+        label:
+          type: string
+          description: "Used by `getSelectOptions`."
+        scoutid:
+          type: string
+          description: "Used by `getSelectBy`."
+      additionalProperties: true
+additionalProperties: true

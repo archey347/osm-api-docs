@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/gilbert/feedback/{questionId}"
+summary: Give thumbs up or down on a Gilbert answer
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionId:
+    type: string
+body:
+  params:
+    feedback:
+      type: string
+      enum: [ good, bad ]
+      required: true
+  example:
+    feedback: good
+response:
+  description: Response body is not read by the web app.
+sources:
+  - area.chat.6b506d390b35ea85d510.js
+  - area.helpcentre.342e479358e7d16ec1b4.js
+  - ext.helpcentre.b7a1deb267cad56138a2.js

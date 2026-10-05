@@ -1,0 +1,17 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByLeaderLikedActivities
+summary: List activities liked by leaders
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

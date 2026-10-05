@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/effective_from/{effectiveFromId}/delete"
+summary: Delete an availability changeover date
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  effectiveFromId:
+    type: string
+    description: Rule set (changeover date) ID.
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

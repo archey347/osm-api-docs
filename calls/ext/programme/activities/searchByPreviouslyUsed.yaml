@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByPreviouslyUsed
+summary: List previously used activities
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  days:
+    type: string
+    description: "Look-back window; the web app sends 730 to 1460 depending on section type."
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

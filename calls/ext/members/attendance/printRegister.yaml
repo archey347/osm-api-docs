@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/members/attendance/
+action: printRegister
+summary: Download the attendance register as a printable document
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    description: "Term ID (required for `action=get`)."
+  section:
+    type: string
+    required: true
+    description: "Section type (e.g., `cubs`)."
+  mode:
+    type: string
+    description: "Observed `past`."
+  photo:
+    type: string
+    enum: [ "yes", "no" ]
+    description: Include member photos.
+response:
+  document: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

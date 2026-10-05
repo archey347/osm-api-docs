@@ -1,0 +1,31 @@
+type: object
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  account_id:
+    type: string
+  pay_now:
+    type: string
+  default_on:
+    type: string
+  gateway:
+    type: string
+  currency:
+    type: string
+  recurring:
+    description: Whether recurring payment requests are on.
+  recurring_config:
+    type: object
+    nullable: true
+    properties:
+      day_of_month: { }
+      amount: { }
+      horizon_months: { }
+      months:
+        type: object
+        description: Keyed by month number.
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

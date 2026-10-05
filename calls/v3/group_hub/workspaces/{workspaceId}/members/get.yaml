@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/members"
+summary: List members across the workspace
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubMembers
+  examples:
+    default:
+      value:
+        items:
+          - scoutid_sectionid_patrolrolid: "3100001_45001_-2"
+            scoutid: "3100001"
+            sectionid: "45001"
+            firstname: Jamie
+            lastname: River
+  description: Member rows, one per member per section.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

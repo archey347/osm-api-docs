@@ -1,0 +1,13 @@
+kind: v3-route
+method: POST
+path: /v3/settings/upgrades/stripe/delete
+summary: Delete the stored card
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  description: Response.
+sources: [ "899.b65bceb407b68f881505.js" ]

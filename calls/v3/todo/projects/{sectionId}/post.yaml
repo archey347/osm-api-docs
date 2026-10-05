@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/todo/projects/{sectionId}"
+summary: Create a task project
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      required: true
+      description: Maximum 100 characters.
+  example:
+    title: Summer camp
+response:
+  schema:
+    $ref: TodoProjectResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          id: 5200001
+          title: Summer camp
+  description: The new project.
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

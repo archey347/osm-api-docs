@@ -1,0 +1,45 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: getRecipe
+summary: Get a recipe
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+  recipe_id:
+    type: string
+response:
+  schema:
+    $ref: RecipeDetailResponseData
+  envelope: true
+  examples:
+    getRecipe:
+      value:
+        details:
+          recipe_id: "7700001"
+          original_recipe_id: 0
+          title: Example Chilli
+          description: A simple camp chilli.
+          cooking_time: "30"
+          difficulty: easy
+          sharing: private
+          image: dinner
+        editable: true
+        ingredients:
+          - ingredient_id: "7710001"
+            title: Example Beans
+            measurement_type: tin
+            quantity: 2
+            cost: 1.5
+        steps:
+          - step_id: "7720001"
+            description: Heat the beans.
+        suitability:
+          vegetarian: true
+        images:
+          small: "https://example.invalid/recipe-small.jpg"
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

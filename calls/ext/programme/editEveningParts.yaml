@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: editEveningParts
+summary: Edit meeting details
+tags: [ Programme ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-10-04
+body:
+  params:
+    eveningid:
+      type: string
+    sectionid:
+      type: string
+    parts:
+      type: string
+      description: JSON object of fields to update (e.g., title, notesforparents, primary_leader_id).
+  example:
+    sectionid: "12345"
+    eveningid: "910303"
+    parts: "{\"title\":\"Astronomy Night 2\"}"
+response:
+  schema:
+    $ref: ProgrammeMeeting
+  examples:
+    editEveningParts:
+      summary: "`editEveningParts`: the updated meeting, not wrapped in `items`"
+      value:
+        eveningid: "910303"
+        sectionid: "12345"
+        title: Astronomy Night
+        meetingdate: "2025-01-21"
+        starttime: "17:30:00"
+        endtime: "18:45:00"
+    editEveningPartsError:
+      summary: "`editEveningParts` failure"
+      value:
+        status: false
+        error:
+          message: Unable to save.
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

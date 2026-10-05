@@ -1,0 +1,56 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/financial_year/cashbook/transactions/section/{sectionId}"
+summary: Create a cashbook transaction
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    description:
+      type: string
+      required: true
+    type:
+      type: string
+      enum: [ income, expense ]
+      required: true
+    date:
+      type: string
+      format: date
+      required: true
+    amount:
+      type: integer
+      required: true
+      description: Pence.
+    categories:
+      type: string
+      required: true
+      description: "JSON-encoded array of `{category_id, item_id, amount}` allocations."
+    attachments_id:
+      type: string
+      description: Client-generated GUID for attachments. Create only.
+    bank_account_transaction_id:
+      description: Bank transaction this entry is created from. Create only.
+  example:
+    description: Example supplies
+    type: expense
+    date: "2026-09-20"
+    amount: 2500
+    categories: "[{\"category_id\":3100040,\"item_id\":0,\"amount\":2500}]"
+    attachments_id: "11111111-2222-3333-4444-555555555555"
+response:
+  schema:
+    $ref: AccountingCashbookTransactionSaved
+  examples:
+    default:
+      value:
+        id: 3100070
+        guessed_category_id: 0
+        guessed_item_id: 0
+  description: "`data.guessed_category_id` is 0 when no category was guessed."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

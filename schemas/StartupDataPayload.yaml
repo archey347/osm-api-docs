@@ -1,0 +1,190 @@
+type: object
+properties:
+  cdn:
+    type: string
+    description: Base CDN URL for static assets.
+  resources:
+    type: array
+    items:
+      type: string
+    description: Ordered list of JS/CSS resource paths to load on startup.
+  config_hash:
+    type: string
+    description: Hash representing the current server-side configuration state.
+  required_cdn_built_files:
+    type: object
+    additionalProperties:
+      type: string
+    description: "Named CDN file URLs required for the app (e.g., `osm.js`, `react.js`)."
+  cache_bust:
+    type: string
+    description: Query string cache-busting token derived from built file hashes.
+  globals:
+    type: object
+    properties:
+      post_login_action:
+        description: "Action to perform after login, or `false` if none."
+        oneOf:
+          - type: boolean
+          - type: string
+      theme:
+        type: string
+        description: "UI theme name (e.g., `blue`)."
+      userid:
+        type: integer
+        description: Authenticated user's numeric ID.
+      roles:
+        type: array
+        description: Sections the user has access to, including permissions and config.
+        items:
+          type: object
+          properties:
+            groupname:
+              type: string
+            groupid:
+              type: string
+            group_country:
+              type: string
+            sectionid:
+              type: string
+            sectionname:
+              type: string
+            section:
+              type: string
+              description: "Section type slug (e.g., `cubs`, `scouts`, `adults`, `waiting`)."
+            isDefault:
+              type: string
+            permissions:
+              type: object
+              additionalProperties: true
+            sectionConfig:
+              type: object
+              additionalProperties: true
+          additionalProperties: true
+      active_user_member:
+        description: "Whether the user is also a member record, or `false`."
+        oneOf:
+          - type: boolean
+          - type: integer
+      associated_member_id:
+        description: "Associated member ID if applicable, or `false`."
+        oneOf:
+          - type: boolean
+          - type: integer
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      fullname:
+        type: string
+      preferences:
+        type: object
+        additionalProperties: true
+        description: User-specific UI and behavioural preferences.
+      member_access:
+        type: object
+        additionalProperties:
+          type: object
+          additionalProperties: true
+        description: Sections where the user has parent-portal member access, keyed by section ID.
+      member_access_unactivated:
+        description: Whether any member access is pending activation.
+        oneOf:
+          - type: boolean
+          - type: object
+            additionalProperties: true
+      terms:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            properties:
+              termid:
+                type: string
+              sectionid:
+                type: string
+              name:
+                type: string
+              startdate:
+                type: string
+              enddate:
+                type: string
+              master_term: { }
+              past:
+                type: boolean
+            additionalProperties: true
+        description: Terms for each section, keyed by section ID.
+      global_roles:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+      hasSectionAccess:
+        type: boolean
+      notepads:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+      sockets:
+        type: string
+        description: "Comma-separated `sectionid-token` pairs for WebSocket connections."
+      user_socket:
+        type: string
+        description: Personal WebSocket token for the authenticated user.
+      session_id:
+        type: string
+      security_prompt:
+        type: boolean
+      user_has_image:
+        type: string
+        description: Path to the user's profile photo.
+      user_hash:
+        type: string
+        description: HMAC hash used for client-side identity verification.
+      user_hash_legacy:
+        type: string
+      language:
+        type: string
+        example: en-GB
+      gamification:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            total_steps:
+              type: integer
+            steps_completed:
+              type: integer
+            id:
+              oneOf:
+                - type: integer
+                - type: string
+          additionalProperties: true
+      gamification_rank:
+        type: integer
+      gamification_total:
+        type: integer
+      features_used:
+        type: array
+        items:
+          type: string
+        description: Log of feature interactions recorded for this user account.
+      unread_message_count:
+        type: integer
+      client_time:
+        type: string
+        description: Client Unix timestamp in milliseconds at the time of the request.
+    additionalProperties: true
+  dojo:
+    type: object
+    properties:
+      cacheBust:
+        type: string
+      locale:
+        type: string
+    additionalProperties: true
+additionalProperties: true

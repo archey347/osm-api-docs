@@ -1,0 +1,73 @@
+type: object
+properties:
+  details:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      picture:
+        type: string
+      sharing: { }
+      config:
+        type: object
+        additionalProperties: true
+    additionalProperties: true
+  members:
+    type: array
+    items:
+      type: object
+      properties:
+        scout_id: { }
+        member_id: { }
+        firstname:
+          type: string
+        lastname:
+          type: string
+        photo_guid:
+          type: string
+        updated_at:
+          type: string
+        comments: { }
+        uploads: { }
+        eligible: { }
+        column_data:
+          type: object
+          description: Cell values keyed by requirement ID.
+          additionalProperties: true
+        completed_requirements:
+          type: array
+          items: { }
+        covered_requirements:
+          type: array
+          items: { }
+      additionalProperties: true
+  requirements:
+    type: array
+    items:
+      type: object
+      properties:
+        requirement_id: { }
+        module:
+          type: string
+        name:
+          type: string
+        tooltip:
+          type: string
+        editable:
+          type: string
+        points: { }
+        section_id: { }
+      additionalProperties: true
+  modules:
+    type: object
+    description: Module settings keyed by module letter.
+    additionalProperties:
+      type: object
+      properties:
+        module_id: { }
+        required: { }
+        pointsRequired: { }
+      additionalProperties: true
+additionalProperties: true

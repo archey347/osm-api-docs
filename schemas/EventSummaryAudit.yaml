@@ -1,0 +1,27 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        eventid:
+          type: string
+        name:
+          type: string
+        generic_date:
+          type: string
+        member_id:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        photo_guid:
+          type: string
+        type:
+          type: string
+        desc:
+          type: string
+      additionalProperties: true
+additionalProperties: true

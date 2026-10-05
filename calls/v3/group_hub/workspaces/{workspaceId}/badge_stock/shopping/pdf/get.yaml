@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/badge_stock/shopping/pdf"
+summary: Download the badge shopping list as PDF
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+query:
+  section_ids:
+    type: string
+    required: true
+    description: Comma-separated section IDs.
+  exclude:
+    type: string
+    description: Comma-separated badge keys to leave out.
+response:
+  document: true
+  content_type: application/pdf
+  description: PDF document, opened in a new window.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

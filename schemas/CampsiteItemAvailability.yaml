@@ -1,0 +1,31 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: "Session slot ID; sent as `slot_id` to `addItem`."
+    start:
+      type: string
+    end:
+      type: string
+    start_time:
+      type: string
+    end_time:
+      type: string
+    available:
+      type: boolean
+    available_until: { }
+    multi_day:
+      type: boolean
+    flexible_times:
+      type: boolean
+    flexible_minimum_duration: { }
+    flexible_existing_bookings:
+      type: array
+      items:
+        type: string
+    minimum_sessions:
+      type: integer
+  additionalProperties: true
+description: Bookable slots for an item.

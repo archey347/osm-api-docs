@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/quartermaster/
+action: getList
+summary: Get a list's columns and rows
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  section:
+    type: string
+    required: true
+    description: "Section type, e.g. `scouts`."
+  listid:
+    type: string
+response:
+  schema:
+    $ref: QuartermasterListResponse
+  envelope: true
+  examples:
+    getList:
+      value:
+        list:
+          id: "7100001"
+          name: Camp kitchen
+          sectionid: 3100001
+          read_only: false
+        columns:
+          - columnid: "7200001"
+            columnname: Name
+            columntype: text
+          - columnid: "7200002"
+            columnname: Quantity
+            columntype: integer
+        rows:
+          "7300001":
+            "7200001": Frying pan
+            "7200002": "4"
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

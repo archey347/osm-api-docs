@@ -1,0 +1,7 @@
+path: /ext/mymember/events/
+method: POST
+summary: Update a member's event attendance, details, kit and rota
+response: |-
+  Result of the write. `updateAttendance` can return `data: "reserved"` when the event is full
+  and the member is put on the waiting list; `updateParentRota` returns `meta.offer`,
+  used to pick the confirmation message.

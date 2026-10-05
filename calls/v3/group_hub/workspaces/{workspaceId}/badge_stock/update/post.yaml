@@ -1,0 +1,41 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/badge_stock/update"
+summary: Set a section's badge stock
+description: The web app sends one request per changed value.
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    badge_id:
+      type: string
+      required: true
+    level:
+      type: string
+      required: true
+    type:
+      type: string
+      enum: [ current, desire ]
+      required: true
+      description: Which figure to set, the current stock or the desired stock.
+    stock:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+    badge_id: "1593"
+    level: "1"
+    type: current
+    stock: "5"
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

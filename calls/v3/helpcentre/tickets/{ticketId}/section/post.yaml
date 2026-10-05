@@ -1,0 +1,21 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/tickets/{ticketId}/section"
+summary: Link a section to a support ticket
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  ticketId:
+    type: string
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  description: Response body is not read by the web app.
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

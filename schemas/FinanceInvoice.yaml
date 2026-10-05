@@ -1,0 +1,30 @@
+type: object
+properties:
+  invoice:
+    type: object
+    properties:
+      invoiceid:
+        type: string
+      name:
+        type: string
+      entrydate:
+        type: string
+      extra:
+        type: string
+      finalised:
+        type: string
+        description: "`1` when finalised."
+      archived:
+        type: string
+        description: "`1` when archived."
+    additionalProperties: true
+  categories:
+    type: array
+    description: Budget names.
+    items:
+      type: string
+  people:
+    type: object
+    description: Names that expenses can be paid to.
+    additionalProperties: true
+additionalProperties: true

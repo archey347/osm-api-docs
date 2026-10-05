@@ -1,0 +1,21 @@
+kind: v3-route
+method: POST
+path: /v3/users/push_notifications/email_notifications
+summary: Turn email copies of notifications on or off
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    email_push_notifications:
+      type: string
+      enum: [ enabled, disabled ]
+      required: true
+  example:
+    email_push_notifications: enabled
+response:
+  schema:
+    $ref: UserStatusResponseData
+  description: Result.
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

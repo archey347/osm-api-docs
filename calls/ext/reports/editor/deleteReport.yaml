@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/reports/editor/
+action: deleteReport
+summary: Delete a report
+description: "`deleteReport` first returns `data.shared: true` if other sections use the report; repeat the request with `confirmation` to go ahead."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+      required: true
+    report_id:
+      type: string
+      required: true
+      description: "`0` when creating a report."
+    confirmation:
+      type: string
+      description: "`remove` or `orphan`, as for `deleteDashboard`."
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "910001"
+response:
+  schema:
+    $ref: ReportEditorResponse
+  envelope: true
+  examples:
+    deleteReport:
+      summary: "`shared: true` means confirmation is needed"
+      value:
+        shared: true
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

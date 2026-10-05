@@ -1,0 +1,40 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getPaymentStatus
+summary: Get payment statuses
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  termid:
+    type: string
+  schemeid:
+    type: string
+  payload:
+    type: string
+response:
+  schema:
+    $ref: FinanceOnlinePaymentStatusData
+  envelope: true
+  examples:
+    getPaymentStatus:
+      summary: getPaymentStatus
+      value:
+        members:
+          - "9820001":
+              defaulton: true
+              active: true
+              status:
+                - statusid: "9830001"
+                  status: Paid
+                  latest: "1"
+            scoutid: "3100001"
+            firstname: Alex
+            lastname: Scout
+            startdate: "2024-01-01"
+sources: [ ext.finances.9f318350fda4d977c688.js ]

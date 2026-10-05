@@ -1,0 +1,9 @@
+type: object
+properties:
+  numbers:
+    description: Phone numbers that would receive the text.
+  members:
+    description: Members who have a usable number.
+  sms_remaining:
+    description: Text credits left.
+additionalProperties: true

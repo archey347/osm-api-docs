@@ -1,0 +1,7 @@
+type: object
+properties:
+  enabled:
+    type: boolean
+  introduction:
+    type: string
+additionalProperties: true

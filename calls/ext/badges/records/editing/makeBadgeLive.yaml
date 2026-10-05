@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: makeBadgeLive
+summary: Make a badge live
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+    sharing:
+      type: string
+      description: "Availability of the live badge (`makeBadgeLive`): `private`, `optin`, `optin-locked` or `default-locked`."
+    comments:
+      type: string
+      description: "(`makeBadgeLive`), sent empty."
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    sectionid: "45001"
+    sharing: private
+    comments: ""
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

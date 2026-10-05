@@ -1,0 +1,6 @@
+type: object
+properties:
+  data:
+    type: boolean
+    description: "`true` when the user has hit the daily email limit."
+additionalProperties: true

@@ -1,0 +1,1 @@
+description: "`getListSharingData` returns an array of `{sectionid, name, access}` (`access` is `owned`, `no-access`, `read` or `write`); `saveListDetails` returns `{id, name}`; `saveItemRowDetails` returns `{row}`."

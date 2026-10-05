@@ -1,0 +1,46 @@
+path: /ext/members/contact/
+method: POST
+summary: Update a member field or contact details
+description: |-
+  Updates a single field on a member record, or updates contact details
+  for one of their linked contacts. The `action` query parameter is
+  `update`, or `updateAdditionalRoles` for a member's additional
+  patrol/section roles. The body is sent as `application/x-www-form-urlencoded`.
+
+  **Member field mode** — send `scoutid`, `column`, `value`, `sectionid`,
+  `context=members`. Known columns:
+
+  | Column          | Value format | Notes |
+  |-----------------|-------------|-------|
+  | `firstname`     | string | |
+  | `lastname`      | string | |
+  | `dob`           | `yyyy-mm-dd` | |
+  | `started`       | `yyyy-mm-dd` | Date started Scouting. |
+  | `startedsection`| `yyyy-mm-dd` | Date started this section. |
+  | `patrolid`      | int | Must also provide `patrolleader` in the same request body. |
+  | `patrolleader`  | int | 0 = no rank, 1 = APL/Seconder, 2 = PL/Sixer, 3 = SPL/Senior Sixer. |
+
+  When setting `patrolid`, the body **must also include** `patrolleader`
+  (the rank level integer). Conversely, `patrolleader` can be set on its
+  own as `column` without changing the patrol.
+
+  **Contact update mode** — send `associated_type=member`,
+  `associated_id=<scoutid>`, `group_id=<contact_group>`, `context=members`,
+  and `data[field]=value` pairs for each field. Contact group IDs:
+
+  | group_id | Contact |
+  |----------|---------|
+  | 1 | Primary Contact 1 |
+  | 2 | Primary Contact 2 |
+  | 3 | Emergency Contact |
+  | 4 | Doctor's Surgery |
+  | 6 | Member's own details |
+response: "Update confirmation with last-updated metadata. `updateAdditionalRoles` returns no `meta`; failure sets `error`."
+request_examples:
+  memberFieldUpdate:
+    scoutid: 3100001
+    column: patrolid
+    value: "12002"
+    sectionid: "45001"
+    context: members
+    patrolleader: 0

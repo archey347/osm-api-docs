@@ -1,0 +1,79 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          orders:
+            type: array
+            items:
+              type: object
+              properties:
+                order_id: { }
+                order_number: { }
+                created_at:
+                  type: string
+                status:
+                  type: string
+                  description: "Includes `open`, `fulfilled` and `cancelled`."
+                payment_status:
+                  type: string
+                  description: "Includes `awaiting_payment`, `pending_approval`, `processing`, `paid`, `free`, `refunded`, `partially_refunded`, `voided` and `disputed`."
+                delivery_method:
+                  type: string
+                shipping:
+                  type: object
+                  nullable: true
+                  properties:
+                    name:
+                      type: string
+                    address1:
+                      type: string
+                    address2:
+                      type: string
+                    address3:
+                      type: string
+                    address4:
+                      type: string
+                    postcode:
+                      type: string
+                  additionalProperties: true
+                tickets_only: { }
+                fulfilled_at:
+                  type: string
+                  nullable: true
+                scheme_id: { }
+                payment_id: { }
+                currency:
+                  type: string
+                shipping_fee:
+                  type: string
+                total:
+                  type: string
+                lines:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      item_name:
+                        type: string
+                      variant_label:
+                        type: string
+                      quantity:
+                        type: integer
+                      unit_price:
+                        type: string
+                      answers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            question:
+                              type: string
+                            answer:
+                              type: string
+                          additionalProperties: true
+                    additionalProperties: true
+              additionalProperties: true
+        additionalProperties: true

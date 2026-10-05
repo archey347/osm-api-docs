@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: deleteBadge
+summary: Delete a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    status:
+      summary: deleteBadge, moveBadge, editColumnPermissions
+      value:
+        status: true
+        error: null
+        data: [ ]
+sources: [ area.badges_editing.47f136c28950473153c4.js, ext.badges.6a63e40102b2845e63ab.js ]

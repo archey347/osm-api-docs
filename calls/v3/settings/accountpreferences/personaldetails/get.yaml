@@ -1,0 +1,17 @@
+kind: v3-route
+method: GET
+path: /v3/settings/accountpreferences/personaldetails/
+summary: Get personal details
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        firstname: Alex
+  description: "Personal detail fields in `data`; their names are not visible in the web app's code."
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

@@ -1,0 +1,44 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: saveStructureSettings
+summary: Save custom data group settings
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    sectionid:
+      type: string
+    "settings[{identifier}]":
+      type: integer
+      description: "Display order of each group; negative hides it."
+    "grid_view[{groupIdentifier}:{columnId}]":
+      type: string
+      description: "Always sent as `0`."
+    "camp_export[{groupIdentifier}:{columnId}]":
+      type: string
+      description: "Always sent as `0`."
+    associated_type:
+      type: string
+      enum: [ member ]
+  example:
+    sectionid: "45001"
+    associated_type: member
+    "settings[floating]": 1
+    "grid_view[floating:gender]": "0"
+    "camp_export[floating:gender]": "0"
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    structureWrite:
+      summary: "`createColumn`, `updateColumnLabel`, `deleteColumn`, `addOtherColumns`, `deleteInvisibleValue`, `saveStructureSettings`"
+      value: [ ]
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

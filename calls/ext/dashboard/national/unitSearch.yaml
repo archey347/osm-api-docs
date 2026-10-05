@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/national/
+action: unitSearch
+summary: Search units
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      description: Caller's own section ID.
+    search:
+      type: string
+  example:
+    section_id: "45001"
+    search: Riverside
+response:
+  schema:
+    $ref: DashboardNationalUnitSearch
+  examples:
+    unitSearch:
+      summary: Capped at 100 results
+      value:
+        items:
+          - section_id: "45001"
+            group_name: "1st Riverside"
+            section_name: Cubs
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

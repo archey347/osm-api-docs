@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getPaymentsForScheme
+summary: List payments for a scheme
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  schemeid:
+    type: string
+  hideArchived:
+    type: string
+response:
+  schema:
+    $ref: FinanceOnlinePaymentsForScheme
+  examples:
+    getPaymentsForScheme:
+      summary: getPaymentsForScheme
+      value:
+        identifier: paymentid
+        items:
+          - paymentid: "9820001"
+            name: Autumn term
+            date: "2024-10-01"
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

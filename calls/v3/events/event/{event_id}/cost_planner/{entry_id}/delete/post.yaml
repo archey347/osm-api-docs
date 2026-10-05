@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/cost_planner/{entry_id}/delete"
+summary: Delete a cost planner line
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  entry_id:
+    type: string
+response:
+  schema:
+    $ref: EventPayloadData
+  description: "Deleted; the app ignores the body."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

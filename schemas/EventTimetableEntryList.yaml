@@ -1,0 +1,21 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    day:
+      type: integer
+      description: Days since the event start.
+    start_time:
+      type: string
+    duration:
+      type: integer
+      description: Seconds.
+    colour:
+      type: string
+    title:
+      type: string
+    description:
+      type: string
+  additionalProperties: true

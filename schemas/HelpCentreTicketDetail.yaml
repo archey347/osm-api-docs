@@ -1,0 +1,31 @@
+type: object
+properties:
+  ticket:
+    type: object
+    properties:
+      id: { }
+      subject: { }
+      status: { }
+      section_name: { }
+      can_set_section:
+        description: Whether the user may still link a section.
+    additionalProperties: true
+  messages:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        author_type:
+          description: "`customer`, `agent`, `gilbert` or `system`."
+        author_name: { }
+        author_avatar: { }
+        author_is_ai: { }
+        body: { }
+        body_html: { }
+        has_attachments: { }
+        created_at: { }
+        created_at_display: { }
+        created_at_day_display: { }
+      additionalProperties: true
+additionalProperties: true

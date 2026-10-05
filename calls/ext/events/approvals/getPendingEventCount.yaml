@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/events/approvals/
+action: getPendingEventCount
+summary: Count events pending approval
+description: "`getEvents` lists events by approval state (backs the approvals pane), `getListOfApprovers` lists users an event can be assigned to, `getPendingEventCount` returns the pending count for the dashboard."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  max_days:
+    type: string
+    description: "Only events starting within this many days; `-1` for all."
+response:
+  schema:
+    $ref: EventPendingCount
+  envelope: true
+  examples:
+    getPendingEventCount:
+      value:
+        count: 2
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

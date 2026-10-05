@@ -1,0 +1,10 @@
+type: array
+items:
+  type: object
+  properties:
+    field:
+      type: string
+    name:
+      type: string
+  additionalProperties: true
+description: "`data` is the updated column list of the members grid."

@@ -1,0 +1,41 @@
+kind: ext-action
+method: POST
+path: /ext/finances/giftaid/
+action: update
+summary: Record Gift Aid payments for members
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    termid:
+      type: string
+    scouts:
+      type: string
+      description: JSON array of member IDs.
+    donatedate:
+      type: string
+      format: date
+    amount:
+      type: string
+    notes:
+      type: string
+  example:
+    scouts: "[3100001,3100002]"
+    donatedate: "2024-11-01"
+    amount: "5.00"
+    notes: Autumn subs
+    sectionid: "45001"
+    termid: "9000001"
+response:
+  schema:
+    $ref: FinanceGiftAidUpdateResult
+  examples:
+    update:
+      summary: update
+      value:
+        failed: 0
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

@@ -1,0 +1,21 @@
+type: object
+properties:
+  groups:
+    type: array
+    items:
+      type: object
+      properties:
+        key: { }
+        label: { }
+        badges:
+          type: array
+          items:
+            type: object
+            properties:
+              key: { }
+              name: { }
+              picture: { }
+              qty: { }
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

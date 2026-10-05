@@ -1,0 +1,33 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/members/{mode}"
+summary: List event members for a tab
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  mode:
+    type: string
+    enum: [ attendance, rota, payments ]
+    description: Members tab.
+query:
+  term_id:
+    type: string
+    description: "`-1` when viewing another section's event."
+response:
+  schema:
+    $ref: EventMembers
+  examples:
+    default:
+      value:
+        - member_id: 3100001
+          attending: "yes"
+          payment: Automatic
+          details:
+            f_1: Vegetarian
+          rota: { }
+  description: "Member records plus the column structure in `meta.structure`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

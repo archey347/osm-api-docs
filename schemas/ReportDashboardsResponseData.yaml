@@ -1,0 +1,14 @@
+type: object
+properties:
+  section_id:
+    type: integer
+  dashboards:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        name:
+          type: string
+      additionalProperties: true
+additionalProperties: true

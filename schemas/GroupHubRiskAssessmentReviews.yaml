@@ -1,0 +1,8 @@
+type: array
+items:
+  type: object
+  properties:
+    section_id: { }
+    section_name: { }
+    section_type: { }
+  additionalProperties: true

@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: makeEditable
+summary: Make a payment editable
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    schemeid:
+      type: string
+    paymentid:
+      type: string
+    scoutid:
+      type: string
+    statusid:
+      type: string
+      description: Latest status being made editable.
+  example:
+    sectionid: "45001"
+    schemeid: "9800001"
+    paymentid: "9820001"
+    scoutid: "3100001"
+    statusid: "9830001"
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

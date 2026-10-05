@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/
+action: getGroupDashboard
+summary: Get the group dashboard
+description: "`getNextThings` is the section dashboard; `getGroupDashboard` and `memberSearch` serve the group dashboard across several sections."
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionsAndTypes:
+    type: string
+    description: JSON object of section ID to section type.
+  v2:
+    type: string
+    description: "Always `1`."
+response:
+  schema:
+    $ref: DashboardGroupDashboard
+  envelope: true
+  examples:
+    getGroupDashboard:
+      value:
+        events:
+          - eventid: "1700001"
+            name: District Camp
+            startdate: "2025-06-19"
+            enddate: "2025-06-21"
+        meetings:
+          - eveningid: "9500001"
+            meetingdate: "2025-02-07"
+            title: Camp Skills Night
+        sizes: { }
+        ages: { }
+        outstandingpayments: { }
+        invoices: [ ]
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

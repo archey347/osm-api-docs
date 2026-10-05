@@ -1,0 +1,46 @@
+kind: v3-route
+method: GET
+path: "/v3/mymember/shop/{section_id}/{member_id}"
+summary: Shop items available to a member
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberShopItemsResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          items:
+            - item_id: 7300001
+              name: Group scarf
+              description: Group scarf.
+              type: product
+              currency: GBP
+              price_min: "5.00"
+              price_max: "5.00"
+              purchase_deadline: null
+              photos: [ ]
+              option_names: [ Size ]
+              questions: [ ]
+              variants:
+                - variant_id: 7400001
+                  options:
+                    Size: Medium
+                  price: "5.00"
+                  available: null
+                  in_basket: 0
+        meta:
+          payments_unavailable: false
+  description: Items on sale. Each item has one or more purchasable variants.
+sources: [ "570.c365ef8623cfaec3bcb7.js" ]

@@ -1,0 +1,5 @@
+type: object
+properties:
+  relation_id: { }
+  column_id: { }
+additionalProperties: true

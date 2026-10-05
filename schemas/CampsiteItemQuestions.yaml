@@ -1,0 +1,19 @@
+type: object
+properties:
+  item:
+    type: string
+    description: Item name.
+  questions:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        question:
+          type: string
+        answer:
+          type: string
+      additionalProperties: true
+additionalProperties: true
+description: Questions and answers for one booked item.

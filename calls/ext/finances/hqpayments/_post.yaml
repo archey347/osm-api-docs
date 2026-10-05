@@ -1,0 +1,4 @@
+path: /ext/finances/hqpayments/
+method: POST
+summary: Create, link and manage HQ payment requests
+response: "Result. `addPayment` returns the new request ID in `meta`."

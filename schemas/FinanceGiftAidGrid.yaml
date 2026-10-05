@@ -1,0 +1,39 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        scoutid:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        status:
+          type: string
+          description: "e.g. `entered`, `leader`, `declined`, `requested`, `no_record`, `not_entered`, `not_eligible`."
+        charity_name:
+          type: string
+        parentname:
+          type: string
+        address:
+          type: string
+        postcode:
+          type: string
+        lastupdated:
+          type: string
+        details_editable:
+          description: Whether the declaration details can be edited.
+      additionalProperties: true
+  structure:
+    type: array
+    description: "Payment columns; each `field` is also a key on the items."
+    items:
+      type: object
+      properties:
+        field:
+          type: string
+      additionalProperties: true
+additionalProperties: true

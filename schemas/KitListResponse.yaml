@@ -1,0 +1,27 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    heading:
+      type: string
+    name:
+      type: string
+    description:
+      type: string
+    purchase_link:
+      type: string
+    multiple:
+      type: boolean
+    collection_items:
+      type: array
+      items:
+        type: object
+        properties:
+          collection_id:
+            type: integer
+          quantity:
+            type: integer
+        additionalProperties: true
+  additionalProperties: true

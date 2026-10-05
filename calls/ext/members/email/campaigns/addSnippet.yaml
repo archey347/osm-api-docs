@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/campaigns/
+action: addSnippet
+summary: Add a block to an email template
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    campaign_id:
+      type: string
+      description: "Every action except `createCampaign`."
+    template:
+      type: string
+      description: Template style name.
+    snippet:
+      type: string
+      description: Snippet type to add.
+    after_snippet:
+      type: string
+      description: Snippet ID to insert after.
+  example:
+    section_id: "45001"
+    campaign_id: "5100001"
+    snippet: text
+    template: default
+    after_snippet: "5200001"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    addSnippet:
+      summary: ID of the new snippet
+      value:
+        id: 5200003
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

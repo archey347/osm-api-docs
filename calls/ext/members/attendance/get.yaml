@@ -1,0 +1,46 @@
+kind: ext-action
+method: GET
+path: /ext/members/attendance/
+action: get
+summary: Get a section's attendance register
+description: "Use `get` for attendance records or `getAttendanceBadgeRequirements` for badge requirements tied to a date."
+tags: [ Attendance ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    description: "Term ID (required for `action=get`)."
+  section:
+    type: string
+    required: true
+    description: "Section type (e.g., `cubs`)."
+  nototal:
+    type: string
+    description: "Toggle total attendance column (observed `true`)."
+response:
+  schema:
+    $ref: AttendanceList
+  examples:
+    attendanceList:
+      summary: Attendance list
+      value:
+        identifier: scoutid
+        label: name
+        items:
+          - "2025-01-07": "Yes"
+            total: 2
+            firstname: Robert
+            lastname: Baden Powell
+            patrolid: -2
+            active: true
+            scoutid: 910302
+        meetings:
+          "2025-01-07": "Welcome Back!"
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

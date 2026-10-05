@@ -1,0 +1,5 @@
+path: /ext/badges/orders/
+method: GET
+summary: Get badge order or stock code
+description: "`getBadgeOrderForSection` feeds the section's badge order grid; its response fields are not visible in the web app's code."
+response: Badge order rows or stock code.

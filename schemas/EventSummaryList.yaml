@@ -1,0 +1,23 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        eventid:
+          type: string
+        name:
+          type: string
+        startdate:
+          type: string
+        startdate_g:
+          type: string
+        enddate:
+          type: string
+        rota_accepted:
+          type: integer
+        rota_required:
+          type: integer
+      additionalProperties: true
+additionalProperties: true

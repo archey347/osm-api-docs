@@ -1,0 +1,4 @@
+path: /ext/finances/hqpayments/
+method: GET
+summary: HQ payment requests for members and events
+response: Payment data.

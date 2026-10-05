@@ -1,0 +1,18 @@
+kind: ext-action
+method: GET
+path: /ext/badges/stock/
+action: getBadgeStockPDF
+summary: Download badge stock as PDF
+description: "`getBadgeStockPDF` and `getBadgeStockShoppingPDF` return documents to download."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+  term_id:
+    type: string
+response:
+  document: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

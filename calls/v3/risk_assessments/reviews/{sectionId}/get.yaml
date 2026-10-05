@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/risk_assessments/reviews/{sectionId}"
+summary: List risk assessment reviews
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: RiskAssessmentReviews
+  examples:
+    default:
+      value:
+        - type: programme
+          associated_id: "45001"
+  description: Reviews due for the section.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

@@ -1,0 +1,109 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/
+action: removeMember
+summary: Remove members from a section
+description: |-
+  **`removeMember`** — removes a member from the section.
+
+  `removeMember` can also receive `exit_survey[{scoutid}][{questionId}]` answers, `access[{userId}]` choices and the confirmation flags `remove_last_access_confirmed` / `remove_last_access_confirmed_final` (`yes`) when the first response asks for them.
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    from_section:
+      type: string
+      description: "`removeMember` only. Section ID to remove from."
+    date:
+      type: string
+      format: date
+      description: "`removeMember` only. Effective removal date (`yyyy-mm-dd`)."
+    scouts:
+      type: string
+      description: Comma-separated member IDs.
+    type:
+      type: string
+      enum: [ keepall, keepcontact, keepname, delete, erase ]
+      description: Data retention level.
+    additional_data_to_delete:
+      type: string
+      description: "JSON array; sent when `type` is `erase`."
+    "exit_survey[{memberId}][{questionId}]":
+      type: string
+    "exit_survey[{memberId}][dateleft]":
+      type: string
+  example:
+    scouts: "3100005"
+    from_section: "45001"
+    date: "2025-08-19"
+    type: keepall
+response:
+  schema:
+    type: object
+    description: |-
+      `removeMember`, `returnMember`, `transferMember`, `deletePhoto` response.
+      The web app reads no fields from `acceptAndRejectTransfers` or
+      `returnMembersFromTransfer` responses.
+    properties:
+      ok:
+        type: boolean
+      scouts:
+        type: array
+        items:
+          type: integer
+        description: Scout IDs affected.
+      msg:
+        type: string
+        description: "Error message (`removeMember`, `returnMember`)."
+      error:
+        type: string
+      prohibited:
+        type: array
+        items:
+          type: string
+        description: "`transferMember`. Members that could not be moved."
+      members_present_elsewhere:
+        type: array
+        items:
+          type: integer
+        description: "`removeMember`. Removed members who are still active in another section."
+      members_linked_to_users:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. Set when a confirmation of linked-user access is needed; resend with `access[...]` choices."
+      members_linked_to_users_forced:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. As `members_linked_to_users`, with no option to keep access."
+      last_section_warnings:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+        description: "`removeMember`. Members whose last section this is; each has `member_id` and `name`."
+      group_name:
+        type: string
+      remove_last_access_final:
+        type: string
+  examples:
+    removeMember:
+      summary: Member removed
+      value:
+        ok: true
+        scouts: [ 3100005 ]
+    removeMemberWarning:
+      summary: "`removeMember` asking for confirmation before removing the last access"
+      value:
+        members_linked_to_users:
+          "3100005":
+            - userid: 2100001
+              name: Sarah River
+        group_name: "1st Riverside Scouts"
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

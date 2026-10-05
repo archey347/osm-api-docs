@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/email-templates/{templateKey}"
+summary: Get an email template
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+  templateKey:
+    type: string
+    description: Template key, from the section's email template configuration.
+response:
+  schema:
+    $ref: GroupHubEmailTemplate
+  examples:
+    default:
+      value:
+        body: "<p>Hello [FIRSTNAME]</p>"
+        customised: true
+  description: Template body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

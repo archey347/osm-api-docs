@@ -1,0 +1,34 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    additionalProperties: true
+  data:
+    type: array
+    description: One entry per question in the step.
+    items:
+      type: object
+      properties:
+        question_id: { }
+        multi:
+          description: "`true` for checkbox questions, which carry `answered[]` instead of `reason`."
+        reason: { }
+        answered:
+          type: array
+          items:
+            type: object
+            properties:
+              reason: { }
+            additionalProperties: true
+      additionalProperties: true
+  meta:
+    type: object
+    properties:
+      result:
+        type: boolean
+        description: True when every answer was correct.
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,37 @@
+kind: v3-route
+method: POST
+path: /v3/members/contact/actions/invite-to-join/invite
+summary: Invite members to join a section
+description: "With `to_section_id=0` this sends the waiting-list survey (\"still interested?\") rather than an invitation to a section."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_ids:
+      type: array
+      items:
+        type: string
+      required: true
+    from_section_id:
+      type: string
+      required: true
+    to_section_id:
+      type: string
+      required: true
+    leader_message:
+      type: string
+    deadline:
+      type: string
+      format: date
+      description: Empty for no deadline.
+  example:
+    member_ids: [ "3100005" ]
+    from_section_id: "45001"
+    to_section_id: "45002"
+    leader_message: Spaces are open from January.
+    deadline: "2025-10-31"
+response:
+  description: Sent. The web app reads nothing from the response.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

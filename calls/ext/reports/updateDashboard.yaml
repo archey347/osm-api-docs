@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/reports/
+action: updateDashboard
+summary: Update a dashboard
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: The other actions take it in the body.
+  dashboard_id:
+    type: string
+    description: The other actions take it in the body.
+body:
+  params:
+    dashboard_name:
+      type: string
+  example:
+    dashboard_name: Section Overview
+response:
+  schema:
+    $ref: ReportStatusResult
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

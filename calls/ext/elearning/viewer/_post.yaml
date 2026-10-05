@@ -1,0 +1,7 @@
+path: /ext/elearning/viewer/
+method: POST
+summary: E-learning viewer progress
+description: |-
+  `demo=true` is the editor's preview and records no progress.
+  `startModule`, `checkStep` and `completeModule` change data.
+response: "Response by action. `completeModule` response is not read by the web app."

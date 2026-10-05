@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/sections/{sectionId}/{action}"
+summary: Respond to or leave a Group Hub workspace
+description: Called for the caller's current section.
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+  action:
+    type: string
+    enum: [ accept, decline, leave ]
+    description: Accept or decline an invitation, or leave the workspace.
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

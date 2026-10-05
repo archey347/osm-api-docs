@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/sharing/
+action: reject
+summary: Reject a shared event invite
+description: "Most successful responses carry `sectionConfig` (or `config` for `accept`/`reject`), the refreshed section config the app merges into its session data."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      description: Section ID.
+    eventid:
+      type: string
+  example:
+    eventid: "9600001"
+    sectionid: "45002"
+response:
+  schema:
+    $ref: EventSharingResult
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

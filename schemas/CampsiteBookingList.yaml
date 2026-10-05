@@ -1,0 +1,16 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    group_name:
+      type: string
+    start_date:
+      type: string
+    end_date:
+      type: string
+    status:
+      type: string
+  additionalProperties: true
+description: "Bookings matching the requested `mode`."

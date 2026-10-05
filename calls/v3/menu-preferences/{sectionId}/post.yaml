@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/menu-preferences/{sectionId}"
+summary: Set hidden menu items
+description: Replaces the whole hidden list.
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    hidden:
+      type: array
+      items:
+        type: string
+      required: true
+  example:
+    hidden: [ ext.members.contact ]
+response:
+  schema:
+    $ref: MenuPreferenceResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          hidden: [ ext.members.contact ]
+  description: The saved list.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: /v3/settings/beta
+summary: Toggle a beta feature
+description: "Responds with the updated `data.preferences`."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    item:
+      type: string
+    value:
+      type: string
+  example:
+    item: example_feature
+    value: "1"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        preferences:
+          beta_functions: [ example_feature ]
+  description: Response.
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

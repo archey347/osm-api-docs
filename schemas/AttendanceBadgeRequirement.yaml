@@ -1,0 +1,37 @@
+type: object
+properties:
+  badge:
+    type: string
+  badge_id:
+    type: string
+  badge_version:
+    type: string
+  column_id:
+    type: string
+  badgeName:
+    type: string
+  badgetype:
+    type: string
+  columngroup:
+    type: string
+  columnname:
+    type: string
+  description:
+    type: string
+  data:
+    type: string
+  eveningid:
+    type: integer
+  meetingdate:
+    type: string
+  link_from:
+    type: string
+  name:
+    type: string
+  section:
+    type: string
+  sameas_counter:
+    type: integer
+  sectionid:
+    type: integer
+additionalProperties: true

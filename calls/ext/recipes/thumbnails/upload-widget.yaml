@@ -1,0 +1,19 @@
+kind: ext-action
+path: /ext/recipes/thumbnails/
+uses:
+  template: upload-widget
+  params:
+    id:
+      type: string
+      description: Recipe ID.
+    section_id:
+      type: string
+      description: "Always `0`."
+    path:
+      type: string
+      description: "Always `/`."
+    replace:
+      type: string
+      description: "The web app sends `replace_all`."
+tags: [ Recipes ]
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

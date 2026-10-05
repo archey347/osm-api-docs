@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: /v3/members/contact/actions/invite-to-join/eligibility
+summary: Check which members can be invited
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  from_section_id:
+    type: string
+    required: true
+  mode:
+    type: string
+    enum: [ invite, survey ]
+    required: true
+  "member_ids[]":
+    type: array
+    items:
+      type: string
+    required: true
+response:
+  schema:
+    $ref: MemberInviteEligibility
+  examples:
+    default:
+      value:
+        members:
+          - member_id: 3100005
+            eligible: false
+            reason: Already invited
+        daily_limit_reached: false
+  description: Eligibility per member.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

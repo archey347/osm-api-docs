@@ -1,0 +1,23 @@
+kind: v3-route
+method: POST
+path: "/v3/risk_assessments/reviews/{sectionId}/settings"
+summary: Set risk assessment review interval
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    months:
+      type: string
+      required: true
+      description: Months between reviews.
+  example:
+    months: "12"
+response:
+  description: "Success. `data.updated` is read by the web app when present."
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

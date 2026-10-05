@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/badges/records/homework/{badgeId}/{sectionId}/settings"
+summary: Update homework settings for a badge
+description: "Send `state` or `introduction`, not both."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  badgeId:
+    type: string
+  sectionId:
+    type: string
+body:
+  params:
+    state:
+      type: string
+      description: "`enabled` or `disabled`."
+    introduction:
+      type: string
+  example:
+    state: enabled
+response:
+  schema:
+    $ref: BadgeV3Response
+  examples:
+    ok:
+      summary: Updated
+      value: [ ]
+  description: Updated.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,8 @@
+path: /ext/members/nationalcensus/
+method: GET
+summary: National census reads
+description: |-
+  National census reads share this path with different `action` values.
+  The `download*` actions return a document (PDF or spreadsheet) rather
+  than JSON. `sendEmailReceipt` sends an email despite being a GET.
+response: Census data.

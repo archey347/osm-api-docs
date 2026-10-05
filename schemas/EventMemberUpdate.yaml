@@ -1,0 +1,17 @@
+type: object
+properties:
+  warning:
+    type: string
+    description: Shown to the user after a successful save.
+  updates:
+    type: object
+    properties:
+      details:
+        type: object
+        description: Other column values changed as a side effect.
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true
+description: |-
+  When the event is full with a reserved list, `status` is false and `error.code` is
+  `event_full_with_reserved`.

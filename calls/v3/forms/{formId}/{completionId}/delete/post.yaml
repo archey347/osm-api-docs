@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/forms/{formId}/{completionId}/delete"
+summary: Delete a form completion
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+  completionId:
+    type: string
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    state:
+      description: "Sent as `false` when no state dialog is open."
+  example:
+    section_id: "3100"
+    state: false
+response:
+  schema:
+    $ref: FormResponse
+  description: "Success when `status` is true."
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

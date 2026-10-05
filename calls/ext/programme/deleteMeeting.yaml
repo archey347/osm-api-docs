@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: deleteMeeting
+summary: Delete a meeting
+description: "`deleteMeeting` takes `eveningid` and `sectionid` in the query string with no body; every other action takes a form body."
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  eveningid:
+    type: string
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: ProgrammeDeleteMeetingResult
+  examples:
+    deleteMeeting:
+      summary: "`deleteMeeting`: soft-deleted; `deletion_id` is what the soft-deletion restore call takes to undo"
+      value:
+        ok: true
+        deletion_id: 880001
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

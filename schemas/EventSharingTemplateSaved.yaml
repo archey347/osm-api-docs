@@ -1,0 +1,15 @@
+type: object
+description: "Response to `saveTemplate`: `id` or `sectionConfig` on success, `error.message` on failure."
+properties:
+  id:
+    type: string
+  sectionConfig:
+    type: object
+    additionalProperties: true
+  error:
+    type: object
+    properties:
+      message:
+        type: string
+    additionalProperties: true
+additionalProperties: true

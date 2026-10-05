@@ -1,0 +1,19 @@
+type: object
+properties:
+  report_id: { }
+  dashboard_id: { }
+  type:
+    type: string
+    description: "Observed `DataGrid`, `DataGridList`, `Notifications`."
+  name:
+    type: string
+  description:
+    type: string
+  report:
+    type: string
+    description: "URL of the report's data, to which the web app appends `&section_id=`."
+  can_manage:
+    type: boolean
+  can_refresh:
+    type: boolean
+additionalProperties: true

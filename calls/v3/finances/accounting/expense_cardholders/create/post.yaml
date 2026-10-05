@@ -1,0 +1,22 @@
+kind: v3-route
+method: POST
+path: /v3/finances/accounting/expense_cardholders/create
+summary: Order a card for the current user
+description: "`pin` is encrypted client-side with a public key fetched from Stripe before sending; the plaintext PIN is never sent to OSM."
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    pin:
+      type: string
+      required: true
+      description: Encrypted PIN (JWE).
+  example:
+    pin: ENCRYPTED-PIN-EXAMPLE
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

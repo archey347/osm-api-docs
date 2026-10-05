@@ -1,0 +1,8 @@
+path: /ext/members/attendance/
+method: POST
+summary: Update attendance
+description: |-
+  `update` and `updateBadgeRequirements` take the same body; the second
+  is sent from the dialog that records badge requirements met at a
+  meeting. `settings` saves the register setting.
+response: "Attendance update response. The web app only checks for `true` from `update` and `updateBadgeRequirements`, and for `ok` from `settings`."

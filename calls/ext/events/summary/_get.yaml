@@ -1,0 +1,8 @@
+path: /ext/events/summary/
+method: GET
+summary: Events list and activity feed
+description: |-
+  `get` lists the section's events for the term, `getEvents` a lighter list
+  (`onlyArchived=1` for archived ones), `getAudit` recent attendance changes.
+  Responses are wrapped in `items`, not the `status`/`data` envelope.
+response: Events response.

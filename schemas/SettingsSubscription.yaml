@@ -1,0 +1,15 @@
+type: object
+properties:
+  subscription_id: { }
+  component:
+    type: string
+  cost:
+    type: string
+  renewal_date:
+    type: string
+  firstname:
+    type: string
+    description: "Subscriber; shown in section mode."
+  deletable:
+    type: boolean
+additionalProperties: true

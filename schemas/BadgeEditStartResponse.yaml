@@ -1,0 +1,30 @@
+type: object
+properties:
+  new_version:
+    type: boolean
+  details:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      parents_description:
+        type: string
+      group_name:
+        type: string
+      use_points: { }
+      config:
+        type: object
+        additionalProperties: true
+    additionalProperties: true
+  myscout:
+    type: string
+  myscoutShirt:
+    type: string
+  sections:
+    type: array
+    description: Section types the badge is enabled for.
+    items:
+      type: string
+additionalProperties: true

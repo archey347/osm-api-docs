@@ -1,0 +1,38 @@
+type: object
+properties:
+  lists:
+    type: array
+    items:
+      type: object
+      properties:
+        list:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            hasbookings:
+              type: boolean
+          additionalProperties: true
+        items:
+          description: Array, or object keyed by row identifier.
+          type: array
+          items:
+            type: object
+            properties:
+              itemrowidentifier:
+                type: string
+              name:
+                type: string
+              condition:
+                type: string
+              location:
+                type: string
+              available:
+                type: integer
+              booked:
+                description: "Quantity already booked for this event; may be empty."
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

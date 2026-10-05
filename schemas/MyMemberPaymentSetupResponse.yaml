@@ -1,0 +1,23 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          key:
+            type: string
+            description: "Pass back to `checkStatusOfDirectDebitSetup` or `completePaymentAuthorisation`."
+          url:
+            type: string
+            description: GoCardless set-up page, opened in a new window.
+          authorisation_data:
+            type: object
+            description: Stripe card set-up.
+            properties:
+              public_key:
+                type: string
+              client_secret:
+                type: string
+            additionalProperties: true
+        additionalProperties: true

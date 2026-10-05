@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/details/
+action: confirmDetails
+summary: Confirm member contact details are correct
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+  description: "Details confirmed. Anything other than `status: true` is treated as a failure."
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

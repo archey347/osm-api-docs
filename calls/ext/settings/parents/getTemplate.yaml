@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/settings/parents/
+action: getTemplate
+summary: Get a parent email template
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+  key:
+    type: string
+    description: Template key.
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    getTemplate:
+      summary: "Email template body in `data`, subject in `meta`"
+      value: "<p>Example template body</p>"
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

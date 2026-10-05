@@ -1,0 +1,19 @@
+type: array
+items:
+  type: object
+  properties:
+    name:
+      type: string
+    approval_requested_at:
+      type: string
+    start_date:
+      type: string
+    type:
+      type: string
+    assigned_to:
+      type: string
+    group:
+      type: string
+    section:
+      type: string
+  additionalProperties: true

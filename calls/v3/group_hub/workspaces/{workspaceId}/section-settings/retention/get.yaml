@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/retention"
+summary: Get data retention settings
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubRetention
+  examples:
+    default:
+      value:
+        retention: { }
+        defaults: { }
+  description: Retention periods.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

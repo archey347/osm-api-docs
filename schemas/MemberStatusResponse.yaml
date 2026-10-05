@@ -1,0 +1,13 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    description: "When `status` is `false`, an object with `message`."
+  data:
+    description: "Payload; shape depends on the endpoint."
+  meta:
+    description: "Extra data; shape depends on the endpoint."
+additionalProperties: true

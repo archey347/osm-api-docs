@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: addColumnToBadge
+summary: Add a column to a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    module_id:
+      description: "Module to add the column to (`addColumnToBadge`)."
+    column_name:
+      description: "Name of the new column (`addColumnToBadge`)."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    module_id: "5001"
+    column_name: Camp night
+    section_id: "45001"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: addColumnToBadge
+      value:
+        ok: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

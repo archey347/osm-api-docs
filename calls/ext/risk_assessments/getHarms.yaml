@@ -1,0 +1,16 @@
+kind: ext-action
+method: GET
+path: /ext/risk_assessments/
+action: getHarms
+summary: List harms
+description: "`getCategories`, `getHazards` and `getHarms` read the prepopulated hazard library used when the site's `risk_assessments_config.mode` is `prepopulated`."
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: unknown
+response:
+  schema:
+    anyOf:
+      - $ref: RiskAssessmentList
+      - $ref: RiskAssessmentCategories
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

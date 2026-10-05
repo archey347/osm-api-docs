@@ -1,0 +1,4 @@
+path: /ext/customdata/
+method: GET
+summary: Get custom data for a member
+response: Custom data groups and columns, or the field lists below.

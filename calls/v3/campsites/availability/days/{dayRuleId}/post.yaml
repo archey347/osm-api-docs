@@ -1,0 +1,38 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/days/{dayRuleId}"
+summary: Edit a unavailable-days rule
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  dayRuleId:
+    type: string
+    description: Unavailable-days rule ID.
+body:
+  params:
+    day:
+      type: integer
+      required: true
+      description: Day of week, 1 to 7.
+    unavailable_from:
+      type: string
+      required: true
+      description: "Time, `HH:MM`."
+    unavailable_to:
+      type: string
+      required: true
+      description: "Time, `HH:MM`."
+  example:
+    day: 5
+    unavailable_from: "00:00"
+    unavailable_to: "12:00"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

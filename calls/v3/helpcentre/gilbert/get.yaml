@@ -1,0 +1,39 @@
+kind: v3-route
+method: GET
+path: /v3/helpcentre/gilbert
+summary: Poll the Gilbert AI assistant conversation
+description: |-
+  Gilbert is the in-app AI assistant. The web app also calls this path with
+  a trailing slash.
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+query:
+  guid:
+    type: string
+    required: true
+    description: Client-generated conversation GUID.
+  term_id:
+    type: string
+  section_id:
+    type: string
+  _bypass_service_worker:
+    type: string
+    description: "Observed `1`."
+response:
+  schema:
+    $ref: HelpCentreGilbertState
+  examples:
+    default:
+      value:
+        status: completed
+        questions:
+          - id: 8100001
+            question: "How do I add a member?"
+        answers:
+          - id: 8200001
+            message: Go to Members and choose Add Member.
+        runs: [ ]
+  description: "Conversation state. `data.status` of `none` means no conversation exists for the GUID."
+sources: [ ext.helpcentre.b7a1deb267cad56138a2.js, ext.members.ca95317ad56b2f22a5e5.js ]

@@ -1,0 +1,11 @@
+type: object
+properties:
+  identifier:
+    type: string
+  items:
+    type: array
+    description: One row per member, with the flexi-record's columns as extra keys.
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

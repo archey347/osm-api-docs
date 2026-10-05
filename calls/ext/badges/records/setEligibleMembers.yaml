@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: setEligibleMembers
+summary: Set eligible members for a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    term_id:
+      description: "Term ID (`setEligibleMembers`)."
+    section_id:
+      type: string
+    badge_id:
+      type: string
+    "members[{memberId}]":
+      type: string
+      description: "`1` if eligible, `0` if not."
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    term_id: "70001"
+    "members[3100001]": "1"
+    "members[3100002]": "0"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: editRoleAccess
+summary: 'Edit a badge''s role access'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    restrict:
+      type: string
+      description: "JSON object of role restrictions (`editRoleAccess`)."
+    permit:
+      type: string
+      description: "JSON object of role permissions (`editRoleAccess`)."
+    read_only:
+      description: "(`editRoleAccess`)."
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    restrict: "{}"
+    permit: "{}"
+    read_only: "false"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: editLogic, editMinimums, editModuleRequirements, editRoleAccess, editBadgeDescription, addBadgeToSection
+      value:
+        ok: true
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

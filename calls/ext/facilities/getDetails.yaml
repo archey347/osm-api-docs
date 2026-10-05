@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/facilities/
+action: getDetails
+summary: Get facility details
+tags: [ Facilities ]
+source:
+  request: inferred
+  response: inferred
+query:
+  facilityid:
+    type: string
+response:
+  schema:
+    $ref: FacilityDetails
+  examples:
+    getDetails:
+      value:
+        core:
+          title: Example Campsite
+          description: Fields and a small woodland.
+          contact: "01234 000000"
+          link: "https://example.com"
+          latitude: "54.9000"
+          longitude: "-1.6000"
+        types: [ "11" ]
+        facilities: { }
+        outside: { }
+        inside: { }
+        specialneeds: { }
+sources: [ area.facilities.e75a3e5352d708ac499b.js ]

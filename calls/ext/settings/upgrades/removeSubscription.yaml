@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/settings/upgrades/
+action: removeSubscription
+summary: Remove a subscription
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    details:
+      type: string
+    subscription_id:
+      type: string
+    reason:
+      type: string
+  example:
+    subscription_id: "9400001"
+    section_id: "45001"
+    reason: example
+    details: example
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "899.b65bceb407b68f881505.js" ]

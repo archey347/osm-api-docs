@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/members/review/future_transfers/{sectionid}"
+summary: Schedule a transfer
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    to_section_id:
+      type: string
+      required: true
+    transfer_date:
+      type: string
+      format: date
+      required: true
+  example:
+    member_id: "3100001"
+    to_section_id: "45002"
+    transfer_date: "2026-01-05"
+response:
+  description: Scheduled. The web app reads nothing from the response.
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/settings/parents/member_access/{sectionId}"
+summary: Get member access permissions
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        example_permission:
+          value: true
+          group: example
+          requires: null
+  description: "Permissions in `data`, keyed by permission type, each with `value`, `group` and optionally `requires`."
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

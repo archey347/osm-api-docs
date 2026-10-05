@@ -1,0 +1,38 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}"
+summary: Get a Group Hub workspace
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubWorkspaceDetail
+  examples:
+    default:
+      value:
+        id: 2100001
+        name: "1st Riverside Group"
+        sections:
+          - id: 2200001
+            section_id: 45001
+            section_name: Cubs
+            status: active
+            is_owning_section: true
+            can_administer: true
+            synced_domains: [ ]
+            follows_new_settings: false
+            accepted_at: "2025-01-01 10:00:00"
+            departed_at: null
+        settings_domains: [ terms_schedule, data_retention ]
+        candidate_sections:
+          - section_id: 45002
+            name: Scouts
+            can_administer: false
+  description: Workspace with its sections.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

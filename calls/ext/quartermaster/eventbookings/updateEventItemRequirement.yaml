@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/quartermaster/eventbookings/
+action: updateEventItemRequirement
+summary: Book quartermaster items for an event
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  dynamic:
+    type: string
+    description: Sent by the legacy UI.
+body:
+  params:
+    eventid:
+      type: string
+      required: true
+    sectionid:
+      type: string
+      required: true
+    listid:
+      type: string
+      required: true
+    "itemrowidentifier[{identifier}]":
+      type: string
+      description: Amount to book from that item row.
+  example:
+    eventid: "9400001"
+    sectionid: "3100001"
+    listid: "7100001"
+    "itemrowidentifier[7300001]": "2"
+response:
+  schema:
+    $ref: QuartermasterBookingUpdateResponse
+  envelope: true
+  examples:
+    default:
+      value:
+        itemrowidentifier:
+          "7300001": 2
+  description: "`data.itemrowidentifier` holds the quantity actually booked per row, which can be lower than requested."
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

@@ -1,0 +1,51 @@
+kind: ext-action
+method: POST
+path: /ext/generic/help/contactus/
+action: contact
+summary: Send a message to OSM support
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    email:
+      type: string
+      required: true
+    grpStn:
+      type: string
+      description: "Group and section name, `Group: Section`."
+    subject:
+      type: string
+      required: true
+    body:
+      type: string
+      required: true
+    from_helpcentre:
+      type: string
+      description: "`1` when sent from the help centre."
+    from_prelogin:
+      type: string
+      description: Set when sent from the login page.
+    gilbert_guid:
+      type: string
+      description: Help-centre assistant conversation ID, when an answer was received first.
+  example:
+    sectionid: "1001"
+    email: "alex.scout@example.com"
+    grpStn: "1st Example Scouts: Example Troop"
+    subject: Question about badges
+    body: "How do I record a badge?"
+    from_helpcentre: "1"
+response:
+  schema:
+    $ref: GenericContactUsResponse
+  examples:
+    default:
+      value:
+        resp: true
+        ticket_only: false
+  description: "`resp` is true on success; otherwise it is an error message to show."
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js, login.6358ed381bbab8857254.js ]

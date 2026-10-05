@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/quartermaster/
+action: saveItemRowDetails
+summary: Save a list item row
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section:
+      type: string
+      required: true
+      description: Section type.
+    sectionid:
+      type: string
+      required: true
+      description: Section ID.
+    listid:
+      type: string
+      required: true
+      description: List ID.
+    "_{columnId}":
+      type: string
+      description: "Value for each list column, sent as `_` followed by the column ID."
+  example:
+    section: scouts
+    sectionid: "3100001"
+    listid: "7100001"
+    _7200001: Frying pan
+    _7200002: "4"
+response:
+  schema:
+    $ref: QuartermasterActionResponse
+  envelope: true
+  examples:
+    saveItemRowDetails:
+      value:
+        row:
+          "7200001": Frying pan
+          "7200002": "4"
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

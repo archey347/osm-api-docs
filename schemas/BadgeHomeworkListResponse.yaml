@@ -1,0 +1,12 @@
+type: array
+items:
+  type: object
+  properties:
+    badge_id: { }
+    badge_version: { }
+    name:
+      type: string
+    picture:
+      type: string
+    type_id: { }
+  additionalProperties: true

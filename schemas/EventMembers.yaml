@@ -1,0 +1,23 @@
+type: array
+items:
+  type: object
+  properties:
+    member_id:
+      type: integer
+    attending:
+      type: string
+      description: "`yes`, `no`, `absent`, `invited`, `reserved` or `show_in_parent_portal`; empty when unset."
+    payment:
+      type: string
+    reserved_place:
+      type: integer
+    details:
+      type: object
+      description: "Values of custom (`f_<id>`) and payment (`p<id>`) columns."
+      additionalProperties: true
+    rota:
+      type: object
+      additionalProperties: true
+  additionalProperties: true
+description: |-
+  Member records for a members tab; the column structure is in `meta.structure`.

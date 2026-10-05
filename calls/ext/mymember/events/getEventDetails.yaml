@@ -1,0 +1,64 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/events/
+action: getEventDetails
+summary: Get one event for a member
+description: "`getDetails` lists events, `getEventDetails` returns one, and `getCalendarFeed` returns the member's calendar feed URL."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberEventDetailsResponse
+  examples:
+    getEventDetails:
+      value:
+        status: true
+        error: null
+        data:
+          name: Summer Camp
+          startdate: "2025-07-18"
+          when: "18 July 2025 - 20 July 2025"
+          attendance: "yes"
+          allowchanges: true
+          confdate: "2025-06-20"
+          location: Example Campsite
+          latitude: "54.9783"
+          longitude: "-1.6178"
+          cost: "45.00"
+          currency: GBP
+          payments:
+            "6200001":
+              - payment_id: "6300001"
+                payment_name: Camp fee
+                status: Not paid
+                currency: GBP
+                amount: "45.00"
+          columns:
+            - name: f_1
+              label: Dietary needs
+              hint: ""
+              required: false
+              value: ""
+              editAfterDeadline: false
+          badges: [ ]
+          kit_list_items: [ ]
+          kit_list_packed_items: [ ]
+          rota:
+            help: none
+            help_required: false
+            details: ""
+          publicnotes: "<p>Meet at the scout hut.</p>"
+        meta:
+          confirm_personal_details: false
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

@@ -1,0 +1,11 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        groupid: { }
+        name: { }
+      additionalProperties: true
+additionalProperties: true

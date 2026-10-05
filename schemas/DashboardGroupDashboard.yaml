@@ -1,0 +1,30 @@
+type: object
+properties:
+  events:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  meetings:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  sizes:
+    type: object
+    additionalProperties: true
+  ages:
+    type: object
+    additionalProperties: true
+  outstandingpayments:
+    type: object
+    additionalProperties: true
+  invoices:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  size_predictor:
+    type: object
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/deletion"
+summary: List members eligible for erasure
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubDeletion
+  examples:
+    default:
+      value:
+        - id: 3100004
+          firstname: Pat
+          lastname: Stone
+          date_deleted: "2023-10-01"
+  description: Members who left their sections and can now be erased.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

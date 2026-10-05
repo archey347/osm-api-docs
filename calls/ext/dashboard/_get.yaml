@@ -1,0 +1,8 @@
+path: /ext/dashboard/
+method: GET
+summary: Get dashboard data
+description: |-
+  Dashboard reads share this path with different `action` values.
+  `getNextThings` is the section dashboard; `getGroupDashboard` and
+  `memberSearch` serve the group dashboard across several sections.
+response: Dashboard response.

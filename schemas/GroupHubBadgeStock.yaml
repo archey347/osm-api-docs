@@ -1,0 +1,40 @@
+type: object
+properties:
+  can_edit:
+    type: boolean
+  sections:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        section_type: { }
+      additionalProperties: true
+  badges:
+    type: array
+    items:
+      type: object
+      properties:
+        key:
+          type: string
+        badge_id: { }
+        level: { }
+        name: { }
+        picture: { }
+        total_buy: { }
+        sections:
+          type: object
+          description: Keyed by section ID.
+          additionalProperties:
+            type: object
+            properties:
+              stock: { }
+              desired: { }
+              due: { }
+              owning_section_id:
+                description: "Section whose stock this one shares; `0` when not sharing."
+              owning_section_name: { }
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

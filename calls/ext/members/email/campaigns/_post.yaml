@@ -1,0 +1,8 @@
+path: /ext/members/email/campaigns/
+method: POST
+summary: Edit email templates
+description: |-
+  Email template (campaign) writes share this path with different
+  `action` values. A template is a list of snippets, each with editable
+  text bits.
+response: "Write result. Failures return `status: false`."

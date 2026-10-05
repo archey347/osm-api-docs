@@ -1,0 +1,8 @@
+path: /ext/events/approvals/
+method: GET
+summary: Event approval queues
+description: |-
+  `getEvents` lists events by approval state (backs the approvals pane),
+  `getListOfApprovers` lists users an event can be assigned to,
+  `getPendingEventCount` returns the pending count for the dashboard.
+response: Approval response.

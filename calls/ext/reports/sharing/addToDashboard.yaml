@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/reports/sharing/
+action: addToDashboard
+summary: Add a shared report to a dashboard
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    report_id:
+      type: string
+    dashboard_id:
+      type: string
+      description: "`-1` creates a dashboard named by `dashboard_name`."
+    dashboard_name:
+      type: string
+      description: Up to 30 characters.
+  example:
+    section_id: "45001"
+    report_id: "910001"
+    dashboard_id: "910100"
+response:
+  schema:
+    $ref: ReportAddToDashboardResult
+  examples:
+    addToDashboard:
+      summary: Dashboard the report was added to
+      value:
+        status: true
+        data:
+          dashboard_id: "910100"
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

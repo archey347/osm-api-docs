@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/noticeboard/
+action: getDetails
+summary: Section noticeboard
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberNoticeboardResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          noticeboard: "<p>Camp forms are due on Friday.</p>"
+  description: Noticeboard content.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

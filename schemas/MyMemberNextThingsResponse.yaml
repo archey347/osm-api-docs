@@ -1,0 +1,32 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          widget_data:
+            type: object
+            description: |-
+              Keyed by section ID, then member ID, then widget name. Each widget is an array. Names seen:
+              `ext/mymember/dashboard/widgets/InvitedEvents` (`event_id`, `name`, `conf_date`),
+              `.../OutstandingPayments` (`schedule_id`, `schedule.name`, `currency`, `amount`),
+              `.../GiftAid`, `.../RecruitmentChatRooms` (`topic_id`, `chat_room_id`, `subject`),
+              `.../UpcomingEvents`, `.../UpcomingMeetings`, and
+              `ext/mymember/dashboard/invitations_to_join/InvitationCards`
+              (`invitation_id`, `status`, `to_section_id`, `to_section_name`, `to_group_name`, `deadline`, `leader_message`, `created_at`).
+            additionalProperties: true
+          menu_highlight_data:
+            type: object
+            description: Menu badge counts and dots, keyed by section, then menu path.
+            additionalProperties: true
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          sign_tc:
+            description: "When set, the parent must accept `sign_tc_terms` before using the portal."
+          sign_tc_terms:
+            type: string
+            description: Terms and conditions as HTML.
+        additionalProperties: true

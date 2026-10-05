@@ -1,0 +1,20 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/{sectionId}/existing_group_accounts"
+summary: List accounts available in the group
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value: [ ]
+  description: "`meta.has_visible_categories` says whether the section receives shared categories."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

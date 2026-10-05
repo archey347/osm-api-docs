@@ -1,0 +1,17 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Activity link ID.
+    notes:
+      type: string
+    activityid:
+      type: string
+    activity_unique_id:
+      type: string
+    activity:
+      type: object
+      additionalProperties: true
+  additionalProperties: true

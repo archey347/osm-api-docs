@@ -1,0 +1,59 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_account_transactions/{transactionId}/dispute"
+summary: Dispute an expense card transaction
+description: "Fields depend on `reason`. Dates are `YYYY-MM-DD`. Returns the generic envelope; the web app does not read the response body."
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  transactionId:
+    type: string
+    description: Bank account transaction ID.
+body:
+  params:
+    reason:
+      type: string
+      enum: [ not_received, merchandise_not_as_described, service_not_as_described, canceled, other ]
+      required: true
+      description: "Values seen in the web app; the server may accept others."
+    explanation:
+      type: string
+      required: true
+    expected_at:
+      type: string
+      format: date
+    product_description:
+      type: string
+    product_type:
+      type: string
+    received_at:
+      type: string
+      format: date
+    return_description:
+      type: string
+    return_status:
+      type: string
+    returned_at:
+      type: string
+      format: date
+    canceled_at:
+      type: string
+      format: date
+    cancellation_reason:
+      type: string
+    cancellation_policy_provided:
+      type: string
+      enum: [ "true", "false" ]
+  example:
+    reason: not_received
+    explanation: Example explanation.
+    expected_at: "2026-09-01"
+    product_description: Example item
+    product_type: physical
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

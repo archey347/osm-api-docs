@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: deleteNotification
+summary: Delete a notification
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+    report_id:
+      type: string
+    notification_id:
+      type: string
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "910001"
+    notification_id: "920001"
+response:
+  schema:
+    $ref: ReportStatusResult
+  examples:
+    status:
+      summary: "`clearTestNotifications`, `createNotification`, `deleteNotification`, `dismissNotification`, `editNotification`"
+      value:
+        status: true
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

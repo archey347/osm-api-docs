@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_account/{bankAccountId}/import/process"
+summary: Import CSV transactions
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+body:
+  params:
+    csv_layout:
+      type: string
+      required: true
+      description: JSON-encoded column mapping array.
+    request_guid:
+      type: string
+      required: true
+      description: Client-generated GUID from the preview step.
+  example:
+    csv_layout: "[{\"target_field\":\"date\"}]"
+    request_guid: "11111111-2222-3333-4444-555555555555"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

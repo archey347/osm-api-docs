@@ -1,0 +1,32 @@
+type: object
+description: Attendees across sections.
+properties:
+  status:
+    type: boolean
+  error:
+    description: May be null.
+  data:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          properties:
+            scoutid:
+              type: string
+            firstname:
+              type: string
+            lastname:
+              type: string
+            sectionname:
+              type: string
+            groupname:
+              type: string
+            age:
+              type: string
+          additionalProperties: true
+    additionalProperties: true
+  meta:
+    description: May be null.
+additionalProperties: true

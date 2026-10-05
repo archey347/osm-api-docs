@@ -1,0 +1,38 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/dashboard/{workspaceId}"
+summary: Get Group Hub dashboard data
+description: "Read by the dashboard of the workspace's owning section only; the web app falls back to no group widgets on failure."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubDashboard
+  examples:
+    default:
+      value:
+        section_ids: [ 45001, 45002 ]
+        meetings:
+          - section_id: 45002
+            name: Scouts
+            title: Camp Skills Night
+            meetingdate: "2025-02-07"
+            eveningid: "9500001"
+        events:
+          - section_id: 45002
+            name: Scouts
+            title: District Camp
+            startdate: "2025-06-19"
+            enddate: "2025-06-21"
+        outstandingpayments: { }
+        invoices: [ ]
+        deletable_members:
+          count: 2
+  description: Dashboard widgets across the workspace's sections.
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

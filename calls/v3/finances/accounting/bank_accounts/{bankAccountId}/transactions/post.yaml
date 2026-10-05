@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/transactions"
+summary: Add a bank transaction
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+body:
+  params:
+    transaction_reference:
+      type: string
+      required: true
+    transaction_amount:
+      type: integer
+      required: true
+      description: "Pence; negative for an expense."
+    transaction_date:
+      type: string
+      format: date
+      required: true
+  example:
+    transaction_reference: Example Supplies Ltd
+    transaction_amount: -2500
+    transaction_date: "2026-09-20"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

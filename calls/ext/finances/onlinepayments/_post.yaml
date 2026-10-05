@@ -1,0 +1,4 @@
+path: /ext/finances/onlinepayments/
+method: POST
+summary: Edit online payment schemes and member payments
+response: "Result. Failures are reported as `status: false` with `error` (a string or `{ message }`). `createSchedule` returns the new scheme ID, `savePaymentRequest` the payment ID when called from events."

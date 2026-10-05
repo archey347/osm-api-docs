@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/risk_assessments/
+action: deleteItem
+summary: Delete a risk assessment item
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    type:
+      type: string
+      description: "See `type` on the GET operation."
+    associated_id:
+      type: string
+      description: Target meeting, activity or event ID.
+    id:
+      type: string
+      description: A risk assessment item ID.
+    from_associated_id:
+      type: string
+      description: ID of the thing the assessment was copied from.
+  example:
+    section_id: "45001"
+    associated_id: "9500001"
+    type: meeting
+    id: "6100001"
+response:
+  schema:
+    $ref: RiskAssessmentWriteResult
+  envelope: true
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

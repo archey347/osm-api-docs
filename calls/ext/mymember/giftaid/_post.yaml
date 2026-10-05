@@ -1,0 +1,4 @@
+path: /ext/mymember/giftaid/
+method: POST
+summary: Make or decline a Gift Aid declaration
+response: "Recorded. `makeDeclaration` treats anything other than `status: true` as a failure."

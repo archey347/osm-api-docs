@@ -1,0 +1,5 @@
+type: object
+properties:
+  lastmeetingadded:
+    description: "ID of the last meeting created; `-1` when none was added."
+additionalProperties: true

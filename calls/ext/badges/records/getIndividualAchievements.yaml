@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getIndividualAchievements
+summary: 'Get a member''s badge achievements'
+description: "`getIndividualAchievements` — returns one member's awarded badges."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+    description: "Section ID (used with `getAvailableBadges`)."
+  scout_id:
+    type: string
+    description: Member ID.
+response:
+  schema:
+    $ref: BadgeItemsResponse
+  examples:
+    individualAchievements:
+      summary: getIndividualAchievements
+      value:
+        items:
+          - badge_identifier: "1001_0"
+            badge_id: 1001
+            badge_version: 0
+            name: Teamwork
+            picture: badges/teamwork.png
+            awarded: "1"
+sources: [ "21.3e07bd5db1c55da1f0d3.js", ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,22 @@
+type: object
+properties:
+  identifier:
+    type: string
+  label:
+    type: string
+  items:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  meetings:
+    type: object
+    additionalProperties:
+      type: string
+  visitors:
+    type: object
+    description: "Register visitors; shape not shown in the code."
+    additionalProperties: true
+  parent_rota:
+    description: "Parent rota for the dates; shape not shown in the code."
+additionalProperties: true

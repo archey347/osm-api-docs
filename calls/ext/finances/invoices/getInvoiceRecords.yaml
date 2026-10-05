@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/finances/invoices/
+action: getInvoiceRecords
+summary: List invoice records
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  invoiceid:
+    type: string
+  context:
+    type: string
+    enum: [ event, invoice, members, national_office, own_event, sections ]
+    description: Where the invoice is viewed from.
+response:
+  schema:
+    $ref: FinanceInvoiceRecords
+  examples:
+    getInvoiceRecords:
+      summary: getInvoiceRecords
+      value:
+        items:
+          - id: "9600001"
+            recordid: "1"
+            entrydate: "2024-07-21"
+            amount: "12.50"
+            comments: Sausages
+            type: Expense
+            payto_userid: _x_
+            categoryid: Camp food
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

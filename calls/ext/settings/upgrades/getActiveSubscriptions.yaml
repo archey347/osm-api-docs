@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/settings/upgrades/
+action: getActiveSubscriptions
+summary: List active subscriptions
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+  mode:
+    type: string
+response:
+  schema:
+    type: object
+    description: "`getActiveSubscriptions` response."
+    properties:
+      data:
+        type: array
+        items:
+          $ref: SettingsSubscription
+    additionalProperties: true
+  examples:
+    getActiveSubscriptions:
+      summary: Active subscriptions
+      value:
+        data:
+          - subscription_id: "9400001"
+            component: Example Plan
+            cost: "£1.00"
+            renewal_date: "2026-01-01"
+            firstname: Alex
+            deletable: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js, area.settings_upgrades.17d3298d7edacc309869.js ]

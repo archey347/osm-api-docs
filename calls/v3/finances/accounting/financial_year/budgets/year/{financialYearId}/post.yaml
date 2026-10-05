@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/financial_year/budgets/year/{financialYearId}"
+summary: Set a budget for a category
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+body:
+  params:
+    amount:
+      type: integer
+      required: true
+      description: Pence.
+    category_id:
+      required: true
+  example:
+    amount: 100000
+    category_id: 3100040
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

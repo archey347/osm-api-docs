@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/payments/
+action: checkStatusOfDirectDebitSetup
+summary: Check direct debit setup status
+description: "Card and direct debit set-up is a two-step flow: `getScheduledDirectDebitSetupUrl` returns the gateway URL (GoCardless) or client secret (Stripe), then `checkStatusOfDirectDebitSetup` (GoCardless, polled) or `completePaymentAuthorisation` (Stripe) finishes it."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+    section_id:
+      type: string
+    schedule_id:
+      type: string
+    key:
+      type: string
+      description: "The `key` returned by `getScheduledDirectDebitSetupUrl`."
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    schedule_id: "6200001"
+    key: example-setup-key
+response:
+  schema:
+    $ref: MyMemberPaymentStatusResponse
+  examples:
+    checkStatusOfDirectDebitSetup:
+      value:
+        status: true
+        error: null
+        data:
+          status: added
+          gift_aid: false
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

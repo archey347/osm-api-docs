@@ -1,0 +1,26 @@
+type: array
+items:
+  type: object
+  properties:
+    date:
+      type: string
+      description: "Human-readable date (DD/MM/YYYY HH:MM)."
+    date_raw:
+      type: string
+      description: "Raw timestamp (YYYY-MM-DD HH:MM:SS)."
+    summary:
+      type: string
+      description: "HTML summary of the change with `<strong>` highlights."
+    verbose:
+      type: string
+      description: Extended details (usually empty).
+    type:
+      type: string
+      enum: [ members, details, patrols, patrol-leader ]
+      description: Category of change.
+    code:
+      type: string
+      enum: [ add, field, new, add-to, promoted ]
+      description: Specific action within the category.
+    hidden:
+      type: boolean

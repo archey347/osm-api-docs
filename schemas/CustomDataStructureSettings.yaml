@@ -1,0 +1,36 @@
+type: array
+items:
+  type: object
+  properties:
+    group_id: { }
+    identifier:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+      description: "`opt-in` groups hold columns the section can switch on or off."
+    orderable:
+      type: boolean
+    setting:
+      type: integer
+      description: "Display order; negative when hidden."
+    config:
+      type: object
+      additionalProperties: true
+    fields:
+      type: object
+      description: Column ID to column.
+      additionalProperties:
+        type: object
+        properties:
+          column_id: { }
+          label:
+            type: string
+          opted:
+            type: boolean
+          config:
+            type: object
+            additionalProperties: true
+        additionalProperties: true
+  additionalProperties: true

@@ -1,0 +1,22 @@
+kind: v3-route
+method: POST
+path: "/v3/comments/{commentId}/engagement"
+summary: Toggle an engagement on a comment
+tags: [ Comments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  commentId:
+    type: string
+body:
+  params:
+    action:
+      type: string
+      required: true
+      description: "Engagement type; the web app sends `gilbert` to send a comment to the help centre assistant."
+  example:
+    action: like
+response:
+  description: "Success when `status` is true."
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

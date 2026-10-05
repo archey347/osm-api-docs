@@ -1,0 +1,9 @@
+type: array
+items:
+  type: object
+  properties:
+    member_id:
+      type: string
+    name:
+      type: string
+  additionalProperties: true

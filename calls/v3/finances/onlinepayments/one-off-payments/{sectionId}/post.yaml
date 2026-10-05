@@ -1,0 +1,53 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/onlinepayments/one-off-payments/{sectionId}"
+summary: Create one-off payment requests
+description: Creates one payment request per member.
+tags: [ Online Payments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    account_id:
+      required: true
+      description: Payment account ID.
+    name:
+      type: string
+      required: true
+      description: At least 3 characters.
+    description:
+      type: string
+    date:
+      type: string
+      format: date
+      required: true
+      description: "Due date; must be tomorrow or later."
+    amount:
+      type: string
+      required: true
+      description: "Pounds with two decimals, e.g. `12.50`."
+    "member_ids[0]":
+      type: integer
+      description: "Scout ID. Further members as `member_ids[1]`, `member_ids[2]`, etc."
+  example:
+    account_id: 3100150
+    name: Camp deposit
+    description: Example deposit
+    date: "2026-10-20"
+    amount: "12.50"
+    "member_ids[0]": 3100005
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        created: 1
+        schedule_id: 3100160
+  description: "`data.created` is the number of requests created; `data.schedule_id` identifies the payment schedule."
+sources: [ ext.finances.9f318350fda4d977c688.js ]

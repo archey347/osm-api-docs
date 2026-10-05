@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/terms"
+summary: Save the recurring term schedule
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    horizon_years:
+      type: string
+      required: true
+      description: Years ahead to create terms for.
+    terms:
+      type: string
+      required: true
+      description: JSON array of term definitions.
+  example:
+    horizon_years: "1"
+    terms: "[]"
+response:
+  schema:
+    $ref: GroupHubUpdatedResult
+  examples:
+    default:
+      value:
+        updated: 2
+  description: Number of sections updated.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

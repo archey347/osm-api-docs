@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: deleteSet
+summary: Delete a flexi-record
+notes: "`archive`, `changeMenuVisibility` and `deleteSet` change data despite being GETs."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+response:
+  schema:
+    $ref: FlexiRecordConfig
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

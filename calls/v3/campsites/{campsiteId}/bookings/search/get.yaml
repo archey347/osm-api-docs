@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/bookings/search"
+summary: Find a booking by ID
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+query:
+  booking_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value:
+        found: true
+        booking_id: 7300001
+  description: "`data.found` says whether the booking exists."
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

@@ -1,0 +1,48 @@
+type: object
+properties:
+  id: { }
+  title:
+    type: string
+  description:
+    type: string
+  status:
+    type: string
+    enum: [ scheduled, ready, in_progress, completed ]
+  due_date:
+    type: string
+    nullable: true
+  available_date:
+    type: string
+    nullable: true
+  repeat_frequency: { }
+  repeat_period:
+    type: string
+    nullable: true
+    description: "`days`, `weeks` or `months`."
+  section_id: { }
+  associated_name:
+    type: string
+  group_and_section_name:
+    type: string
+  created_at:
+    type: string
+  updated_at:
+    type: string
+  owners:
+    type: array
+    items:
+      type: object
+      properties:
+        user_id: { }
+        last_read_at:
+          type: string
+          nullable: true
+        user:
+          type: object
+          properties:
+            full_name:
+              type: string
+            photo_url: { }
+          additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

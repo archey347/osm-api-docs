@@ -1,0 +1,40 @@
+type: object
+properties:
+  members:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        patrol_id:
+          type: integer
+          description: "`-2` leaders, `-3` young leaders."
+        group_name:
+          type: string
+        section_name:
+          type: string
+      additionalProperties: true
+  roll_call:
+    type: array
+    items:
+      type: object
+      properties:
+        member_id:
+          type: integer
+        event_id:
+          type: integer
+        user_id:
+          type: integer
+        is_present:
+          type: boolean
+        local_generic_time:
+          type: string
+      additionalProperties: true
+additionalProperties: true

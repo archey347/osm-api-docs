@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: enableWaitingListApplication
+summary: Enable the waiting list application form
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    enableWaitingListApplication:
+      summary: "Enabled; `data` is only set the first time"
+      value:
+        new: true
+        url: "https://example.com/waiting-list/00000000"
+        contact_group: "1"
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

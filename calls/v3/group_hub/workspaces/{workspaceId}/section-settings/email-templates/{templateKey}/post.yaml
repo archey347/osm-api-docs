@@ -1,0 +1,42 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/email-templates/{templateKey}"
+summary: Save or restore an email template
+description: "Applies to every section in the workspace. Sending `restore=1` with an empty `body` resets the template to the default."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+  templateKey:
+    type: string
+    description: Template key, from the section's email template configuration.
+body:
+  params:
+    body:
+      type: string
+      required: true
+      description: HTML. Empty when restoring.
+    template_name:
+      type: string
+      required: true
+      description: Display title of the template.
+    restore:
+      type: string
+      enum: [ "1" ]
+  example:
+    body: "<p>Hello [FIRSTNAME]</p>"
+    template_name: Payments
+response:
+  schema:
+    $ref: GroupHubEmailTemplate
+  examples:
+    default:
+      value:
+        updated: 2
+        customised: true
+  description: "Number of sections updated. `body` is returned when restoring."
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

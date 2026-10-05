@@ -1,0 +1,21 @@
+type: object
+properties:
+  follows_new_settings:
+    type: boolean
+  domains:
+    type: array
+    items:
+      type: object
+      properties:
+        domain:
+          type: string
+        synced:
+          type: boolean
+        can_change:
+          type: boolean
+        previewable:
+          type: boolean
+        group_value: { }
+        section_value: { }
+      additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/forms/{formId}"
+summary: Start a form completion
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+  example:
+    title: Summer camp consent
+    section_id: "3100"
+response:
+  schema:
+    $ref: FormResponse
+  examples:
+    default:
+      value:
+        id: 4100002
+  description: "The new completion in `data`; the web app opens it from this."
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

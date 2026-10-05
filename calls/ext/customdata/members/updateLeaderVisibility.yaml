@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/members/
+action: updateLeaderVisibility
+summary: Set a custom column's visibility
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    status:
+      type: string
+      enum: [ parent_portal_visibility, camp_export_visibility ]
+      required: true
+    group_id:
+      type: string
+    column_id:
+      type: string
+    visibility:
+      type: string
+      description: "`visible` or `hidden` for checkboxes; the chosen option for selects."
+  example:
+    status: parent_portal_visibility
+    group_id: "7"
+    column_id: "41"
+    visibility: hidden
+response:
+  schema:
+    $ref: CustomDataColumnVisibility
+  envelope: true
+  examples:
+    write:
+      summary: "`updateLeaderVisibility`, `updateLeaderVisibilityBulk`. Failure sets `status: false` and `error.message`."
+      value: [ ]
+sources: [ area.settings.f73c3ef434f40520f0bc.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

@@ -1,0 +1,30 @@
+type: object
+properties:
+  status:
+    type: boolean
+  items:
+    type: array
+    description: Schemes.
+    items:
+      type: object
+      properties:
+        schemeid:
+          type: string
+        name:
+          type: string
+        require_all:
+          description: "`0` when payments are optional."
+        one_off_payments:
+          type: boolean
+      additionalProperties: true
+  has_accounts:
+    type: boolean
+  bank_accounts:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  config:
+    type: object
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,72 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  effective_from:
+    type: array
+    description: Rule sets, each applying from its date.
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        from:
+          type: string
+          description: "`1970-01-01` for the default set."
+        is_past:
+          type: boolean
+        availability_days:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              day:
+                type: integer
+                description: "1 to 7."
+              unavailable_from:
+                type: string
+              unavailable_to:
+                type: string
+            additionalProperties: true
+        availability_booking_times:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              mode:
+                type: string
+                description: "`minimum_days_before` or `maximum_days_before`."
+              days:
+                type: integer
+            additionalProperties: true
+        availability_blocked_dates:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              unavailable_from:
+                type: string
+              unavailable_to:
+                type: string
+            additionalProperties: true
+        availability_max_on_site:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              max_on_site:
+                type: integer
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true
+description: An availability type and its rules.

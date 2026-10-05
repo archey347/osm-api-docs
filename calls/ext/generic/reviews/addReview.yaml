@@ -1,0 +1,48 @@
+kind: ext-action
+method: POST
+path: /ext/generic/reviews/
+action: addReview
+summary: Rate an item
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    associated_id:
+      type: string
+      required: true
+    associated_type:
+      type: string
+      required: true
+      description: "e.g. `activity`."
+    review_type:
+      type: string
+      required: true
+      description: "e.g. `activity`."
+    rating:
+      type: number
+      required: true
+    prevent_dialog:
+      type: string
+      description: "`-1` to keep showing the review prompt."
+  example:
+    section_id: "1001"
+    associated_id: "4200001"
+    associated_type: activity
+    review_type: activity
+    rating: 4
+    prevent_dialog: "-1"
+response:
+  schema:
+    $ref: GenericReviewResponse
+  envelope: true
+  examples:
+    default:
+      value:
+        rating: 4.2
+        number_reviews: 17
+  description: Returns the updated rating summary.
+sources: [ ext.dashboard.82a61c008183022fe2cd.js, ext.react_oym.abba2b5e109cd07734d7.js ]

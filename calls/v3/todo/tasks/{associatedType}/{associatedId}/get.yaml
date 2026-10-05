@@ -1,0 +1,48 @@
+kind: v3-route
+method: GET
+path: "/v3/todo/tasks/{associatedType}/{associatedId}"
+summary: List tasks attached to an item
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  associatedType:
+    type: string
+    description: "Kind of item the tasks hang off, e.g. `event`, `meeting`, `member`, `project`."
+  associatedId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: TodoTaskList
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          - id: 5300001
+            title: Book minibus
+            description: Get three quotes.
+            status: ready
+            due_date: "2026-06-01"
+            available_date: null
+            repeat_frequency: 0
+            repeat_period: null
+            owners:
+              - user_id: 3100001
+                user:
+                  full_name: Alex Scout
+                  photo_url: ""
+        meta:
+          can_edit: true
+          users:
+            "3100001":
+              user_id: 3100001
+              name: Alex Scout
+              photo_url: ""
+  description: Tasks plus the users who can be assigned.
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

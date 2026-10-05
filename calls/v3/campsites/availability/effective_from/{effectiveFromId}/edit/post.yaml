@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/effective_from/{effectiveFromId}/edit"
+summary: Change an availability changeover date
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  effectiveFromId:
+    type: string
+    description: Rule set (changeover date) ID.
+body:
+  params:
+    from:
+      type: string
+      required: true
+  example:
+    from: "2026-05-01"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

@@ -1,0 +1,4 @@
+path: /ext/facilities/
+method: GET
+summary: Facility directory lookups
+response: "`getTypes` returns a bare array and `getDetails` a bare object; `locationSearch` uses a `data` envelope."

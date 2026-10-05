@@ -1,0 +1,8 @@
+path: /ext/badges/badgesbyperson/
+method: GET
+summary: Load badges grouped by member
+description: |-
+  Returns badge progress grouped by member. Each member entry includes
+  an array of their badge statuses across all badge types.
+  `download` returns a spreadsheet document instead of JSON.
+response: Badges by member.

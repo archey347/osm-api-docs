@@ -1,0 +1,53 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  campsite:
+    type: object
+    properties:
+      currency:
+        type: string
+    additionalProperties: true
+  effective_from:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        from:
+          type: string
+          description: "`1970-01-01` for the default set."
+        is_past:
+          type: boolean
+        is_current:
+          type: boolean
+        prices:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              campsite_organisation_id:
+                type: integer
+              organisation:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                additionalProperties: true
+              price_per_person: { }
+              price_per_session: { }
+              free_people_per_session: { }
+              minimum_price: { }
+              deposit_amount: { }
+              deposit_percent: { }
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true
+description: A price type and its per-customer-type prices.

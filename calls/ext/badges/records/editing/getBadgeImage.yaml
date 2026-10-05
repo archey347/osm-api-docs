@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: getBadgeImage
+summary: 'Get a badge''s image'
+description: "`getBadgeDetails`, `getBadgeImage`, `getModuleInfo` and `startEdit` only read data despite being POSTs."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    section_id: "45001"
+response:
+  schema:
+    $ref: BadgeImageResponse
+  examples:
+    getBadgeImage:
+      summary: getBadgeImage
+      value:
+        img: badges/teamwork.png
+sources: [ area.badges_editing.47f136c28950473153c4.js, ext.badges.6a63e40102b2845e63ab.js ]

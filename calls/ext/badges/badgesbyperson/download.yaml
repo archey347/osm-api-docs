@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/badges/badgesbyperson/
+action: download
+summary: Download badges grouped by member
+description: "`download` returns a spreadsheet document instead of JSON."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  term_id:
+    type: string
+    description: Term ID.
+  firstname:
+    type: string
+    enum: [ "yes" ]
+    description: Include the first name column.
+  lastname:
+    type: string
+    enum: [ "yes" ]
+    description: Include the last name column.
+  patrol:
+    type: string
+    enum: [ "yes" ]
+    description: Include the patrol column.
+  photo:
+    type: string
+    enum: [ "yes" ]
+    description: Include photos.
+response:
+  schema:
+    $ref: BadgesByMemberResponse
+  envelope: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

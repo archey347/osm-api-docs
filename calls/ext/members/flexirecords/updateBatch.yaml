@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/members/flexirecords/
+action: updateBatch
+summary: Update several columns for a member
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  nototal:
+    type: string
+    description: Sent as a bare flag.
+body:
+  params:
+    sectionid:
+      type: string
+    extraid:
+      type: string
+    scoutid:
+      type: string
+    changes:
+      type: string
+      description: "JSON object of column `field` to new value."
+  example:
+    sectionid: "45001"
+    scoutid: "3100001"
+    extraid: "23001"
+    changes: "{\"f_1\":\"5\"}"
+response:
+  schema:
+    $ref: FlexiRecordWriteResult
+  examples:
+    updateBatch:
+      summary: "`updateBatch`, `updateScout`: `status` is `false` on failure; may be absent on success"
+      value:
+        status: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

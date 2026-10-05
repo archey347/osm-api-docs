@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/members/sms/
+action: sendGroupSMS
+summary: Send a text to members across sections
+description: "`sendText` sends to members of one section; `sendGroupSMS` sends to members of several sections."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    msg:
+      type: string
+    source:
+      type: string
+      description: "Sender name or number; `false` for no replies."
+    sections:
+      type: string
+      description: JSON array of section IDs.
+    member_filter:
+      type: string
+      description: JSON object of section ID to member IDs, sent only when specific members were chosen.
+  example:
+    msg: Camp kit list is on the website.
+    sections: "[45001]"
+    source: Cubs
+response:
+  schema:
+    $ref: MemberSmsResult
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

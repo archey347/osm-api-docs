@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/members/review/deletion/{sectionid}"
+summary: Permanently erase deleted members
+description: Irreversible.
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    "member_ids[]":
+      type: array
+      items:
+        type: string
+      required: true
+    additional_data_to_delete:
+      type: string
+      description: "JSON array of extra data to purge (`badge`, `events`, `finance`, `register`)."
+  example:
+    "member_ids[]": [ "3100004" ]
+    additional_data_to_delete: "[\"badge\"]"
+response:
+  description: Erased. The web app reads nothing from the response.
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

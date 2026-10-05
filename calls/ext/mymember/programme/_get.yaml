@@ -1,0 +1,7 @@
+path: /ext/mymember/programme/
+method: GET
+summary: Programme for a member
+description: |-
+  `getDetails` lists meetings, `getCalendarFeed` returns the member's calendar feed URL, and
+  `download` returns a programme document (opened in a new window; format not confirmed).
+response: "Programme data, or a document for `download`."

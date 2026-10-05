@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: getStructure
+summary: Get a flexi-record's columns
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+response:
+  schema:
+    $ref: FlexiRecordStructure
+  examples:
+    getStructure:
+      summary: Record name and column layout
+      value:
+        extraid: "23001"
+        name: Hike Log
+        archived: "0"
+        total: none
+        structure:
+          - rows:
+              - name: Age
+                field: age
+          - rows:
+              - name: Distance
+                field: f_1
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

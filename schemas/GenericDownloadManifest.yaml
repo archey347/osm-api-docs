@@ -1,0 +1,7 @@
+type: object
+properties:
+  manifest:
+    type: object
+    description: "Previously generated files; the entry shape is not shown by the code."
+    additionalProperties: true
+additionalProperties: true

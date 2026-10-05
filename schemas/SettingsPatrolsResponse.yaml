@@ -1,0 +1,14 @@
+type: object
+description: "`error.message` is present when adding or renaming fails."
+properties:
+  patrols:
+    type: array
+    items:
+      $ref: SettingsPatrol
+  error:
+    type: object
+    properties:
+      message:
+        type: string
+    additionalProperties: true
+additionalProperties: true

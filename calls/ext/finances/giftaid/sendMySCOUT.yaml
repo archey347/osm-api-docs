@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/finances/giftaid/
+action: sendMySCOUT
+summary: Email Gift Aid requests to parents
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    scouts:
+      type: string
+      description: JSON array of member IDs.
+    charity:
+      type: string
+      description: Charity name for the emailed request.
+  example:
+    scouts: "[3100001,3100002]"
+    sectionid: "45001"
+    charity: "1st Example Scouts"
+response:
+  schema:
+    $ref: FinanceGiftAidSendResult
+  examples:
+    sendMySCOUT:
+      summary: sendMySCOUT
+      value:
+        sent: 2
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

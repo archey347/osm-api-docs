@@ -1,0 +1,8 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    type: boolean
+    description: "`false` on success (`multiUpdate`)."
+additionalProperties: true

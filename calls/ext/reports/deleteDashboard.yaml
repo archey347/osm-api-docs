@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/reports/
+action: deleteDashboard
+summary: Delete a dashboard
+description: "`deleteDashboard` first returns `data.shared: true` if other sections use the dashboard; repeat the request with `confirmation` to go ahead."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: The other actions take it in the body.
+  dashboard_id:
+    type: string
+    description: The other actions take it in the body.
+body:
+  params:
+    confirmation:
+      type: string
+      description: "`remove` deletes it for every section, `orphan` leaves other sections their copy."
+  example: { }
+response:
+  schema:
+    $ref: ReportDeleteResultData
+  envelope: true
+  examples:
+    deleteDashboard:
+      summary: "`shared: true` means confirmation is needed"
+      value:
+        shared: true
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

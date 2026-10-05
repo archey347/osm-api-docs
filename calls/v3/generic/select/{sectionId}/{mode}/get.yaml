@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/generic/select/{sectionId}/{mode}"
+summary: List options for bulk member selection
+description: "Options for the \"select members by...\" dialog."
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  mode:
+    type: string
+    enum: [ events, meetings, patrols ]
+query:
+  term_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: GenericSelectOptionsResponse
+  examples:
+    default:
+      value:
+        - id: 9600001
+  description: "Selectable options; the first is preselected."
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

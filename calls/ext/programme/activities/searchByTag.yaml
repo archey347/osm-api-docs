@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/programme/activities/
+action: searchByTag
+summary: Search activities by tag
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+  section:
+    type: string
+    description: "Section type; limits results to suitable activities."
+body:
+  params:
+    tags:
+      type: string
+      description: JSON array of tag names.
+  example:
+    tags: "[\"skills\"]"
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+  examples:
+    searchByTag:
+      summary: Search results
+      value:
+        items:
+          - activityid: "7100001"
+            activity_unique_id: "7200001"
+            title: Knots Relay
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

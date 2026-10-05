@@ -1,0 +1,16 @@
+path: /ext/badges/records/
+method: POST
+summary: Update badge records and links
+description: |-
+  Write actions on badge records; the `action` query parameter selects one.
+  `awardBadge` and `overrideCompletion` are typically sent together: `overrideCompletion` sets the
+  completion level, `awardBadge` records the award.
+response: "Result of the write. Which of `ok`, `status` or `error` is set depends on the action."
+response_examples:
+  failure:
+    summary: Error (any action)
+    value:
+      status: false
+      error:
+        message: The badge link already exists and cannot be added again.
+      data: null

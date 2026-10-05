@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/events/event/sharing/
+action: getStatus
+summary: List sections an event is shared with
+description: "`getStatus` is the invite list per section and `getAttendance` the attendees across sections (both send `_v=2`)."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  eventid:
+    type: string
+    required: true
+  sectionid:
+    type: string
+    required: true
+  _v:
+    type: string
+    enum: [ "2" ]
+    description: Response version.
+response:
+  schema:
+    $ref: EventSharingStatusData
+  envelope: true
+  examples:
+    getStatus:
+      value:
+        items:
+          - sectionid: "45002"
+            sectionname: Example Cubs
+            groupname: "1st Example"
+            status: Accepted
+            attendance: 6
+            attendancelimit: "10"
+            emailable: true
+            details_downloadable: false
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

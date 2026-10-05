@@ -1,0 +1,5 @@
+type: object
+properties:
+  result:
+    description: "New rating; absent on failure."
+additionalProperties: true

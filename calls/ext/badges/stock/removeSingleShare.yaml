@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/badges/stock/
+action: removeSingleShare
+summary: Remove a stock share
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  receiving:
+    type: string
+    enum: [ "y" ]
+    description: Share being removed is one this section receives.
+body:
+  params:
+    section_id: { }
+    their_section_id:
+      description: Other section in the share.
+    badge_id: { }
+    level: { }
+  example:
+    section_id: "45001"
+    their_section_id: "45002"
+    badge_id: "1001"
+    level: "1"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    failure:
+      summary: updateStock, removeSingleShare error
+      value:
+        error: Stock must be zero or more
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

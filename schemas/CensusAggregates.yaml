@@ -1,0 +1,13 @@
+type: object
+properties:
+  Ethnicity:
+    $ref: CensusAggregateCategory
+  Religion:
+    $ref: CensusAggregateCategory
+  Age:
+    $ref: CensusAggregateCategory
+  Disability:
+    $ref: CensusAggregateCategory
+  Total:
+    $ref: CensusAggregateCategory
+additionalProperties: true

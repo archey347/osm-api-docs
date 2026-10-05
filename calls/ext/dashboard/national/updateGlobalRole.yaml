@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/national/
+action: updateGlobalRole
+summary: 'Update a user''s global role'
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      description: Caller's own section ID.
+    role:
+      type: string
+    user_id:
+      type: string
+    enabled:
+      type: string
+      enum: [ "true", "false" ]
+  example:
+    section_id: "45001"
+    user_id: "100001"
+    role: membersearch
+    enabled: "true"
+response:
+  schema:
+    $ref: OkResponse
+  examples:
+    updateGlobalRole:
+      value:
+        ok: true
+sources: [ area.national_dashboard.24a9dd00242256a71961.js ]

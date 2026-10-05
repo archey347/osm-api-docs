@@ -1,0 +1,29 @@
+type: object
+properties:
+  column_id:
+    type: integer
+  type:
+    type: string
+    description: "Column type (e.g. `select`, `text`)."
+  required:
+    type: string
+    enum: [ "yes", "no" ]
+  varname:
+    type: string
+    description: "Variable name (e.g. `gender`)."
+  label:
+    type: string
+    description: Human-readable label.
+  value:
+    type: string
+    description: The updated value.
+  is_core:
+    type: string
+    enum: [ "yes", "no" ]
+  order:
+    type: string
+  config:
+    type: object
+    additionalProperties: true
+    description: Column configuration including options for select fields.
+additionalProperties: true

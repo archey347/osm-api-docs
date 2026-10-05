@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/kit/{sectionId}/{associatedType}"
+summary: List kit items and kit lists
+description: |-
+  `data` holds the items and `meta.collections` the kit lists. Event pickers
+  use it as `/v3/kit/{sectionId}/event` and only read `meta.collections`.
+tags: [ Kit ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  associatedType:
+    type: string
+    description: "What the kit is attached to, e.g. `event`."
+response:
+  schema:
+    $ref: KitListResponse
+  examples:
+    default:
+      value:
+        - id: 8100001
+          heading: Cooking
+          name: Camp stove
+          description: Two-burner gas stove.
+          purchase_link: ""
+          multiple: false
+          collection_items:
+            - collection_id: 8200001
+              quantity: 1
+  description: Kit items and lists.
+sources: [ ext.kit.92ed48541329641aa295.js ]

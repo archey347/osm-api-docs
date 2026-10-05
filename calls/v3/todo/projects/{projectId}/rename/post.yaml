@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/todo/projects/{projectId}/rename"
+summary: Rename a task project
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  projectId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      required: true
+      description: Maximum 100 characters.
+  example:
+    title: Summer camp 2026
+response:
+  schema:
+    $ref: TodoProjectResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          id: 5200001
+          title: Summer camp 2026
+  description: The renamed project.
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

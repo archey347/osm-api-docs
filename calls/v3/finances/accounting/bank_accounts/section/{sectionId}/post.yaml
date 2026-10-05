@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/section/{sectionId}"
+summary: Create a bank account
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+    opening_balance:
+      type: integer
+      required: true
+      description: Pence.
+    opening_date:
+      type: string
+      format: date
+      required: true
+  example:
+    name: Main account
+    opening_balance: 50000
+    opening_date: "2025-04-01"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

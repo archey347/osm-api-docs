@@ -1,0 +1,6 @@
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the new invoice.
+additionalProperties: true

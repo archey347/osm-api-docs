@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/dashboard"
+summary: Get campsite dashboard
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+query:
+  instructor_data_only:
+    type: string
+    enum: [ "1" ]
+    description: "Only return `meta.is_instructor`."
+response:
+  schema:
+    $ref: CampsiteDashboard
+  examples:
+    default:
+      value:
+        notepad: ""
+        number_on_site: 12
+        provisional_bookings: 2
+        upgrade_required: false
+        unpaid_leaving_today: 0
+        remaining_credit: 25
+        booking_search: true
+        item_bookings_requiring_instructors: 1
+        subscription_expiring_soon: false
+  description: Dashboard figures.
+sources: [ ext.dashboard.82a61c008183022fe2cd.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

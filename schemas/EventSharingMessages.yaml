@@ -1,0 +1,18 @@
+type: object
+properties:
+  eventMsgs:
+    type: object
+    description: Messages keyed by event ID.
+    additionalProperties:
+      type: array
+      items:
+        type: object
+        properties:
+          eventname:
+            type: string
+          messageid:
+            type: string
+          originating_eventid:
+            type: string
+        additionalProperties: true
+additionalProperties: true

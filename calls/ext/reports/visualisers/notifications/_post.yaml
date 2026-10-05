@@ -1,0 +1,15 @@
+path: /ext/reports/visualisers/notifications/
+method: POST
+summary: Report notifications
+description: |-
+  Notification rules on a report, and the notifications they produce.
+  `listNotifications` and `getUserNotificationsList` are read-only.
+  Failures return `status: false` with `error.message`.
+response: "Result depends on `action`; `editNotification` takes the same fields as `createNotification` plus `notification_id`."
+response_examples:
+  error:
+    summary: Failure
+    value:
+      status: false
+      error:
+        message: Unable to save.

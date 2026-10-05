@@ -1,0 +1,4 @@
+node_modules/
+clients/typescript/dist/
+.cache/
+scan.local.json

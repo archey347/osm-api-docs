@@ -1,0 +1,27 @@
+type: object
+description: |-
+  Response to `add`; the app reads `data.id`/`data.title` or a top-level `id`. On failure `error`
+  is an object, and `meta.conflicts` lists clashing equipment bookings.
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    properties:
+      message:
+        type: string
+      code:
+        type: string
+    additionalProperties: true
+  data:
+    type: object
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+    additionalProperties: true
+  meta:
+    description: "`[]` normally; an object on equipment conflicts."
+additionalProperties: true

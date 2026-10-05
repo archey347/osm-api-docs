@@ -1,0 +1,17 @@
+type: object
+properties:
+  identifier:
+    type: string
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        paymentid:
+          type: string
+        name:
+          type: string
+        date:
+          type: string
+      additionalProperties: true
+additionalProperties: true

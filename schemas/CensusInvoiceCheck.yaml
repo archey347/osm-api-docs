@@ -1,0 +1,14 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  msg:
+    type: string
+  paid:
+    type: string
+    description: "`1` when paid."
+  amount: { }
+  html:
+    type: string
+    description: Message to show in place of the standard paid or unpaid text.
+additionalProperties: true

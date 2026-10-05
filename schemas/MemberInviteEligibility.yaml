@@ -1,0 +1,17 @@
+type: object
+properties:
+  members:
+    type: array
+    items:
+      type: object
+      properties:
+        member_id: { }
+        eligible:
+          type: boolean
+        reason:
+          type: string
+          description: Why the member is not eligible.
+      additionalProperties: true
+  daily_limit_reached:
+    type: boolean
+additionalProperties: true

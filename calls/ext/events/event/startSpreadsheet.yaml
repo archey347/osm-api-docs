@@ -1,0 +1,40 @@
+kind: ext-action
+method: GET
+path: /ext/events/event/
+action: startSpreadsheet
+summary: Start a spreadsheet export of an event
+description: "`startSpreadsheet` starts a background export job and returns its `job_info`."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  event_id:
+    type: string
+    description: Event ID.
+  term_id:
+    type: string
+    description: Term ID.
+  mode:
+    type: string
+    description: |-
+      `getAttendance`: `section`, `public`, `campsite` or `item`.
+      `downloadPdf`/`startSpreadsheet`: the members tab (`attendance`, `rota` or `payments`).
+      `getPeopleWithQualification`: `mine`, `other` or `section`.
+  non:
+    type: string
+    enum: [ "1" ]
+    description: Include members not attending.
+response:
+  schema:
+    $ref: EventSpreadsheetJobData
+  envelope: true
+  examples:
+    startSpreadsheet:
+      value:
+        job_info:
+          id: "00000000-0000-0000-0000-000000000000"
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

@@ -1,0 +1,29 @@
+type: array
+description: "Column groups of the attendance grid; the second group holds the editable event columns."
+items:
+  type: object
+  properties:
+    rows:
+      type: array
+      items:
+        type: object
+        properties:
+          field:
+            type: string
+            description: "`attending`, `payment`, `f_<id>` custom columns or `p<id>` payment columns."
+          name:
+            type: string
+          editable:
+            type: boolean
+          type:
+            type: string
+          options:
+            type: array
+            items:
+              type: string
+          pL:
+            type: string
+          pR:
+            type: string
+        additionalProperties: true
+  additionalProperties: true

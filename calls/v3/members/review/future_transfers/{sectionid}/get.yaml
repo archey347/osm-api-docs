@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/members/review/future_transfers/{sectionid}"
+summary: Get scheduled transfers
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: MemberFutureTransfers
+  examples:
+    default:
+      value:
+        current:
+          - member_id: 3100001
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            future_transfer:
+              id: 8200001
+              transfer_date: "2026-01-05"
+        incoming: [ ]
+  description: Members of the section with any scheduled transfer out, and transfers scheduled into it.
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

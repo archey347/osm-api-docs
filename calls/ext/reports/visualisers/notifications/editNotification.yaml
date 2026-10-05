@@ -1,0 +1,77 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: editNotification
+summary: Edit a notification
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+    report_id:
+      type: string
+    notification_id:
+      type: string
+    name:
+      type: string
+    repeat:
+      type: string
+      description: "`disabled`, `testing`, `once`, `every`, or a date column of the report."
+    every:
+      type: string
+      description: "Interval for `repeat=every`."
+    days:
+      type: string
+      description: Days from the date column.
+    when:
+      type: string
+      enum: [ before, after ]
+    runs-from:
+      type: string
+      description: "`YYYY-MM-DD`."
+    runs-to:
+      type: string
+      description: "`YYYY-MM-DD`, empty for no end."
+    enable-emails:
+      type: string
+      enum: [ "0", "1" ]
+    email-subject:
+      type: string
+    email-message:
+      type: string
+      description: HTML, at least 50 characters.
+    email-from:
+      type: string
+    email-priority:
+      type: string
+      enum: [ low, normal, high ]
+    enable-on-screen:
+      type: string
+      enum: [ "0", "1" ]
+    on-screen-message:
+      type: string
+      description: HTML, at least 50 characters.
+    on-screen-priority:
+      type: string
+      enum: [ normal, warning, critical ]
+    on-screen-clear-old:
+      type: string
+      enum: [ "0", "1" ]
+    on-screen-dismissible:
+      type: string
+      enum: [ "0", "1" ]
+response:
+  schema:
+    $ref: ReportStatusResult
+  examples:
+    status:
+      summary: "`clearTestNotifications`, `createNotification`, `deleteNotification`, `dismissNotification`, `editNotification`"
+      value:
+        status: true
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

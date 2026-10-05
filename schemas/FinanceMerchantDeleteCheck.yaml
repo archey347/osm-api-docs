@@ -1,0 +1,12 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: "`true` when the account can be deleted."
+  data:
+    type: array
+    description: "Schemes still using the account, when `status` is not `true`."
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

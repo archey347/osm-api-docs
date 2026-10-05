@@ -1,0 +1,105 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: createNotification
+summary: Create a notification
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+    report_id:
+      type: string
+    notification_id:
+      type: string
+    name:
+      type: string
+    repeat:
+      type: string
+      description: "`disabled`, `testing`, `once`, `every`, or a date column of the report."
+    every:
+      type: string
+      description: "Interval for `repeat=every`."
+    days:
+      type: string
+      description: Days from the date column.
+    when:
+      type: string
+      enum: [ before, after ]
+    runs-from:
+      type: string
+      description: "`YYYY-MM-DD`."
+    runs-to:
+      type: string
+      description: "`YYYY-MM-DD`, empty for no end."
+    enable-emails:
+      type: string
+      enum: [ "0", "1" ]
+    email-subject:
+      type: string
+    email-message:
+      type: string
+      description: HTML, at least 50 characters.
+    email-from:
+      type: string
+    email-priority:
+      type: string
+      enum: [ low, normal, high ]
+    enable-on-screen:
+      type: string
+      enum: [ "0", "1" ]
+    on-screen-message:
+      type: string
+      description: HTML, at least 50 characters.
+    on-screen-priority:
+      type: string
+      enum: [ normal, warning, critical ]
+    on-screen-clear-old:
+      type: string
+      enum: [ "0", "1" ]
+    on-screen-dismissible:
+      type: string
+      enum: [ "0", "1" ]
+    "email-roles[{role}]":
+      type: string
+      description: "`yes` for each role to email."
+    "on-screen-roles[{role}]":
+      type: string
+      description: "`yes` for each role to show it to."
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "910001"
+    name: Consent reminder
+    repeat: once
+    every: "1"
+    days: "7"
+    when: before
+    runs-from: "2025-02-01"
+    runs-to: ""
+    enable-emails: "1"
+    email-subject: Consent due
+    email-message: "<p>Please update consent for this member before the next camp.</p>"
+    email-from: Example Cubs
+    email-priority: normal
+    enable-on-screen: "0"
+    on-screen-message: ""
+    on-screen-priority: normal
+    on-screen-clear-old: "0"
+    on-screen-dismissible: "0"
+    "email-roles[leaders]": "yes"
+response:
+  schema:
+    $ref: ReportStatusResult
+  examples:
+    status:
+      summary: "`clearTestNotifications`, `createNotification`, `deleteNotification`, `dismissNotification`, `editNotification`"
+      value:
+        status: true
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

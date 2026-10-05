@@ -1,0 +1,8 @@
+type: array
+items:
+  type: object
+  properties:
+    type:
+      description: "Observed `programme`, `activity`, `group_hub`; anything else is treated as an event."
+    associated_id: { }
+  additionalProperties: true

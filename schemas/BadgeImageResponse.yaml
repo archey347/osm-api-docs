@@ -1,0 +1,6 @@
+type: object
+properties:
+  img:
+    type: string
+    description: "Image path; the web app resolves it against its asset URL."
+additionalProperties: true

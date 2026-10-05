@@ -1,0 +1,31 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/basic_details"
+summary: Get event basic details
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventBasicDetails
+  examples:
+    default:
+      value:
+        name: Summer Camp
+        location: Example Campsite
+        start_date: "2025-07-20"
+        start_time: "09:00:00"
+        end_date: "2025-07-27"
+        end_time: "17:00:00"
+        attendance_limit: 40
+        attendance_limit_includes_leaders: false
+        cost: "120.00"
+        approval_status: pending
+        properties: { }
+        extra: { }
+  description: Event details.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

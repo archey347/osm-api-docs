@@ -1,0 +1,19 @@
+type: object
+properties:
+  headers:
+    type: array
+    items:
+      type: object
+      properties:
+        spreadsheet_column:
+          type: string
+        mapped:
+          type: string
+          nullable: true
+          description: OSM field the column is mapped to.
+      additionalProperties: true
+  job_info:
+    type: object
+    description: "Background job to track; returned when the import starts."
+    additionalProperties: true
+additionalProperties: true

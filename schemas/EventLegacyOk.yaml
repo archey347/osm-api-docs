@@ -1,0 +1,9 @@
+type: object
+description: "Legacy `ok` response."
+properties:
+  ok:
+    type: boolean
+  deletion_id:
+    type: integer
+    description: "Present after `delete`; pass to the soft-deletion restore action to undo."
+additionalProperties: true

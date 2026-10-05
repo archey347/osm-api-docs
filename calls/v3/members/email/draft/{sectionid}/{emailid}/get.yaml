@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/draft/{sectionid}/{emailid}"
+summary: Get an email draft
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+  emailid:
+    type: string
+response:
+  schema:
+    $ref: EmailDraft
+  examples:
+    default:
+      value:
+        subject: Weekly Meeting Reminder
+        guid: "00000000-0000-0000-0000-000000000000"
+        campaign_id: 5100001
+        edits:
+          "5200001":
+            "0":
+              text: "<p>Hello</p>"
+  description: "The draft. `status` is `false` if it no longer exists."
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

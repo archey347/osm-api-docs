@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/risk_assessments/{sectionId}/categories"
+summary: Show programme risk assessment categories
+tags: [ Risk Assessments ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: RiskAssessmentCategoriesData
+  examples:
+    default:
+      value:
+        - name: General Risks
+  description: Risk assessment categories response.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

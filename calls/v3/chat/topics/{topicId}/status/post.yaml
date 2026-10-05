@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/{topicId}/status"
+summary: Set a topic's status, size, and impact
+description: Feature-request rooms only.
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+body:
+  params:
+    status:
+      type: string
+      nullable: true
+    size:
+      type: string
+    impact:
+      type: string
+  example:
+    status: planned
+    size: "2"
+    impact: "3"
+response:
+  description: "Success when `status` is true."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

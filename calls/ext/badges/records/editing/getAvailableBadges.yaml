@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/editing/
+action: getAvailableBadges
+summary: List badges available to edit
+description: "`getAvailableBadges` lists badges (including drafts) that can be added to a section; `getGroupNames` lists badge groups for the section type."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  sectionid:
+    type: string
+    description: Section ID.
+  hide_group_name:
+    type: string
+    enum: [ "true" ]
+response:
+  schema:
+    $ref: BadgeItemsResponse
+  examples:
+    getAvailableBadges:
+      summary: Badges that can be added
+      value:
+        items:
+          - badge_id: 1001
+            badge_version: 0
+            name: Teamwork
+            picture: badges/teamwork.png
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

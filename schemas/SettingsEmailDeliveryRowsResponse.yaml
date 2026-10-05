@@ -1,0 +1,13 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      $ref: SettingsEmailDeliveryRow
+  meta:
+    type: object
+    properties:
+      can_be_forwarded_status:
+        type: string
+    additionalProperties: true
+additionalProperties: true

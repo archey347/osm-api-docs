@@ -1,0 +1,17 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/shop/{section_id}/{member_id}/orders/{order_id}/cancel"
+summary: Cancel an unpaid order
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+  order_id:
+    type: string
+response:
+  description: "Order cancelled; no body is sent with the request."

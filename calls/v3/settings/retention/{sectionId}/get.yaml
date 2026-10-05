@@ -1,0 +1,20 @@
+kind: v3-route
+method: GET
+path: "/v3/settings/retention/{sectionId}"
+summary: Get data retention settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        example_area: 3
+  description: "Retention in years in `data`, keyed by data area."
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

@@ -1,0 +1,57 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: linkBadgeToItem
+summary: Link a badge to an item
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    sectionid: { }
+    badge_id: { }
+    badge_version: { }
+    section:
+      description: Section type.
+    column_id:
+      description: "Requirement column ID. `-2` creates a new column in `linkBadgeToItem`."
+    batch:
+      type: string
+      description: "JSON array of changes (`updateSingleRecord`, `linkBadgeToItem`)."
+    type:
+      type: string
+      description: "Item type to link to, `meeting` or `event` (`linkBadgeToItem`, `deleteBadgeLink`)."
+    id:
+      description: "Meeting (`eveningid`) or event ID (`linkBadgeToItem`, `deleteBadgeLink`)."
+    column_data:
+      description: "Value to record against the linked requirement (`linkBadgeToItem`)."
+    new_column_name:
+      description: "Name for a new column when `column_id` is `-2` (`linkBadgeToItem`)."
+    picture:
+      description: "Badge picture (`linkBadgeToItem`)."
+    same_as:
+      description: "Column this one mirrors (`linkBadgeToItem`)."
+  example:
+    sectionid: "45001"
+    type: meeting
+    id: "9500001"
+    badge_id: "1001"
+    badge_version: "0"
+    column_id: "910001"
+    column_data: Team game
+    new_column_name: ""
+response:
+  schema:
+    $ref: BadgeLinkResponseData
+  envelope: true
+  examples:
+    linkBadgeToItem:
+      summary: linkBadgeToItem
+      value:
+        relation_id: 7700001
+        column_id: 910001
+sources: [ ext.badges.6a63e40102b2845e63ab.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

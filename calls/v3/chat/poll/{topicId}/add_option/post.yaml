@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/poll/{topicId}/add_option"
+summary: Add a poll option
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      maxLength: 50
+      required: true
+  example:
+    title: Not sure
+response:
+  schema:
+    $ref: ChatPollResponse
+  examples:
+    default:
+      value:
+        poll_options: [ ]
+  description: Updated poll options.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

@@ -1,0 +1,7 @@
+path: /ext/elearning/viewer/
+method: GET
+summary: E-learning viewer reads
+description: |-
+  `getCertificate` returns a certificate document rather than JSON
+  (opened in a new window; format not confirmed).
+response: "Module list for `listModules`."

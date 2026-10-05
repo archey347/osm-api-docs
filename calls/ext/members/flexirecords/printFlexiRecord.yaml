@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: printFlexiRecord
+summary: Download a flexi-record as a printable document
+description: "`printFlexiRecord` returns a printable document rather than JSON."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+  termid:
+    type: string
+  section:
+    type: string
+    description: Section type.
+response:
+  document: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

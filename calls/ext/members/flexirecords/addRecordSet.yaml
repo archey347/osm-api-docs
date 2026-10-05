@@ -1,0 +1,44 @@
+kind: ext-action
+method: POST
+path: /ext/members/flexirecords/
+action: addRecordSet
+summary: Create a flexi-record
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    name:
+      type: string
+      description: Up to 50 characters.
+    type:
+      type: string
+      enum: [ none, maths, badge, both ]
+      description: Total column type.
+    dob:
+      type: string
+      description: "`1` to show date of birth; omitted otherwise."
+    age:
+      type: string
+      description: "`1` to show age; omitted otherwise."
+    patrol:
+      type: string
+      description: "`1` to show patrol; omitted otherwise."
+  example:
+    name: Hike Log
+    type: none
+    dob: "1"
+response:
+  schema:
+    $ref: FlexiRecordCreated
+  examples:
+    addRecordSet:
+      summary: "ID of the new record, or `error` on failure"
+      value:
+        id: "23002"
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

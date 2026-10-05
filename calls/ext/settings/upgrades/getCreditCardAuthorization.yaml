@@ -1,0 +1,23 @@
+kind: ext-action
+method: GET
+path: /ext/settings/upgrades/
+action: getCreditCardAuthorization
+summary: Get card authorization details
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    getCreditCardAuthorization:
+      summary: "Stored card; `authorization` is false when none"
+      value:
+        authorization: true
+        stripe:
+          brand: visa
+          expires: "01/2030"
+          ends: "0000"
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

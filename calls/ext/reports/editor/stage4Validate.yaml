@@ -1,0 +1,62 @@
+kind: ext-action
+method: POST
+path: /ext/reports/editor/
+action: stage4Validate
+summary: Submit report editor step 4
+description: "`stage4Validate` saves the report."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+      required: true
+    report_id:
+      type: string
+      required: true
+      description: "`0` when creating a report."
+    name:
+      type: string
+    description:
+      type: string
+    new_dashboard_id:
+      type: string
+      description: "`-1` creates a dashboard named by `new_dashboard_name`."
+    new_dashboard_name:
+      type: string
+    sharing:
+      type: string
+      enum: [ "no", section, hierarchy, global ]
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "0"
+    name: Member list
+    description: Members and their patrols.
+    new_dashboard_id: "910100"
+    sharing: "no"
+response:
+  schema:
+    $ref: ReportEditorResponse
+  envelope: true
+  examples:
+    stage4Validate:
+      summary: Saved report
+      value:
+        dashboard_id: "910100"
+        dashboard_name: Section Overview
+        is_new_dashboard: false
+        report:
+          report_id: "910001"
+          dashboard_id: "910100"
+          type: DataGrid
+          name: Member list
+          description: Members and their patrols.
+          report: "/ext/reports/viewer/?action=view&report_id=910001"
+          can_manage: true
+          can_refresh: true

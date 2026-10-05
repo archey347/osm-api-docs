@@ -1,0 +1,36 @@
+kind: v3-route
+method: POST
+path: "/v3/badges/suppliers/shops/{sectionId}/redirect"
+summary: Get a redirect URL to a badge shop
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    supplier_id:
+      required: true
+    term_id:
+      required: true
+    section_ids:
+      type: string
+      description: Comma-separated extra section IDs.
+    group:
+      type: string
+      description: "`1` when called from the group view."
+  example:
+    supplier_id: "12001"
+    term_id: "70001"
+response:
+  schema:
+    $ref: BadgeSupplierRedirectResponse
+  examples:
+    redirect:
+      summary: URL
+      value:
+        url: "https://shop.example.org/order?token=example"
+  description: Shop URL.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

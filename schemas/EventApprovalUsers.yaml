@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  properties:
+    user_id:
+      type: integer
+    name:
+      type: string
+    photo_url:
+      type: string
+  additionalProperties: true

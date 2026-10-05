@@ -1,0 +1,4 @@
+path: /ext/facilities/
+method: POST
+summary: Get facility markers or save a facility
+response: "`getMarkers` returns a bare array; `addFacility` returns `ok` and the facility ID."

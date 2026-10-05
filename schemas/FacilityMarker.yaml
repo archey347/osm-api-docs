@@ -1,0 +1,15 @@
+type: object
+properties:
+  facilityid:
+    type: string
+  title:
+    type: string
+  description:
+    type: string
+  latitude:
+    type: string
+  longitude:
+    type: string
+  categoryid:
+    type: string
+additionalProperties: true

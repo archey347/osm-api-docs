@@ -1,0 +1,15 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    description: May be null.
+  data:
+    type: object
+    properties:
+      check:
+        $ref: EventApprovalCheck
+    additionalProperties: true
+  meta:
+    description: May be null.
+additionalProperties: true

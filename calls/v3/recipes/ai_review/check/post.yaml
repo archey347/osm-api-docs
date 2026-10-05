@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: /v3/recipes/ai_review/check
+summary: Request an AI review of a recipe
+description: "Asynchronous; the websocket message has `status` (`ok` on success), `verdict` (`pass` skips the review prompt), `ingredients` and `method` objects each with a `suggestions` array, and `response_id`."
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      required: true
+    request_id:
+      type: string
+      required: true
+      description: Client-generated ID used to match the websocket message.
+    previous_response_id:
+      type: string
+      description: "`response_id` of the previous check, empty on the first."
+    previous_suggestions:
+      type: array
+      items: { }
+      description: Suggestions from the previous check.
+  example:
+    recipe_id: "7700001"
+    request_id: abc123
+    previous_response_id: ""
+    previous_suggestions: [ ]
+response:
+  description: "Accepted. The result arrives later on the user's websocket channel as a `recipe-ai-review-ready` message carrying the same `request_id`."
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

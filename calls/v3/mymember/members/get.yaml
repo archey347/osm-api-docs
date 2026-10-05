@@ -1,0 +1,37 @@
+kind: v3-route
+method: GET
+path: /v3/mymember/members
+summary: Members the current user can access in the parent portal
+description: "Fetched when switching to the parent portal; the result replaces the user's member access."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: MyMemberMembersResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          member_section_count: 1
+          unique_member_count: 1
+          members:
+            "45001":
+              section_id: 45001
+              section: Example Section
+              name: Example Section
+              type: scouts
+              access: true
+              members:
+                "3100001":
+                  member_id: 3100001
+                  first_name: Alex
+                  last_name: Scout
+                  access_type: parent
+                  permissions: true
+  description: Member access, grouped by section.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

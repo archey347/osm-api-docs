@@ -1,0 +1,47 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: addParentToEvening
+summary: Add parents to a meeting rota
+tags: [ Programme ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    eveningid:
+      type: string
+    sectionid:
+      type: string
+    members:
+      type: string
+      description: JSON array of member IDs.
+    parent_names:
+      type: string
+      description: JSON object of member ID to free-text name, only for non-blank entries.
+    scoutid:
+      type: string
+    date:
+      type: string
+  example:
+    sectionid: "45001"
+    eveningid: "9500001"
+    scoutid: "0"
+    date: "2024-11-01"
+    members: "[\"3100005\"]"
+response:
+  schema:
+    anyOf:
+      - $ref: ProgrammeMeeting
+      - $ref: ProgrammeErrorResponse
+      - $ref: ProgrammeAddMeetingResult
+      - $ref: ProgrammeDeleteMeetingResult
+      - $ref: ProgrammeAddActivityResult
+      - $ref: ProgrammeMeetingResponse
+      - $ref: ProgrammeOkResult
+  examples:
+    parentRotaError:
+      summary: "`addParentToEvening`, `deleteParentFromEvening` failure (success shape not read by the web app)"
+      value:
+        error: Unable to save.
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

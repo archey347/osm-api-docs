@@ -1,0 +1,24 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cardholders/section/{sectionId}"
+summary: Add an expense cardholder
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    user_id:
+      required: true
+      description: OSM user ID.
+  example:
+    user_id: 3100120
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

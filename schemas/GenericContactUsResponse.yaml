@@ -1,0 +1,11 @@
+type: object
+properties:
+  resp:
+    oneOf:
+      - type: boolean
+      - type: string
+    description: True on success, otherwise an error message.
+  ticket_only:
+    type: boolean
+    description: True when a ticket was created but no email was sent.
+additionalProperties: true

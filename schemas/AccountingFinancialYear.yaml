@@ -1,0 +1,10 @@
+type: object
+properties:
+  id: { }
+  start_date:
+    type: string
+    format: date
+  end_date:
+    type: string
+    format: date
+additionalProperties: true

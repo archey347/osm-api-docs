@@ -1,0 +1,5 @@
+path: /ext/settings/upgrades/
+method: GET
+summary: Get subscriptions, payment history and card details
+description: "`downloadInvoice` returns an invoice document, opened in a new window."
+response: "JSON for the list actions; a document for `downloadInvoice`."

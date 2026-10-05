@@ -1,0 +1,44 @@
+type: object
+properties:
+  group_charity_name: { }
+  charity_names:
+    type: array
+    items:
+      type: string
+  stats:
+    type: object
+    additionalProperties: true
+  sections:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        charity_name: { }
+        is_waiting_list:
+          type: boolean
+        can_edit_finance:
+          type: boolean
+      additionalProperties: true
+  members:
+    type: array
+    description: One row per member per section.
+    items:
+      type: object
+      properties:
+        member_id: { }
+        firstname: { }
+        lastname: { }
+        photo_guid: { }
+        status:
+          description: "The web app treats `missing` and `requested` as needing a declaration."
+        section_id: { }
+        section_name: { }
+        donations_in_range:
+          type: number
+        charity_mismatch:
+          type: boolean
+        declaration_charity_name: { }
+      additionalProperties: true
+additionalProperties: true

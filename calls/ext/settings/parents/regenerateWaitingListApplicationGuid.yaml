@@ -1,0 +1,23 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: regenerateWaitingListApplicationGuid
+summary: Regenerate the waiting list application link
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    regenerateWaitingListApplicationGuid:
+      summary: New link
+      value:
+        url: "https://example.com/waiting-list/11111111"
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

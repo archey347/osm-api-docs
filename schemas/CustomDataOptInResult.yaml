@@ -1,0 +1,7 @@
+type: object
+properties:
+  column_ids:
+    type: array
+    description: Columns now opted in.
+    items: { }
+additionalProperties: true

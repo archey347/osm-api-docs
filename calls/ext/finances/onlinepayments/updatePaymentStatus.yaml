@@ -1,0 +1,41 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: updatePaymentStatus
+summary: Update a payment status
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    schemeid:
+      type: string
+    value:
+      type: string
+      description: "New field value for `saveScheduleDetail`, or the new status for `updatePaymentStatus` (e.g. `Paid manually`, `Payment not required`)."
+    paymentid:
+      type: string
+    scoutid:
+      type: string
+    giftaid:
+      type: string
+      enum: [ "true", "false", "0" ]
+  example:
+    sectionid: "45001"
+    schemeid: "9800001"
+    paymentid: "9820001"
+    scoutid: "3100001"
+    value: Paid manually
+    giftaid: "false"
+response:
+  schema:
+    $ref: FinanceStatusResponse
+  examples:
+    updatePaymentStatus:
+      summary: updatePaymentStatus
+      value:
+        status: true
+sources: [ ext.finances.9f318350fda4d977c688.js ]

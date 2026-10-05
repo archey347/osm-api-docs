@@ -1,0 +1,48 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          member_section_count: { }
+          unique_member_count: { }
+          members:
+            type: object
+            description: Keyed by section ID.
+            additionalProperties:
+              type: object
+              properties:
+                section_id: { }
+                section:
+                  type: string
+                name:
+                  type: string
+                type:
+                  type: string
+                access: { }
+                patrol_label:
+                  type: string
+                members:
+                  type: object
+                  description: Keyed by member ID.
+                  additionalProperties:
+                    type: object
+                    properties:
+                      member_id: { }
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      abbrv:
+                        type: string
+                      patrol:
+                        type: string
+                      photo_guid: { }
+                      access_type:
+                        type: string
+                      permissions:
+                        description: "`true` for full access, otherwise an object of permission name to boolean."
+                    additionalProperties: true
+              additionalProperties: true
+        additionalProperties: true

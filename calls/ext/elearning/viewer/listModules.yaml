@@ -1,0 +1,33 @@
+kind: ext-action
+method: GET
+path: /ext/elearning/viewer/
+action: listModules
+summary: List modules to take
+tags: [ E-Learning ]
+source:
+  request: inferred
+  response: inferred
+query:
+  status:
+    type: string
+    enum: [ open, completed ]
+response:
+  schema:
+    $ref: ELearningViewerModuleList
+  envelope: true
+  examples:
+    listModules:
+      summary: Modules with the user's progress
+      value:
+        - module_id: "7100001"
+          title: Safety Basics
+          run_status: started
+          run_id: "7400001"
+          started_at: "2024-11-01 18:00:00"
+          completed_at: null
+          repeatable: false
+          badges:
+            - badge_identifier: "9100001_1"
+              badgeLongName: Safety Badge
+              picture: sites/onlinescoutmanager.co.uk/badge_images/img_000000.png
+sources: [ area.elearning.78729e36e08410a6eaec.js ]

@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/members/sms/
+action: getDeliveryReport
+summary: Get SMS delivery report
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  dateFormat:
+    type: string
+response:
+  schema:
+    $ref: MemberSmsDeliveryReport
+  examples:
+    default:
+      value:
+        items: [ ]
+  description: Delivery report rows.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

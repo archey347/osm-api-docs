@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/
+action: confirmCode
+summary: Confirm an activation code
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+    code:
+      type: string
+      description: Six-digit code from the activation email.
+  example:
+    member_id: "3100001"
+    code: "123456"
+response:
+  schema:
+    $ref: MyMemberConfirmCodeResponse
+  examples:
+    confirmCode:
+      summary: "`confirmCode`: updated member access"
+      value:
+        status: true
+        error: null
+        data:
+          member_access:
+            members: { }
+          member_access_unactivated: [ ]
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

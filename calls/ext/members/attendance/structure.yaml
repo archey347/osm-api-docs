@@ -1,0 +1,29 @@
+kind: ext-action
+method: GET
+path: /ext/members/attendance/
+action: structure
+summary: Get the register's column layout
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    description: "Term ID (required for `action=get`)."
+  section:
+    type: string
+    required: true
+    description: "Section type (e.g., `cubs`)."
+response:
+  schema:
+    $ref: AttendanceStructure
+  examples:
+    structure:
+      summary: Column layout for the register (shape not shown in the code)
+      value: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

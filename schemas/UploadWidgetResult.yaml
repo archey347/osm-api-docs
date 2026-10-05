@@ -1,0 +1,12 @@
+type: object
+description: "Upload-widget response data: limits and action names in `config`, files in `manifest`; the remaining quota is `meta.size`."
+properties:
+  config:
+    type: object
+    description: Widget limits and the action names for file get/delete.
+    additionalProperties: true
+  manifest:
+    type: object
+    description: Files in the folder, keyed by path.
+    additionalProperties: true
+additionalProperties: true

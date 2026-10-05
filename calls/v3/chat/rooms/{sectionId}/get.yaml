@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/chat/rooms/{sectionId}"
+summary: List chat rooms for a section
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: ChatRoomList
+  examples:
+    default:
+      value:
+        - id: 501
+          mode: topic
+          name: Leaders
+          userHasUnreadMessages: false
+  description: Chat rooms.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

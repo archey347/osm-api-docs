@@ -1,0 +1,31 @@
+type: object
+properties:
+  id:
+    type: integer
+  user_id:
+    type: integer
+  user:
+    type: object
+    properties:
+      full_name:
+        type: string
+      photo_url:
+        type: string
+    additionalProperties: true
+  comment:
+    type: string
+  created_at:
+    type: string
+  updated_at:
+    type: string
+  local_time:
+    type: string
+  engagements:
+    type: array
+    items:
+      type: object
+      properties:
+        action:
+          type: string
+      additionalProperties: true
+additionalProperties: true

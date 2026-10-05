@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/programme/
+action: download
+summary: Download the programme
+description: "`getDetails` lists meetings, `getCalendarFeed` returns the member's calendar feed URL, and `download` returns a programme document (opened in a new window; format not confirmed)."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  document: true
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

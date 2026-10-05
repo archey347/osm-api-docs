@@ -1,0 +1,7 @@
+description: "Array for `getAvailableBadges` and `getEligibleMembers`, object for `getBadgeRecords`."
+oneOf:
+  - type: array
+    items:
+      type: object
+      additionalProperties: true
+  - $ref: BadgeRecordsData

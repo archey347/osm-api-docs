@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/events/
+action: getDetails
+summary: List events for a member
+description: "`getDetails` lists events, `getEventDetails` returns one, and `getCalendarFeed` returns the member's calendar feed URL."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberEventsResponse
+  examples:
+    getDetails:
+      value:
+        status: true
+        error: null
+        data:
+          - event_id: "8100001"
+            name: Summer Camp
+            startdate: "2025-07-18"
+            formatted_dates: "18 July 2025 - 20 July 2025"
+            attending: invited
+        meta:
+          calendar: true
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

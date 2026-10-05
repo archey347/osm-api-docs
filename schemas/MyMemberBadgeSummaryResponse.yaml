@@ -1,0 +1,56 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          badge_groups:
+            type: array
+            items:
+              type: object
+              properties:
+                badges:
+                  type: array
+                  description: "Keys into `badge_progress`."
+                  items:
+                    type: string
+              additionalProperties: true
+          badge_progress:
+            type: object
+            description: "Keyed by badge identifier (`badge_id_version`)."
+            additionalProperties:
+              type: object
+              properties:
+                title:
+                  type: string
+                url:
+                  type: string
+                  description: Badge image path.
+                progress:
+                  type: number
+                  description: Fraction from 0 to 1.
+                completed: { }
+                awarded: { }
+                awarded_date: { }
+                has_unread_comments: { }
+                homework: { }
+                homework_disabled: { }
+              additionalProperties: true
+          badge_extra:
+            type: string
+            description: Section message shown above the badges.
+          positions:
+            description: "Uniform badge positions, present when `meta.uniform` is set."
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          homework:
+            description: "`all` when every badge can be worked on at home."
+          uniform:
+            description: "Uniform image path, or `false`."
+          uniform_download: { }
+          requirements: { }
+          partial: { }
+        additionalProperties: true

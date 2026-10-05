@@ -1,0 +1,4 @@
+type: array
+description: User IDs assigned to this instructor type.
+items:
+  type: integer

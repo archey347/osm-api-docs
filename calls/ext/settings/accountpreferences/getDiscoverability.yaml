@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/settings/accountpreferences/
+action: getDiscoverability
+summary: Get account discoverability
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsDiscoverability
+  examples:
+    getDiscoverability:
+      summary: Discoverability
+      value:
+        status: true
+        data:
+          discoverable: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

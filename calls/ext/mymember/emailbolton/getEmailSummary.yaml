@@ -1,0 +1,29 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/emailbolton/
+action: getEmailSummary
+summary: 'List emails sent to a member''s contacts'
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberEmailSummaryResponse
+  examples:
+    getEmailSummary:
+      value:
+        status: true
+        error: null
+        data:
+          - emailid: "5100001"
+            subject: Camp kit list
+            sent: "2025-05-01 18:30:00"
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

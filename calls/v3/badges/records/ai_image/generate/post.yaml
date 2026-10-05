@@ -1,0 +1,45 @@
+kind: v3-route
+method: POST
+path: /v3/badges/records/ai_image/generate
+summary: Generate badge images
+description: "Starts image generation. The images are not in the response: they arrive later as a push message `{type: \"badge-ai-images-ready\", request_id, status, images}` on the user's `users/{id}` channel."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  content_type: multipart/form-data
+  params:
+    image:
+      type: string
+      format: binary
+      required: true
+    palette:
+      type: string
+      required: true
+    badge_id:
+      type: string
+      required: true
+    badge_version:
+      type: string
+      required: true
+    badge_name:
+      type: string
+    design_description:
+      type: string
+    count:
+      type: string
+      description: Number of images to generate (the UI defaults to 5).
+    request_id:
+      type: string
+      required: true
+      description: Client-generated ID matching the push message to this request.
+response:
+  schema:
+    $ref: BadgeV3Response
+  examples:
+    ok:
+      summary: Accepted
+      value: [ ]
+  description: Accepted. The web app does not read the body.
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

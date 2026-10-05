@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/badges/stock/
+action: updateStock
+summary: Update badge stock
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id: { }
+    badge_id: { }
+    level: { }
+    stock:
+      description: "New count (`updateStock`)."
+    type:
+      type: string
+      description: "`current` or `desired` (`updateStock`)."
+    section:
+      description: "Section type (`updateStock`), sent from the stock grid only."
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    level: "1"
+    stock: "4"
+    type: current
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    failure:
+      summary: updateStock, removeSingleShare error
+      value:
+        error: Stock must be zero or more
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

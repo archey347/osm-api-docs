@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  properties:
+    date:
+      type: string
+    desc:
+      type: string
+    updatedby:
+      type: string
+  additionalProperties: true

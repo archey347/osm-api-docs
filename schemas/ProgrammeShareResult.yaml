@@ -1,0 +1,10 @@
+type: object
+properties:
+  ok: { }
+  config:
+    type: object
+    description: Updated section config for the receiving section.
+    additionalProperties: true
+  error:
+    type: string
+additionalProperties: true

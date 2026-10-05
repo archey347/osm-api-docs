@@ -1,0 +1,17 @@
+kind: v3-route
+method: POST
+path: "/v3/risk_assessments/reviews/{sectionId}/undo/{reviewId}"
+summary: Undo a risk assessment review
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+  reviewId:
+    type: string
+response:
+  description: Success. The web app ignores the body.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

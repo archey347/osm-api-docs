@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/badges/suppliers/shops/{sectionId}"
+summary: List badge shops available to a section
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  section_ids:
+    type: string
+    description: Comma-separated extra section IDs.
+  group:
+    type: string
+    enum: [ "1" ]
+    description: "Set to `1` when called from the group view."
+response:
+  schema:
+    $ref: BadgeSupplierShopsResponse
+  examples:
+    shops:
+      summary: Shops
+      value:
+        shops:
+          - id: 12001
+            name: Example Badge Shop
+            legacy_integration: false
+            test_mode: false
+            selectable: true
+  description: Shops.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

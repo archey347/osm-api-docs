@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/sections/{sectionId}/settings/future"
+summary: Follow workspace settings added in future
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    synced:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+      description: Whether the section follows the workspace's setting.
+  example:
+    synced: "true"
+response:
+  schema:
+    $ref: GroupHubManagedSettingsResult
+  examples:
+    default:
+      value:
+        managed_settings: { }
+  description: Updated managed settings.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

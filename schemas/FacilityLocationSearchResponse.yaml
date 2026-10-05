@@ -1,0 +1,16 @@
+description: "Results, or `false` when the search failed."
+anyOf:
+  - type: array
+    items:
+      type: object
+      properties:
+        display_name:
+          type: string
+        address:
+          type: object
+          properties:
+            country_code:
+              type: string
+          additionalProperties: true
+      additionalProperties: true
+  - type: boolean

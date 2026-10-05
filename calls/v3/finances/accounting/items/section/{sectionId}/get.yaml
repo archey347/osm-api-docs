@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/items/section/{sectionId}"
+summary: List items
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+query:
+  financial_year_id:
+    type: string
+response:
+  schema:
+    $ref: AccountingItemList
+  examples:
+    default:
+      value:
+        - id: 3100080
+          name: Summer camp
+          archived_at: null
+  description: Items for the section.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

@@ -1,0 +1,19 @@
+type: array
+items:
+  type: object
+  properties:
+    scout_id: { }
+    firstname:
+      type: string
+    lastname:
+      type: string
+    uploads: { }
+    covered_requirements:
+      type: array
+      items: { }
+    completed_requirements:
+      type: array
+      items: { }
+    updated_at:
+      type: string
+  additionalProperties: true

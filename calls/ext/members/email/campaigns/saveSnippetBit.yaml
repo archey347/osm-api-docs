@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/campaigns/
+action: saveSnippetBit
+summary: Save the text of an email block
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    campaign_id:
+      type: string
+      description: "Every action except `createCampaign`."
+    snippet_id:
+      type: string
+    bit:
+      type: string
+      description: Which editable part of the snippet.
+    text:
+      type: string
+      description: HTML.
+  example:
+    section_id: "45001"
+    campaign_id: "5100001"
+    snippet_id: "5200001"
+    bit: "0"
+    text: "<p>Hello</p>"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    ok:
+      summary: Other actions
+      value: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

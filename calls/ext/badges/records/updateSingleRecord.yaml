@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: updateSingleRecord
+summary: Update a badge record
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    scoutid:
+      description: "Member ID (`overrideCompletion`, `updateSingleRecord`)."
+    field:
+      description: "Requirement column ID being edited (`updateSingleRecord`, `updateMultipleRecords`)."
+    value:
+      description: "New cell value (`updateSingleRecord`, `updateMultipleRecords`)."
+    payload:
+      description: "Observed `1` or `true`; asks for the updated records (`updateSingleRecord`, `updateMultipleRecords`)."
+    batch:
+      type: string
+      description: "JSON array of changes (`updateSingleRecord`, `linkBadgeToItem`)."
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    badge_version: "0"
+    scoutid: "3100001"
+    field: "910001"
+    value: "Yes"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

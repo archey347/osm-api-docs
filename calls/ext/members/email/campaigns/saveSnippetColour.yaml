@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/campaigns/
+action: saveSnippetColour
+summary: Save the colour of an email block
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    campaign_id:
+      type: string
+      description: "Every action except `createCampaign`."
+    snippet_id:
+      type: string
+    colour_type:
+      type: string
+      enum: [ background ]
+    colour_value:
+      type: string
+      description: "Hex colour; empty clears it."
+  example:
+    section_id: "45001"
+    campaign_id: "5100001"
+    snippet_id: "5200001"
+    colour_type: background
+    colour_value: "#ffffff"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    ok:
+      summary: Other actions
+      value: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

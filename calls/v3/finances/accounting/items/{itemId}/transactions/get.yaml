@@ -1,0 +1,36 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/items/{itemId}/transactions"
+summary: List transactions for an item
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  itemId:
+    type: string
+    description: Item ID.
+query:
+  financial_year_id:
+    type: string
+  page:
+    type: integer
+  per_page:
+    type: integer
+response:
+  schema:
+    $ref: AccountingItemTransactionList
+  examples:
+    default:
+      value:
+        - id: 3100070
+          type: expense
+          description: Example supplies
+          date: "2026-09-20"
+          amount: 2500
+          categories:
+            - category_id: 3100040
+              item_id: 0
+              amount: 2500
+  description: Page of transactions.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

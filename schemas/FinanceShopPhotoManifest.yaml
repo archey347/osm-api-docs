@@ -1,0 +1,25 @@
+type: object
+properties:
+  manifest:
+    type: object
+    description: Photos keyed by file path.
+    additionalProperties:
+      type: object
+      properties:
+        photo_id:
+          type: integer
+        path:
+          type: string
+        sort_order:
+          type: integer
+          nullable: true
+        preview:
+          description: "Thumbnail URL, or `false`."
+        preview_sizes:
+          type: object
+          properties:
+            dialog:
+              type: string
+          additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

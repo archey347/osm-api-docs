@@ -1,0 +1,30 @@
+kind: v3-route
+method: GET
+path: "/v3/mymember/shop/{section_id}/{member_id}/checkout/prefill"
+summary: Saved delivery address for checkout
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberShopPrefillResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          name: Alex Parent
+          address1: "1 Example Street"
+          address2: ""
+          address3: ""
+          address4: Exampletown
+          postcode: AB1 2CD
+  description: Address from the member's previous order, if any.

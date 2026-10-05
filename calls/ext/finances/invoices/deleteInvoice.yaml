@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/finances/invoices/
+action: deleteInvoice
+summary: Delete or archive an invoice
+tags: [ Finances ]
+source:
+  request: inferred
+  response: unknown
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    invoiceid:
+      type: string
+    archived:
+      type: string
+      enum: [ "0", "1" ]
+      description: "`1` archives, `0` unarchives; omitted deletes permanently."
+  example:
+    invoiceid: "9400001"
+    archived: "1"
+response:
+  schema:
+    anyOf:
+      - $ref: FinanceInvoiceAdded
+      - $ref: FinanceStatusResponse
+      - $ref: OkResponse
+      - $ref: FinanceAttachmentManifest
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

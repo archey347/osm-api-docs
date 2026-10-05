@@ -1,0 +1,18 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/annual_report/{financialYearId}/download"
+summary: Download annual report
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+query:
+  other_financial_year_id:
+    type: string
+response:
+  description: "Document download (opened in a browser tab); format not shown by the web app code."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

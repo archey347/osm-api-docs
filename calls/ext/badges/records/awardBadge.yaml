@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: awardBadge
+summary: Award a badge
+description: "`awardBadge` and `overrideCompletion` are typically sent together: `overrideCompletion` sets the completion level, `awardBadge` records the award."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id: { }
+    section:
+      description: Section type.
+    date:
+      description: "Award date (`awardBadge`), `null` when un-awarding."
+    entries:
+      type: string
+      description: "JSON array of `{badge_id, badge_version, level, member_id}` (`awardBadge`). `level` `0` removes the award."
+    skip_track_changes:
+      type: string
+      description: "`true` or `false` (`awardBadge`, `overrideCompletion`)."
+  example:
+    section_id: "45001"
+    section: cubs
+    date: "2025-02-01"
+    entries: "[{\"badge_id\":1001,\"badge_version\":0,\"level\":1,\"member_id\":3100001}]"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

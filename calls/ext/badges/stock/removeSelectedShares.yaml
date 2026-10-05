@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/badges/stock/
+action: removeSelectedShares
+summary: Remove selected stock shares
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id: { }
+    badge_id: { }
+    level: { }
+    "sections[{n}]":
+      type: string
+      description: Section ID to stop sharing stock with.
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    level: "1"
+    "sections[0]": "45002"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

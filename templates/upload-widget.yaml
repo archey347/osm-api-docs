@@ -1,0 +1,89 @@
+description: "Shared file-upload widget. Actions are `<prefix><Name>`, or the lower-camel name when there is no prefix. Download and delete action names come from the config response. Context params in `uses.params` go in the query for Config, Manifest, Put and PartPut, and in the body for CommitTemp and RevertTemp."
+params:
+  prefix:
+    type: string
+    description: "Prepended to each action name; omit for the bare names."
+actions:
+  Config:
+    method: GET
+    summary: Widget limits and endpoint names
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  Manifest:
+    method: GET
+    summary: List uploaded files
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  Put:
+    method: POST
+    summary: Upload a file, or the last chunk of one
+    query:
+      completePut:
+        type: string
+        description: Upload GUID that finishes a chunked upload.
+      size:
+        type: string
+        description: Total file size in bytes.
+      _bypass_service_worker:
+        type: string
+        enum: [ "1" ]
+    body:
+      content_type: multipart/form-data
+      params:
+        qqfile:
+          type: string
+          format: binary
+          required: true
+          description: The file.
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  PartPut:
+    method: POST
+    summary: Upload one chunk of a large file
+    body:
+      content_type: multipart/form-data
+      params:
+        qqfile:
+          type: string
+          format: binary
+          required: true
+          description: The chunk.
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  PutTemp:
+    method: POST
+    summary: Upload a file for a record that is not saved yet
+    body:
+      content_type: multipart/form-data
+      params:
+        qqfile:
+          type: string
+          format: binary
+          required: true
+          description: The file.
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  CommitTemp:
+    method: POST
+    summary: Attach temporary uploads to the saved record
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult
+  RevertTemp:
+    method: POST
+    summary: Discard temporary uploads
+    response:
+      envelope: true
+      schema:
+        $ref: UploadWidgetResult

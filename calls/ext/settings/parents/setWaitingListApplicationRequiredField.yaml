@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: setWaitingListApplicationRequiredField
+summary: Set whether a waiting list field is required
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    group:
+      type: string
+      description: Contact group.
+    field:
+      type: string
+    required:
+      type: string
+  example:
+    section_id: "45001"
+    group: "1"
+    field: firstname
+    required: "true"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    setWaitingListApplicationRequiredField:
+      summary: Updated fields
+      value:
+        fields:
+          firstname:
+            required: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

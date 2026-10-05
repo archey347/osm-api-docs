@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getPaymentSchedulePDF
+summary: Download a payment schedule as PDF
+description: "`getPaymentSchedulePDF` returns a document."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  termid:
+    type: string
+  schemeid:
+    type: string
+response:
+  document: true
+  content_type: application/octet-stream
+sources: [ ext.finances.9f318350fda4d977c688.js ]

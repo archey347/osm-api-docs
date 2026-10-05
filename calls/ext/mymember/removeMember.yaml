@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/
+action: removeMember
+summary: Unlink a member from the account
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+  example:
+    member_id: "3100001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`sendActivationCode`, `removeMember`, `register`, `resendGuid`, `track`"
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

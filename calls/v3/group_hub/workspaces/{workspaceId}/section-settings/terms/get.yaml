@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/terms"
+summary: Get the recurring term schedule
+description: "`data.recurring_config` is `null` when no schedule has been set."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubTerms
+  examples:
+    default:
+      value:
+        recurring_config:
+          horizon_years: 1
+          terms: [ ]
+  description: Term schedule.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

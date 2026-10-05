@@ -1,0 +1,10 @@
+type: object
+properties:
+  retention:
+    type: object
+    description: "Settings in force; empty when none are set."
+    additionalProperties: true
+  defaults:
+    type: object
+    additionalProperties: true
+additionalProperties: true

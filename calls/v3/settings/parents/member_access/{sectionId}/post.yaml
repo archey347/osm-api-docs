@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/settings/parents/member_access/{sectionId}"
+summary: Set a member access permission
+description: Turning a permission off also turns off permissions that require it, client-side.
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    permission_type:
+      type: string
+      required: true
+    value:
+      type: string
+      enum: [ "0", "1" ]
+      required: true
+  example:
+    permission_type: example_permission
+    value: "1"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  description: Response body is not read by the web app.
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

@@ -1,0 +1,44 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: savePaymentRequest
+summary: Add a payment request
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    schedule_id:
+      type: string
+    name:
+      type: string
+    payment_id:
+      type: string
+      description: Existing payment to edit when set.
+    amount:
+      type: string
+    date:
+      type: string
+      format: date
+      description: "Due date (must be in the future) for `savePaymentRequest`, or start date for `initiateScouts`."
+  example:
+    section_id: "45001"
+    schedule_id: "9800001"
+    name: Autumn term
+    date: "2024-10-01"
+    amount: "30.00"
+response:
+  schema:
+    $ref: FinanceOnlinePaymentCreated
+  examples:
+    savePaymentRequest:
+      summary: savePaymentRequest
+      value:
+        status: true
+        error: null
+        data:
+          id: "9820001"
+sources: [ ext.events.4fe61901f961aaf5b232.js, ext.finances.9f318350fda4d977c688.js ]

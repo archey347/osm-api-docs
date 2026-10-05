@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/settings/parents/
+action: getWaitingListApplicationSettings
+summary: Get waiting list application settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsWaitingListSettingsData
+  envelope: true
+  examples:
+    getWaitingListApplicationSettings:
+      summary: Waiting list application form
+      value:
+        enabled: true
+        url: "https://example.com/waiting-list/00000000"
+        contact_group: "1"
+        fields:
+          firstname:
+            label: First name
+            required: true
+            force_required: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

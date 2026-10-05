@@ -1,0 +1,32 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/payments/{workspaceId}"
+summary: List Group Hub payment accounts
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubPayments
+  examples:
+    default:
+      value:
+        owning_section_name: Cubs
+        accounts:
+          - gateway: stripe
+            organisation_id: acct_000001
+            name: Group Account
+            section_count: 2
+            section_names: Cubs, Scouts
+        available:
+          - gateway: gocardless
+            organisation_id: OR000001
+            name: Scouts Account
+            section_names: Scouts
+  description: Accounts shared with the workspace and ones that could be shared.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

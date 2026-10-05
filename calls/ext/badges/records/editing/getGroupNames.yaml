@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/editing/
+action: getGroupNames
+summary: List badge group names
+description: "`getAvailableBadges` lists badges (including drafts) that can be added to a section; `getGroupNames` lists badge groups for the section type."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+response:
+  schema:
+    $ref: BadgeItemsResponse
+  examples:
+    getGroupNames:
+      summary: Group names
+      value:
+        items:
+          - name: Outdoors
+            value: Outdoors
+sources: [ area.badges_editing.47f136c28950473153c4.js, ext.badges.6a63e40102b2845e63ab.js ]

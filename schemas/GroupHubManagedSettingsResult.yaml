@@ -1,0 +1,7 @@
+type: object
+properties:
+  managed_settings:
+    type: object
+    description: Replaces the session's managed settings when present.
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,11 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          noticeboard:
+            type: string
+            description: HTML.
+        additionalProperties: true

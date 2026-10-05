@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/questions/{questionId}"
+summary: Edit a question
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionId:
+    type: string
+    description: Question ID.
+body:
+  params:
+    question:
+      type: string
+      required: true
+      description: "10 to 45 characters."
+  example:
+    question: "Any dietary requirements?"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

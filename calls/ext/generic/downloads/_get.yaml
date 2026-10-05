@@ -1,0 +1,7 @@
+path: /ext/generic/downloads/
+method: GET
+summary: Download a generated file
+description: |-
+  `getDownload` and `get` return a document (PDF, spreadsheet, ZIP) rather than JSON; the
+  web app opens them in a new window. `manifest` lists previously generated files.
+response: "Document for `getDownload` and `get`; JSON for `manifest`."

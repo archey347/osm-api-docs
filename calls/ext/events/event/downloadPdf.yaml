@@ -1,0 +1,41 @@
+kind: ext-action
+method: GET
+path: /ext/events/event/
+action: downloadPdf
+summary: Download an event as PDF
+description: "`downloadPdf` and `downloadPrivateAttachments` return a file, not JSON."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  eventid:
+    type: string
+    description: Event ID.
+  termid:
+    type: string
+    description: Term ID.
+  mode:
+    type: string
+    description: |-
+      `getAttendance`: `section`, `public`, `campsite` or `item`.
+      `downloadPdf`/`startSpreadsheet`: the members tab (`attendance`, `rota` or `payments`).
+      `getPeopleWithQualification`: `mine`, `other` or `section`.
+  non:
+    type: string
+    enum: [ "1" ]
+    description: Include members not attending.
+  all:
+    type: string
+    enum: [ "1" ]
+    description: Shared-event attendee list across sections.
+  attendance:
+    type: string
+    enum: [ "Yes", Reserved ]
+response:
+  document: true
+  content_type: application/pdf
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

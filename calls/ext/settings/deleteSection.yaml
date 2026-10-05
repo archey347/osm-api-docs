@@ -1,0 +1,21 @@
+kind: ext-action
+method: POST
+path: /ext/settings/
+action: deleteSection
+summary: Delete a section
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

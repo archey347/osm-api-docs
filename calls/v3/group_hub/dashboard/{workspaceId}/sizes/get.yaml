@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/dashboard/{workspaceId}/sizes"
+summary: Get Group Hub section sizes and ages
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubDashboardSizes
+  examples:
+    default:
+      value:
+        section_ids: [ 45001, 45002 ]
+        sizes: { }
+        ages: { }
+  description: Section sizes, age distribution and size prediction.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/settings/patrols/
+action: get
+summary: List patrols
+description: "`get` is also sent as a GET."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: SettingsPatrolsResponse
+  examples:
+    get:
+      summary: Patrols
+      value:
+        patrols:
+          - patrolid: "7100001"
+            name: Blue
+          - patrolid: "7100002"
+            name: Green
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

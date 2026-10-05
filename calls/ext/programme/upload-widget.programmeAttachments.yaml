@@ -1,0 +1,15 @@
+kind: ext-action
+path: /ext/programme/
+uses:
+  template: upload-widget
+  prefix: programmeAttachments
+  params:
+    section_id:
+      type: string
+    id:
+      type: string
+      description: Meeting (evening) ID.
+    path:
+      type: string
+      description: Always `/`.
+tags: [ Programme ]

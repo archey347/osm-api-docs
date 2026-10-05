@@ -1,0 +1,26 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          message:
+            type: string
+            nullable: true
+            description: When set, shown instead of the census status.
+          completed:
+            type: boolean
+          invoices:
+            type: array
+            items:
+              type: object
+              properties:
+                invoice_id: { }
+                paid: { }
+                date_paid: { }
+                currency:
+                  type: string
+                total_cost: { }
+              additionalProperties: true
+        additionalProperties: true

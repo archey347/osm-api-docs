@@ -1,0 +1,23 @@
+kind: ext-action
+method: POST
+path: /ext/settings/terms/
+action: deleteTerm
+summary: Delete a term
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    term_id:
+      type: string
+  example:
+    section_id: "45001"
+    term_id: "9200001"
+response:
+  schema:
+    $ref: SettingsTermsResponse
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

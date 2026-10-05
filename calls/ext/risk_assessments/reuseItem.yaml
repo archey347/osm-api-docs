@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/risk_assessments/
+action: reuseItem
+summary: Reuse a risk assessment item
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    type:
+      type: string
+      description: "See `type` on the GET operation."
+    associated_id:
+      type: string
+      description: Target meeting, activity or event ID.
+    id:
+      type: string
+      description: A risk assessment item ID.
+    mode:
+      type: string
+      description: "Observed `copy` and `convert`; the value that links instead of copying was not captured."
+  example:
+    section_id: "45001"
+    associated_id: "9500002"
+    type: meeting
+    id: "6100001"
+    mode: copy
+response:
+  schema:
+    $ref: RiskAssessmentWriteResult
+  envelope: true
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

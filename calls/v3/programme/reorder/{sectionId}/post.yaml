@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/programme/reorder/{sectionId}"
+summary: Reorder meetings
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    order:
+      type: array
+      items:
+        type: string
+      required: true
+      description: Meeting IDs in the new order.
+  example:
+    order: [ "9500002", "9500001" ]
+response:
+  description: Success. The web app ignores the body.
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

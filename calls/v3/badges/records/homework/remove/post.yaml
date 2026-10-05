@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: /v3/badges/records/homework/remove
+summary: Approve or reject a homework submission
+description: "The web app calls `updateSingleRecord` first when approving."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id: { }
+    badge_id: { }
+    column_id:
+      description: Requirement column ID.
+    section_id: { }
+    state:
+      type: string
+      description: "`approved` or `rejected`."
+  example:
+    member_id: "3100001"
+    badge_id: "1001"
+    column_id: "910001"
+    section_id: "45001"
+    state: rejected
+response:
+  schema:
+    $ref: BadgeV3Response
+  examples:
+    ok:
+      summary: Done
+      value: [ ]
+  description: Done. The web app does not read the body.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

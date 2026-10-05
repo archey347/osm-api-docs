@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/retention"
+summary: Save data retention settings
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    retention:
+      type: string
+      required: true
+      description: JSON object of data area to retention period.
+  example:
+    retention: "{}"
+response:
+  schema:
+    $ref: GroupHubUpdatedResult
+  examples:
+    default:
+      value:
+        updated: 2
+  description: Number of sections updated.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

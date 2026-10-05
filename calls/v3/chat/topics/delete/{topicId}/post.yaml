@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/delete/{topicId}"
+summary: Delete a topic
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+body:
+  schema:
+    type: object
+    description: Sent as an empty object.
+response:
+  description: "Success when `status` is true."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

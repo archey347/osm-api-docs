@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/merchants/
+action: renameAccount
+summary: Rename a merchant account
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    accountid:
+      type: string
+    name:
+      type: string
+    sectionid:
+      type: string
+  example:
+    accountid: "9810001"
+    name: Example Scouts account
+    sectionid: "45001"
+response:
+  schema:
+    $ref: FinanceStatusResponseData
+  envelope: true
+sources: [ ext.finances.9f318350fda4d977c688.js ]

@@ -1,0 +1,6 @@
+type: object
+properties:
+  removed_section_ids:
+    type: array
+    items: { }
+additionalProperties: true

@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/categories/section/{sectionId}/visible/from/{fromSectionId}/remove"
+summary: Stop receiving shared categories from a section
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+  fromSectionId:
+    type: string
+    description: Section that shares the categories.
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

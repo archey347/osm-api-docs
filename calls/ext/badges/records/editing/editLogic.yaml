@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: editLogic
+summary: 'Edit a badge''s completion logic'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+    config:
+      type: string
+      description: "JSON object (`editLogic`, `editMinimums`)."
+    modules:
+      type: string
+      description: "JSON (`editLogic`, `editModuleRequirements`)."
+    points:
+      type: string
+      description: "JSON (`editLogic`)."
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    sectionid: "45001"
+    config: "{}"
+    modules: "[]"
+    points: "{}"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: editLogic, editMinimums, editModuleRequirements, editRoleAccess, editBadgeDescription, addBadgeToSection
+      value:
+        ok: true
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

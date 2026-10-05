@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/dashboard/
+action: getNextThings
+summary: Parent portal dashboard
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: MyMemberNextThingsResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          widget_data:
+            "45001":
+              "3100001":
+                "ext/mymember/dashboard/widgets/InvitedEvents":
+                  - event_id: "8100001"
+                    name: Summer Camp
+                    conf_date: "2025-06-01"
+                "ext/mymember/dashboard/widgets/OutstandingPayments":
+                  - schedule_id: "6200001"
+                    currency: GBP
+                    amount: "15.00"
+                    schedule:
+                      name: Termly subscriptions
+          menu_highlight_data: { }
+        meta:
+          sign_tc: false
+  description: Outstanding items per section and member, plus menu highlights.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

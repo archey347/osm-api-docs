@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/sharing/
+action: getMsgs
+summary: Get shared-event messages
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: EventSharingMessages
+  examples:
+    getMsgs:
+      value:
+        eventMsgs:
+          "9600001":
+            - eventname: Summer Camp
+              messageid: "500001"
+              originating_eventid: "9600001"
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

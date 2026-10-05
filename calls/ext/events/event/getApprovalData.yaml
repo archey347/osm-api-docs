@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/events/event/
+action: getApprovalData
+summary: Get an event's approval status
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  event_id:
+    type: string
+    description: Event ID.
+response:
+  schema:
+    $ref: EventApprovalDataData
+  envelope: true
+  examples:
+    getApprovalData:
+      value:
+        automatically_rejected: false
+        approval_status:
+          overall: pending
+        disclaimers: [ ]
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

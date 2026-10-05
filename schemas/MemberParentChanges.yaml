@@ -1,0 +1,31 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        member_id: { }
+        firstname:
+          type: string
+        lastname:
+          type: string
+        photo_guid:
+          type: string
+        changes:
+          type: object
+          description: Column group name to the changed columns.
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              properties:
+                columnname:
+                  type: string
+                originalvalue:
+                  type: string
+                newvalue:
+                  type: string
+              additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

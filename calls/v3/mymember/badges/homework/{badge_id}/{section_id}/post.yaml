@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/badges/homework/{badge_id}/{section_id}"
+summary: Tick or untick a badge requirement done at home
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  badge_id:
+    type: string
+  section_id:
+    type: string
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    column_id:
+      type: string
+      required: true
+      description: "The requirement's `column_id` from `getBadgeRequirements`."
+    state:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+  example:
+    member_id: "3100001"
+    column_id: "8801"
+    state: "true"
+response:
+  description: Saved. The web app then refetches the badge requirements.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

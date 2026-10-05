@@ -1,0 +1,25 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    description: "Error message or `{ message }` object; null on success."
+  data:
+    type: object
+    properties:
+      config:
+        type: object
+        description: "Upload settings (including `upload_limit`) and the action names the widget calls."
+        additionalProperties: true
+      manifest:
+        type: object
+        description: Uploaded files keyed by path.
+        additionalProperties: true
+    additionalProperties: true
+  meta:
+    type: object
+    properties:
+      size:
+        description: Remaining storage.
+    additionalProperties: true
+additionalProperties: true

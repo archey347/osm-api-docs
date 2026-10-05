@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/quartermaster/
+action: getListOfLists
+summary: List quartermaster lists
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  section:
+    type: string
+    required: true
+    description: "Section type, e.g. `scouts`."
+response:
+  schema:
+    $ref: QuartermasterListOfListsResponse
+  envelope: true
+  examples:
+    getListOfLists:
+      value:
+        - id: "7100001"
+          name: Camp kitchen
+          read_only: false
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

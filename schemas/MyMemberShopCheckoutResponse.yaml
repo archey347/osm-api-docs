@@ -1,0 +1,11 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          order_number: { }
+          scheme_id: { }
+          payment_id: { }
+        additionalProperties: true

@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/editing/
+action: getColumnPermissions
+summary: 'Get a badge''s column permissions'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  column_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeColumnPermissions
+  examples:
+    getColumnPermissions:
+      summary: Column permissions
+      value:
+        special_permissions: "yes"
+        permissions:
+          visible: [ leader ]
+          editable: [ leader ]
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

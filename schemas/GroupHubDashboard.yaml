@@ -1,0 +1,43 @@
+type: object
+properties:
+  section_ids:
+    type: array
+    items: { }
+  meetings:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        title: { }
+        meetingdate: { }
+        eveningid: { }
+      additionalProperties: true
+  events:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        title: { }
+        startdate: { }
+        enddate: { }
+      additionalProperties: true
+  outstandingpayments:
+    type: object
+    additionalProperties: true
+  invoices:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+      additionalProperties: true
+  deletable_members:
+    type: object
+    properties:
+      count: { }
+    additionalProperties: true
+additionalProperties: true

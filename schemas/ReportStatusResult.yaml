@@ -1,0 +1,20 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    nullable: true
+    type: object
+    properties:
+      message:
+        type: string
+    additionalProperties: true
+  meta:
+    type: object
+    properties:
+      job:
+        type: object
+        description: "Background job to track (`sendTestNotifications`)."
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

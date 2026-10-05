@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: getIngredients
+summary: List ingredients
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  ingredient_id:
+    type: string
+  search:
+    type: string
+    description: Title text to match.
+response:
+  schema:
+    $ref: RecipeIngredientListResponseData
+  envelope: true
+  examples:
+    getIngredients:
+      value:
+        - ingredient_id: "7710001"
+          title: Example Beans
+          measurement_type: tin
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

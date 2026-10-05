@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/members/email/
+action: getSelectedEmailsFromContacts
+summary: Get selected contacts' email addresses
+tags: [ Email ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: SelectedContactEmails
+  examples:
+    getSelectedEmailsFromContacts:
+      summary: Selected emails for contacts
+      value:
+        emails:
+          "910301":
+            emails: [ "parent@example.org", "guardian@example.org" ]
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            member_id: 910301
+        count: 2
+        blocks: [ ]
+        daily_limit_reached: false

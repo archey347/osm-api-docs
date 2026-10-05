@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/reports/
+action: refreshReport
+summary: Refresh a report
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    dashboard_id:
+      type: string
+    target_section_id:
+      type: string
+      description: "Same as `section_id` except for national section summaries."
+    report_id:
+      type: string
+    mode:
+      type: string
+      description: "The `mode` sent to `loadReports`."
+  example:
+    section_id: "45001"
+    target_section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "910001"
+    mode: /ext/reports/
+response:
+  schema:
+    $ref: ReportStatusResult
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

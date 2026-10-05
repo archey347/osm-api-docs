@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/members/attendance/
+action: settings
+summary: Get attendance display settings
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    description: "Term ID (required for `action=get`)."
+  section:
+    type: string
+    required: true
+    description: "Section type (e.g., `cubs`)."
+response:
+  schema:
+    $ref: AttendanceSettings
+  examples:
+    settings:
+      summary: Register badge display setting
+      value:
+        attendanceBadgeData: dateuk
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

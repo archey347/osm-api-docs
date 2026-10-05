@@ -1,0 +1,11 @@
+path: /ext/risk_assessments/
+method: POST
+summary: Change risk assessments
+description: |-
+  Writes share this path with different `action` values. `addCategory`,
+  `deleteCategory`, `addHazard` and `deleteHazard` edit the section's
+  hazard library; the rest edit the assessments on one meeting, activity
+  or event.
+response: |-
+  Result of the write. `data.id` is the affected assessment item ID
+  for `addItem` and `reuseItem`.

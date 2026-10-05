@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/summary/
+action: printSummary
+summary: Print the badge summary
+description: "`get` returns JSON; `printSummary` returns a document to download."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  mode:
+    type: string
+    enum: [ verbose ]
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+  term_id:
+    type: string
+  type_id:
+    type: string
+    description: Badge type ID.
+response:
+  document: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

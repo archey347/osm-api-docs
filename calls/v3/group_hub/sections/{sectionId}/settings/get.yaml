@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/sections/{sectionId}/settings"
+summary: Get Group Hub managed settings for a section
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: GroupHubSectionSettings
+  examples:
+    default:
+      value:
+        follows_new_settings: false
+        domains:
+          - domain: terms_schedule
+            synced: true
+            can_change: true
+            previewable: false
+            group_value: ""
+            section_value: ""
+  description: Settings domains and whether the section follows the workspace for each.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

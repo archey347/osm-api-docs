@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/items/{itemId}"
+summary: Update an item
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  itemId:
+    type: string
+    description: Item ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+    expense_category_id: { }
+    income_category_id: { }
+    expense_cardholder_id: { }
+  example:
+    name: Summer camp
+    expense_category_id: 3100041
+    income_category_id: 3100040
+    expense_cardholder_id: 0
+response:
+  schema:
+    $ref: AccountingItemSaved
+  examples:
+    default:
+      value:
+        id: 3100080
+  description: "`data.id` is the item."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

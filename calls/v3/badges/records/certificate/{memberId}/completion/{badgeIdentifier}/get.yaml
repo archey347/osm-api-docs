@@ -1,0 +1,19 @@
+kind: v3-route
+method: GET
+path: "/v3/badges/records/certificate/{memberId}/completion/{badgeIdentifier}"
+summary: Download a badge completion certificate
+description: "Opened in a new window; returns a document, not JSON."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  memberId:
+    type: string
+  badgeIdentifier:
+    type: string
+    description: "Badge ID and version as `badge_identifier`, e.g. `1001_0`."
+response:
+  document: true
+  description: Certificate document.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

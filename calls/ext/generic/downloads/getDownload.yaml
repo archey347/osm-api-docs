@@ -1,0 +1,59 @@
+kind: ext-action
+method: GET
+path: /ext/generic/downloads/
+action: getDownload
+summary: Download a generated file
+description: "`getDownload` and `get` return a document (PDF, spreadsheet, ZIP) rather than JSON; the web app opens them in a new window."
+tags: [ Downloads ]
+source:
+  request: inferred
+  response: inferred
+query:
+  type:
+    type: string
+    enum: [ EventSpreadsheet, MemberRecordCard, RecipeMenuCard ]
+    description: Generator to run.
+  section_id:
+    type: string
+    description: "Section ID. `0` for the national HQ badge awards download."
+  format:
+    type: string
+    enum: [ pdf ]
+  event_id:
+    type: string
+  term_id:
+    type: string
+  all:
+    type: string
+    enum: [ "1" ]
+  extra_info:
+    type: string
+    enum: [ "1" ]
+  attendance:
+    type: string
+    enum: [ "Yes", Reserved ]
+    description: "`Yes` for attending, `Reserved` for invited."
+  member_id:
+    type: string
+  includePersonal:
+    type: string
+    enum: [ "1" ]
+  badgesAllAges:
+    type: string
+    enum: [ "1" ]
+  recipe_id:
+    type: string
+  num_people:
+    type: string
+  scaling:
+    type: string
+    description: Percentage, 25 to 200 in the web app.
+  currency:
+    type: string
+    description: "Currency code, e.g. `GBP`."
+response:
+  document: true
+sources:
+  - area.recipes.53c3c66b94a33a6a9bad.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

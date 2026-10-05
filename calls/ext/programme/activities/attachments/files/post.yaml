@@ -1,0 +1,47 @@
+kind: ext-action
+method: POST
+path: /ext/programme/activities/attachments/files/
+summary: Commit uploaded activity attachments
+description: |-
+  `action` is an endpoint name supplied by the attachment widget's
+  config (`endpoints.commitTemp`). Called after `saveActivity` to move
+  files uploaded against a new activity onto the saved one.
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  action:
+    type: string
+    required: true
+    description: "Value of the widget's `endpoints.commitTemp`."
+body:
+  params:
+    id:
+      type: string
+      description: Activity ID the files were uploaded under before saving.
+    associated_id:
+      type: string
+      description: "ID returned by `saveActivity`."
+    activity_id:
+      type: string
+      description: "ID returned by `saveActivity`."
+    activity_unique_id:
+      type: string
+    path:
+      type: string
+      description: "Observed `/`."
+    section_id:
+      type: string
+    edit_section_id:
+      type: string
+  example:
+    id: "0"
+    associated_id: "7100001"
+    path: /
+    activity_unique_id: "7200001"
+    section_id: "45001"
+    edit_section_id: "45001"
+    activity_id: "7100001"
+response:
+  description: Success. The web app ignores the body.

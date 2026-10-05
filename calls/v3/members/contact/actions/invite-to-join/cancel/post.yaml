@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: /v3/members/contact/actions/invite-to-join/cancel
+summary: Cancel an invitation to join a section
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invitation_id:
+      type: string
+      required: true
+  example:
+    invitation_id: "8100001"
+response:
+  description: Cancelled. The web app reads nothing from the response.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

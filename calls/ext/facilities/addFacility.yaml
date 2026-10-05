@@ -1,0 +1,55 @@
+kind: ext-action
+method: POST
+path: /ext/facilities/
+action: addFacility
+summary: Save a facility
+tags: [ Facilities ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    types:
+      type: string
+      description: "`getMarkers`: comma-separated type IDs. `addFacility`: JSON array of type IDs."
+    facilityid:
+      type: string
+      description: "`-1` creates a new facility."
+    core:
+      type: string
+      description: "JSON object with `title`, `description`, `contact`, `link`."
+    lat:
+      type: string
+    lng:
+      type: string
+    facilities:
+      type: string
+      description: JSON object of field values.
+    outside:
+      type: string
+      description: JSON object of field values.
+    inside:
+      type: string
+      description: JSON object of field values.
+    specialneeds:
+      type: string
+      description: JSON object of field values.
+  example:
+    core: "{\"title\":\"Example Campsite\",\"description\":\"\",\"contact\":\"\",\"link\":\"\"}"
+    facilities: "{}"
+    outside: "{}"
+    inside: "{}"
+    specialneeds: "{}"
+    types: "[\"11\"]"
+    lat: "54.9"
+    lng: "-1.6"
+    facilityid: "-1"
+response:
+  schema:
+    $ref: FacilitySaveResponse
+  examples:
+    addFacility:
+      value:
+        ok: true
+        facilityid: 5000001
+sources: [ area.facilities.e75a3e5352d708ac499b.js ]

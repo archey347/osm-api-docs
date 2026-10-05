@@ -1,0 +1,48 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/events/
+action: updateAttendance
+summary: 'Update a member''s event attendance'
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    event_id:
+      type: string
+      required: true
+    attendance:
+      type: string
+      description: "`yes` or `no`."
+    "info[<name>]":
+      type: string
+      description: "One field per event column `name`."
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    event_id: "8100001"
+    attendance: "yes"
+    "info[f_1]": Vegetarian
+response:
+  schema:
+    $ref: MyMemberUpdateAttendanceResponse
+  examples:
+    ok:
+      summary: "`updateAttendanceDetails`, `updatePackedKit`, or `updateAttendance` with a place"
+      value:
+        status: true
+        error: null
+    reserved:
+      summary: "`updateAttendance`: added to the waiting list"
+      value:
+        status: true
+        error: null
+        data: reserved
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

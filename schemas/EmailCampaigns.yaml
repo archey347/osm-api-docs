@@ -1,0 +1,17 @@
+type: array
+items:
+  type: object
+  properties:
+    campaign_id: { }
+    title:
+      type: string
+    template:
+      type: string
+    created_at:
+      type: string
+    last_used:
+      type: string
+      nullable: true
+    has_scheduled_email:
+      type: boolean
+  additionalProperties: true

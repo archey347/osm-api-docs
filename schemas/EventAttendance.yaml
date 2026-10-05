@@ -1,0 +1,22 @@
+type: object
+description: "Dojo item store. Per-member keys follow `structure` (`attending`, `payment`, `f_<id>`, `p<id>`)."
+properties:
+  identifier:
+    type: string
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        scoutid:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        patrolid:
+          type: string
+        attending:
+          type: string
+      additionalProperties: true
+additionalProperties: true

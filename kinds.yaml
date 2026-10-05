@@ -1,0 +1,32 @@
+common:
+  request:
+    headers:
+      X-CSRF: Anti-forgery token from the web app page; sent on every call.
+    post_content_type: application/x-www-form-urlencoded
+    multipart_when: the call's body sets content_type (file uploads)
+  response:
+    content_type: application/json
+    rate_limit_headers: [ X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset ]
+    on_limit: HTTP 429 with a Retry-After header
+    watch_headers: [ X-Deprecated, X-Blocked ]
+kinds:
+  ext-action:
+    description: Legacy /ext/<module>/ endpoint; one path and method serves many actions.
+    route: "`<path>?action=<action>`; the path ends with `/`"
+    envelope: false
+    error:
+      status: false
+      error: "{ message } or a plain string"
+    note: "Many replies are bare (`{ items }`, flat objects, `true`); a call sets `response.envelope: true` when it uses the wrapper."
+  v3-route:
+    description: REST-style /v3 route; GET and POST only, deletes are `POST .../delete`.
+    route: "`<path>` with `{name}` segments in `path_params`"
+    envelope:
+      status: boolean
+      error: "null on success, { message, code } on failure"
+      data: the call's response schema
+      meta: null or an object
+    error:
+      status: false
+      error: "{ message, code }"
+    note: "A call sets `response.envelope: false` when the reply is not wrapped."

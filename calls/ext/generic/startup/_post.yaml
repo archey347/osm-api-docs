@@ -1,0 +1,5 @@
+path: /ext/generic/startup/
+method: POST
+summary: Get startup data (as the web app calls it)
+description: "The web app calls both payload actions with POST and the body below; the response is the same as the GET form."
+response: "Same payloads as the GET form. `data.refresh` is true when the CSRF token is stale and the page should reload."

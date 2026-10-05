@@ -1,0 +1,45 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/{mode}/update/{member_id}"
+summary: Update one member's value on an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  mode:
+    type: string
+    enum: [ attendance, rota, payments ]
+  member_id:
+    type: string
+query:
+  override_attendance:
+    type: string
+    description: "Flag with no value; retry after `event_full_with_reserved` to fill a full event over its reserved list."
+body:
+  params:
+    field:
+      type: string
+      required: true
+      description: "`attending`, `payment`, a custom column key or `rota_<field>`."
+    value:
+      type: string
+      required: true
+  example:
+    field: attending
+    value: "yes"
+response:
+  schema:
+    $ref: EventMemberUpdate
+  examples:
+    default:
+      value:
+        updates:
+          details:
+            f_1: Vegetarian
+  description: |-
+    On `event_full_with_reserved` (event full, reserved list non-empty) `status` is false
+    and `error.code` has that value.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/
+action: saveEmailFromPreference
+summary: Save the preferred sender address
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    from:
+      type: string
+      description: "`Name <address>`."
+    section_id:
+      type: string
+  example:
+    section_id: "45001"
+    from: "Alex Scout <alex.scout@example.org>"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    saveEmailFromPreference:
+      summary: "`data` is the user's updated preferences"
+      value: { }
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

@@ -1,0 +1,19 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/merchants/
+action: deleteAccount
+summary: Delete a merchant account
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+  account_id:
+    type: string
+response:
+  schema:
+    $ref: FinanceStatusResponseData
+  envelope: true
+sources: [ ext.finances.9f318350fda4d977c688.js ]

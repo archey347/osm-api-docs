@@ -1,0 +1,51 @@
+kind: v3-route
+method: POST
+path: /v3/settings/accountpreferences/personaldetails/
+summary: Save personal details
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    first_name:
+      type: string
+      description: Sent from the finance expense card form.
+    last_name:
+      type: string
+      description: Sent from the finance expense card form.
+    dob:
+      type: string
+      format: date
+      description: Sent from the finance expense card form.
+    phone_number:
+      type: string
+      description: Sent from the finance expense card form.
+    line1:
+      type: string
+      required: true
+    line2:
+      type: string
+    city:
+      type: string
+      required: true
+    state:
+      type: string
+      required: true
+    postal_code:
+      type: string
+      required: true
+    from_settings:
+      type: boolean
+      description: "`true` when sent from the settings page."
+  example:
+    first_name: Alex
+    line1: 1 High Street
+    city: Riverside
+    state: Exampleshire
+    postal_code: AB1 2CD
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  description: Response.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js, area.settings.f73c3ef434f40520f0bc.js ]

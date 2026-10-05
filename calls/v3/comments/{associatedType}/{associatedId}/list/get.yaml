@@ -1,0 +1,37 @@
+kind: v3-route
+method: GET
+path: "/v3/comments/{associatedType}/{associatedId}/list"
+summary: List comments on a record
+tags: [ Comments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  associatedType:
+    type: string
+    description: "Kind of record, e.g. `member`, `event`, `meeting`, `task`, `form_completion`, `chat_topic`."
+  associatedId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+  limit:
+    type: integer
+response:
+  schema:
+    $ref: CommentListResponse
+  examples:
+    default:
+      value:
+        - id: 6100001
+          user_id: 3100001
+          user:
+            full_name: Alex Scout
+          comment: Sorted.
+          created_at: "2025-03-10 18:30:00"
+          updated_at: "2025-03-10 18:30:00"
+          local_time: "10 Mar 2025 18:30"
+          engagements: [ ]
+  description: "Comments, with the user's permissions in `meta`. Some callers append extra query params to scope the record."
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

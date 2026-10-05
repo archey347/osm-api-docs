@@ -1,0 +1,27 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      dashboard:
+        type: object
+        properties:
+          name:
+            type: string
+          permissions:
+            type: object
+            properties:
+              create:
+                type: boolean
+              update:
+                type: boolean
+              delete:
+                type: boolean
+            additionalProperties: true
+        additionalProperties: true
+      reports:
+        type: array
+        items:
+          $ref: ReportItem
+    additionalProperties: true
+additionalProperties: true

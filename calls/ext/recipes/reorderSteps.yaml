@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: reorderSteps
+summary: Reorder a recipe's steps
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      description: "Not sent by the ingredient actions other than `addIngredientToRecipe`. `editRecipe` uses `-1` to create a new recipe."
+    "step_ids[n]":
+      type: string
+      description: "One field per step, `n` being the new position from 0."
+  example:
+    recipe_id: "7700001"
+    "step_ids[0]": "7720002"
+    "step_ids[1]": "7720001"
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

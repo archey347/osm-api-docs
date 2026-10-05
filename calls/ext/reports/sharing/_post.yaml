@@ -1,0 +1,5 @@
+path: /ext/reports/sharing/
+method: POST
+summary: Share reports between sections
+description: "`getSharedReports` is a read-only listing."
+response: "Result depends on `action`."

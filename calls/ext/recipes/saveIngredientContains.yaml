@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: saveIngredientContains
+summary: Save allergens an ingredient contains
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    ingredient_id:
+      type: string
+    contains:
+      type: string
+      description: JSON-encoded array of allergen tags.
+  example:
+    ingredient_id: "7710001"
+    contains: "[\"gluten\"]"
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

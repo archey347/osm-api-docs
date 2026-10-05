@@ -1,0 +1,18 @@
+kind: ext-action
+path: /ext/finances/shop/photos/
+uses:
+  template: upload-widget
+  params:
+    path:
+      type: string
+      description: Always `/`.
+    section_id:
+      type: string
+    id:
+      type: string
+      description: Shop item ID.
+    associated_id:
+      type: string
+      description: ID of the saved item the temp photos attach to.
+tags: [ Finances ]
+sources: [ area.finances_shop.27a67dba3a722302722e.js ]

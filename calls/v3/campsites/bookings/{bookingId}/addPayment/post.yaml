@@ -1,0 +1,46 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/bookings/{bookingId}/addPayment"
+summary: Record a manual payment
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bookingId:
+    type: string
+    description: Booking ID.
+body:
+  params:
+    amount:
+      type: number
+      required: true
+      description: Negative for a refund.
+    method:
+      type: string
+      enum: [ cheque, bacs, cash, card ]
+      required: true
+    type:
+      type: string
+      enum: [ deposit, balance, refund ]
+      required: true
+    details:
+      type: string
+      description: Notes, at most 255 characters.
+    paid_at:
+      type: string
+      required: true
+      description: Date paid.
+  example:
+    amount: 25
+    method: bacs
+    type: deposit
+    details: Reference EX123
+    paid_at: "2026-07-01"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.

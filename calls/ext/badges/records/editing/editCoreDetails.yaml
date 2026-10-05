@@ -1,0 +1,64 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: editCoreDetails
+summary: 'Edit a badge''s core details'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+    type_id:
+      description: "Badge type ID (see `getAvailableBadges`)."
+    name:
+      description: "Badge name (`editCoreDetails`)."
+    description:
+      description: "Leader-facing description (`editBadgeDescription`, `editCoreDetails`)."
+    parents_description:
+      description: "Parent-facing description (`editBadgeDescription`, `editCoreDetails`)."
+    group_name:
+      description: "Badge group (`editBadgeDescription`, `editCoreDetails`). Empty for no group."
+    myscout:
+      description: "Parent portal visibility (`editCoreDetails`); observed `yes-progress`."
+    myscoutShirt:
+      description: "Parent portal shirt setting (`editCoreDetails`)."
+    audit:
+      type: string
+      description: "`yes` or `no` (`editCoreDetails`)."
+    use_points:
+      type: string
+      description: "`yes` or `no` (`editCoreDetails`)."
+    base_version:
+      description: "Version the edit was based on, sent when saving a new version (`editCoreDetails`)."
+    clone:
+      description: "Save as a copy (`editCoreDetails`)."
+    "sections[{sectionType}]":
+      type: string
+      description: "Section type to enable the badge for, repeated as the type itself, or `false` when not selected (`editCoreDetails`)."
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    sectionid: "45001"
+    type_id: "1"
+    name: Teamwork
+    description: Work as part of a team.
+    parents_description: ""
+    group_name: ""
+    myscout: yes-progress
+    audit: "no"
+    use_points: "no"
+    "sections[cubs]": cubs
+response:
+  schema:
+    $ref: BadgeEditCoreDetailsResponse
+  examples:
+    editCoreDetails:
+      summary: editCoreDetails
+      value:
+        badge_id: 1002
+        badge_version: 1
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

@@ -1,0 +1,211 @@
+type: object
+properties:
+  site_type:
+    type: string
+    description: "Site variant identifier (e.g., `scouts`)."
+  site_folder:
+    type: string
+    description: Server-side folder path for site-specific assets.
+  siteConfig:
+    type: object
+    description: Global feature flags, upgrade pricing, section type definitions, and configuration.
+    properties:
+      expense_cards:
+        type: object
+        additionalProperties: true
+      online_payment_gateways:
+        type: array
+        items:
+          type: string
+      beta:
+        type: array
+        description: Beta features available for opt-in.
+        items:
+          type: object
+          properties:
+            key:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            role:
+              type: string
+            release_ts:
+              type: integer
+            feedback:
+              type: object
+              additionalProperties: true
+          additionalProperties: true
+      boltons:
+        type: object
+        description: Short-code to bolton name mapping.
+        additionalProperties:
+          type: string
+      upgrade_config:
+        type: object
+        description: Subscription feature prices, keyed by feature name.
+        additionalProperties:
+          type: object
+          properties:
+            price:
+              type: number
+      sms_prices:
+        type: object
+        description: SMS bundle prices keyed by credit quantity.
+        additionalProperties:
+          type: number
+      recipes:
+        type: object
+        description: Enumerated values for the recipe planner.
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      section_types:
+        type: object
+        description: Human-readable section type names keyed by country code then section type slug.
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: string
+      badge_types:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      section_type_setup:
+        type: object
+        description: Per-section-type capability flags and badge definitions.
+        additionalProperties:
+          type: object
+          additionalProperties: true
+      kill:
+        type: object
+        description: "Feature kill-switch states (all `false` means all services active)."
+        additionalProperties:
+          type: boolean
+      buy_links:
+        type: object
+        additionalProperties:
+          type: string
+      risk_assessments_config:
+        type: object
+        additionalProperties: true
+      communicatable_contact_groups:
+        type: object
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: string
+      email_template_colours:
+        type: array
+        items:
+          type: string
+      campaign_template_designs:
+        type: array
+        items:
+          type: string
+      remove_member_allowed_functions:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      default_currency:
+        type: string
+        description: ISO currency code.
+      language:
+        type: string
+      available_languages:
+        type: object
+        additionalProperties: true
+      hasOnlinePayments:
+        type: boolean
+      events_attachments_quota:
+        type: integer
+      email_list_domain:
+        type: string
+      risk_assessments:
+        type: boolean
+    additionalProperties: true
+  patrolLabels:
+    type: object
+    description: Patrol/group label names per section type.
+    additionalProperties:
+      type: object
+      properties:
+        patrol:
+          type: string
+        patrols:
+          type: string
+  patrolRoles:
+    type: object
+    description: |-
+      Patrol role definitions per section type. Youth sections use an array ordered by level;
+      adult sections use an object keyed by level number.
+    additionalProperties:
+      oneOf:
+        - type: array
+          items:
+            type: object
+            additionalProperties: true
+        - type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+  extraSectionTypes:
+    type: object
+    description: Display names for non-standard section types.
+    additionalProperties:
+      type: string
+  featurelevels:
+    type: object
+    description: Minimum subscription level required to access each feature.
+    additionalProperties:
+      type: integer
+  changedlevels:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  availableRoles:
+    type: object
+    description: Global role slugs mapped to display names.
+    additionalProperties:
+      type: string
+  globalAccessRoles:
+    type: array
+    description: Access control rules granting global roles specific access types.
+    items:
+      type: object
+      properties:
+        user_role:
+          type: string
+        access_type:
+          type: string
+        id:
+          type: string
+      additionalProperties: true
+  terminology:
+    type: object
+    description: Hierarchy level names for the site (Group, District, County, etc.).
+    additionalProperties:
+      type: string
+  forms:
+    type: array
+    description: Dynamic form definitions (accident forms, medication history, etc.).
+    items:
+      type: object
+      additionalProperties: true
+  default_terminology:
+    type: object
+    additionalProperties:
+      type: string
+  leaderPatrolIds:
+    type: array
+    description: Patrol IDs reserved for leaders (typically -2 and -3).
+    items:
+      type: integer
+additionalProperties: true

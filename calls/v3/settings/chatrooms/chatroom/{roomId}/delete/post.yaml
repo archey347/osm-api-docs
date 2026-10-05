@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/settings/chatrooms/chatroom/{roomId}/delete"
+summary: Delete a chat room
+description: "`data.deleted` is true when the room is removed outright, otherwise this section is only unshared from it."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  roomId:
+    type: string
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        deleted: true
+  description: Response.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

@@ -1,0 +1,5 @@
+path: /ext/badges/stock/
+method: POST
+summary: Update or share badge stock
+description: "`acceptSharedStock`, `rejectSharedStock` and `shareStock` return the section's refreshed configuration in `all_configs`."
+response: "Share actions return `all_configs`; others return `{}` or an `error` message."

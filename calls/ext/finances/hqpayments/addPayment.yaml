@@ -1,0 +1,49 @@
+kind: ext-action
+method: POST
+path: /ext/finances/hqpayments/
+action: addPayment
+summary: Add a payment
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    event_id:
+      type: string
+    event_date:
+      type: string
+    payment_name:
+      type: string
+      description: "3-16 characters."
+    payment_date:
+      type: string
+      format: date
+      description: Due date, must be in the future.
+    payment_amount:
+      type: string
+    payment_code:
+      type: string
+    payment_shared_event:
+      type: string
+    payment_existing_attendees:
+      type: string
+      description: "`existing` to apply to attendees already on the event."
+  example:
+    section_id: "45001"
+    event_id: "9300001"
+    payment_name: Camp fee
+    payment_date: "2024-12-01"
+    payment_amount: "25.00"
+    payment_existing_attendees: existing
+response:
+  schema:
+    $ref: FinanceStatusResponseData
+  envelope: true
+  examples:
+    addPayment:
+      summary: addPayment
+      value: true
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

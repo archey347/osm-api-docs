@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/invitations"
+summary: Invite sections to the workspace
+description: "Sections the caller administers join immediately; the rest are invited."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    section_ids:
+      type: string
+      required: true
+      description: JSON array of section IDs.
+  example:
+    section_ids: "[45002]"
+response:
+  schema:
+    $ref: GroupHubInvitationsResult
+  examples:
+    default:
+      value:
+        joined: [ 45002 ]
+        invited: [ ]
+  description: Which sections joined and which were invited.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

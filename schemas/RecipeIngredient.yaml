@@ -1,0 +1,16 @@
+type: object
+properties:
+  ingredient_id:
+    type: string
+  title:
+    type: string
+  measurement_type:
+    type: string
+  measurement_description:
+    type: string
+  quantity:
+    description: Present on a recipe's ingredient lines.
+  cost:
+    type: number
+    description: "`-1` when no price is known."
+additionalProperties: true

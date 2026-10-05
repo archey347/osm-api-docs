@@ -1,0 +1,6 @@
+type: object
+properties:
+  idealsize: { }
+  idealleaders: { }
+  numleaders: { }
+additionalProperties: true

@@ -1,0 +1,7 @@
+path: /ext/mymember/events/
+method: GET
+summary: Events for a member
+description: |-
+  `getDetails` lists events, `getEventDetails` returns one, and `getCalendarFeed`
+  returns the member's calendar feed URL.
+response: Event data.

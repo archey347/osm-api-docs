@@ -1,0 +1,32 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByText
+summary: Search activities by text
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  q:
+    type: string
+  section:
+    type: string
+    description: "Section type; limits results to activities suitable for it."
+  section_id:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+  examples:
+    searchBy:
+      summary: Search results
+      value:
+        items:
+          - activityid: "7100001"
+            activity_unique_id: "7200001"
+            title: Knots Relay
+            description: Teams race to tie set knots.
+            icons: [ liked ]
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

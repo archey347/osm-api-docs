@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: deleteActivityFromEvening
+summary: Remove an activity from a meeting
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    eveningid:
+      type: string
+    sectionid:
+      type: string
+    activityid:
+      type: string
+  example:
+    sectionid: "45001"
+    eveningid: "9500001"
+    activityid: "7100001"
+response:
+  schema:
+    $ref: ProgrammeMeetingResponse
+  examples:
+    meetingWithActivities:
+      summary: "`deleteActivityFromEvening`, `saveActivityNotes`: the updated meeting"
+      value:
+        meeting:
+          eveningid: "9500001"
+          sectionid: "45001"
+          title: Camp Skills Night
+          meetingdate: "2024-11-01"
+          activities:
+            - activityid: "7100001"
+              activity_unique_id: "7200001"
+              title: Knots Relay
+              notes: Bring spare ropes.
+              programmes_at_home: "0"
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

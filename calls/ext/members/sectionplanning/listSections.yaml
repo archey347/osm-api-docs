@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/members/sectionplanning/
+action: listSections
+summary: List sections for planning
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  page:
+    type: string
+    description: "Observed `transfer`."
+  showUnactivated:
+    type: string
+    enum: [ "true" ]
+response:
+  schema:
+    $ref: MemberSectionList
+  examples:
+    listSections:
+      value:
+        items:
+          - sectionid: "45001"
+            name: Cubs
+sources: [ area.support.5de8b0292f92df427461.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

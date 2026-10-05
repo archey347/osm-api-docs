@@ -1,0 +1,51 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/payments/
+action: getSchedule
+summary: Get a payment schedule
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+  schedule_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberPaymentScheduleResponse
+  examples:
+    getSchedule:
+      value:
+        status: true
+        error: null
+        data:
+          gocardless_api_enabled: true
+          currency: GBP
+          scheme:
+            scheme_id: "6200001"
+            name: Termly subscriptions
+            description: ""
+            gateway: gocardless
+          member:
+            direct_debit: none
+          payment_methods:
+            - id: 6400001
+          payments:
+            - payment_id: "6300001"
+              name: Autumn term
+              description: ""
+              amount: "15.00"
+              status: overdue
+              details: ""
+              last_updated: "2025-09-01"
+              due_date: "2025-09-15"
+              pay_now: true
+              pay_days: 0
+              pay_on: null
+sources: [ area.mymember_shop.910bc084ab1717fc96c3.js, ext.mymember.eb573b16408e09aef101.js ]

@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/dashboard/thanks/{section_id}"
+summary: Send a thank-you message to a section's leaders
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+body:
+  params:
+    message:
+      type: string
+      required: true
+      description: Between 10 and 950 characters.
+    image:
+      type: string
+      required: true
+      description: Card image number, 1 to 16.
+  example:
+    message: Thank you for a brilliant camp.
+    image: "3"
+response:
+  description: Message sent.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

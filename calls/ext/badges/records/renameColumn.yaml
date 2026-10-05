@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: renameColumn
+summary: Rename a badge column
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    name:
+      description: "New column name (`renameColumn`)."
+    description:
+      description: "New column description (`renameColumn`)."
+    column_id:
+      type: string
+    section_id:
+      type: string
+    type:
+      type: string
+      enum: [ standard, custom ]
+  example:
+    column_id: "910001"
+    section_id: "45001"
+    type: standard
+    name: Work with others
+    description: Take part in a group task.
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    status:
+      summary: deleteColumnFromBadge, renameColumn, deleteBadgeLink
+      value:
+        status: true
+        error: null
+        data: [ ]
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

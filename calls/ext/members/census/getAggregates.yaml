@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/members/census/
+action: getAggregates
+summary: Get census totals by category
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+  patrols:
+    type: string
+    description: "Comma-separated patrol IDs to include (`0` for members with no patrol)."
+response:
+  schema:
+    $ref: CensusAggregates
+  examples:
+    getAggregates:
+      summary: Counts by category, value and gender
+      value:
+        Age:
+          "10":
+            Male: 2
+            Female: 3
+            Self-identify: 0
+            "Prefer not to say": 0
+            Total: 5
+        Total:
+          Total:
+            Male: 2
+            Female: 3
+            Self-identify: 0
+            "Prefer not to say": 0
+            Total: 5
+sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

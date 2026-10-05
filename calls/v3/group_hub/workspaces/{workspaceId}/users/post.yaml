@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/users"
+summary: Add a user to the workspace by email
+description: "Called again with `name` when the first response has `needs_name`."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    email:
+      type: string
+      required: true
+    name:
+      type: string
+      description: Needed when no user exists for the email.
+  example:
+    email: "alex@example.com"
+response:
+  schema:
+    $ref: GroupHubAddUserResult
+  examples:
+    default:
+      value:
+        user_id: 100001
+  description: Either asks for a name or returns the user.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

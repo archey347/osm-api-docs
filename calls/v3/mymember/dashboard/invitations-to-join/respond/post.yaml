@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: /v3/mymember/dashboard/invitations-to-join/respond
+summary: Respond to an invitation to join a section
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invitation_id:
+      type: string
+      required: true
+    response:
+      type: string
+      enum: [ accepted, still_interested, stay_on_list, remove_from_list ]
+      required: true
+      description: "`still_interested` and `remove_from_list` also answer a waiting-list survey (an invitation with no `to_section_id`)."
+    notes:
+      type: string
+      description: "Free text, at most 1000 characters; sent empty unless the parent chose to stay on the list."
+  example:
+    invitation_id: "7200001"
+    response: stay_on_list
+    notes: Please keep us on the list.
+response:
+  description: "Response recorded; the web app then reloads."
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

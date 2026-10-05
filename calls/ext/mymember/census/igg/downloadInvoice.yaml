@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/census/igg/
+action: downloadInvoice
+summary: Download a census invoice
+description: "`downloadInvoice` and `downloadReceipt` return a document (opened in a new window) and take `invoice_id`."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+  invoice_id:
+    type: string
+response:
+  document: true
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

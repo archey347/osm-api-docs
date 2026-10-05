@@ -1,0 +1,35 @@
+kind: v3-route
+method: POST
+path: "/v3/risk_assessments/reviews/{sectionId}"
+summary: Record a risk assessment review
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+body:
+  params:
+    items:
+      type: string
+      required: true
+      description: JSON array containing the review item taken from the list response.
+    reviewed_on:
+      type: string
+      required: true
+      description: "`YYYY-MM-DD`."
+    next_review_on:
+      type: string
+      description: "`YYYY-MM-DD`."
+    notes:
+      type: string
+  example:
+    items: "[{\"type\":\"programme\",\"associated_id\":\"45001\"}]"
+    reviewed_on: "2025-01-10"
+    next_review_on: "2026-01-10"
+    notes: No changes needed.
+response:
+  description: Success. The web app ignores the body.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

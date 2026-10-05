@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/settings/edit_section/
+action: updateSectionType
+summary: Change a section's type
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    type:
+      type: string
+      description: Section type.
+  example:
+    section_id: "45001"
+    type: cubs
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

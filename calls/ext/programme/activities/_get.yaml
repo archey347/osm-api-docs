@@ -1,0 +1,10 @@
+path: /ext/programme/activities/
+method: GET
+summary: Programme activity library
+description: |-
+  Activity library reads share this path with different `action` values.
+  The `searchBy*` actions all return an `items` list of activities.
+response: |-
+  Activity library response. `getActivity` returns `false` when the
+  activity is not found. `printActivity` returns a printable document
+  rather than JSON (format not confirmed).

@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/quartermaster/
+action: getListSharingData
+summary: Get a list's sharing data
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      required: true
+    section:
+      type: string
+      description: "Section type, e.g. `scouts`. Not sent by `acceptLists`/`rejectLists`."
+    listid:
+      type: string
+      description: "Omit on `saveListDetails` to create a list."
+  example:
+    section: scouts
+    sectionid: "3100001"
+    listid: "7100001"
+response:
+  schema:
+    $ref: QuartermasterActionResponse
+  envelope: true
+  examples:
+    getListSharingData:
+      value:
+        - sectionid: "3100002"
+          name: Alex Section
+          access: read
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

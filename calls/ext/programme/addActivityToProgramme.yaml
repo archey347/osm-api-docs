@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: addActivityToProgramme
+summary: Add an activity to a meeting
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    activityid:
+      type: string
+    evening_id:
+      type: string
+    activity_unique_id:
+      type: string
+      description: "`0` when not known."
+    notes:
+      type: string
+  example:
+    activityid: "7100001"
+    sectionid: "45001"
+    evening_id: "9500001"
+    notes: ""
+    activity_unique_id: "0"
+response:
+  schema:
+    $ref: ProgrammeAddActivityResult
+  examples:
+    addActivityToProgramme:
+      summary: "`addActivityToProgramme`: `result` is 0 on success"
+      value:
+        result: 0
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

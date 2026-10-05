@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/comments/{associatedType}/{associatedId}/add/"
+summary: Add a comment
+tags: [ Comments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  associatedType:
+    type: string
+  associatedId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    comment:
+      type: string
+      minLength: 3
+      maxLength: 5000
+      required: true
+    uploads_guid:
+      type: string
+      description: Only when the record supports uploads.
+  example:
+    comment: Sorted.
+response:
+  description: "Success when `status` is true."
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

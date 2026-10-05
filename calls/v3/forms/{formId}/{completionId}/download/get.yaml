@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/forms/{formId}/{completionId}/download"
+summary: Download a form completion
+description: "Opened in a new window; returns a document, not JSON."
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+  completionId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  document: true
+  description: Document download.
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

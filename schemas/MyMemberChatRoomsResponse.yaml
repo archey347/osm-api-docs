@@ -1,0 +1,21 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            mode:
+              type: string
+              description: "`chat`, `topic` or `recruitment`."
+            config:
+              type: object
+              additionalProperties: true
+            userHasUnreadMessages: { }
+          additionalProperties: true

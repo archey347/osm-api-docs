@@ -1,0 +1,12 @@
+path: /ext/reports/editor/
+method: POST
+summary: Report editor steps
+description: |-
+  The report editor is a four-step wizard. `initEditor` opens it,
+  `stage1` to `stage4` load a step, and `stageNValidate` submits it.
+  `stage4Validate` saves the report. `deleteReport` first returns
+  `data.shared: true` if other sections use the report; repeat the
+  request with `confirmation` to go ahead.
+response: |-
+  Step content is wizard-specific and not modelled here beyond the
+  common `data` fields. `stage4Validate` returns the saved report.

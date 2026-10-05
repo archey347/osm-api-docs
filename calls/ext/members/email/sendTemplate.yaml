@@ -1,0 +1,78 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/
+action: sendTemplate
+summary: Send an email template
+tags: [ Email ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+body:
+  params:
+    sectionid:
+      type: string
+    subject:
+      type: string
+    current_section_id:
+      type: string
+      description: The section selected in the app.
+    emails:
+      type: string
+      description: "JSON object of member ID to `{ firstname, lastname, member_id, emails }`."
+    edits:
+      type: string
+      description: "JSON object of snippet ID to bit to `{ text }`."
+    campaign_id:
+      type: string
+      description: "Email template (campaign) ID; `0` for none."
+    guid:
+      type: string
+      description: Client-generated GUID for the email.
+    cc:
+      type: string
+    from:
+      type: string
+      description: "`Name <address>`."
+    save_email_from:
+      type: string
+    email_session_key:
+      type: string
+      description: "Always sent as `blank`."
+    draft_email_id:
+      type: string
+      description: Draft to remove once sent.
+    scheduled_email_id:
+      type: string
+      description: "`0` for a new email; an existing ID reschedules it."
+    scheduled_for:
+      type: string
+      description: Send time for a scheduled email.
+    contact_groups:
+      type: string
+      description: JSON array of contact group keys.
+  example:
+    subject: Weekly Meeting Reminder
+    sectionid: "45001"
+    emails: "{\"910301\":{\"firstname\":\"Jamie\",\"lastname\":\"River\",\"member_id\":910301,\"emails\":[\"parent@example.org\"]}}"
+    edits: "{\"0\":{\"0\":{\"text\":\"<p>Don't forget to bring your swimming kit this week!</p>\"}}}"
+response:
+  schema:
+    $ref: EmailSendResult
+  examples:
+    sendTemplate:
+      summary: Email sent
+      value:
+        ok: true
+    sendTemplateScheduled:
+      summary: "`sendTemplate` with `scheduled_for`"
+      value:
+        ok: true
+        scheduled: true
+        scheduled_email_id: 880001
+    sendTemplateError:
+      summary: "`sendTemplate` failure"
+      value:
+        ok: false
+        error: Unable to send.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

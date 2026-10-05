@@ -1,0 +1,35 @@
+type: object
+properties:
+  users:
+    type: array
+    items:
+      type: object
+      properties:
+        userid: { }
+        firstname: { }
+        email: { }
+        pic: { }
+        grant:
+          type: object
+          nullable: true
+          description: Group-wide permissions.
+          properties:
+            permissions:
+              type: object
+              additionalProperties: true
+          additionalProperties: true
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              section_id: { }
+              name: { }
+              is_admin:
+                type: boolean
+              permissions:
+                type: object
+                additionalProperties: true
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

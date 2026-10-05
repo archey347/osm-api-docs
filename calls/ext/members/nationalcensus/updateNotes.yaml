@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/members/nationalcensus/
+action: updateNotes
+summary: Update a census invoice's notes
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invoice_id:
+      type: string
+      description: "Every action except `complete`."
+    notes:
+      type: string
+    mode:
+      type: string
+      enum: [ public, internal ]
+      description: Which notes field is edited.
+  example:
+    invoice_id: "7100001"
+    notes: Paid by cheque.
+    mode: internal
+response:
+  schema:
+    $ref: OkResponse
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

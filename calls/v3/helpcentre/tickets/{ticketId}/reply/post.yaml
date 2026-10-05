@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/tickets/{ticketId}/reply"
+summary: Reply to a support ticket
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  ticketId:
+    type: string
+body:
+  params:
+    body:
+      type: string
+      required: true
+      description: At most 10000 characters.
+    uploads_guid:
+      type: string
+      description: "Folder GUID of files uploaded through `/ext/helpcentre/tickets/uploads/`."
+  example:
+    body: Thanks, that worked.
+    uploads_guid: "00000000-0000-0000-0000-000000000000"
+response:
+  description: Response body is not read by the web app.
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

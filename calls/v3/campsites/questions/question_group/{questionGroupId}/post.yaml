@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/questions/question_group/{questionGroupId}"
+summary: Add a question to a group
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionGroupId:
+    type: string
+    description: Question group ID.
+body:
+  params:
+    question:
+      type: string
+      required: true
+      description: "10 to 45 characters."
+  example:
+    question: "Any allergies?"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

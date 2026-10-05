@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/cal/
+action: getFeedInformation
+summary: Get the existing calendar feed
+description: "`getFeedInformation` returns the existing feed URL (`data.existing_feed`) or none, `generateFeed` creates it, `deleteFeed` removes it (the response has no `data`)."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    feed_type:
+      type: string
+      required: true
+      description: "Seen as `Events`, `Programme`, `CampsiteBookings`, `CampsiteItemBookings`, `CampsiteInstructorRota`."
+    feed_identifier:
+      type: string
+      required: true
+      description: "Seen as `events-main`, `programme-main`, `campsite-item-bookings-{item_id}`."
+  example:
+    section_id: "45001"
+    feed_type: Events
+    feed_identifier: events-main
+response:
+  schema:
+    $ref: CalendarFeedResponse
+  envelope: true
+  examples:
+    getFeedInformation:
+      summary: No feed yet
+      value: { }
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

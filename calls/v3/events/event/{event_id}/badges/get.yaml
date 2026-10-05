@@ -1,0 +1,19 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/badges"
+summary: List badge links for an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: Badge links.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

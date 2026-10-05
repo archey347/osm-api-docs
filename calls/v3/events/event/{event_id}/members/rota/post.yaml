@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/rota"
+summary: Configure the event's parent rota
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    mode:
+      type: string
+      required: true
+      description: "`disabled` turns the rota off."
+    quantity_required:
+      type: string
+      description: "Helpers needed; at least 1 unless disabled."
+    details:
+      type: string
+  example:
+    mode: disabled
+    quantity_required: "0"
+    details: ""
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: "Rota saved; on failure `status` is false."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

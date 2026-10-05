@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_account/{bankAccountId}/import/layout"
+summary: Get CSV import layout
+description: Validates the previously uploaded CSV and returns its column layout.
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        success: true
+        layout:
+          - target_field: date
+  description: "`data.success` is false with `data.error` when the uploaded file is invalid."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

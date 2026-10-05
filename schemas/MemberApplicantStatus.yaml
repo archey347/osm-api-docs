@@ -1,0 +1,9 @@
+type: object
+properties:
+  errors:
+    type: array
+    description: "Groups of missing columns; each inner list is alternatives of which one must be filled."
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

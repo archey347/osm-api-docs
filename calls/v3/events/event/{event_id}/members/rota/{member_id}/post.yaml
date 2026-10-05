@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/rota/{member_id}"
+summary: Save a member's rota note
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  member_id:
+    type: string
+body:
+  params:
+    column:
+      type: string
+      enum: [ rota_help, rota_notes ]
+      required: true
+    value:
+      type: string
+      required: true
+  example:
+    column: rota_notes
+    value: Can help Saturday only
+response:
+  schema:
+    $ref: EventPayloadData
+  description: "Saved; the app ignores the body."

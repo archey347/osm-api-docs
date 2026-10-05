@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/programme/share/
+action: accept
+summary: Accept a shared programme
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Receiving section ID.
+body:
+  params:
+    startdate:
+      type: string
+      description: "Date the imported programme starts from, `YYYY-MM-DD`."
+    starttime:
+      type: string
+      description: "Meeting start time, `HH:MM`."
+    endtime:
+      type: string
+      description: "Meeting end time, `HH:MM`."
+  example:
+    startdate: "2025-01-10"
+    starttime: "18:00"
+    endtime: "19:30"
+response:
+  schema:
+    $ref: ProgrammeShareAcceptResult
+  examples:
+    warn:
+      summary: Some meetings could not be imported
+      value:
+        warn: Some meetings could not be imported.
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

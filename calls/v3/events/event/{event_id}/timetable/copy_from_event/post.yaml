@@ -1,0 +1,17 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/timetable/copy_from_event"
+summary: Copy the timetable from the shared template event
+description: "Replaces this event's timetable; no body."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventTimetableEntries
+  description: "New entries in `data.entries`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

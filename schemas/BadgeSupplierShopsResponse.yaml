@@ -1,0 +1,18 @@
+type: object
+properties:
+  shops:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        name:
+          type: string
+        legacy_integration:
+          type: boolean
+        test_mode:
+          type: boolean
+        selectable:
+          type: boolean
+      additionalProperties: true
+additionalProperties: true

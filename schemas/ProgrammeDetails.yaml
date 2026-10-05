@@ -1,0 +1,11 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  badgelinks:
+    type: object
+    additionalProperties: true
+additionalProperties: true

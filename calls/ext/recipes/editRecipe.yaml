@@ -1,0 +1,50 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: editRecipe
+summary: Create or update a recipe
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      description: "Not sent by the ingredient actions other than `addIngredientToRecipe`. `editRecipe` uses `-1` to create a new recipe."
+    section_id:
+      type: string
+    title:
+      type: string
+    description:
+      type: string
+    cooking_time:
+      type: string
+      description: A number.
+    difficulty:
+      type: string
+    meals:
+      type: string
+      description: JSON-encoded array.
+    methods:
+      type: string
+      description: JSON-encoded array.
+  example:
+    recipe_id: "-1"
+    section_id: "3100001"
+    title: Example Chilli
+    description: A simple camp chilli.
+    cooking_time: "30"
+    difficulty: easy
+    meals: "[\"dinner\"]"
+    methods: "[\"hob\"]"
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+  examples:
+    editRecipe:
+      summary: "Also `createVariation`"
+      value:
+        recipe_id: "7700002"
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

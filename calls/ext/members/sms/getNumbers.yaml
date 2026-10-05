@@ -1,0 +1,46 @@
+kind: ext-action
+method: POST
+path: /ext/members/sms/
+action: getNumbers
+summary: Count the numbers a text would reach
+description: "`getNumbers` is a read: it counts recipients and remaining credits for the given members."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+  type:
+    type: string
+    description: "Observed `all` and empty."
+  gdb:
+    type: string
+    description: "Observed `1`."
+  group:
+    type: string
+    description: "Observed `y`."
+  i:
+    type: string
+    description: "Observed `1`."
+body:
+  params:
+    scouts:
+      type: string
+      description: Comma-separated member IDs.
+    contactGroups:
+      type: string
+      description: JSON array of contact group keys.
+  example:
+    scouts: "3100001,3100002"
+    contactGroups: "[\"1\",\"2\"]"
+response:
+  schema:
+    $ref: MemberSmsNumbers
+  examples:
+    getNumbers:
+      value:
+        numbers: 3
+        members: 2
+        sms_remaining: 120
+sources: [ ext.dashboard.82a61c008183022fe2cd.js, ext.members.ca95317ad56b2f22a5e5.js ]

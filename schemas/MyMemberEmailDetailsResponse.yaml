@@ -1,0 +1,33 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          subject:
+            type: string
+          sent_time:
+            type: string
+          from:
+            type: string
+          from_email:
+            type: string
+          content:
+            type: string
+            description: HTML body.
+          user_photo: { }
+          has_attachments: { }
+          to:
+            type: array
+            items:
+              type: object
+              properties:
+                to:
+                  type: string
+                status:
+                  description: "`true` once processed, otherwise a status string."
+                time:
+                  type: string
+              additionalProperties: true
+        additionalProperties: true

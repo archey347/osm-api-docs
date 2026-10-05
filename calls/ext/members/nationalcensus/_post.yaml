@@ -1,0 +1,7 @@
+path: /ext/members/nationalcensus/
+method: POST
+summary: National census writes
+description: |-
+  National census writes share this path with different `action` values.
+  `complete` with `checkOnly=true` validates without submitting.
+response: Action result.

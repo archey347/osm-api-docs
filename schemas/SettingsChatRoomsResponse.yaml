@@ -1,0 +1,7 @@
+type: object
+properties:
+  chat_rooms:
+    type: array
+    items:
+      $ref: SettingsChatRoom
+additionalProperties: true

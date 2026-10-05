@@ -1,0 +1,45 @@
+kind: v3-route
+method: POST
+path: "/v3/kit/items/{itemId}"
+summary: Save a kit item
+tags: [ Kit ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  itemId:
+    type: string
+    description: "Kit item ID. `0` creates a new item."
+body:
+  params:
+    heading:
+      type: string
+      required: true
+    name:
+      type: string
+      required: true
+    description:
+      type: string
+    multiple:
+      type: string
+      enum: [ "true", "false" ]
+    purchase_link:
+      type: string
+    associated_type:
+      type: string
+      required: true
+      description: "e.g. `event`."
+    section_id:
+      type: string
+      required: true
+  example:
+    heading: Cooking
+    name: Camp stove
+    description: Two-burner gas stove.
+    multiple: "false"
+    purchase_link: ""
+    associated_type: event
+    section_id: "3100001"
+response:
+  description: "Success when `status` is true."
+sources: [ ext.kit.92ed48541329641aa295.js ]

@@ -1,0 +1,32 @@
+kind: v3-route
+method: GET
+path: /v3/badges/records/homework/members
+summary: List members' homework submissions for a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  badge_id:
+    type: string
+  badge_version:
+    type: string
+  section_id:
+    type: string
+  term_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeHomeworkMembersResponse
+  examples:
+    members:
+      summary: Members
+      value:
+        - scout_id: 3100001
+          firstname: Jamie
+          lastname: River
+          uploads: 2
+          covered_requirements: [ 910001 ]
+          updated_at: "2025-01-14 19:05:00"
+  description: Members with submissions.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/payments/
+action: removePaymentMethod
+summary: Remove a saved payment method
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    payment_method_id:
+      type: string
+  example:
+    payment_method_id: "6400001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`cancelDirectDebit`, `cancelPayment`, `removePaymentMethod`"
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

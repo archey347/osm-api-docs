@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/import/
+action: saveMappings
+summary: Save import column mappings or start the import
+description: "`saveMappings` takes the chosen mappings in `map[{spreadsheetColumn}]` (`-1` entries are left out): with `save_only=1` it only stores them, with `mode=insert` it runs the import as a background job."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    "map[{spreadsheetColumn}]":
+      type: string
+      description: "Field to map that column to, for example `core:firstname`."
+    save_only:
+      type: string
+      enum: [ "1" ]
+      description: "`1` to store the mappings without importing."
+    mode:
+      type: string
+      enum: [ insert ]
+    request_guid:
+      type: string
+      description: Client-generated GUID, renewed after each request.
+response:
+  schema:
+    $ref: MemberImportMappings
+  envelope: true
+  examples:
+    importStarted:
+      summary: "`saveMappings` with `mode=insert`"
+      value:
+        job_info: { }
+sources: [ ext.members.ca95317ad56b2f22a5e5.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

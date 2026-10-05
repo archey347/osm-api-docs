@@ -1,0 +1,18 @@
+type: object
+properties:
+  id: { }
+  date:
+    type: string
+  reference:
+    type: string
+  amount:
+    description: "Pence; negative for money out."
+  is_transfer:
+    type: boolean
+    description: Marked as an internal transfer between accounts.
+  transaction:
+    description: Linked cashbook entry, if processed. May be null.
+  expense_transaction:
+    description: "Expense card transaction details (`stripe_transaction_id`, `dispute_id`). May be null."
+  categories: { }
+additionalProperties: true

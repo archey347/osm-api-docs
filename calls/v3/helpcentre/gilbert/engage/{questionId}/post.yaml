@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/gilbert/engage/{questionId}"
+summary: Rate a Gilbert answer
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionId:
+    type: string
+body:
+  params:
+    action:
+      type: integer
+      required: true
+      description: Star rating, 1 to 5. Ratings under 3 are flagged for human review.
+    query_type:
+      type: string
+      description: "The question's `review_type`."
+  example:
+    action: 4
+    query_type: leader
+response:
+  description: Response body is not read by the web app.
+sources: [ ext.helpcentre.b7a1deb267cad56138a2.js ]

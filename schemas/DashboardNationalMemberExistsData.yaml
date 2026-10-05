@@ -1,0 +1,7 @@
+type: object
+properties:
+  member:
+    description: "Member name, or `false` when no member has the ID."
+  linked_to_user:
+    description: "ID of the user the member is linked to, or `false`."
+additionalProperties: true

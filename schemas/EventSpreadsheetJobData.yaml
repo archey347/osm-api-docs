@@ -1,0 +1,9 @@
+type: object
+properties:
+  job_info:
+    type: object
+    additionalProperties: true
+additionalProperties: true
+description: |-
+  Export job started by `startSpreadsheet`; `data.job_info` is handed to the app's background
+  jobs tracker.

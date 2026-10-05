@@ -1,0 +1,17 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    title:
+      type: string
+    group_name:
+      type: string
+    section_name:
+      type: string
+    formatted_created_at:
+      type: string
+    formatted_delete_at:
+      type: string
+  additionalProperties: true

@@ -1,0 +1,38 @@
+kind: v3-route
+method: GET
+path: /v3/campsites/
+summary: List campsites
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Lists campsites the section can book, with their customer types.
+  mode:
+    type: string
+    enum: [ map ]
+    description: Returns venue map markers.
+response:
+  schema:
+    $ref: CampsiteList
+  examples:
+    bookable:
+      summary: With section_id
+      value:
+        - id: 7100001
+          name: Example Campsite
+          organisations:
+            - id: 7200001
+              name: Scout groups
+              description: Registered groups
+    map:
+      summary: mode=map
+      value:
+        - id: 7100001
+          name: Example Campsite
+          latitude: 54.97
+          longitude: -1.61
+  description: Campsites.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js, area.facilities.e75a3e5352d708ac499b.js ]

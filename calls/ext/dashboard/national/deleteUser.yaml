@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/national/
+action: deleteUser
+summary: Delete a user
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      description: Caller's own section ID.
+    user_id:
+      type: string
+  example:
+    user_id: "100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: DashboardNationalStatus
+  examples:
+    deleteUser:
+      value:
+        status: true
+sources: [ area.national_dashboard.24a9dd00242256a71961.js ]

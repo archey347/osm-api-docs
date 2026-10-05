@@ -1,0 +1,57 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/menu/{entry_id}"
+summary: Update or move a menu entry
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  entry_id:
+    type: string
+body:
+  params:
+    day:
+      type: string
+      required: true
+      description: Day index from the event start.
+    meal:
+      type: string
+      required: true
+    title:
+      type: string
+      description: Up to 64 characters.
+    description:
+      type: string
+    colour:
+      type: string
+    num_people:
+      type: string
+      description: Empty for everyone.
+    associated_type:
+      type: string
+      description: "`recipe` when linked to a recipe, otherwise empty."
+    associated_id:
+      type: string
+      description: "Recipe ID, `0` for none."
+    shared:
+      type: string
+      enum: [ "true", "false" ]
+      description: Edit the shared (template) event's menu.
+  example:
+    day: "1"
+    meal: lunch
+    title: Spaghetti bolognese
+    description: ""
+    colour: "673ab7"
+    num_people: "18"
+    associated_type: ""
+    associated_id: "0"
+    shared: "false"
+response:
+  schema:
+    $ref: EventMenu
+  description: Updated entries and costs.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

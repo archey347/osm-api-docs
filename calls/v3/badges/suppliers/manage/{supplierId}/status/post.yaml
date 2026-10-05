@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/badges/suppliers/manage/{supplierId}/status"
+summary: Set a badge supplier's status
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  supplierId:
+    type: string
+body:
+  params:
+    status:
+      type: string
+      required: true
+      description: "Observed statuses: `draft`, `submitted`, `approved`, `suspended`."
+  example:
+    status: approved
+response:
+  schema:
+    $ref: BadgeSupplierStatusResponse
+  examples:
+    updated:
+      summary: Updated
+      value:
+        supplier:
+          id: 12001
+          name: Example Badge Shop
+          status: approved
+  description: Updated supplier.
+sources: [ area.badges_suppliers.f5455082cbc7e23cd828.js ]

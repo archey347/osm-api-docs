@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: /v3/members/email/unblock
+summary: Unblock a bounced email address
+description: "`id` and `first_reported` come from the block details returned with the selected emails."
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    id:
+      type: string
+      required: true
+    email:
+      type: string
+      required: true
+    first_reported:
+      type: string
+      required: true
+  example:
+    id: "9300001"
+    email: "parent@example.org"
+    first_reported: "2025-09-01 10:00:00"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value: [ ]
+  description: Result.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

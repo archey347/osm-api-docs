@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateSinglePreference
+summary: Save a single preference
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    key:
+      type: string
+      description: Preference name.
+    value:
+      type: string
+      description: "Preference value; a JSON string for `updateJson`."
+  example:
+    key: campsiteDiaryDuration
+    value: "7days"
+response:
+  schema:
+    $ref: SettingsPreferencesResponse
+  examples:
+    updateSinglePreference:
+      summary: Preference saved
+      value:
+        ok: true
+        prefs:
+          campsiteDiaryDuration: "7days"
+sources:
+  - area.campsites.7dbe230fc118fbcb159f.js
+  - component.group_dashboard_charts.b3feef30cc1eba260dd1.js
+  - ext.badges.6a63e40102b2845e63ab.js
+  - ext.dashboard.82a61c008183022fe2cd.js
+  - ext.events.4fe61901f961aaf5b232.js
+  - ext.generic.d987496afe1a0330ff1a.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - ext.programme.8d866e8ea75c304133fc.js
+  - ext.users.aae4e50e39d06ff44c88.js
+  - global-2b756d915be26af38ad3ddd64f519739.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

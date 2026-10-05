@@ -1,0 +1,39 @@
+kind: ext-action
+method: GET
+path: /ext/programme/
+action: getProgramme
+summary: Get programme details
+tags: [ Programme ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+  eveningid:
+    type: string
+    description: Meeting ID.
+response:
+  schema:
+    $ref: ProgrammeDetails
+  examples:
+    programmeDetails:
+      summary: Programme details
+      value:
+        items:
+          - eveningid: "9500001"
+            sectionid: "45001"
+            title: Camp Skills Night
+            meetingdate: "2024-11-01"
+            starttime: "18:00:00"
+            endtime: "19:30:00"
+            help:
+              - scoutid: "3100005"
+                scout: Taylor Wood
+        badgelinks: { }
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

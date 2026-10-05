@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: deleteParentFromEvening
+summary: Remove a parent from a meeting rota
+tags: [ Programme ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    eveningid:
+      type: string
+    sectionid:
+      type: string
+    scoutid:
+      type: string
+  example:
+    sectionid: "45001"
+    scoutid: "3100005"
+    eveningid: "9500001"
+response:
+  schema:
+    anyOf:
+      - $ref: ProgrammeMeeting
+      - $ref: ProgrammeErrorResponse
+      - $ref: ProgrammeAddMeetingResult
+      - $ref: ProgrammeDeleteMeetingResult
+      - $ref: ProgrammeAddActivityResult
+      - $ref: ProgrammeMeetingResponse
+      - $ref: ProgrammeOkResult
+  examples:
+    parentRotaError:
+      summary: "`addParentToEvening`, `deleteParentFromEvening` failure (success shape not read by the web app)"
+      value:
+        error: Unable to save.
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

@@ -1,0 +1,15 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/transactions/download"
+summary: Download bank transactions
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+response:
+  description: "Document download (opened in a browser tab); format not shown by the web app code."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

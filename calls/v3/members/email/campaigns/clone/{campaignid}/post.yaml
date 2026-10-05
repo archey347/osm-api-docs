@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/members/email/campaigns/clone/{campaignid}"
+summary: Clone an email template
+description: Can clone into another section.
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campaignid:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+      description: Section to create the copy in.
+  example:
+    title: Weekly newsletter (copy)
+    section_id: "45001"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value:
+        id: 5100003
+  description: The new template's ID.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

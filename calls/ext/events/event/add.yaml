@@ -1,0 +1,97 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: add
+summary: Create an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    name:
+      type: string
+    location:
+      type: string
+    startdate:
+      type: string
+      description: "`YYYY-MM-DD`."
+    starttime:
+      type: string
+      description: "`HH:MM:SS`."
+    enddate:
+      type: string
+    endtime:
+      type: string
+    attendancelimit:
+      type: string
+      description: "`0` for no limit."
+    limitincludesleaders:
+      type: string
+    notes:
+      type: string
+    confdate:
+      type: string
+      description: Confirmation deadline.
+    cost:
+      type: string
+      description: "`-1` means to be confirmed."
+    tbc:
+      type: string
+      enum: [ "yes", "no" ]
+    kit_list_collection_id:
+      type: string
+    allowchanges:
+      type: string
+      enum: [ "true", "false" ]
+    disablereminders:
+      type: string
+      enum: [ "true", "false" ]
+    allowbooking:
+      type: string
+      enum: [ "true", "false" ]
+    attendancereminder:
+      type: string
+      description: "Days before the deadline to remind, `0` for none."
+  example:
+    name: Summer Camp
+    location: Example Campsite
+    startdate: "2025-07-20"
+    starttime: "09:00:00"
+    enddate: "2025-07-27"
+    endtime: "17:00:00"
+    attendancelimit: "40"
+    limitincludesleaders: "false"
+    notes: ""
+    confdate: "2025-06-01"
+    cost: "120.00"
+    tbc: "no"
+    kit_list_collection_id: "0"
+    allowchanges: "false"
+    disablereminders: "false"
+    allowbooking: "true"
+    attendancereminder: "0"
+response:
+  schema:
+    $ref: EventAdded
+  examples:
+    add:
+      value:
+        status: true
+        error: null
+        data:
+          id: "9600001"
+          title: Summer Camp
+        meta: [ ]
+    addError:
+      summary: add rejected (e.g. end before start)
+      value:
+        status: false
+        error:
+          message: The end date must be after the start date.
+          code: date-order
+        meta: [ ]
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

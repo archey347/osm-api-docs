@@ -1,0 +1,40 @@
+kind: ext-action
+method: GET
+path: /ext/members/census/
+action: getDetails
+summary: Get census details
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+response:
+  schema:
+    $ref: CensusDetails
+  examples:
+    getDetails:
+      summary: Census detail
+      value:
+        identifier: scoutid
+        items:
+          - scoutid: "3100003"
+            firstname: Sam
+            lastname: Lake
+            joined: "2022-03-01"
+            photo_guid: null
+            sex: ""
+            ethnicity: ""
+            disabilities: Edit disabilities
+            myscout: Send Parent Portal email
+            raw_disabilities: [ ]
+            _filterString: sam lake
+sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/badges/suppliers/admin/{sectionId}"
+summary: Get a section's badge shop and its metrics
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: BadgeSupplierAdminResponse
+  examples:
+    admin:
+      summary: Shop
+      value:
+        shop:
+          name: Example Badge Shop
+          order_url: "https://shop.example.org/order"
+          tracks_stock: true
+        metrics:
+          clicks: 12
+  description: Shop and metrics.
+sources: [ area.badges_suppliers.f5455082cbc7e23cd828.js ]

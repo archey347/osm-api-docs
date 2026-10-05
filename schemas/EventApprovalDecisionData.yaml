@@ -1,0 +1,5 @@
+type: object
+properties:
+  check:
+    $ref: EventApprovalCheck
+additionalProperties: true

@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: delete
+summary: Delete an event
+description: "`archive`/`delete` are soft: `delete` returns a `deletion_id` that can be restored via the soft-deletion endpoint."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+  eventid:
+    type: string
+response:
+  schema:
+    $ref: EventLegacyOk
+  examples:
+    delete:
+      value:
+        ok: true
+        deletion_id: 700001
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

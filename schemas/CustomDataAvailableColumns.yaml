@@ -1,0 +1,14 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        column_id: { }
+        name:
+          type: string
+        disabled:
+          type: boolean
+      additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,5 @@
+path: /ext/quartermaster/eventbookings/
+method: GET
+summary: Quartermaster bookings for an event
+description: "`printBookedItems` returns a PDF for download, not JSON."
+response: Lists available to the event with their items and booked counts.

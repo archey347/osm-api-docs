@@ -1,0 +1,4 @@
+path: /ext/finances/giftaid/
+method: POST
+summary: Update Gift Aid declarations and payments
+response: "Result. The `decline` and `updateScout` responses are not read by the web app."

@@ -1,0 +1,49 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: updateScout
+summary: Update a member's attendance on an event
+description: "`updateScout` takes `sectionid`/`eventid` in the body, `updateMultiple` takes `eventid` in the body and `sectionid` in either."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    eventid:
+      type: string
+    value:
+      type: string
+      description: New value.
+    scoutid:
+      type: string
+    column:
+      type: string
+      description: "`attending`, `payment`, a custom column key (`f_<id>`) or `details`."
+    "details[<field>]":
+      type: string
+      description: "Per-field values when `column=details`."
+    override_attendance:
+      type: string
+      description: "`true` to fill a full event over its reserved list."
+  example:
+    sectionid: "45001"
+    eventid: "9600001"
+    scoutid: "3100001"
+    column: attending
+    value: "Yes"
+response:
+  schema:
+    $ref: EventScoutUpdate
+  examples:
+    updateScout:
+      value:
+        scoutid: "3100001"
+        attending: "Yes"
+    updateScoutError:
+      value:
+        error: This event is full.
+        error_code: event_full_with_reserved
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

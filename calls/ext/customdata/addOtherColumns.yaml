@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: addOtherColumns
+summary: Add the remaining columns to a section
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    associated_type:
+      type: string
+      enum: [ member ]
+  example:
+    section_id: "45001"
+    associated_type: member
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    structureWrite:
+      summary: "`createColumn`, `updateColumnLabel`, `deleteColumn`, `addOtherColumns`, `deleteInvisibleValue`, `saveStructureSettings`"
+      value: [ ]
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

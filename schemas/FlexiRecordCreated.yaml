@@ -1,0 +1,8 @@
+type: object
+properties:
+  id:
+    type: string
+    description: New flexi-record ID.
+  error:
+    type: string
+additionalProperties: true

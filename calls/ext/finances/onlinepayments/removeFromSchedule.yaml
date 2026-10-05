@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: removeFromSchedule
+summary: Remove a member from a scheme
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    schemeid:
+      type: string
+    scoutid:
+      type: string
+  example:
+    sectionid: "45001"
+    schemeid: "9800001"
+    scoutid: "3100001"
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

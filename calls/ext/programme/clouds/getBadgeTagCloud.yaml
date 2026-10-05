@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/programme/clouds/
+action: getBadgeTagCloud
+summary: Get badge tag cloud
+tags: [ Badges ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    required: true
+    description: Section type.
+response:
+  schema:
+    $ref: BadgeTagCloud
+  examples:
+    default:
+      value:
+        tags:
+          community: 1
+        tag_count: 1
+        badges:
+          "sites/onlinescoutmanager.co.uk/badge_images/img_000000.png": 1
+  description: Badge tag cloud response.

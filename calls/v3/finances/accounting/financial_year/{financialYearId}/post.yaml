@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/financial_year/{financialYearId}"
+summary: Update a financial year
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+body:
+  params:
+    start_date:
+      type: string
+      format: date
+      required: true
+    end_date:
+      type: string
+      format: date
+      required: true
+  example:
+    start_date: "2025-04-01"
+    end_date: "2026-03-31"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

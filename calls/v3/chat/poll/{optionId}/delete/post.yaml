@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/poll/{optionId}/delete"
+summary: Delete a poll option
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  optionId:
+    type: string
+body:
+  schema:
+    type: object
+    description: "Optional extra params such as `member_id`."
+    additionalProperties: true
+response:
+  schema:
+    $ref: ChatPollResponse
+  examples:
+    default:
+      value:
+        poll_options: [ ]
+  description: Remaining poll options.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

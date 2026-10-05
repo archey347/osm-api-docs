@@ -1,0 +1,4 @@
+path: /ext/members/patrols/
+method: GET
+summary: Get patrols with members
+response: "Patrol list keyed by patrol ID. `exportPatrols` returns a PDF document rather than JSON."

@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: editBadgeDescription
+summary: 'Edit a badge''s description'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    description:
+      description: "Leader-facing description (`editBadgeDescription`, `editCoreDetails`)."
+    parents_description:
+      description: "Parent-facing description (`editBadgeDescription`, `editCoreDetails`)."
+    group_name:
+      description: "Badge group (`editBadgeDescription`, `editCoreDetails`). Empty for no group."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    description: Work as part of a team.
+    parents_description: Your child works with others.
+    group_name: ""
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: editLogic, editMinimums, editModuleRequirements, editRoleAccess, editBadgeDescription, addBadgeToSection
+      value:
+        ok: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

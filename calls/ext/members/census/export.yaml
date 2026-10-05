@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/members/census/
+action: export
+summary: Download census details as a spreadsheet
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+  patrols:
+    type: string
+    description: "Comma-separated patrol IDs to include (`0` for members with no patrol)."
+response:
+  document: true
+  description: Spreadsheet download, opened in a new window.
+sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

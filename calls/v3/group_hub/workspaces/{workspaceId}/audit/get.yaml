@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/audit"
+summary: Get the Group Hub audit trail
+description: "Returns one year at a time; `meta.available_years` lists the years with entries."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+query:
+  year:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: GroupHubAudit
+  examples:
+    default:
+      value:
+        - date: "15/09/2025 19:42"
+          date_raw: "2025-09-15 19:42:10"
+          summary: "<strong>Alex Scout</strong> renamed the group."
+          verbose: ""
+          type: group
+          code: renamed
+          scope: group
+          section_id: null
+          hidden: false
+  description: Audit entries.
+sources: [ react.f8944691765f57115151.js ]

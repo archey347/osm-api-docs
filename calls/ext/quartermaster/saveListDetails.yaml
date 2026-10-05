@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/quartermaster/
+action: saveListDetails
+summary: Create or update a list
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      required: true
+    section:
+      type: string
+      description: "Section type, e.g. `scouts`. Not sent by `acceptLists`/`rejectLists`."
+    listid:
+      type: string
+      description: "Omit on `saveListDetails` to create a list."
+    name:
+      type: string
+      description: "1 to 150 characters."
+  example:
+    section: scouts
+    sectionid: "3100001"
+    name: Camp kitchen
+response:
+  schema:
+    $ref: QuartermasterActionResponse
+  envelope: true
+  examples:
+    saveListDetails:
+      value:
+        id: "7100001"
+        name: Camp kitchen
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

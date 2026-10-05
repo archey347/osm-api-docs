@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/merchants/
+action: getSummary
+summary: List merchant accounts
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: FinanceMerchantSummary
+  examples:
+    getSummary:
+      summary: getSummary
+      value:
+        items:
+          - name: Example Scouts account
+sources: [ ext.finances.9f318350fda4d977c688.js ]

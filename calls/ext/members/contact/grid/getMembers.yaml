@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/grid/
+action: getMembers
+summary: Get members for the contact grid
+description: Despite being a POST, this only reads.
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    term_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+    term_id: "67890"
+response:
+  schema:
+    $ref: MemberGrid
+  envelope: true
+  examples:
+    default:
+      value:
+        "3100001":
+          member_id: 3100001
+          first_name: Jamie
+          last_name: River
+          photo_guid: "00000000-0000-0000-0000-000000000000"
+          patrol_id: 12001
+          patrol: Blue
+          patrol_role_level: 0
+          date_of_birth: "2015-04-22"
+          active: true
+  description: Members keyed by member ID.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

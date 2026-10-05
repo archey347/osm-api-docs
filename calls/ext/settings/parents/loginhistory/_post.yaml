@@ -1,0 +1,4 @@
+path: /ext/settings/parents/loginhistory/
+method: POST
+summary: Change or remove a parent's access
+response: Response.

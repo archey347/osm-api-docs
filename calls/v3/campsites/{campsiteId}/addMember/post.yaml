@@ -1,0 +1,62 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/addMember"
+summary: Create a booking customer
+description: "Staff (`mode=campsite`) need only a name; customers also need address, email and phone."
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    mode:
+      type: string
+      enum: [ campsite, customer ]
+      required: true
+    first_name:
+      type: string
+      required: true
+    last_name:
+      type: string
+      required: true
+    address_1:
+      type: string
+    address_2:
+      type: string
+    address_3:
+      type: string
+    address_4:
+      type: string
+    post_code:
+      type: string
+    email:
+      type: string
+    email_2:
+      type: string
+    phone:
+      type: string
+  example:
+    mode: campsite
+    first_name: Alex
+    last_name: Scout
+    address_1: "1 Example Road"
+    address_2: ""
+    address_3: ""
+    address_4: ""
+    post_code: AB1 2CD
+    email: "alex@example.com"
+    email_2: ""
+    phone: "01234567890"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value:
+        member_id: 3100010
+  description: The new member.
+sources: [ ext.campsites.fb843cdfc650e56db2ee.js ]

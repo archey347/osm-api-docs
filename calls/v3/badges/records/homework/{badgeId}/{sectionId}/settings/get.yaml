@@ -1,0 +1,27 @@
+kind: v3-route
+method: GET
+path: "/v3/badges/records/homework/{badgeId}/{sectionId}/settings"
+summary: Get homework settings for a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  badgeId:
+    type: string
+  sectionId:
+    type: string
+query:
+  badge_version:
+    type: string
+response:
+  schema:
+    $ref: BadgeHomeworkSettingsResponse
+  examples:
+    settings:
+      summary: Settings
+      value:
+        enabled: true
+        introduction: Complete these at home.
+  description: Settings.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,26 @@
+type: object
+description: "Shared-event write result. `error` is a plain string."
+properties:
+  error:
+    type: string
+  ok:
+    type: boolean
+  msg:
+    type: string
+  sectionConfig:
+    type: object
+    additionalProperties: true
+  config:
+    type: object
+    additionalProperties: true
+  schemes:
+    type: array
+    description: "Returned by `share` when online payment schedules must be chosen first."
+    items:
+      type: object
+      additionalProperties: true
+  _shared_event_confdate_locked:
+    type: boolean
+  _redraw_event_pane:
+    type: boolean
+additionalProperties: true

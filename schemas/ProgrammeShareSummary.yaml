@@ -1,0 +1,9 @@
+type: object
+properties:
+  count:
+    description: Number of meetings waiting to be imported.
+  min:
+    description: Earliest meeting date.
+  max:
+    description: Latest meeting date.
+additionalProperties: true

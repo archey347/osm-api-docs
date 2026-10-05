@@ -1,0 +1,22 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: disableRequireAllPayments
+summary: Disable require-all-payments on a scheme
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    scheme_id:
+      type: string
+  example:
+    section_id: "45001"
+    scheme_id: "9800001"
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

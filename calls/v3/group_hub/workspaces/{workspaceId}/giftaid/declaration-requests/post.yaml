@@ -1,0 +1,35 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/giftaid/declaration-requests"
+summary: Email Gift Aid declaration requests
+description: Sends emails.
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    charity:
+      type: string
+      required: true
+      description: Up to 128 characters.
+    members:
+      type: string
+      required: true
+      description: "JSON array of `{ member_id, section_id }` pairs."
+  example:
+    charity: "1st Riverside Scout Group"
+    members: "[{\"member_id\":3100001,\"section_id\":45001}]"
+response:
+  schema:
+    $ref: GroupHubSentResult
+  examples:
+    default:
+      value:
+        sent: 1
+  description: Number of requests sent.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

@@ -1,0 +1,33 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/badge_stock/shopping"
+summary: Get the badge shopping list
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+query:
+  section_ids:
+    type: string
+    required: true
+    description: Comma-separated section IDs.
+response:
+  schema:
+    $ref: GroupHubBadgeStockShopping
+  examples:
+    default:
+      value:
+        groups:
+          - key: cubs
+            label: Cubs
+            badges:
+              - key: "1593_1"
+                name: Communicator
+                picture: sites/onlinescoutmanager.co.uk/badge_images/img_000000.png
+                qty: 2
+  description: Badges to buy, grouped.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

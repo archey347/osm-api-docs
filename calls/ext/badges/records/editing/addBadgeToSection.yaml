@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: addBadgeToSection
+summary: Add a badge to a section
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+    type_id:
+      description: "Badge type ID (see `getAvailableBadges`)."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    sectionid: "45001"
+    type_id: "1"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: editLogic, editMinimums, editModuleRequirements, editRoleAccess, editBadgeDescription, addBadgeToSection
+      value:
+        ok: true
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

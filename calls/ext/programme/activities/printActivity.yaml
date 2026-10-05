@@ -1,0 +1,18 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: printActivity
+summary: Print an activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  activityid:
+    type: string
+  section_id:
+    type: string
+    description: Section ID.
+response:
+  document: true
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

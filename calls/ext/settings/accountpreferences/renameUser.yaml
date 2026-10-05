@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: renameUser
+summary: Rename the user
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    first_name:
+      type: string
+    last_name:
+      type: string
+  example:
+    first_name: Alex
+    last_name: Scout
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    renameUser:
+      summary: Renamed
+      value:
+        firstname: Alex
+        lastname: Scout
+        fullname: Alex Scout
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

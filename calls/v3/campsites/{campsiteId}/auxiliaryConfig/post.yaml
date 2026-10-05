@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/auxiliaryConfig"
+summary: Set an auxiliary setting
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    key:
+      type: string
+      required: true
+      description: "Observed keys include `contact_address`, `contact_email`, `contact_phone`, `venue_address`, `directions`, `website`, `venue_information`, `terms_and_conditions`, `instructions` and `payment_details`."
+    value:
+      type: string
+      description: Omitted to clear the setting.
+  example:
+    key: contact_phone
+    value: "01234 567890"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

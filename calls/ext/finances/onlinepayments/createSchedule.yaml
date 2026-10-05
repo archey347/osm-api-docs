@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: createSchedule
+summary: Create a payment scheme
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    account_id:
+      type: string
+      description: Bank account ID.
+    name:
+      type: string
+    description:
+      type: string
+    type:
+      type: string
+    pay_now:
+      type: string
+      description: "Days before a due date that payment opens; `-1` or `0` disables."
+  example:
+    section_id: "45001"
+    account_id: "9810001"
+    name: Termly subs
+    description: Subs for the term
+    pay_now: "14"
+response:
+  schema:
+    $ref: FinanceOnlinePaymentCreated
+  examples:
+    createSchedule:
+      summary: createSchedule
+      value:
+        status: true
+        error: null
+        data:
+          schedule_id: "9800001"
+sources: [ ext.finances.9f318350fda4d977c688.js ]

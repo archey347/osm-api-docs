@@ -1,0 +1,60 @@
+type: object
+properties:
+  id: { }
+  user_id: { }
+  user:
+    type: object
+    properties:
+      full_name:
+        type: string
+    additionalProperties: true
+  status:
+    type: string
+    enum: [ active, inactive ]
+  deleted: { }
+  new_card_available: { }
+  total_spend_limit:
+    description: Pence.
+  total_amount_spent:
+    description: Pence.
+  periodic_limits:
+    type: object
+    nullable: true
+    description: Set when the cardholder uses daily, weekly or monthly limits instead of a balance limit.
+    properties:
+      daily:
+        type: object
+        properties:
+          limit:
+            description: Pence.
+        additionalProperties: true
+      weekly:
+        type: object
+        properties:
+          limit:
+            description: Pence.
+        additionalProperties: true
+      monthly:
+        type: object
+        properties:
+          limit:
+            description: Pence.
+        additionalProperties: true
+    additionalProperties: true
+  cards:
+    type: array
+    items:
+      $ref: AccountingExpenseCard
+  spending_categories: { }
+  uncategorised_transactions: { }
+  requirements:
+    type: object
+    properties:
+      past_due:
+        type: array
+        items:
+          type: string
+    additionalProperties: true
+  bank_account_id: { }
+  bank_account: { }
+additionalProperties: true

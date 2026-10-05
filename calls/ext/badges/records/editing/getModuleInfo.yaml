@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: getModuleInfo
+summary: Get module info for a badge
+description: "`getBadgeDetails`, `getBadgeImage`, `getModuleInfo` and `startEdit` only read data despite being POSTs."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    sectionid: "45001"
+response:
+  schema:
+    $ref: BadgeModuleInfoResponse
+  examples:
+    getModuleInfo:
+      summary: getModuleInfo
+      value:
+        modules:
+          - module_letter: a
+            custom_columns: "0"
+        config: { }
+        has_points: false
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

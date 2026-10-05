@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/at_home"
+summary: "Save \"events at home\" settings"
+description: "The settings object lives in `meta.extra.at_home` of the activities response."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    activities:
+      type: string
+      description: JSON array of selected activity IDs.
+  example:
+    activities: "[1001,1002]"
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value:
+        activities: [ 1001, 1002 ]
+  description: "Saved settings, echoed back in `data`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

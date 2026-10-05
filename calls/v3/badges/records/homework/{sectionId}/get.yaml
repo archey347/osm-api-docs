@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/badges/records/homework/{sectionId}"
+summary: List badges with homework for a section
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  term_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeHomeworkListResponse
+  examples:
+    list:
+      summary: Badges
+      value:
+        - badge_id: 1001
+          badge_version: 0
+          name: Teamwork
+          picture: badges/teamwork.png
+          type_id: 1
+  description: Badges.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

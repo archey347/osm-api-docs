@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/programme/
+action: getMeetingNames
+summary: List a term's meetings
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+  byid:
+    type: string
+    description: "Observed `true`."
+response:
+  schema:
+    $ref: ProgrammeMeetingNames
+  examples:
+    getMeetingNames:
+      summary: Meeting names for a term
+      value:
+        items:
+          - id: "9500001"
+            value: "2024-11-01"
+sources: [ ext.badges.6a63e40102b2845e63ab.js, ext.programme.8d866e8ea75c304133fc.js ]

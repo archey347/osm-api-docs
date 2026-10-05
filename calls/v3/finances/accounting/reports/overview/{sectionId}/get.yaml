@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/reports/overview/{sectionId}"
+summary: Get accounting overview chart data
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        "2026-08-01":
+          total: 72350
+  description: "`data` is keyed by month; each value has a `total` in pence."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

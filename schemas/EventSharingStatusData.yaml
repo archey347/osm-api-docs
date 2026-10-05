@@ -1,0 +1,27 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        sectionid:
+          type: string
+        sectionname:
+          type: string
+        groupname:
+          type: string
+        status:
+          type: string
+          description: "`Pending`, `Accepted`, `Rejected` or `Deleted`."
+        attendance:
+          type: integer
+        attendancelimit:
+          type: string
+        emailable:
+          type: boolean
+        details_downloadable:
+          type: boolean
+      additionalProperties: true
+additionalProperties: true
+description: Invite list per section.

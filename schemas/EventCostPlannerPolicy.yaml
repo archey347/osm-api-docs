@@ -1,0 +1,8 @@
+type: object
+properties:
+  mode:
+    type: string
+    description: "`nothing`, `percent`, `fixed` or `own_attributed`."
+  value:
+    type: number
+additionalProperties: true

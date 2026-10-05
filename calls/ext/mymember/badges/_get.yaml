@@ -1,0 +1,7 @@
+path: /ext/mymember/badges/
+method: GET
+summary: Member badge progress
+description: |-
+  `getSummary` lists a member's badges with progress; `getBadgeRequirements`
+  returns the requirements of one badge.
+response: Badge data.

@@ -1,0 +1,27 @@
+type: array
+items:
+  type: object
+  properties:
+    booking_id:
+      type: integer
+    item_booking_id:
+      type: integer
+    item_name:
+      type: string
+    times:
+      type: string
+    instructors:
+      type: array
+      description: "Instructor names (`type=rotas` with `instructor=all`)."
+      items:
+        type: string
+    questions:
+      type: array
+      items:
+        type: object
+        properties:
+          answer:
+            type: string
+        additionalProperties: true
+  additionalProperties: true
+description: Booked items an instructor is rostered on.

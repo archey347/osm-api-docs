@@ -1,0 +1,40 @@
+type: object
+description: "Event record from `getStructureForEvent`. `config` and `extra` may arrive as JSON strings."
+properties:
+  eventid:
+    type: string
+  name:
+    type: string
+  startdate:
+    type: string
+  starttime:
+    type: string
+  enddate:
+    type: string
+  endtime:
+    type: string
+  location:
+    type: string
+  cost:
+    type: string
+    description: "`-1` means to be confirmed."
+  confdate:
+    type: string
+  attendancelimit:
+    type: string
+  notepad:
+    type: string
+  publicnotes:
+    type: string
+  structure:
+    $ref: EventStructureColumnSets
+  properties:
+    type: object
+    additionalProperties: true
+  extra:
+    type: object
+    additionalProperties: true
+  config:
+    type: object
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,4 @@
+type: array
+items:
+  $ref: CampsiteOrganisation
+description: Customer types of a campsite.

@@ -1,0 +1,38 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/tickets/{ticketId}/typing"
+summary: Report typing presence on a support ticket
+description: |-
+  Heartbeat sent about every 45 seconds while the ticket is open, and with
+  `leaving=true` on close (also by `sendBeacon` on page unload).
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  ticketId:
+    type: string
+body:
+  params:
+    typing:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+    uploading:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+    focused:
+      type: string
+      enum: [ "true", "false" ]
+      description: Not sent by the page-unload beacon.
+    leaving:
+      type: string
+      enum: [ "true" ]
+  example:
+    typing: "false"
+    uploading: "false"
+    focused: "true"
+response:
+  description: Response body is not read by the web app.
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

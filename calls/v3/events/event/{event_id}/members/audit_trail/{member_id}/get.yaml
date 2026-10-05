@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/members/audit_trail/{member_id}"
+summary: Get a member's change history on an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  member_id:
+    type: string
+response:
+  schema:
+    $ref: EventMemberAuditTrail
+  examples:
+    default:
+      value:
+        - date: "2025-03-02 18:04:11"
+          desc: Attendance changed to Yes
+          updatedby: Sam Leader
+  description: History entries.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

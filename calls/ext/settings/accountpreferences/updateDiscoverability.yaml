@@ -1,0 +1,20 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateDiscoverability
+summary: Set account discoverability
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    discoverable:
+      type: string
+      description: "`true` or `false`."
+  example:
+    discoverable: "true"
+response:
+  schema:
+    $ref: SettingsStatusResponse
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

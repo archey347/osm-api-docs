@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/finances/giftaid/
+action: decline
+summary: Decline a Gift Aid declaration
+tags: [ Finances ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    section_id:
+      type: string
+    member_id:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    anyOf:
+      - $ref: FinanceStatusResponse
+      - $ref: FinanceGiftAidSendResult
+      - $ref: FinanceGiftAidUpdateResult
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

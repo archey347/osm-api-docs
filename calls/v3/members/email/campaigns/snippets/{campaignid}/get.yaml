@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/campaigns/snippets/{campaignid}"
+summary: Get the snippets of an email template
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campaignid:
+    type: string
+response:
+  schema:
+    $ref: EmailCampaignSnippets
+  examples:
+    default:
+      value:
+        campaign_template: default
+        style: "body { font-family: sans-serif; }"
+        body: "<html></html>"
+        snippets:
+          - snippet_id: 5200001
+            snippet: text
+            order: 1
+            contents:
+              "0":
+                text: "<p>Hello</p>"
+            config:
+              colours:
+                background: "#ffffff"
+        snippet_templates:
+          text: "<div></div>"
+  description: Snippets with their rendering templates.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

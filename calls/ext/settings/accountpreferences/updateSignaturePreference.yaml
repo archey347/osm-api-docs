@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateSignaturePreference
+summary: Update the email signature preference
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    value:
+      type: string
+      description: "Preference value; a JSON string for `updateJson`."
+  example:
+    section_id: "45001"
+    value: Alex Scout
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    updateSignaturePreference:
+      summary: Signature saved
+      value:
+        preferences: { }
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

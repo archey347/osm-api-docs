@@ -1,0 +1,23 @@
+type: object
+properties:
+  cost:
+    description: Cost shown to parents.
+  confirmation_deadline:
+    type: string
+  allow_changes_before_deadline:
+    type: boolean
+  allow_booking_when_show_in_portal:
+    type: boolean
+  disable_invitation_reminders:
+    type: boolean
+  send_attendance_reminders:
+    type: integer
+  kit_list_collection_id:
+    type: string
+  latitude:
+    description: May be null.
+  longitude:
+    description: May be null.
+additionalProperties: true
+description: |-
+  Field names in `data` are the `field` values accepted by the POST.

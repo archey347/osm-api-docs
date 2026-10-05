@@ -1,0 +1,27 @@
+kind: ext-action
+method: GET
+path: /ext/events/approvals/
+action: getListOfApprovers
+summary: List users an event can be assigned to
+description: "`getEvents` lists events by approval state (backs the approvals pane), `getListOfApprovers` lists users an event can be assigned to, `getPendingEventCount` returns the pending count for the dashboard."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: EventApprovalUsers
+  envelope: true
+  examples:
+    getListOfApprovers:
+      value:
+        - user_id: 0
+          name: Unassigned
+        - user_id: 5000001
+          name: Alex Approver
+          photo_url: "https://example.invalid/photo.jpg"
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

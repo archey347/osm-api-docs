@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/customdata/
+action: getNewMembersAdditionalData
+summary: Get extra fields offered when adding a member
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: CustomDataNewMemberFields
+  envelope: true
+  examples:
+    getNewMembersAdditionalData:
+      summary: Extra fields offered when adding a member
+      value:
+        - group: contact_primary
+          varname: email1
+          type: email
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

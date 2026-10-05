@@ -1,0 +1,21 @@
+type: object
+properties:
+  groups:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+        label:
+          type: string
+        total:
+          type: integer
+        see_all: { }
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

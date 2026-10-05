@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/members/patrols/
+action: exportPatrols
+summary: Download patrols as a printable document
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+  section:
+    type: string
+    description: Section type.
+response:
+  document: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

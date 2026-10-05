@@ -1,0 +1,19 @@
+type: object
+properties:
+  members:
+    description: Attendance counts.
+  reserved:
+    description: Reserved-list count.
+  online_payments:
+    description: Online payment schedules attached to the event.
+  transactions:
+    description: Payment transactions.
+  at_home:
+    description: Events-at-home settings.
+  sharing:
+    description: Sharing state.
+  risk_assessments:
+    description: Linked risk assessments.
+  cost:
+    description: Event cost.
+additionalProperties: true

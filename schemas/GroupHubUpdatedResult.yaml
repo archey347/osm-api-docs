@@ -1,0 +1,6 @@
+type: object
+properties:
+  updated:
+    type: integer
+    description: Number of sections changed.
+additionalProperties: true

@@ -1,0 +1,36 @@
+type: object
+properties:
+  campaign_template:
+    type: string
+  style:
+    type: string
+  body:
+    type: string
+    description: HTML shell the snippets are rendered into.
+  snippets:
+    type: array
+    items:
+      type: object
+      properties:
+        snippet_id: { }
+        snippet:
+          type: string
+        order: { }
+        contents:
+          type: object
+          description: "Bit to `{ text }`."
+          additionalProperties: true
+        config:
+          type: object
+          properties:
+            colours:
+              type: object
+              additionalProperties: true
+          additionalProperties: true
+      additionalProperties: true
+  snippet_templates:
+    type: object
+    description: Snippet type to its HTML template.
+    additionalProperties:
+      type: string
+additionalProperties: true

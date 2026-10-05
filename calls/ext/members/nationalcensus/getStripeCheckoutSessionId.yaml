@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/members/nationalcensus/
+action: getStripeCheckoutSessionId
+summary: Start a Stripe checkout for a census invoice
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    invoice_id:
+      type: string
+      description: "Every action except `complete`."
+    amount:
+      type: string
+  example:
+    invoice_id: "7100001"
+    section_id: "45001"
+    amount: "1250"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    getStripeCheckoutSessionId:
+      summary: Stripe Checkout session
+      value:
+        id: cs_test_00000000
+sources: [ ext.mymember.eb573b16408e09aef101.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

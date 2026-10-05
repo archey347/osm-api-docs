@@ -1,0 +1,18 @@
+kind: ext-action
+method: POST
+path: /ext/programme/share/
+action: reject
+summary: Reject a shared programme
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Receiving section ID.
+response:
+  schema:
+    $ref: ProgrammeShareAcceptResult
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

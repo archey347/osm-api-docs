@@ -1,0 +1,45 @@
+kind: v3-route
+method: GET
+path: "/v3/forms/{formId}"
+summary: List form completions
+description: "The group dashboard calls this with form IDs `1` and `3` plus `section_ids` and `after`."
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+  section_ids:
+    type: string
+    description: Comma-separated section IDs.
+  state:
+    type: string
+  hierarchy:
+    type: string
+    enum: [ "true", "false" ]
+  page:
+    type: integer
+  per_page:
+    type: integer
+  after:
+    type: string
+    description: "Date, `YYYY-MM-DD`."
+response:
+  schema:
+    $ref: FormCompletionList
+  examples:
+    default:
+      value:
+        - id: 4100001
+          title: Summer camp consent
+          group_name: Example Group
+          section_name: Example Troop
+          formatted_created_at: "10 Mar 2025"
+          formatted_delete_at: ""
+  description: Completions with list metadata.
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

@@ -1,0 +1,23 @@
+kind: v3-route
+method: POST
+path: /v3/recipes/ai_image/apply
+summary: Save a generated picture to a recipe
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      required: true
+    image_base64:
+      type: string
+      required: true
+      description: "Base64 PNG as returned by `generate`."
+  example:
+    recipe_id: "7700001"
+    image_base64: iVBORw0KGgo=
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

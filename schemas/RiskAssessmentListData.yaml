@@ -1,0 +1,17 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    section_id: { }
+    associated_id: { }
+    type: { }
+    category_id: { }
+    manual_category: { }
+    manual_hazard: { }
+    controls: { }
+    check: { }
+    duplicated_from_id: { }
+    hub_managed:
+      type: boolean
+  additionalProperties: true

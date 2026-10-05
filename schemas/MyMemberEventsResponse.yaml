@@ -1,0 +1,27 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            event_id: { }
+            name:
+              type: string
+            startdate:
+              type: string
+            formatted_dates:
+              type: string
+            attending:
+              type: string
+              description: "`yes`, `no`, `invited`, `open`, `reserved` or `info`."
+          additionalProperties: true
+      meta:
+        type: object
+        properties:
+          calendar:
+            type: boolean
+            description: Whether a calendar feed is available.
+        additionalProperties: true

@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/days/{dayRuleId}/delete"
+summary: Delete a unavailable-days rule
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  dayRuleId:
+    type: string
+    description: Unavailable-days rule ID.
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

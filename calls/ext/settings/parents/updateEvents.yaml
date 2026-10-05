@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateEvents
+summary: Update parent portal event settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: Section ID.
+    eventRemindFrequency:
+      type: string
+    eventRemindCount:
+      type: string
+    eventPersonalDetailsConfirmation:
+      type: string
+    eventIcs:
+      type: boolean
+    eventBadges:
+      type: boolean
+    eventRotaFrequency:
+      type: string
+    eventRotaNotes:
+      type: boolean
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

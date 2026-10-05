@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/members/nationalcensus/
+action: checkAmount
+summary: Check a census invoice's amount and payment status
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invoice_id:
+      type: string
+      description: "Every action except `complete`."
+  example:
+    invoice_id: "7100001"
+response:
+  schema:
+    $ref: CensusInvoiceCheck
+  examples:
+    checkAmount:
+      summary: "`checkAmount`: `ok` is `false` with `msg` when the invoice is not found"
+      value:
+        ok: true
+        paid: "0"
+        amount: "12.50"
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

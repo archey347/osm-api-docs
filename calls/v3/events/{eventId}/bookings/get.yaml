@@ -1,0 +1,21 @@
+kind: v3-route
+method: GET
+path: "/v3/events/{eventId}/bookings"
+summary: List campsite bookings for an event
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  eventId:
+    type: string
+response:
+  schema:
+    $ref: GenericBookingsResponse
+  examples:
+    default:
+      value:
+        bookings:
+          - booking_id: 5500001
+            campsite: { }
+  description: "Bookings; the web app drops those with a null `campsite`."

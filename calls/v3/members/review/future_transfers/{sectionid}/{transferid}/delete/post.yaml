@@ -1,0 +1,16 @@
+kind: v3-route
+method: POST
+path: "/v3/members/review/future_transfers/{sectionid}/{transferid}/delete"
+summary: Cancel a scheduled transfer
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+  transferid:
+    type: string
+response:
+  description: Cancelled. The web app reads nothing from the response.
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

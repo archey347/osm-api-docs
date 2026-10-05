@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: overrideCompletion
+summary: Override a badge completion
+description: "`awardBadge` and `overrideCompletion` are typically sent together: `overrideCompletion` sets the completion level, `awardBadge` records the award."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    section:
+      description: Section type.
+    skip_track_changes:
+      type: string
+      description: "`true` or `false` (`awardBadge`, `overrideCompletion`)."
+    level:
+      description: "Completion level (`overrideCompletion`)."
+    scoutid:
+      description: "Member ID (`overrideCompletion`, `updateSingleRecord`)."
+    scouts:
+      type: string
+      description: "JSON array of member IDs (`overrideCompletion`, `updateMultipleRecords`)."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    section_id: "45001"
+    section: cubs
+    level: "1"
+    scoutid: "3100001"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

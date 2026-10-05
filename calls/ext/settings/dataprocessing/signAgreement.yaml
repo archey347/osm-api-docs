@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/settings/dataprocessing/
+action: signAgreement
+summary: Sign the data processing agreement
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sign_name:
+      type: string
+    sign_role:
+      type: string
+    sign_email:
+      type: string
+    sign_address:
+      type: string
+  example:
+    sign_name: Alex Scout
+    sign_role: Group Lead Volunteer
+    sign_email: "alex.scout@example.com"
+    sign_address: "1 Example Road"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  description: Response.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", area.group_hub.87ce6caf70ff9fb3d1d1.js ]

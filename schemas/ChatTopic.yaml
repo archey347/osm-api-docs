@@ -1,0 +1,62 @@
+type: object
+properties:
+  id:
+    type: integer
+  topic_id:
+    type: integer
+  chat_room_id:
+    type: integer
+  topic_title:
+    type: string
+  message:
+    type: string
+  local_time:
+    type: string
+  user_id:
+    type: integer
+  user:
+    type: object
+    properties:
+      id:
+        type: integer
+      full_name:
+        type: string
+      photo_url:
+        type: string
+    additionalProperties: true
+  status:
+    type: string
+    nullable: true
+  number_likes:
+    type: integer
+  number_comments:
+    type: integer
+  deletable:
+    type: boolean
+  has_uploads:
+    type: boolean
+  engagements:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  engagement_summary:
+    type: object
+    additionalProperties: true
+  poll_mode:
+    type: string
+  poll_options:
+    type: array
+    items:
+      $ref: ChatPollOption
+  topic_configs:
+    type: array
+    description: "`{option, value}` pairs such as `size`, `impact`, `help_centre_area_id`."
+    items:
+      type: object
+      additionalProperties: true
+  chat_room_config:
+    type: object
+    description: "Includes `buttons_mode`, `statuses`, `uploads`, `comment_engagements`, `like_words`."
+    additionalProperties: true
+additionalProperties: true

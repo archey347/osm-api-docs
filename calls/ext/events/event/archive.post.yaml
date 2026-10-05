@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: archive
+summary: Archive or unarchive an event
+description: "`archive`/`delete` are soft: `delete` returns a `deletion_id` that can be restored via the soft-deletion endpoint."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+  eventid:
+    type: string
+  archived:
+    type: string
+    enum: [ "0", "1" ]
+body:
+  params:
+    remove_attachments:
+      type: string
+      enum: [ "true", "false" ]
+  example:
+    remove_attachments: "false"
+response:
+  schema:
+    $ref: EventLegacyOk
+  examples:
+    archive:
+      value:
+        ok: true
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

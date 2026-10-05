@@ -1,0 +1,17 @@
+type: array
+description: One entry per question in the step.
+items:
+  type: object
+  properties:
+    question_id: { }
+    multi:
+      description: "`true` for checkbox questions, which carry `answered[]` instead of `reason`."
+    reason: { }
+    answered:
+      type: array
+      items:
+        type: object
+        properties:
+          reason: { }
+        additionalProperties: true
+  additionalProperties: true

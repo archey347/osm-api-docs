@@ -1,0 +1,12 @@
+type: object
+properties:
+  status:
+    type: string
+    description: "`died` and `failed` are terminal failures."
+  finished:
+    type: boolean
+  completed_data:
+    type: string
+    nullable: true
+    description: JSON-encoded string, null until the job completes.
+additionalProperties: true

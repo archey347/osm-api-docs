@@ -1,0 +1,23 @@
+kind: ext-action
+method: GET
+path: /ext/settings/parents/loginhistory/
+action: getLoginHistoryMyMember
+summary: List parent login histories
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    default:
+      value: [ ]
+  description: "Login histories in `data`; the row shape is not visible in the web app's code."
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

@@ -1,0 +1,21 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        badge_id: { }
+        level: { }
+        name:
+          type: string
+        group_name:
+          type: string
+        shortname:
+          type: string
+        stock: { }
+        desired: { }
+        shared_by: { }
+        shared_with: { }
+      additionalProperties: true
+additionalProperties: true

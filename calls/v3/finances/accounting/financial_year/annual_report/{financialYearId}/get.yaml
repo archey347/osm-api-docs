@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/annual_report/{financialYearId}"
+summary: Get annual report
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+query:
+  other_financial_year_id:
+    type: string
+    description: Year to compare against.
+response:
+  schema:
+    $ref: AccountingAnnualReport
+  examples:
+    default:
+      value:
+        income: [ ]
+        expense: [ ]
+        bank_accounts: [ ]
+        summary: { }
+  description: "Report data; `meta` lists other years available for comparison."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

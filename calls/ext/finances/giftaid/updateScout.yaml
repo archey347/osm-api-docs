@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/finances/giftaid/
+action: updateScout
+summary: "Update one member's Gift Aid detail"
+tags: [ Finances ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    sectionid:
+      type: string
+    termid:
+      type: string
+    scoutid:
+      type: string
+    column:
+      type: string
+      description: "Declaration detail (`title`, `parentname`, `address`, `postcode`) or a grid payment field from `structure`."
+    value:
+      type: string
+  example:
+    scoutid: "3100001"
+    sectionid: "45001"
+    termid: "9000001"
+    column: postcode
+    value: AB1 2CD
+response:
+  schema:
+    anyOf:
+      - $ref: FinanceStatusResponse
+      - $ref: FinanceGiftAidSendResult
+      - $ref: FinanceGiftAidUpdateResult
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

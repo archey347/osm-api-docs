@@ -1,0 +1,17 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  read_only:
+    type: array
+    items:
+      type: string
+  data:
+    type: object
+    additionalProperties: true
+  meta:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

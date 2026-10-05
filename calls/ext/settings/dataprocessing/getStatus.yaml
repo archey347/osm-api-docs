@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/settings/dataprocessing/
+action: getStatus
+summary: Get data processing agreement status
+description: "`meta.section_types` lists the section types an agreement can cover."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

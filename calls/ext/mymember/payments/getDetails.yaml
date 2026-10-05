@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/payments/
+action: getDetails
+summary: Get payment details for a member
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberPaymentsResponse
+  examples:
+    getDetails:
+      value:
+        status: true
+        error: null
+        data:
+          payments:
+            - scheme_id: "6200001"
+              name: Termly subscriptions
+              currency: GBP
+              overdue: 15
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

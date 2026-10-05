@@ -1,0 +1,23 @@
+type: object
+properties:
+  enabled:
+    type: boolean
+  url:
+    type: string
+  contact_group: { }
+  fields:
+    type: object
+    description: Application form fields by key.
+    additionalProperties:
+      type: object
+      properties:
+        label:
+          type: string
+        required:
+          type: boolean
+        force_required:
+          type: boolean
+        identifier: { }
+        varname: { }
+      additionalProperties: true
+additionalProperties: true

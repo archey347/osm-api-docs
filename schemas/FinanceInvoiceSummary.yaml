@@ -1,0 +1,24 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        invoiceid:
+          type: string
+        name:
+          type: string
+        entrydate:
+          type: string
+        exp:
+          description: Total expenses.
+        in:
+          description: Total income.
+        total:
+          description: Net total.
+        finalised:
+          type: string
+          description: "`1` when finalised."
+      additionalProperties: true
+additionalProperties: true

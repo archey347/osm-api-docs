@@ -1,0 +1,15 @@
+kind: v3-route
+method: POST
+path: "/v3/member_time/{memberTimeId}/makePrimary"
+summary: Make a membership the member's primary section
+description: "Used from the national member search; `memberTimeId` comes from that search result."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  memberTimeId:
+    type: string
+response:
+  description: Success. The web app ignores the body.
+sources: [ "21.3e07bd5db1c55da1f0d3.js" ]

@@ -1,0 +1,30 @@
+type: object
+properties:
+  owning_section_name:
+    type: string
+  accounts:
+    type: array
+    items:
+      type: object
+      properties:
+        gateway:
+          type: string
+          enum: [ stripe, gocardless ]
+        organisation_id: { }
+        name: { }
+        section_count: { }
+        section_names: { }
+      additionalProperties: true
+  available:
+    type: array
+    items:
+      type: object
+      properties:
+        gateway:
+          type: string
+          enum: [ stripe, gocardless ]
+        organisation_id: { }
+        name: { }
+        section_names: { }
+      additionalProperties: true
+additionalProperties: true

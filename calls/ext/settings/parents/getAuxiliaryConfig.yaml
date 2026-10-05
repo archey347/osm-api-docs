@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/settings/parents/
+action: getAuxiliaryConfig
+summary: Get a parent portal text setting
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+  type:
+    type: string
+    enum: [ badgesExtra, portalNoticeboard ]
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    getAuxiliaryConfig:
+      summary: Text for the chosen setting
+      value: Example noticeboard text
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

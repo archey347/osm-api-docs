@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: saveProperty
+summary: Save an event property
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    event_id:
+      type: string
+    property:
+      type: string
+      description: Additional-information field key.
+    value:
+      type: string
+      description: New value.
+  example:
+    section_id: "45001"
+    event_id: "9600001"
+    property: emergency_contact
+    value: Sam Leader
+response:
+  schema:
+    $ref: EventPayloadData
+  envelope: true
+  examples:
+    saveProperty:
+      value: [ ]
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

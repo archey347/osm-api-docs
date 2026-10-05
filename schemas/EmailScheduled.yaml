@@ -1,0 +1,33 @@
+type: object
+properties:
+  subject:
+    type: string
+  from:
+    type: string
+    description: "`Name <address>`."
+  cc:
+    type: string
+  guid:
+    type: string
+  campaign_id: { }
+  sendtime:
+    type: string
+  sendtime_display:
+    type: string
+  rescheduled:
+    type: boolean
+    description: "`true` when the send time was too close and was moved."
+  member_ids:
+    type: array
+    items: { }
+  contact_groups:
+    type: array
+    items: { }
+  excluded_emails:
+    type: object
+    description: Member ID to addresses left out.
+    additionalProperties: true
+  edits:
+    type: object
+    additionalProperties: true
+additionalProperties: true

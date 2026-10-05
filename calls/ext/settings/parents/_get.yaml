@@ -1,0 +1,4 @@
+path: /ext/settings/parents/
+method: GET
+summary: Get parent portal settings
+response: Response.

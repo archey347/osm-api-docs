@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/finances/hqpayments/
+action: getUnlinkedPayments
+summary: List payments not linked to an event
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `getPaymentHistory` accepts `0` to span all sections."
+response:
+  schema:
+    $ref: FinanceHqUnlinkedPayments
+  envelope: true
+  examples:
+    getUnlinkedPayments:
+      summary: getUnlinkedPayments
+      value:
+        - label: Camp fee
+          value: "9100001"
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

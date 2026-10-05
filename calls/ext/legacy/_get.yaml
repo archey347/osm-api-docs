@@ -1,0 +1,5 @@
+path: /ext/legacy/
+method: GET
+summary: Legacy member selection helpers
+description: "Feeds the \"Select\" menu on member grids and the event/meeting pickers."
+response: "`getSelectOptions` returns options; `getSelectBy` returns the member IDs matching one option."

@@ -1,0 +1,5 @@
+path: /ext/quartermaster/
+method: GET
+summary: Get quartermaster lists
+description: "`downloadList` returns a file for download, not JSON."
+response: Lists, or one list's columns and rows.

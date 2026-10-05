@@ -1,0 +1,37 @@
+kind: ext-action
+method: GET
+path: /ext/facilities/
+action: locationSearch
+summary: Search for a location
+tags: [ Facilities ]
+source:
+  request: inferred
+  response: inferred
+query:
+  query:
+    type: string
+    description: Place name to search for.
+  multi:
+    type: string
+    enum: [ "true" ]
+    description: "The web app always sends `true`."
+  viewbox:
+    type: string
+    description: "Map bounds as `west,north,east,south`, to bias results."
+response:
+  schema:
+    $ref: FacilityLocationSearchResponse
+  envelope: true
+  examples:
+    locationSearch:
+      value:
+        - display_name: Exampleton, Exampleshire, United Kingdom
+          lat: "54.9000"
+          lon: "-1.6000"
+          address:
+            country_code: gb
+sources:
+  - "4915.44ec02ea3add4b618c96.js"
+  - area.facilities.e75a3e5352d708ac499b.js
+  - component.location_dialog.b0ebcf9bd464c6b73884.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

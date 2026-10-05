@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/add_stripe_account"
+summary: Add external bank account for payouts
+description: "`routing_number` is the UK sort code, digits only."
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+body:
+  params:
+    account_number:
+      type: string
+      required: true
+      description: Digits only, at least 6.
+    routing_number:
+      type: string
+      required: true
+      description: Digits only, at least 6.
+  example:
+    account_number: "00000000"
+    routing_number: "000000"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

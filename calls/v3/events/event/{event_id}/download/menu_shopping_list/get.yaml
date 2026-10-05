@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/download/menu_shopping_list"
+summary: Download the menu shopping list
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+query:
+  from_day:
+    type: string
+    required: true
+    description: First day of the range.
+  from_meal:
+    type: string
+    required: true
+  to_day:
+    type: string
+    required: true
+  to_meal:
+    type: string
+    required: true
+response:
+  description: Document download, opened in a new window.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

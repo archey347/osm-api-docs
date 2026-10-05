@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/events/
+action: updateParentRota
+summary: 'Update a parent''s event rota choice'
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    event_id:
+      type: string
+      required: true
+    rota:
+      type: string
+      description: "Always `offered`."
+    rota_notes:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    event_id: "8100001"
+    rota: offered
+    rota_notes: Happy to drive.
+response:
+  schema:
+    $ref: MyMemberUpdateParentRotaResponse
+  examples:
+    updateParentRota:
+      value:
+        status: true
+        error: null
+        meta:
+          offer: offered
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

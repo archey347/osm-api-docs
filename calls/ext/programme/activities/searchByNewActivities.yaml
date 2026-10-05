@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByNewActivities
+summary: List new activities
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    description: "Section type; limits results to activities suitable for it."
+  section_id:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

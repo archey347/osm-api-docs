@@ -1,0 +1,26 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      meetings:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+          additionalProperties: true
+      events:
+        type: array
+        items:
+          type: object
+          properties:
+            title:
+              type: string
+          additionalProperties: true
+      chief_scout_awards:
+        type: integer
+        description: Only read for the AGM report.
+    additionalProperties: true
+additionalProperties: true

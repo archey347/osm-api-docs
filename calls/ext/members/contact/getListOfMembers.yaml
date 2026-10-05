@@ -1,0 +1,48 @@
+kind: ext-action
+method: GET
+path: /ext/members/contact/
+action: getListOfMembers
+summary: List a section's members
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  sort:
+    type: string
+    enum: [ dob, firstname, lastname, patrol ]
+    description: Sort order for list of members.
+response:
+  schema:
+    $ref: MembersList
+  examples:
+    membersList:
+      summary: Members list
+      value:
+        identifier: scoutid
+        photos: true
+        items:
+          - firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            patrolid: 12001
+            patrol: Blue
+            sectionid: 45001
+            enddate: null
+            age: "10 / 2"
+            patrol_role_level_label: Sixer
+            active: true
+            scoutid: 3100001
+            full_name: Jamie River
+sources: [ ext.campsites.fb843cdfc650e56db2ee.js, ext.members.ca95317ad56b2f22a5e5.js ]

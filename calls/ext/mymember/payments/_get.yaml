@@ -1,0 +1,4 @@
+path: /ext/mymember/payments/
+method: GET
+summary: Payment schedules for a member
+response: Schedules, or the payments in one schedule.

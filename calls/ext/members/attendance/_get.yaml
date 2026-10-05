@@ -1,0 +1,8 @@
+path: /ext/members/attendance/
+method: GET
+summary: Get attendance data or badge requirements
+description: |-
+  Attendance endpoints share this path with different `action` values.
+  Use `get` for attendance records or `getAttendanceBadgeRequirements`
+  for badge requirements tied to a date.
+response: "Attendance or badge requirement response. `printRegister` returns a printable document rather than JSON."

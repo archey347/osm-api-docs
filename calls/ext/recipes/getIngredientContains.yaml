@@ -1,0 +1,21 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: getIngredientContains
+summary: Get allergens an ingredient contains
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  ingredient_id:
+    type: string
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+  examples:
+    getIngredientContains:
+      summary: "`data` lists the allergen tags the ingredient contains"
+      value: [ gluten ]
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

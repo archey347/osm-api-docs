@@ -1,0 +1,15 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            emailid: { }
+            subject:
+              type: string
+            sent:
+              type: string
+          additionalProperties: true

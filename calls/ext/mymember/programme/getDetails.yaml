@@ -1,0 +1,46 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/programme/
+action: getDetails
+summary: Get the programme for a member
+description: "`getDetails` lists meetings, `getCalendarFeed` returns the member's calendar feed URL, and `download` returns a programme document (opened in a new window; format not confirmed)."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberProgrammeResponse
+  examples:
+    getDetails:
+      value:
+        status: true
+        error: null
+        data:
+          - eveningid: "9500001"
+            meetingdate: "2025-09-12"
+            title: Camp Skills Night
+            starttime: "18:00:00"
+            endtime: "19:30:00"
+            notesforparents: Bring a water bottle.
+            attendance: "Yes"
+            help_required: true
+            help_signed_up: false
+            help_enough: false
+            badges: { }
+        meta:
+          calendar: true
+          download: true
+          times: true
+          summary: true
+          attendance: true
+          help: true
+          badges: true
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

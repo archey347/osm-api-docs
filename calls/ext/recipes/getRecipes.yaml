@@ -1,0 +1,29 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: getRecipes
+summary: List recipes
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+response:
+  schema:
+    $ref: RecipeListResponseData
+  envelope: true
+  examples:
+    getRecipes:
+      value:
+        - recipe_id: "7700001"
+          original_recipe_id: 0
+          title: Example Chilli
+          cache:
+            suitability:
+              vegetarian: false
+            tags:
+              meals: [ dinner ]
+              cooking_methods: [ hob ]
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

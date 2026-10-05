@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/programme/
+action: getMembersForParentRota
+summary: List members for the parent rota
+tags: [ Programme ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  section_id:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeParentRotaMembers
+  envelope: true
+  examples:
+    programmeParentRotaMembers:
+      summary: Parent rota members
+      value:
+        - scoutid: "910302"
+          firstname: Robert
+          lastname: Baden Powell
+          photo_guid: "00000000-0000-0000-0000-000000000000"
+          patrol_id: -2
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

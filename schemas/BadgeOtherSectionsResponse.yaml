@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  properties:
+    column_id: { }
+    column_name:
+      type: string
+    section_name:
+      type: string
+    data: { }
+  additionalProperties: true

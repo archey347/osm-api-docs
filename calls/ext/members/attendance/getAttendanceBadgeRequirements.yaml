@@ -1,0 +1,48 @@
+kind: ext-action
+method: GET
+path: /ext/members/attendance/
+action: getAttendanceBadgeRequirements
+summary: Get badge requirements met at a meeting
+description: "Use `get` for attendance records or `getAttendanceBadgeRequirements` for badge requirements tied to a date."
+tags: [ Attendance ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  section:
+    type: string
+    required: true
+    description: "Section type (e.g., `cubs`)."
+  date:
+    type: string
+    description: "Meeting date (required for `action=getAttendanceBadgeRequirements`)."
+  event_id:
+    type: string
+    description: "Event ID; the event register sends this in place of `date`."
+  v:
+    type: string
+    enum: [ "2" ]
+    description: "Sent by the meeting register. The reply is then `{ badges, badges_updated_at }` instead of a bare array."
+response:
+  schema:
+    $ref: AttendanceBadgeRequirements
+  examples:
+    badgeRequirements:
+      summary: Attendance badge requirements
+      value:
+        - badge_id: "1593"
+          badgeName: Communicator
+          column_id: "910305"
+          name: Code
+          meetingdate: "2025-01-14"
+          section: cubs
+          sectionid: 12345
+sources:
+  - ext.events.4fe61901f961aaf5b232.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

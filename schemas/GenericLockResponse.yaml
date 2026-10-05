@@ -1,0 +1,5 @@
+type: object
+properties:
+  lock_id:
+    type: string
+additionalProperties: true

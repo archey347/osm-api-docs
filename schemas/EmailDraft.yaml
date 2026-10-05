@@ -1,0 +1,12 @@
+type: object
+properties:
+  subject:
+    type: string
+  guid:
+    type: string
+  campaign_id: { }
+  edits:
+    type: object
+    description: "Snippet ID to bit to `{ text }`."
+    additionalProperties: true
+additionalProperties: true

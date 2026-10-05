@@ -1,0 +1,14 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          member_access:
+            type: object
+            additionalProperties: true
+            description: "Replaces the user's member access (same shape as `data` of `/v3/mymember/members`)."
+          member_access_unactivated:
+            description: "Members still awaiting activation; an array, or `false` when none remain."
+        additionalProperties: true

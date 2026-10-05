@@ -1,0 +1,8 @@
+path: /ext/members/contact/
+method: GET
+summary: Get list of members or individual member details
+description: |-
+  Retrieves member data. The `action` parameter controls the behavior.
+  This endpoint is also used to return full member contact/emergency data
+  (use with care for GDPR compliance).
+response: Member data response.

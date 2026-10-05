@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/finances/giftaid/
+action: downloadPDF
+summary: Download the Gift Aid grid as PDF
+description: "`downloadPDF` and `export` return a document (PDF and HMRC spreadsheet respectively), opened in a new window."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. Group-level exports pass `sections` instead."
+  termid:
+    type: string
+    description: Term ID.
+  section:
+    type: string
+    description: "Section type (e.g. `cubs`)."
+response:
+  document: true
+  content_type: application/octet-stream
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

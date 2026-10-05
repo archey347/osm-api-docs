@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/{chatRoomId}/search"
+summary: Search topics in a room
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  chatRoomId:
+    type: string
+body:
+  params:
+    query:
+      type: string
+      required: true
+    chat_room_id:
+      type: string
+      required: true
+  example:
+    query: stoves
+    chat_room_id: "501"
+response:
+  schema:
+    $ref: ChatTopicList
+  examples:
+    default:
+      value: [ ]
+  description: "Matching topics; same item shape as the topic list."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

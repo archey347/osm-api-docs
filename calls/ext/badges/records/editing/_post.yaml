@@ -1,0 +1,12 @@
+path: /ext/badges/records/editing/
+method: POST
+summary: Edit badges
+description: |-
+  Badge editor actions; `action` selects one. `getBadgeDetails`, `getBadgeImage`, `getModuleInfo` and
+  `startEdit` only read data despite being POSTs. `startEdit` may create a new draft version of a live badge.
+response: "Depends on the action; write actions return a `BadgeWriteResult`."
+response_examples:
+  failure:
+    summary: Error
+    value:
+      error: Badge name already in use

@@ -1,0 +1,21 @@
+kind: v3-route
+method: POST
+path: "/v3/members/email/draft/{sectionid}/{emailid}/delete"
+summary: Delete an email draft
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+  emailid:
+    type: string
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value: [ ]
+  description: Result.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

@@ -1,0 +1,81 @@
+kind: ext-action
+method: POST
+path: /ext/programme/activities/
+action: saveActivity
+summary: Create or update an activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+body:
+  params:
+    id:
+      type: string
+      description: "Activity ID, `0` for a new activity."
+    title:
+      type: string
+    description:
+      type: string
+    resources:
+      type: string
+    instructions:
+      type: string
+    time:
+      type: string
+      description: Running time.
+    location:
+      type: string
+      description: "Observed `indoors`."
+    sections:
+      type: string
+      description: JSON array of section types the activity suits.
+    version:
+      type: string
+    links:
+      type: string
+      description: JSON array of links.
+    files:
+      type: string
+      description: "Sent as `-1`."
+    shared:
+      type: string
+      description: "`2` unless the user chose a sharing level."
+    sectionid:
+      type: string
+      description: Section ID.
+    tags:
+      type: string
+      description: JSON array of tags.
+    visibility:
+      type: string
+      enum: [ site, all ]
+  example:
+    id: "0"
+    title: Knots Relay
+    description: Teams race to tie set knots.
+    resources: Rope
+    instructions: Split into teams of four.
+    time: "15"
+    location: indoors
+    sectionid: "45001"
+    sections: "[\"cubs\",\"scouts\"]"
+    tags: "[\"skills\"]"
+    version: "0"
+    links: "[]"
+    files: "-1"
+    shared: "2"
+response:
+  schema:
+    $ref: ProgrammeActivitySaveResult
+  examples:
+    saveActivity:
+      summary: "`saveActivity`; `error` is set when saved with a problem"
+      value:
+        result: true
+        id: "7100001"
+        title: Knots Relay
+        activity_unique_id: "7200001"
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

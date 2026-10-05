@@ -1,0 +1,7 @@
+path: /ext/badges/due/
+method: GET
+summary: Badges due to be awarded
+description: |-
+  `get` lists completed badges that have not yet been awarded; `download` and `downloadBags`
+  return documents instead of JSON.
+response: "Due badges (`get`)."

@@ -1,0 +1,57 @@
+kind: v3-route
+method: POST
+path: "/v3/todo/tasks/{associatedType}/{associatedId}"
+summary: Create a task
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  associatedType:
+    type: string
+  associatedId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    title:
+      type: string
+    description:
+      type: string
+    status:
+      type: string
+      enum: [ scheduled, ready, in_progress, completed ]
+      description: "`scheduled` needs `available_date`, which must be in the future and not after `due_date`."
+    due_date:
+      type: string
+      nullable: true
+      description: "`YYYY-MM-DD`."
+    available_date:
+      type: string
+      nullable: true
+      description: "`YYYY-MM-DD`."
+    repeat_frequency:
+      type: integer
+      description: "`0` for no repeat."
+    repeat_period:
+      type: string
+      nullable: true
+      enum: [ days, weeks, months ]
+    owners:
+      type: array
+      items:
+        type: integer
+      description: "User IDs; `[0]` clears the assignees."
+  example:
+    title: Book minibus
+    description: Get three quotes.
+    status: ready
+    due_date: "2026-06-01"
+    repeat_frequency: 0
+    owners: [ 3100001 ]
+response:
+  description: "Success. The web app ignores the body; validation failures carry `errors` keyed by field name."
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

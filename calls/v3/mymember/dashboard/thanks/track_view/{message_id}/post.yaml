@@ -1,0 +1,23 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/dashboard/thanks/track_view/{message_id}"
+summary: Record that a leader has seen or removed a thank-you message
+description: Sent from the leader dashboard, not the parent portal.
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  message_id:
+    type: string
+body:
+  params:
+    action:
+      type: string
+      enum: [ seen, deleted ]
+      required: true
+  example:
+    action: seen
+response:
+  description: "Recorded; the response is ignored."
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

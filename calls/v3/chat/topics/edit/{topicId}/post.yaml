@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/edit/{topicId}"
+summary: Edit a topic
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+body:
+  params:
+    message:
+      type: string
+      required: true
+    title:
+      type: string
+      description: Only sent in rooms that use titles.
+    member_id:
+      type: string
+  example:
+    title: Camp kit
+    message: "Who is bringing the stoves and gas?"
+response:
+  description: "Success when `status` is true."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/members/attendance/
+action: updateBadgeRequirements
+summary: Record attendance and badge requirements met
+description: "`update` and `updateBadgeRequirements` take the same body; the second is sent from the dialog that records badge requirements met at a meeting."
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+body:
+  params:
+    sectionid:
+      type: string
+    section:
+      type: string
+    scouts:
+      type: string
+      description: JSON array of member IDs.
+    selectedDate:
+      type: string
+    present:
+      type: string
+    completedBadges:
+      type: string
+      description: JSON array of badge data.
+    customData:
+      type: string
+      description: JSON array of custom data updates.
+    eventid:
+      type: string
+response:
+  schema:
+    type: boolean
+    description: "`true` on success."
+sources: [ ext.members.ca95317ad56b2f22a5e5.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

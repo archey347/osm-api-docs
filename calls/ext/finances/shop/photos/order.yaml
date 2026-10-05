@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/finances/shop/photos/
+action: order
+summary: Reorder shop item photos
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  id:
+    type: string
+    required: true
+    description: Shop item ID.
+body:
+  params:
+    "photo_ids[0]":
+      type: string
+      description: "Photo IDs in display order (`photo_ids[1]` etc.)."
+  example:
+    "photo_ids[0]": "9900002"
+    "photo_ids[1]": "9900001"
+response:
+  schema:
+    $ref: FinanceShopPhotoManifest
+  envelope: true
+sources: [ area.finances_shop.27a67dba3a722302722e.js ]

@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateTemplate
+summary: Save a parent email template
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    key:
+      type: string
+      description: Template key.
+    subject:
+      type: string
+    value:
+      type: string
+      description: Template body.
+  example:
+    section_id: "45001"
+    key: example-template
+    subject: Example subject
+    value: "<p>Example body</p>"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    updateTemplate:
+      summary: Template saved
+      value: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

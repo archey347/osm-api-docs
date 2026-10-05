@@ -1,0 +1,19 @@
+type: object
+properties:
+  result:
+    type: string
+    description: "`confirm_deletions` when the change would remove booked items; resend with `force`."
+  items:
+    type: array
+    description: Names of the items that would be removed.
+    items:
+      type: string
+  client_secret:
+    type: string
+    description: "Only for `pay_now` and `authorise_payments`: Stripe client secret to complete the payment."
+  public_key:
+    type: string
+  stripe_account:
+    type: string
+additionalProperties: true
+description: Result of a booking field change.

@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/delete"
+summary: Close a bank account
+description: The web app only offers this when the balance is zero and there are no unprocessed transactions.
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

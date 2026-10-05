@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/members/contact/
+action: getMemberTransfers
+summary: List member transfers for a section
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  mode:
+    type: string
+    description: "Display mode (observed value `grid`)."
+  section_id:
+    type: string
+    description: Section ID (alternate naming).
+response:
+  schema:
+    $ref: MemberTransfers
+  examples:
+    memberTransfers:
+      summary: Member transfers
+      value:
+        status: true
+        error: null
+        data:
+          - direction: from
+            member_id: 3100002
+            firstname: Riley
+            lastname: Park
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            type: transferred
+            date: "2024-01-15"
+            section_id: 65001
+            section_name:
+              group: "1st Riverside Scouts"
+              section: Scouts
+            section_long: "1st Riverside Scouts: Scouts"
+            mode: outgoing
+            id: outgoing-123456
+        meta: [ ]
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

@@ -1,0 +1,11 @@
+type: object
+properties:
+  body:
+    type: string
+    description: HTML.
+  customised:
+    type: boolean
+  updated:
+    type: integer
+    description: "Number of sections changed; returned by `POST`."
+additionalProperties: true

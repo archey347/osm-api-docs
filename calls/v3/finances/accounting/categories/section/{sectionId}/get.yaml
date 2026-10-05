@@ -1,0 +1,31 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/categories/section/{sectionId}"
+summary: List categories
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+query:
+  withTrashed:
+    type: string
+    enum: [ "true" ]
+    description: Include deleted categories.
+response:
+  schema:
+    $ref: AccountingCategoryList
+  examples:
+    default:
+      value:
+        - id: 3100040
+          name: Subs
+          type: income
+          budget: null
+          icon: null
+          visibilities: [ ]
+  description: Categories for the section.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

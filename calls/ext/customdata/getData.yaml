@@ -1,0 +1,53 @@
+kind: ext-action
+method: GET
+path: /ext/customdata/
+action: getData
+summary: Get custom data groups and values
+tags: [ Custom Data ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  associated_id:
+    type: string
+    description: "Member ID, or `false` when none."
+  associated_type:
+    type: string
+    enum: [ member ]
+  associated_is_section:
+    type: string
+    description: "Section association flag; sent as `false` or the literal `null`."
+  "varname_filter[]":
+    type: string
+    description: "Column variable name to include; repeat per name. The literal `null` (as `varname_filter`) when not filtering."
+  "hidden_groups[]":
+    type: string
+    description: Group identifier to leave out; repeat per group.
+  group_order:
+    type: string
+    description: "Group ordering (observed `section`)."
+  context:
+    type: string
+    enum: [ members ]
+response:
+  schema:
+    $ref: CustomDataResponse
+  envelope: true
+  examples:
+    getData:
+      summary: Custom data groups and columns
+      value:
+        - group_id: 7
+          group_type: floating
+          identifier: floating
+          name: Other
+          columns:
+            - column_id: 34
+              type: select
+              varname: gender
+              label: Gender
+              value: Male

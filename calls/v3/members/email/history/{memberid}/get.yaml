@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/history/{memberid}"
+summary: List emails sent to a member
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  memberid:
+    type: string
+query:
+  section_id:
+    type: string
+    description: Limit to one section. Omitted for users who can view member emails across sections.
+response:
+  schema:
+    $ref: EmailHistory
+  examples:
+    default:
+      value:
+        - email_id: 9200001
+          subject: Weekly Meeting Reminder
+          sendtime: "2025-09-15 18:00:00"
+  description: Emails sent to the member.
+sources: [ "21.3e07bd5db1c55da1f0d3.js", ext.members.ca95317ad56b2f22a5e5.js ]

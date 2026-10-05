@@ -1,0 +1,6 @@
+type: object
+properties:
+  failed:
+    type: integer
+    description: Number of members the payment could not be recorded for.
+additionalProperties: true

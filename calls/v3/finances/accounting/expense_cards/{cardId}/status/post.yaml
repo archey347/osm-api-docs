@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cards/{cardId}/status"
+summary: Activate or deactivate a card
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  cardId:
+    type: string
+    description: Expense card ID.
+body:
+  params:
+    status:
+      type: string
+      enum: [ active, inactive ]
+      required: true
+    temp:
+      type: string
+      description: "Sent as `1` by the dashboard widget when activating a card."
+  example:
+    status: active
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js, ext.dashboard.82a61c008183022fe2cd.js ]

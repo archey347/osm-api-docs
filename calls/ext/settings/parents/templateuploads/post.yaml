@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/templateuploads/
+summary: Commit uploads for an email template
+description: "`action` is taken from the upload configuration's `commitTemp` endpoint name; the value was not captured."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  action:
+    type: string
+    required: true
+    description: Commit endpoint name from the upload config.
+body:
+  params:
+    id:
+      type: string
+      description: Section ID.
+    section_id:
+      type: string
+      description: "Observed `0`."
+    path:
+      type: string
+      description: Template key wrapped in slashes.
+  example:
+    id: "45001"
+    section_id: "0"
+    path: /example-template/
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  description: Response.

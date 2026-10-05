@@ -1,0 +1,40 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/transactions"
+summary: List bank account transactions
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+query:
+  page:
+    type: integer
+    description: "1-based page number."
+  per_page:
+    type: integer
+  mode:
+    type: string
+    description: "Observed `all`."
+  expense_cardholder_id:
+    type: string
+    description: Limit to one cardholder.
+response:
+  schema:
+    $ref: AccountingBankTransactionList
+  examples:
+    default:
+      value:
+        - id: 3100020
+          date: "2026-09-20"
+          reference: Example Supplies Ltd
+          amount: -2500
+          is_transfer: false
+          transaction: null
+          expense_transaction: null
+          categories: [ ]
+  description: Page of bank transactions.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

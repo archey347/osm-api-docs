@@ -1,0 +1,4 @@
+path: /ext/programme/activities/
+method: POST
+summary: Programme activity library writes
+response: Result of the activity library write.

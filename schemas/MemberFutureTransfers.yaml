@@ -1,0 +1,31 @@
+type: object
+properties:
+  current:
+    type: array
+    items:
+      type: object
+      properties:
+        member_id: { }
+        firstname:
+          type: string
+        lastname:
+          type: string
+        photo_guid:
+          type: string
+        future_transfer:
+          type: object
+          nullable: true
+          properties:
+            id: { }
+            transfer_date:
+              type: string
+          additionalProperties: true
+      additionalProperties: true
+  incoming:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+      additionalProperties: true
+additionalProperties: true

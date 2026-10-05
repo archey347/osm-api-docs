@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/members/nationalcensus/
+action: paymentReceived
+summary: Record payment of a census invoice
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invoice_id:
+      type: string
+      description: "Every action except `complete`."
+    payment_method:
+      type: string
+    total_paid:
+      type: string
+  example:
+    invoice_id: "7100001"
+    payment_method: bacs
+response:
+  schema:
+    $ref: CensusInvoiceCheck
+  examples:
+    paymentReceived:
+      summary: "`paymentReceived`, `updateNotes`"
+      value:
+        ok: true
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

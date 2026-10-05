@@ -1,0 +1,12 @@
+path: /ext/reports/
+method: POST
+summary: Manage dashboards and reports
+description: |-
+  Dashboard writes share this path with different `action` values.
+  `getDashboards` is a read-only listing. `deleteDashboard` first
+  returns `data.shared: true` if other sections use the dashboard; repeat the
+  request with `confirmation` to go ahead.
+response: |-
+  `getDashboards` returns the section's dashboards, or `status: false`.
+  The web app ignores the body of `duplicateReport`, `refreshReport`
+  and `updateDashboard`.

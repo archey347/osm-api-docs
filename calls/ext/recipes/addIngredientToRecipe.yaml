@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: addIngredientToRecipe
+summary: Add an ingredient to a recipe
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      description: "Not sent by the ingredient actions other than `addIngredientToRecipe`. `editRecipe` uses `-1` to create a new recipe."
+    ingredient_id:
+      type: string
+    quantity:
+      type: string
+  example:
+    recipe_id: "7700001"
+    ingredient_id: "7710001"
+    quantity: "2"
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

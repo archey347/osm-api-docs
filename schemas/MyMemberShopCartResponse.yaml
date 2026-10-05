@@ -1,0 +1,73 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          cart:
+            type: object
+            nullable: true
+            properties:
+              currency:
+                type: string
+              subtotal:
+                type: string
+              shipping_fee:
+                type: string
+              minimum_order_total:
+                type: string
+              delivery_methods:
+                type: array
+                items:
+                  type: string
+                  description: "`collect` or `ship`."
+              reserves_stock: { }
+              expires_at:
+                type: string
+                nullable: true
+                description: When the stock reservation lapses.
+              lines:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line_id: { }
+                    item_id: { }
+                    variant_id: { }
+                    item_name:
+                      type: string
+                    variant_label:
+                      type: string
+                    photo_url:
+                      type: string
+                      nullable: true
+                    answers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                          answer:
+                            type: string
+                        additionalProperties: true
+                    warning:
+                      type: string
+                      nullable: true
+                    quantity:
+                      type: integer
+                    line_total:
+                      type: string
+                  additionalProperties: true
+            additionalProperties: true
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          server_time:
+            type: string
+            description: "ISO 8601 with offset; used to correct for clock skew."
+          payments_unavailable:
+            type: boolean
+        additionalProperties: true

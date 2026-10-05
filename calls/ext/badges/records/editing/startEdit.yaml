@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: startEdit
+summary: Start editing a badge
+description: "`getBadgeDetails`, `getBadgeImage`, `getModuleInfo` and `startEdit` only read data despite being POSTs. `startEdit` may create a new draft version of a live badge."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    sectionid: "45001"
+response:
+  schema:
+    $ref: BadgeEditStartResponse
+  examples:
+    startEdit:
+      summary: startEdit
+      value:
+        new_version: false
+        details:
+          name: Teamwork
+          description: Work as part of a team.
+          parents_description: ""
+          group_name: ""
+          use_points: false
+          config: { }
+        myscout: yes-progress
+        sections: [ cubs ]
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

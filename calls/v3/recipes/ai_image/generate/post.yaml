@@ -1,0 +1,24 @@
+kind: v3-route
+method: POST
+path: /v3/recipes/ai_image/generate
+summary: Generate an AI picture for a recipe
+description: "Asynchronous; the websocket message has `status`, and `image` (base64 PNG) or `error`."
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      required: true
+    request_id:
+      type: string
+      required: true
+      description: Client-generated ID used to match the websocket message.
+  example:
+    recipe_id: "7700001"
+    request_id: abc123
+response:
+  description: "Accepted. The result arrives later on the user's websocket channel as a `recipe-ai-image-ready` message carrying the same `request_id`."
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

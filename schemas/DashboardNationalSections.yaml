@@ -1,0 +1,12 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        sectionid: { }
+        name: { }
+        section_type: { }
+      additionalProperties: true
+additionalProperties: true

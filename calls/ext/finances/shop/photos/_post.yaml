@@ -1,0 +1,7 @@
+path: /ext/finances/shop/photos/
+method: POST
+summary: Upload, order and delete shop item photos
+description: |-
+  `put` and `putTemp` upload a file as `multipart/form-data` (field `qqfile`).
+  Temp uploads are kept until `commitTemp` or discarded by `revertTemp`.
+response: "Result. `put` and `putTemp` return the updated manifest in `data.manifest`."

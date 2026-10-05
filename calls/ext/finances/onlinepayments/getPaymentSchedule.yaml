@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getPaymentSchedule
+summary: Get a payment schedule
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  termid:
+    type: string
+  schemeid:
+    type: string
+  allpayments:
+    type: string
+response:
+  schema:
+    $ref: FinanceOnlinePaymentSchedule
+  examples:
+    getPaymentSchedule:
+      summary: getPaymentSchedule
+      value:
+        currency: GBP
+        payments:
+          - paymentid: "9820001"
+            name: Autumn term
+            amount: "30.00"
+            date: "2024-10-01"
+            archived: "0"
+sources: [ ext.finances.9f318350fda4d977c688.js ]

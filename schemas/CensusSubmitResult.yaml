@@ -1,0 +1,9 @@
+type: object
+properties:
+  available_members_changed:
+    type: boolean
+  missing_info:
+    type: boolean
+  wrong_time:
+    type: boolean
+additionalProperties: true

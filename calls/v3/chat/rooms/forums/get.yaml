@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: /v3/chat/rooms/forums/
+summary: List community forum rooms
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    required: true
+    description: "Section type, e.g. `scouts`."
+response:
+  schema:
+    $ref: ChatRoomList
+  examples:
+    default:
+      value:
+        - id: 900
+          mode: topic
+          name: Community help
+  description: Forum rooms.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

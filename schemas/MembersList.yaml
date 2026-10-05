@@ -1,0 +1,13 @@
+type: object
+properties:
+  identifier:
+    type: string
+  photos:
+    type: boolean
+  items:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+required: [ identifier, items ]
+additionalProperties: true

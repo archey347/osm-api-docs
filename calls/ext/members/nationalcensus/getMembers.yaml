@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/members/nationalcensus/
+action: getMembers
+summary: List members for the national census
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Not sent by `sendEmailReceipt`."
+response:
+  schema:
+    $ref: CensusInvoices
+  examples:
+    getMembers:
+      summary: Census status for the section
+      value:
+        period: "2025"
+        done_this_period: false
+        related_members: { }
+        invoices: { }
+sources: [ ext.dashboard.82a61c008183022fe2cd.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

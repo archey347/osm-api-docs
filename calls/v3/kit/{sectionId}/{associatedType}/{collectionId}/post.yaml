@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/kit/{sectionId}/{associatedType}/{collectionId}"
+summary: Save a kit list
+tags: [ Kit ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  associatedType:
+    type: string
+  collectionId:
+    type: string
+    description: "Kit list ID. `0` creates a new list."
+body:
+  params:
+    name:
+      type: string
+      required: true
+    instructions:
+      type: string
+    items:
+      type: string
+      required: true
+      description: "JSON array of `{item_id, quantity}`; items with quantity 0 are omitted."
+  example:
+    name: Summer camp
+    instructions: Pack in the blue tub.
+    items: "[{\"item_id\":8100001,\"quantity\":1}]"
+response:
+  description: "Success when `status` is true."
+sources: [ ext.kit.92ed48541329641aa295.js ]

@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/organisations/{organisationId}/delete"
+summary: Delete a customer type
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  organisationId:
+    type: string
+    description: Customer type ID.
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

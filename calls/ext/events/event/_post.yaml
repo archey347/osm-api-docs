@@ -1,0 +1,18 @@
+path: /ext/events/event/
+method: POST
+summary: Event writes
+description: |-
+  Event endpoints share this path with different `action` values; the body is the
+  union of the actions' fields.
+
+  `archive`/`delete` are soft: `delete` returns a `deletion_id` that can be restored via the
+  soft-deletion endpoint. `getEventApprovalModerationData` is a read despite the POST.
+  `updateScout` takes `sectionid`/`eventid` in the body, `updateMultiple` takes `eventid`
+  in the body and `sectionid` in either.
+
+  `eventAttachmentsPut`, `eventAttachmentsCommitTemp` and `eventAttachmentsRevertTemp`
+  are the generic upload widget's actions; `Put` uploads a file (large files are sent in
+  chunks first via `eventAttachmentsPartPut` with `completePut`/`size` on the final call).
+response: |-
+  JSON. Errors: `{status: false, error: {message}}`, except `updateScout`
+  (`error` is a string) and the legacy `archive`/`delete` (`ok: false`).

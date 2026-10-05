@@ -1,0 +1,48 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: getUserNotificationsList
+summary: 'List the user''s notifications'
+description: "`listNotifications` and `getUserNotificationsList` are read-only."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    target_member_id:
+      type: string
+    target_section_id:
+      type: string
+    after:
+      type: string
+      description: "`meta.after` from the previous page; empty for the first."
+  example:
+    section_id: "45001"
+    target_section_id: "45001"
+    target_member_id: ""
+    after: ""
+response:
+  schema:
+    $ref: ReportUserNotificationsResponseData
+  envelope: true
+  examples:
+    getUserNotificationsList:
+      summary: Notifications for the member or section, newest first
+      value:
+        - notification_id: "920001"
+          report_id: "910001"
+          section_id: "45001"
+          target_member_id: "3100002"
+          related_member_id: "3100002"
+          via: screen
+          type: warning
+          message: "<p>Consent is due.</p>"
+          status: active
+          dismissible: true
+          date_created: "2025-01-14"
+          date_expired: "2025-02-14"
+sources: [ "21.3e07bd5db1c55da1f0d3.js", area.reports.e212ae5ee9d683be7967.js ]

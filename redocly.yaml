@@ -1,0 +1,8 @@
+extends:
+  - recommended
+rules:
+  no-path-trailing-slash: off
+  path-not-include-query: off
+  no-ambiguous-paths: off
+  info-license: off
+  operation-4xx-response: off

@@ -1,0 +1,22 @@
+{
+  "name": "osm-api-client",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "bun scripts/check-calls.ts",
+    "gen:openapi": "bun scripts/gen-openapi.ts",
+    "gen:ts": "bun scripts/gen-typescript.ts",
+    "changelog": "bun scripts/changelog.ts",
+    "scan": "bun scripts/scan-observations.ts",
+    "lint": "redocly lint openapi.yaml",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "zod": "^4.6"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.57.0"
+  }
+}

@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/settings/softdeletion/
+action: restoreItem
+summary: Restore a soft-deleted item
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    deletion_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+    deletion_id: "9300001"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  description: Response.
+sources:
+  - area.settings.f73c3ef434f40520f0bc.js
+  - ext.events.4fe61901f961aaf5b232.js
+  - ext.programme.8d866e8ea75c304133fc.js

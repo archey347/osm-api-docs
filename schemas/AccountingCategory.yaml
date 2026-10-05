@@ -1,0 +1,18 @@
+type: object
+properties:
+  id: { }
+  name:
+    type: string
+  type:
+    type: string
+    enum: [ income, expense ]
+  budget: { }
+  icon: { }
+  visibilities:
+    type: array
+    items:
+      type: object
+      properties:
+        receiving_section_id: { }
+      additionalProperties: true
+additionalProperties: true

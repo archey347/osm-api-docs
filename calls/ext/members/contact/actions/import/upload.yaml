@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/import/
+action: upload
+summary: Upload a spreadsheet of members
+description: "`upload` sends the spreadsheet as `multipart/form-data` (field `qqfile`; csv, tsv, xls, xlsx or ods) and returns the detected column mappings."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  content_type: multipart/form-data
+  params:
+    qqfile:
+      type: string
+      format: binary
+response:
+  schema:
+    $ref: MemberImportMappings
+  envelope: true
+  examples:
+    mappings:
+      summary: "`upload`, `reMap`"
+      value:
+        headers:
+          - spreadsheet_column: First name
+            mapped: firstname
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

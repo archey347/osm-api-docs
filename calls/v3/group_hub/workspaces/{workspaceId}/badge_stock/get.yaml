@@ -1,0 +1,39 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/badge_stock"
+summary: Get badge stock across the workspace
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubBadgeStock
+  examples:
+    default:
+      value:
+        can_edit: true
+        sections:
+          - section_id: 45001
+            name: Cubs
+            section_type: cubs
+        badges:
+          - key: "1593_1"
+            badge_id: 1593
+            level: 1
+            name: Communicator
+            picture: sites/onlinescoutmanager.co.uk/badge_images/img_000000.png
+            total_buy: 2
+            sections:
+              "45001":
+                stock: 4
+                desired: 6
+                due: 0
+                owning_section_id: 0
+                owning_section_name: ""
+  description: Sections and badges with stock levels.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

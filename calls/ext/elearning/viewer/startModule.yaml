@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/elearning/viewer/
+action: startModule
+summary: Start or resume a module run
+description: "`startModule`, `checkStep` and `completeModule` change data."
+tags: [ E-Learning ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    module_id:
+      type: string
+      required: true
+    demo:
+      type: string
+      enum: [ "true", "false" ]
+      description: "Not sent by `completeModule`."
+  example:
+    section_id: "45001"
+    module_id: "7100001"
+    demo: "false"
+response:
+  schema:
+    $ref: ELearningStartResponseData
+  envelope: true
+  examples:
+    startModule:
+      summary: "Run started; `resume_step` is `false` for a fresh run"
+      value:
+        run_id: "7400001"
+        completed_steps:
+          s7200001:
+            q7300001: "Yes"
+        resume_step: s7200002
+sources: [ area.elearning.78729e36e08410a6eaec.js ]

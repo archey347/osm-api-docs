@@ -1,0 +1,14 @@
+kind: ext-action
+method: GET
+path: /ext/generic/startup/
+action: getData
+summary: Get startup data (removed)
+description: "**`action=getData` has been permanently removed** — this action was removed without notice."
+tags: [ Startup ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+removed:
+  http: 410
+  note: "Gone — `action=getData` has been permanently removed. HTTP 410 Gone is the only reply you will ever receive for that action."

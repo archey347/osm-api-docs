@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+  title:
+    type: string
+  engagements:
+    type: array
+    items:
+      type: object
+      properties:
+        user_id:
+          type: integer
+      additionalProperties: true
+additionalProperties: true

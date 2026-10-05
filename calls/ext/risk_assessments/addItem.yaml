@@ -1,0 +1,69 @@
+kind: ext-action
+method: POST
+path: /ext/risk_assessments/
+action: addItem
+summary: Add or update a risk assessment item
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    type:
+      type: string
+      description: "See `type` on the GET operation."
+    associated_id:
+      type: string
+      description: Target meeting, activity or event ID.
+    id:
+      type: string
+      description: A risk assessment item ID.
+    hazard:
+      type: string
+    category:
+      type: string
+      description: "Also the new name for `addCategory`."
+    hazard_id:
+      type: string
+    category_id:
+      type: string
+    residual_risk:
+      type: string
+      description: "`high`, `medium`, `low` or `other`."
+    controls:
+      type: string
+    check:
+      type: string
+    who:
+      type: string
+      description: "who` is enabled."
+    save_to_group_hub:
+      type: string
+      description: "Sent as `1` to also save to the Group Hub."
+    gilbert_guid:
+      type: string
+      description: Set when the item was suggested by the AI assistant.
+    gilbert_query_id:
+      type: string
+      description: Set when the item was suggested by the AI assistant.
+  example:
+    section_id: "45001"
+    id: "0"
+    associated_id: "9500001"
+    type: meeting
+    controls: Keep ropes coiled when not in use.
+    check: Leader checks the area before the session.
+    hazard: Trip hazard from ropes
+    category: Equipment
+response:
+  schema:
+    $ref: RiskAssessmentWriteResult
+  envelope: true
+  examples:
+    addItem:
+      summary: "`addItem`, `reuseItem`"
+      value:
+        id: "6100002"
+sources: [ ext.programme.8d866e8ea75c304133fc.js, ext.risk_assessments.25831d7610fb31450e26.js ]

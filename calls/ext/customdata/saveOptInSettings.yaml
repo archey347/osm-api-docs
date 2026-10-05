@@ -1,0 +1,41 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: saveOptInSettings
+summary: Save opt-in column settings
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    "columns[{columnId}]":
+      type: string
+      enum: [ "true", "false" ]
+      description: One entry per opt-in column in the group.
+    associated_type:
+      type: string
+      enum: [ member ]
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+  example:
+    section_id: "45001"
+    group_id: "7"
+    associated_type: member
+    "columns[41]": "true"
+response:
+  schema:
+    $ref: CustomDataOptInResult
+  envelope: true
+  examples:
+    saveOptInSettings:
+      summary: Column IDs now opted in
+      value:
+        column_ids: [ 41 ]
+sources: [ "21.3e07bd5db1c55da1f0d3.js", "8913.6d746d696f1aeb9d4b5a.js" ]

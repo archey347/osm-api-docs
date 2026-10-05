@@ -1,0 +1,22 @@
+type: object
+properties:
+  identifier:
+    type: string
+  items:
+    type: array
+    description: "One row per member; each request ID is also a key holding that member's payment status."
+    items:
+      type: object
+      properties:
+        member_id:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        payment_reference:
+          type: string
+        balance:
+          type: string
+      additionalProperties: true
+additionalProperties: true

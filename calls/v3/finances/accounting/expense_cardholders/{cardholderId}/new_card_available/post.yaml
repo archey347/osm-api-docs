@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cardholders/{cardholderId}/new_card_available"
+summary: Allow or cancel a new card
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  cardholderId:
+    type: string
+    description: Expense cardholder ID.
+body:
+  params:
+    new_card_available:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+  example:
+    new_card_available: "true"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

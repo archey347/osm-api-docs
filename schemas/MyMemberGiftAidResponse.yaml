@@ -1,0 +1,28 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        nullable: true
+        properties:
+          status:
+            type: string
+            description: "`requested`, `entered` or `declined`."
+          title:
+            type: string
+          parentname:
+            type: string
+          address:
+            type: string
+          postcode:
+            type: string
+          lastupdated:
+            description: "Date of the declaration, or `false` when a leader entered it."
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          charity_name:
+            type: string
+        additionalProperties: true

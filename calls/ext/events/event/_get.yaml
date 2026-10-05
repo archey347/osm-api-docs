@@ -1,0 +1,15 @@
+path: /ext/events/event/
+method: GET
+summary: Event reads, downloads and attachments
+description: |-
+  Event endpoints share this path with different `action` values. `eventid`/`sectionid`
+  and `event_id`/`section_id` are the same IDs under different spellings per action.
+
+  `archive` and `delete` also work as GETs (older UI) and change data.
+  `startSpreadsheet` starts a background export job and returns its `job_info`.
+  `downloadPdf` and `downloadPrivateAttachments` return a file, not JSON.
+
+  `eventAttachmentsConfig`/`eventAttachmentsManifest` belong to the generic upload widget:
+  its other actions (`eventAttachmentsPartPut`, plus file get/delete names taken from
+  the config response) use the same path.
+response: "JSON for most actions; a file for `downloadPdf` and `downloadPrivateAttachments`."

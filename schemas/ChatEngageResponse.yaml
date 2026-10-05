@@ -1,0 +1,13 @@
+type: object
+properties:
+  number_likes:
+    type: integer
+  action:
+    type: string
+  engagement_counts:
+    type: object
+    additionalProperties: true
+  engagement:
+    type: object
+    additionalProperties: true
+additionalProperties: true

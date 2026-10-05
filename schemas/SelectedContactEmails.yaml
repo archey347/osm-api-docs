@@ -1,0 +1,30 @@
+type: object
+properties:
+  emails:
+    type: object
+    additionalProperties:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        photo_guid:
+          type: string
+        member_id:
+          type: integer
+      additionalProperties: true
+  count:
+    type: integer
+  blocks:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  daily_limit_reached:
+    type: boolean
+additionalProperties: true

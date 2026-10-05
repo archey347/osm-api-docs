@@ -1,0 +1,42 @@
+kind: v3-route
+method: GET
+path: "/v3/chat/topics/{chatRoomId}"
+summary: List topics in a chat room
+description: The web app also calls this with a trailing slash when refreshing a single topic.
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  chatRoomId:
+    type: string
+query:
+  topic_id:
+    type: string
+    description: Limit to one topic.
+  page:
+    type: integer
+  member_id:
+    type: string
+  feature_request_filter:
+    type: string
+    description: Used by feature-request rooms.
+response:
+  schema:
+    $ref: ChatTopicList
+  examples:
+    default:
+      value:
+        - id: 7100001
+          topic_id: 7100001
+          chat_room_id: 501
+          topic_title: Camp kit
+          message: "Who is bringing the stoves?"
+          local_time: "10 Mar 2025 18:30"
+          user:
+            id: 3100001
+            full_name: Alex Scout
+          number_likes: 1
+          number_comments: 0
+          poll_options: [ ]
+  description: "Topics, newest first. `meta.next_page` is `false` on the last page."

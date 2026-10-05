@@ -1,0 +1,11 @@
+type: object
+description: Value (for example an age or religion) to counts by gender.
+additionalProperties:
+  type: object
+  properties:
+    Male: { }
+    Female: { }
+    Self-identify: { }
+    "Prefer not to say": { }
+    Total: { }
+  additionalProperties: true

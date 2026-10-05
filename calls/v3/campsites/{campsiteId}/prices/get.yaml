@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/prices"
+summary: List price types
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+response:
+  schema:
+    $ref: CampsiteTypeList
+  examples:
+    default:
+      value:
+        - id: 7800001
+          name: Standard
+  description: Price types.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: deleteInvisibleValue
+summary: Delete a hidden column value
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    associated_id:
+      type: string
+      description: Member scout ID.
+    associated_type:
+      type: string
+      enum: [ member ]
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+    column_id:
+      type: integer
+      description: "Column ID to update (`updateColumn` action only)."
+  example:
+    section_id: "45001"
+    associated_id: "3100005"
+    associated_type: member
+    column_id: 41
+    group_id: "7"
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    structureWrite:
+      summary: "`createColumn`, `updateColumnLabel`, `deleteColumn`, `addOtherColumns`, `deleteInvisibleValue`, `saveStructureSettings`"
+      value: [ ]
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

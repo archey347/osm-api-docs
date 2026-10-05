@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/giftaid/
+action: decline
+summary: Decline Gift Aid
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    recorded:
+      summary: Recorded
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

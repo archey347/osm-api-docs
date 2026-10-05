@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/trustees"
+summary: List trustees
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+response:
+  schema:
+    $ref: AccountingTrustees
+  examples:
+    default:
+      value:
+        people:
+          - id: 3100030
+            first_name: Alex
+            last_name: Scout
+            relationship:
+              representative: true
+  description: People associated with the account.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

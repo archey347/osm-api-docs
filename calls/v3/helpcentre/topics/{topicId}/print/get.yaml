@@ -1,0 +1,16 @@
+kind: v3-route
+method: GET
+path: "/v3/helpcentre/topics/{topicId}/print"
+summary: Print a help centre topic
+description: Opens in a new window and returns a printable document rather than JSON.
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+response:
+  document: true
+  description: Printable document.
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

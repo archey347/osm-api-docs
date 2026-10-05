@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/import/
+action: reMap
+summary: Reset the import column mappings
+description: "`reMap` resets the mappings to the defaults."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MemberImportMappings
+  envelope: true
+  examples:
+    mappings:
+      summary: "`upload`, `reMap`"
+      value:
+        headers:
+          - spreadsheet_column: First name
+            mapped: firstname
+sources: [ ext.members.ca95317ad56b2f22a5e5.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

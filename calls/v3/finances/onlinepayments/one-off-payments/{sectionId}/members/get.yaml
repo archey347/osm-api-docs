@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/onlinepayments/one-off-payments/{sectionId}/members"
+summary: List members for a one-off payment request
+tags: [ Online Payments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: OnlinePaymentsOneOffMembers
+  examples:
+    default:
+      value:
+        items:
+          - scoutid: 3100005
+  description: Members that can be asked to pay.
+sources: [ area.finances_shop.27a67dba3a722302722e.js, ext.finances.9f318350fda4d977c688.js ]

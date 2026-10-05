@@ -1,0 +1,14 @@
+type: object
+properties:
+  error:
+    description: "String or `{ message }`."
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        scoutid_sectionid_patrolrolid:
+          type: string
+      additionalProperties: true
+  meta: { }
+additionalProperties: true

@@ -1,0 +1,56 @@
+kind: v3-route
+method: POST
+path: /v3/helpcentre/gilbert
+summary: Ask Gilbert a question
+description: "Starts or continues a conversation; the answer is then polled with the GET."
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+query:
+  _bypass_service_worker:
+    type: string
+    description: "Observed `1`."
+body:
+  params:
+    question:
+      type: string
+      required: true
+      description: "May end with an extra `[[[ ... ]]]` block of context for the assistant."
+    initial:
+      type: string
+      enum: [ "true", "false" ]
+    mode:
+      type: string
+      required: true
+      description: "Observed `leader`, `parent`, `parent_portal_info`, `emailer`."
+    associated_id:
+      type: string
+      description: "ID of the thing being discussed; `0` for none."
+    guid:
+      type: string
+      required: true
+    section_id:
+      type: string
+      description: "Current section, `0` for none."
+  example:
+    question: "How do I add a member?"
+    initial: "true"
+    mode: leader
+    associated_id: "0"
+    guid: "00000000-0000-0000-0000-000000000000"
+    section_id: "45001"
+response:
+  schema:
+    $ref: HelpCentreGilbertState
+  examples:
+    default:
+      value:
+        status: in_progress
+        questions:
+          - id: 8100001
+            question: "How do I add a member?"
+        answers: [ ]
+        runs: [ ]
+  description: Conversation state, as for the GET.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

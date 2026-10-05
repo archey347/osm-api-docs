@@ -1,0 +1,45 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/
+action: getSelectedEmailsFromContacts
+summary: Get selected contacts' email addresses
+description: "`getSelectedEmailsFromContacts` is a read, but the web app sends it as a POST (it also answers to the GET above)."
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    scouts:
+      type: string
+      description: Comma-separated member IDs.
+    contactGroups:
+      type: string
+      description: JSON array of contact group keys.
+    ignore_email_settings:
+      type: string
+      enum: [ "yes" ]
+  example:
+    scouts: "3100001,3100002"
+    contactGroups: "[\"1\",\"2\"]"
+response:
+  schema:
+    $ref: SelectedContactEmails
+  examples:
+    getSelectedEmailsFromContacts:
+      summary: Selected emails for contacts
+      value:
+        emails:
+          "910301":
+            emails: [ "parent@example.org" ]
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            member_id: 910301
+        count: 1
+        blocks: [ ]
+        daily_limit_reached: false
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

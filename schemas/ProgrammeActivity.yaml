@@ -1,0 +1,41 @@
+type: object
+properties:
+  details:
+    type: object
+    properties:
+      id: { }
+      activityid: { }
+      version: { }
+      title: { }
+      description: { }
+      resources: { }
+      instructions: { }
+      runningtime: { }
+      location: { }
+      shared: { }
+      visibility:
+        description: "`site` when restricted to the OSM site."
+      userid: { }
+      site_type: { }
+    additionalProperties: true
+  sections:
+    type: array
+    items: { }
+  tags:
+    type: array
+    items: { }
+  badges:
+    type: array
+    items: { }
+  versions:
+    type: array
+    items:
+      type: object
+      properties:
+        value: { }
+        selected:
+          type: boolean
+      additionalProperties: true
+  rated: { }
+  rating: { }
+additionalProperties: true

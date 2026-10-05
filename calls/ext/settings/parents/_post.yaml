@@ -1,0 +1,5 @@
+path: /ext/settings/parents/
+method: POST
+summary: Update parent portal settings
+description: "Setting changes send `section_id` plus the setting being changed; most return the updated section configuration in `data`."
+response: Response.

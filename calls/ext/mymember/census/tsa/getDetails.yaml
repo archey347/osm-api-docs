@@ -1,0 +1,32 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/census/tsa/
+action: getDetails
+summary: Parent portal census (TSA) details
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberTsaResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          required: true
+          gender: Prefer not to say
+          ethnicity: "G: Not disclosed"
+          religion: Prefer not to say
+          disabilities: [ Prefer not to say ]
+  description: Equality-monitoring answers held for the member.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

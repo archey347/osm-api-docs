@@ -1,0 +1,10 @@
+path: /ext/customdata/members/
+method: POST
+summary: Get and set who can see custom columns
+description: |-
+  Column visibility reads and writes share this path with different
+  `action` values. `getColumnVisibility` and `getInTouchColumnVisibility`
+  are reads sent as POSTs. `status` names the setting:
+  `parent_portal_visibility` for the Parent Portal,
+  `camp_export_visibility` for the in-touch export.
+response: Column visibility, or the write result.

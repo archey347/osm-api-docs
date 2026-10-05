@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: updateQualifications
+summary: Assign a leader to a qualification
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    event_id:
+      type: string
+    qualification_id:
+      type: string
+    member_id:
+      type: string
+      description: "`0` clears the assignment."
+    mode:
+      type: string
+      enum: [ mine, other ]
+  example:
+    section_id: "45001"
+    event_id: "9600001"
+    qualification_id: "11"
+    mode: mine
+    member_id: "3100002"
+response:
+  schema:
+    $ref: EventPayload
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

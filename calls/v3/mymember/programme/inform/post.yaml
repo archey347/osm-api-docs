@@ -1,0 +1,36 @@
+kind: v3-route
+method: POST
+path: /v3/mymember/programme/inform
+summary: Tell leaders a member will or will not attend a meeting
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    date:
+      type: string
+      required: true
+      description: "The meeting's `meetingdate`."
+    status:
+      type: string
+      enum: [ "yes", "no" ]
+      required: true
+    reason:
+      type: string
+      description: "Optional; empty when attending."
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    date: "2025-09-12"
+    status: "no"
+    reason: Away on holiday.
+response:
+  description: "Recorded; the web app then refetches the programme."
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

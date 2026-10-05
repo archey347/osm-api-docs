@@ -1,0 +1,35 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/expense_cardholders/section/{sectionId}"
+summary: List expense cardholders
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingExpenseCardholderList
+  examples:
+    default:
+      value:
+        - id: 3100110
+          user_id: 3100120
+          user:
+            full_name: Alex Scout
+          status: active
+          new_card_available: false
+          total_spend_limit: 20000
+          total_amount_spent: 2500
+          periodic_limits: null
+          cards:
+            - id: 3100130
+              status: active
+              has_been_activated: true
+          requirements:
+            past_due: [ ]
+  description: "Cardholders plus account status in `meta`."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

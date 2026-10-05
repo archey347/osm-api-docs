@@ -1,0 +1,52 @@
+type: object
+properties:
+  eveningid: { }
+  sectionid: { }
+  title: { }
+  meetingdate: { }
+  starttime: { }
+  endtime: { }
+  notesforparents: { }
+  notesforhelpingparents: { }
+  parentsrequired: { }
+  parentsattendingcount: { }
+  primary_leader_id: { }
+  primary_leader:
+    type: object
+    additionalProperties: true
+  games: { type: string }
+  prenotes: { type: string }
+  postnotes: { type: string }
+  soft_deleted: { type: string }
+  config:
+    type: object
+    additionalProperties: true
+  help:
+    type: array
+    items: { }
+  unavailableleaders:
+    type: array
+    items: { }
+  badgelinks:
+    type: array
+    items: { }
+  seasonal_suggestions:
+    type: array
+    items: { }
+  leaders: { }
+  unavailable_leaders: { }
+  badges: { }
+  activities:
+    type: array
+    items:
+      type: object
+      properties:
+        activityid: { }
+        activity_unique_id: { }
+        title: { }
+        notes: { }
+        programmes_at_home:
+          type: string
+          description: "`1` when the activity is enabled for programme-at-home."
+      additionalProperties: true
+additionalProperties: true

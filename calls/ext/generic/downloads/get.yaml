@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/generic/downloads/
+action: get
+summary: Download a file from the manifest
+description: "`getDownload` and `get` return a document (PDF, spreadsheet, ZIP) rather than JSON; the web app opens them in a new window."
+tags: [ Downloads ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `0` for the national HQ badge awards download."
+  id:
+    type: string
+    enum: [ hq_badge_awards ]
+  provider:
+    type: string
+    enum: [ HQBadgeAwardsDue ]
+  file:
+    type: string
+    description: "File name taken from the `manifest`."
+response:
+  document: true
+sources: [ area.national.4e0a010c70498ce7f9fb.js ]

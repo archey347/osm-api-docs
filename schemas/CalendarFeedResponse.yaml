@@ -1,0 +1,7 @@
+type: object
+description: Empty when no feed exists yet.
+properties:
+  existing_feed:
+    type: string
+    description: Subscribable iCalendar URL.
+additionalProperties: true

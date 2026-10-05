@@ -1,0 +1,50 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  parent_id:
+    type: integer
+  quantity:
+    type: integer
+  campsite_session_id:
+    type: integer
+  campsite_price_type_id:
+    type: integer
+  min_people: { }
+  max_people: { }
+  hide_externally:
+    type: boolean
+  staff_only:
+    type: boolean
+  description:
+    type: string
+  instructions:
+    type: string
+  terms_and_conditions:
+    type: string
+  children:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  also_check:
+    nullable: true
+    type: array
+    items:
+      type: integer
+    description: IDs of other items that must also be free.
+  question_groups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+      additionalProperties: true
+  campsite_instructor_type_id: { }
+  number_instructors: { }
+  number_participants: { }
+additionalProperties: true
+description: A bookable item and its settings.

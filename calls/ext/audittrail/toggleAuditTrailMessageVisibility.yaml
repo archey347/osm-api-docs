@@ -1,0 +1,53 @@
+kind: ext-action
+method: POST
+path: /ext/audittrail/
+action: toggleAuditTrailMessageVisibility
+summary: Show or hide an audit trail message
+description: "`createAuditTrailMessage` adds a note (`code` is one of `meta.note_types`) and `toggleAuditTrailMessageVisibility` hides or shows an entry; both identify the record in the body like `getAuditTrail`."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: Section ID (repeated in body).
+    id:
+      type: string
+      required: true
+      description: Member scout ID.
+    type:
+      type: string
+      enum: [ member ]
+      required: true
+      description: "Must be `member`."
+    code:
+      type: string
+    code_type:
+      type: string
+      description: "The entry's `type`."
+    date:
+      type: string
+      description: "The entry's `date_raw`."
+    hidden:
+      type: string
+      enum: [ "yes", "no" ]
+  example:
+    section_id: "45001"
+    id: "3100001"
+    type: member
+    code: field
+    code_type: details
+    date: "2025-09-15 19:35:54"
+    hidden: "yes"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    writeAction:
+      summary: "`createAuditTrailMessage`, `toggleAuditTrailMessageVisibility`"
+      value: [ ]
+sources: [ react.f8944691765f57115151.js ]

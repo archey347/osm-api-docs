@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: removeBadgeFromSection
+summary: Remove a badge from a section
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    sectionid: { }
+    type_id:
+      description: "Badge type ID (see `getAvailableBadges`)."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    sectionid: "45001"
+    type_id: "1"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

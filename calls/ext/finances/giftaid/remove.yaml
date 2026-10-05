@@ -1,0 +1,23 @@
+kind: ext-action
+method: POST
+path: /ext/finances/giftaid/
+action: remove
+summary: Remove a Gift Aid declaration
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    member_id:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: FinanceStatusResponseData
+  envelope: true
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

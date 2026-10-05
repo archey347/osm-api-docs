@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/members/flexirecords/
+action: updateScout
+summary: Update one column for a member
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  nototal:
+    type: string
+    description: Sent as a bare flag.
+body:
+  params:
+    sectionid:
+      type: string
+    extraid:
+      type: string
+    value:
+      type: string
+    scoutid:
+      type: string
+    column:
+      type: string
+      description: "Column `field`."
+    termid:
+      type: string
+    section:
+      type: string
+      description: Section type.
+  example:
+    termid: "67890"
+    section: cubs
+    sectionid: "45001"
+    extraid: "23001"
+    scoutid: "3100001"
+    column: f_1
+    value: "5"
+response:
+  schema:
+    $ref: FlexiRecordWriteResult
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

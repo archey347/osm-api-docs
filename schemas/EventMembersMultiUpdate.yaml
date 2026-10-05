@@ -1,0 +1,20 @@
+type: object
+description: Per-field results keyed by the submitted field name.
+additionalProperties:
+  type: object
+  properties:
+    status:
+      type: boolean
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+      additionalProperties: true
+    data:
+      type: object
+      properties:
+        warning:
+          type: string
+      additionalProperties: true
+  additionalProperties: true

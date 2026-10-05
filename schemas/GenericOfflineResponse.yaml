@@ -1,0 +1,18 @@
+type: array
+items:
+  type: object
+  properties:
+    data:
+      type: object
+      properties:
+        images:
+          type: object
+          properties:
+            urls:
+              type: array
+              description: "Entries of the form `cacheName:url`."
+              items:
+                type: string
+          additionalProperties: true
+      additionalProperties: true
+  additionalProperties: true

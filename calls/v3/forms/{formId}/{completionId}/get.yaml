@@ -1,0 +1,36 @@
+kind: v3-route
+method: GET
+path: "/v3/forms/{formId}/{completionId}"
+summary: Get a form completion
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+  completionId:
+    type: string
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: FormCompletionResponse
+  examples:
+    default:
+      value:
+        title: Summer camp consent
+        section_id: 3100
+        created_by:
+          full_name: Alex Scout
+        created_at_local_datetime: "10 Mar 2025 18:30"
+        updated_by: null
+        updated_at_local_datetime: "10 Mar 2025 18:30"
+        delete_at: ""
+        values:
+          - form_field_id: 91
+            data: "Yes"
+  description: "Completion values in `data`; field definitions and permitted state changes in `meta`."
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

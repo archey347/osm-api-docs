@@ -1,0 +1,12 @@
+type: object
+properties:
+  instructors:
+    type: array
+    items:
+      $ref: CampsiteInstructor
+  available_instructors:
+    type: array
+    items:
+      $ref: CampsiteInstructor
+additionalProperties: true
+description: Instructors assigned to, and available for, a booked item.

@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/national/
+action: listGroups
+summary: List groups
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `getSectionType` takes the section being looked up; `listGroups` and `listSections` take the caller's own section; `listRolesForSection` takes the section whose roles to list."
+  includeInactive:
+    type: string
+    enum: [ "true" ]
+response:
+  schema:
+    $ref: DashboardNationalGroups
+  examples:
+    listGroups:
+      value:
+        items:
+          - groupid: "8100001"
+            name: "1st Riverside"
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

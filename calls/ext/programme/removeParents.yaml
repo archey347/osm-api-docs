@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: removeParents
+summary: Clear the parent rota for a date
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    date:
+      type: string
+    olddate:
+      type: string
+      description: Date whose parent rota is moved or cleared.
+    newdate:
+      type: string
+      description: Target date.
+response:
+  schema:
+    $ref: ProgrammeOkResult
+  examples:
+    ok:
+      summary: "`saveActivityOrder`, `moveParents`, `removeParents`"
+      value:
+        ok: true
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

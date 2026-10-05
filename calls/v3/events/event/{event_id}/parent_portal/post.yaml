@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/parent_portal"
+summary: Update one parent portal setting
+description: Returns the same payload as the GET.
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      required: true
+      description: "A key of `data` in the GET response, e.g. `confirmation_deadline`, `cost`, `kit_list_collection_id`."
+    value:
+      type: string
+      required: true
+  example:
+    field: confirmation_deadline
+    value: "2025-06-01"
+response:
+  schema:
+    $ref: EventParentPortal
+  description: "Updated settings; on failure `status` is false."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/forms/{formId}/{completionId}/state"
+summary: Change a form completion's state
+description: "Allowed values come from `meta.states` of the completion."
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+  completionId:
+    type: string
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    state:
+      type: string
+      required: true
+  example:
+    section_id: "3100"
+    state: submitted
+response:
+  schema:
+    $ref: FormResponse
+  description: "Success when `status` is true."
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

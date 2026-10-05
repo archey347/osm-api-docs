@@ -1,0 +1,35 @@
+kind: ext-action
+method: GET
+path: /ext/settings/softdeletion/
+action: getDeletedItems
+summary: List soft-deleted items
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: SettingsDeletedItem
+    additionalProperties: true
+  examples:
+    default:
+      value:
+        data:
+          - deletion_id: "9300001"
+            item_type: event
+            title: Summer Camp 2025
+            can_restore: true
+            removed: "2025-01-10"
+            user: Alex Scout
+  description: Response.
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

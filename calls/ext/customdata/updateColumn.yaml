@@ -1,0 +1,58 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: updateColumn
+summary: Update a custom column's value
+description: "`updateColumn` — update a single custom data column by `column_id`."
+tags: [ Custom Data ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    associated_id:
+      type: string
+      description: Member scout ID.
+    associated_type:
+      type: string
+      enum: [ member ]
+    associated_is_section:
+      type: string
+      description: "Section association flag (observed `false`)."
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+    column_id:
+      type: integer
+      description: "Column ID to update (`updateColumn` action only)."
+    value:
+      type: string
+      description: "New value for the column (`updateColumn` action only)."
+    context:
+      type: string
+      enum: [ members ]
+  example:
+    associated_type: member
+    associated_id: "3100005"
+    associated_is_section: "false"
+    group_id: "7"
+    column_id: 34
+    value: Male
+    context: members
+response:
+  schema:
+    $ref: CustomDataColumnUpdateResponse
+  envelope: true
+sources:
+  - "21.3e07bd5db1c55da1f0d3.js"
+  - ext.customdata.39da109e1f3de4a7b8b4.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

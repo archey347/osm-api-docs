@@ -1,0 +1,18 @@
+path: /ext/members/contact/actions/import/
+method: POST
+summary: Import members from a spreadsheet
+description: |-
+  Three steps share this path. `upload` sends the spreadsheet as
+  `multipart/form-data` (field `qqfile`; csv, tsv, xls, xlsx or ods) and
+  returns the detected column mappings. `reMap` resets the mappings to the
+  defaults. `saveMappings` takes the chosen mappings in `map[{spreadsheetColumn}]`
+  (`-1` entries are left out): with `save_only=1` it only stores them,
+  with `mode=insert` it runs the import as a background job.
+response: Mappings, or the started import job.
+response_examples:
+  importError:
+    summary: Failure
+    value:
+      status: false
+      error:
+        message: The spreadsheet could not be read.

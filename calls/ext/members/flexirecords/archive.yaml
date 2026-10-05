@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: archive
+summary: Archive or restore a flexi-record
+notes: "`archive`, `changeMenuVisibility` and `deleteSet` change data despite being GETs."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+  archived:
+    type: string
+    description: "`getFlexiRecords`: `y` for archived records, `n` for active. `archive`: `1` archives the record, `0` restores it."
+response:
+  schema:
+    $ref: OkResponse
+  examples:
+    archive:
+      summary: "`archive`"
+      value:
+        ok: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

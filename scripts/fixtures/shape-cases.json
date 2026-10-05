@@ -1,0 +1,42 @@
+[
+  {
+    "name": "scalars, nulls and mixed array items",
+    "input": { "a": 1, "b": 1.5, "c": "x", "d": null, "e": true, "f": [1, "x"], "g": [] },
+    "shape": {
+      "t": ["object"],
+      "k": {
+        "a": { "t": ["integer"] },
+        "b": { "t": ["number"] },
+        "c": { "t": ["string"] },
+        "d": { "t": ["null"] },
+        "e": { "t": ["boolean"] },
+        "f": { "t": ["array"], "i": { "t": ["integer", "string"] } },
+        "g": { "t": ["array"] }
+      }
+    }
+  },
+  {
+    "name": "array items merge keys and types",
+    "input": [{ "p": 1 }, { "p": null, "q": "x" }],
+    "shape": {
+      "t": ["array"],
+      "i": { "t": ["object"], "k": { "p": { "t": ["integer", "null"] }, "q": { "t": ["string"] } } }
+    }
+  },
+  {
+    "name": "id-like and data-like keys collapse",
+    "input": {
+      "123": { "n": "x" },
+      "2024-01-02": { "n": 1 },
+      "a@b.example": { "n": "y" },
+      "first last": { "n": "z" },
+      "0a1b2c3d-0000-1111-2222-333344445555": { "n": "w" }
+    },
+    "shape": { "t": ["object"], "k": { "{key}": { "t": ["object"], "k": { "n": { "t": ["integer", "string"] } } } } }
+  },
+  {
+    "name": "a single data-like key collapses even when most keys are plain",
+    "input": { "name": "x", "kind": "y", "9999": "z" },
+    "shape": { "t": ["object"], "k": { "name": { "t": ["string"] }, "kind": { "t": ["string"] }, "{key}": { "t": ["string"] } } }
+  }
+]

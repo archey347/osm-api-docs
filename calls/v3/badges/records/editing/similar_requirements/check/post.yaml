@@ -1,0 +1,38 @@
+kind: v3-route
+method: POST
+path: /v3/badges/records/editing/similar_requirements/check
+summary: Check requirements for similar existing ones
+description: "Starts a similarity check. Matches are not in the response: they arrive as a push message tagged with `request_id` on the user's channel (each match has `badge_id`, `badge_version`, `column_id`, `confidence`)."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id: { }
+    badge_id: { }
+    badge_version: { }
+    request_id:
+      type: string
+      description: Client-generated ID matching the push message to this request.
+    requirements:
+      type: array
+      description: "Items of `{key, label, description}`."
+  example:
+    section_id: "45001"
+    badge_id: "1002"
+    badge_version: "1"
+    request_id: "5f3c9e1a"
+    requirements:
+      - key: a_0
+        label: Work with others
+        description: Take part in a group task.
+response:
+  schema:
+    $ref: BadgeV3Response
+  examples:
+    ok:
+      summary: Accepted
+      value: [ ]
+  description: Accepted. The web app does not read the body.
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

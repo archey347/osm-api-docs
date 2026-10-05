@@ -1,0 +1,33 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/editing/
+action: getBadgeDetails
+summary: 'Get a badge''s details'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  badge_id:
+    type: string
+  badge_version:
+    type: string
+  section_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeDetailsResponse
+  examples:
+    getBadgeDetails:
+      summary: Badge details
+      value:
+        details:
+          name: Teamwork
+          description: Work as part of a team.
+          picture: badges/teamwork.png
+          config: { }
+        columns:
+          - column_id: "910001"
+            module: a
+            label: Work with others
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

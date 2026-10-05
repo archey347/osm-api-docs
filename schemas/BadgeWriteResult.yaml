@@ -1,0 +1,9 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  status:
+    type: boolean
+  error:
+    description: "Message string, or `{message}` object on `/ext/badges/records/` link actions."
+additionalProperties: true

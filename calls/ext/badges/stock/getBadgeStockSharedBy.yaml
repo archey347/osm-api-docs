@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/badges/stock/
+action: getBadgeStockSharedBy
+summary: List stock shared by other sections
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+  term_id:
+    type: string
+  their_section_id:
+    type: string
+    description: Section sharing its stock.
+response:
+  schema:
+    $ref: BadgeStockResponse
+  examples:
+    getBadgeStockSharedBy:
+      summary: Stock shared by another section
+      value:
+        items:
+          - badge_id: 1001
+            level: 1
+            name: Teamwork
+            stock: 2
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

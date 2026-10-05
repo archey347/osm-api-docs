@@ -1,0 +1,5 @@
+path: /ext/badges/records/summary/
+method: GET
+summary: Badge summary by member
+description: "`get` returns JSON; `printSummary` returns a document to download."
+response: "Summary rows (`get`)."

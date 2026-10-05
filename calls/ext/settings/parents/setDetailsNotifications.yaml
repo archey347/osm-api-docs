@@ -1,0 +1,21 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: setDetailsNotifications
+summary: Set parent contact change notifications
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    notifications:
+      type: string
+      description: "`true` or `false`."
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

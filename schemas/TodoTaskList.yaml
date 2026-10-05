@@ -1,0 +1,24 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      $ref: TodoTask
+  meta:
+    type: object
+    properties:
+      can_edit:
+        type: boolean
+      users:
+        type: object
+        description: Assignable users keyed by user ID.
+        additionalProperties:
+          type: object
+          properties:
+            user_id: { }
+            name:
+              type: string
+            photo_url: { }
+          additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

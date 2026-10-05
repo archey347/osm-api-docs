@@ -1,0 +1,32 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          balance:
+            type: number
+            description: Negative when money is owed.
+          total_due:
+            type: number
+          payment_reference:
+            type: string
+          payments:
+            type: array
+            items:
+              type: object
+              properties:
+                invoice_id: { }
+                name:
+                  type: string
+                status:
+                  type: string
+                payment_date:
+                  type: string
+                total_amount:
+                  type: number
+                paid_amount:
+                  type: number
+              additionalProperties: true
+        additionalProperties: true

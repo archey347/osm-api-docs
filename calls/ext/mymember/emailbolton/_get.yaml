@@ -1,0 +1,4 @@
+path: /ext/mymember/emailbolton/
+method: GET
+summary: Emails sent to a member's contacts
+response: Email list or a single email.

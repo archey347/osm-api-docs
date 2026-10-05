@@ -1,0 +1,64 @@
+type: object
+properties:
+  entries:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        category:
+          type: string
+          description: "`food`, `activities`, `equipment`, `fees` or `other`."
+        charging_method:
+          type: string
+        unit_cost:
+          type: string
+        block_size:
+          type: string
+        participants_mode:
+          type: string
+        participants_count:
+          type: string
+        sort_order:
+          type: integer
+      additionalProperties: true
+  settings:
+    type: object
+    properties:
+      leader_policy:
+        $ref: EventCostPlannerPolicy
+      young_leader_policy:
+        $ref: EventCostPlannerPolicy
+      headcount_overrides:
+        type: object
+        properties:
+          members:
+            description: May be null.
+          young_leaders:
+            description: May be null.
+          leaders:
+            description: May be null.
+      fixed_fee:
+        type: string
+      uplift_percent:
+        type: string
+      deduction:
+        type: string
+    additionalProperties: true
+  attendance:
+    type: object
+    additionalProperties: true
+  section_member_count:
+    type: integer
+  nights:
+    type: integer
+  days:
+    type: integer
+  food_suggestion:
+    type: object
+    nullable: true
+    additionalProperties: true
+additionalProperties: true

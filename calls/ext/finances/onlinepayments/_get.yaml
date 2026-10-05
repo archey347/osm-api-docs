@@ -1,0 +1,7 @@
+path: /ext/finances/onlinepayments/
+method: GET
+summary: Online payment schemes, schedules and statuses
+description: |-
+  `cancelSchedule` deletes the payment scheme despite being a GET.
+  `getPaymentSchedulePDF` returns a document.
+response: "Scheme data, or (`getPaymentSchedulePDF`) a document. `cancelSchedule` reports failure in `error`."

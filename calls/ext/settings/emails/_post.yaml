@@ -1,0 +1,4 @@
+path: /ext/settings/emails/
+method: POST
+summary: Update email configuration or unblock an address
+response: Response.

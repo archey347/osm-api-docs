@@ -1,0 +1,35 @@
+kind: ext-action
+method: GET
+path: /ext/generic/downloads/
+action: manifest
+summary: List previously generated files
+description: "`manifest` lists previously generated files."
+tags: [ Downloads ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `0` for the national HQ badge awards download."
+  id:
+    type: string
+    enum: [ hq_badge_awards ]
+  provider:
+    type: string
+    enum: [ HQBadgeAwardsDue ]
+  path:
+    type: string
+    description: "URL-encoded directory, `%2F` for the root."
+  temp:
+    type: string
+    enum: [ "true", "false" ]
+response:
+  schema:
+    $ref: GenericDownloadManifest
+  envelope: true
+  examples:
+    default:
+      value:
+        manifest: { }
+sources: [ area.national.4e0a010c70498ce7f9fb.js ]

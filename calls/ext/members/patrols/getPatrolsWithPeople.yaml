@@ -1,0 +1,61 @@
+kind: ext-action
+method: GET
+path: /ext/members/patrols/
+action: getPatrolsWithPeople
+summary: List patrols with their members
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  termid:
+    type: string
+    required: true
+    description: Term ID.
+  include_no_patrol:
+    type: string
+    enum: [ "y", "n" ]
+    description: Include pseudo-patrol for members not in a patrol.
+response:
+  schema:
+    type: object
+    additionalProperties: true
+  examples:
+    default:
+      value:
+        "12001":
+          patrolid: "12001"
+          sectionid: "45001"
+          name: Blue
+          active: "1"
+          points: "2"
+          census_costs: false
+          members:
+            - firstname: Jamie
+              lastname: River
+              scout_id: 3100001
+              photo_guid: "00000000-0000-0000-0000-000000000000"
+              patrolid: 12001
+              patrolleader: "0"
+              patrol: Blue
+              sectionid: 45001
+              enddate: null
+              age: "10 / 2"
+              patrol_role_level_label: Sixer
+              active: 1
+              scoutid: 3100001
+              editable: true
+        "-2":
+          patrolid: "-2"
+          sectionid: "-2"
+          name: Leaders
+          active: "1"
+          points: "0"
+          census_costs: false
+          members: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

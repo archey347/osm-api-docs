@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/finances/giftaid/
+action: getGrid
+summary: Get the Gift Aid grid
+description: "`getGrid` returns JSON."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. Group-level exports pass `sections` instead."
+  termid:
+    type: string
+    description: Term ID.
+  section:
+    type: string
+    description: "Section type (e.g. `cubs`)."
+  no-total:
+    type: string
+response:
+  schema:
+    $ref: FinanceGiftAidGrid
+  examples:
+    getGrid:
+      summary: getGrid
+      value:
+        items:
+          - scoutid: "3100001"
+            firstname: Alex
+            lastname: Scout
+            status: entered
+            charity_name: "1st Example Scouts"
+            parentname: Sam Scout
+            address: "1 Example Street"
+            postcode: AB1 2CD
+            total: 25
+            lastupdated: "2024-11-01"
+        structure:
+          - field: "2024-10-01"
+sources: [ area.finances_giftaid.fe9106be558fe8f1c032.js ]

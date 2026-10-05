@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/census/igg/
+action: complete
+summary: Mark the census as complete
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+  description: Census marked complete.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

@@ -1,0 +1,41 @@
+kind: v3-route
+method: POST
+path: /v3/users/register_section
+summary: Register a new section
+description: "Creates data. The catalogue lists `dynamic` query parameters; the code sends a form body."
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    group_name:
+      type: string
+      required: true
+    section_name:
+      type: string
+      required: true
+    section_type:
+      type: string
+      required: true
+    country:
+      type: string
+      description: "Organisation selected on the page; `UK` for guides."
+    referral_code:
+      type: string
+      description: Dashes are stripped.
+  example:
+    group_name: "1st Example Group"
+    section_name: Example Cubs
+    section_type: cubs
+    country: uk
+    referral_code: ""
+response:
+  schema:
+    $ref: UserSectionRegistrationResult
+  examples:
+    default:
+      value:
+        id: 45002
+  description: "The new section's ID is read from `data.id`, falling back to `data.section_id`."
+sources: [ ext.users.aae4e50e39d06ff44c88.js ]

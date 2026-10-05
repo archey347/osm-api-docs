@@ -1,0 +1,19 @@
+kind: v3-route
+method: POST
+path: /v3/users/push_notifications/dialog
+summary: Register a device push token (dialog)
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    token:
+      type: string
+      required: true
+      description: Browser push token.
+  example:
+    token: example-token
+response:
+  description: Response body is not read by the web app.
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

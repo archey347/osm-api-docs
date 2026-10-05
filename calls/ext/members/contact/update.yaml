@@ -1,0 +1,92 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/
+action: update
+summary: Update a member field or contact details
+description: "The `action` query parameter is `update`, or `updateAdditionalRoles` for a member's additional patrol/section roles."
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+body:
+  params:
+    scoutid:
+      type: integer
+      description: Member unique identifier (member field mode).
+    column:
+      type: string
+      enum: [ firstname, lastname, dob, started, startedsection, patrolid, patrolleader ]
+      description: The field to update (member field mode).
+    value:
+      oneOf:
+        - type: integer
+        - type: string
+      description: The new value.
+    sectionid:
+      type: string
+      description: Section ID the member belongs to.
+    context:
+      type: string
+      enum: [ members ]
+      description: "Must be `members`."
+    start_date:
+      type: string
+      format: date
+    end_date:
+      type: string
+      format: date
+    comments:
+      type: string
+    patrolleader:
+      type: integer
+      description: |-
+        Required when `column=patrolid`. Rank level:
+        0 = none, 1 = APL/Seconder, 2 = PL/Sixer, 3 = SPL/Senior Sixer.
+    associated_type:
+      type: string
+      enum: [ member ]
+      description: "Contact update mode (not seen in the web app's code)."
+    associated_id:
+      type: string
+      description: "Member ID whose contact is updated (contact update mode)."
+    group_id:
+      type: string
+      enum: [ "1", "2", "3", "4", "6" ]
+      description: "Contact group: 1 primary contact 1, 2 primary contact 2, 3 emergency contact, 4 doctor's surgery, 6 the member's own details (contact update mode)."
+    "data[field]":
+      type: string
+      description: "One `data[<field>]` pair per contact field to set, e.g. `data[firstname]`, `data[email1]`, `data[phone1]` (contact update mode)."
+  example:
+    scoutid: 3100001
+    column: patrolid
+    value: "12002"
+    sectionid: "45001"
+    context: members
+    patrolleader: 0
+response:
+  schema:
+    type: object
+    properties:
+      ok:
+        type: boolean
+      meta:
+        type: object
+        properties:
+          last_updated:
+            type: string
+            description: "Timestamp of the update (e.g. `2025-09-15 19:42:10`)."
+          last_updated_by_name:
+            type: string
+            description: Name of the user who made the update.
+      error:
+        description: "Set on failure; either a message string or an object with `message`."
+    additionalProperties: true
+  examples:
+    default:
+      value:
+        ok: true
+        meta:
+          last_updated: "2025-09-15 19:42:10"
+          last_updated_by_name: Alex Scout
+sources: [ ext.members.ca95317ad56b2f22a5e5.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

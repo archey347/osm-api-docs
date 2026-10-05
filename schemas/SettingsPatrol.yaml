@@ -1,0 +1,7 @@
+type: object
+properties:
+  patrolid:
+    type: string
+  name:
+    type: string
+additionalProperties: true

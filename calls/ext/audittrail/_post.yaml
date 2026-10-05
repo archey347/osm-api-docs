@@ -1,0 +1,27 @@
+path: /ext/audittrail/
+method: POST
+summary: Get audit trail for a member
+description: |-
+  Returns the audit trail (change history) for a member. Despite being
+  a POST, this is a read-only query — the body specifies which member
+  to look up. The response contains a chronological list of changes
+  including patrol moves, rank promotions, field edits, and section
+  additions.
+
+  Each entry has a `type` and `code` describing the kind of change:
+
+  | type | code | Meaning |
+  |------|------|---------|
+  | `members` | `add` | Member added to section |
+  | `details` | `field` | A member field was edited |
+  | `details` | `new` | A new detail was added (e.g. consent) |
+  | `patrols` | `add-to` | Member added to a patrol/six |
+  | `patrol-leader` | `promoted` | Rank promotion or demotion |
+
+  The `summary` field contains HTML with `<strong>` tags highlighting
+  names, fields, and values.
+
+  `createAuditTrailMessage` adds a note (`code` is one of `meta.note_types`)
+  and `toggleAuditTrailMessageVisibility` hides or shows an entry; both
+  identify the record in the body like `getAuditTrail`.
+response: "Audit trail entries for the member, or `status` alone for the write actions."

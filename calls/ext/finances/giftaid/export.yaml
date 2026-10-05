@@ -1,0 +1,32 @@
+kind: ext-action
+method: GET
+path: /ext/finances/giftaid/
+action: export
+summary: Export Gift Aid claims for HMRC
+description: "`downloadPDF` and `export` return a document (PDF and HMRC spreadsheet respectively), opened in a new window."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. Group-level exports pass `sections` instead."
+  start:
+    type: string
+    format: date
+  end:
+    type: string
+    format: date
+  sections:
+    type: string
+    description: JSON array of section IDs.
+  source:
+    type: string
+response:
+  document: true
+  content_type: application/octet-stream
+sources:
+  - area.finances_giftaid.fe9106be558fe8f1c032.js
+  - area.group_hub.87ce6caf70ff9fb3d1d1.js
+  - ext.dashboard.82a61c008183022fe2cd.js

@@ -1,0 +1,66 @@
+type: object
+properties:
+  name:
+    type: string
+  latitude:
+    description: Null when unset.
+  longitude:
+    description: Null when unset.
+  config:
+    type: object
+    properties:
+      requires_approval:
+        type: boolean
+      deposit_due_days: { }
+      missed_deposit: { }
+      welcome_email: { }
+      email_when_staff_submitted: { }
+      show_availability_external_website:
+        type: boolean
+      allow_instructor_sign_up:
+        type: boolean
+    additionalProperties: true
+  settings:
+    type: object
+    properties:
+      venue_information:
+        type: string
+      contact_address:
+        type: string
+      contact_email:
+        type: string
+      contact_phone:
+        type: string
+      website:
+        type: string
+      venue_address:
+        type: string
+      directions:
+        type: string
+      terms_and_conditions:
+        type: string
+      payment_details: { }
+      send_emails: { }
+    additionalProperties: true
+  auxiliary_config:
+    type: array
+    description: "Free-form key/value settings; see `auxiliaryConfig`."
+    items:
+      type: object
+      properties:
+        key:
+          type: string
+        value: { }
+      additionalProperties: true
+  pictures:
+    type: array
+    items:
+      type: object
+      properties:
+        preview_url:
+          type: string
+        thumbnail_url:
+          type: string
+      additionalProperties: true
+additionalProperties: true
+description: Campsite settings and public venue information.

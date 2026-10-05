@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_account_transactions/{transactionId}/guess_category"
+summary: Guess category for a transaction
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  transactionId:
+    type: string
+    description: Bank account transaction ID.
+query:
+  expense_cardholder_id:
+    type: string
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        category_id: 3100040
+        item_id: 0
+        payout_details: [ ]
+  description: "Suggested category; `category_id` is 0 when none."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

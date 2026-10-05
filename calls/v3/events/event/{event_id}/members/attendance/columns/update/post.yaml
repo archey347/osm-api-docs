@@ -1,0 +1,46 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/attendance/columns/update"
+summary: Update an attendance column
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      required: true
+      description: "Column key (`f_<id>`) to update."
+    name:
+      type: string
+      required: true
+    pL:
+      type: string
+      description: Parent portal label, empty to hide the column.
+    pR:
+      type: string
+      description: Parent portal requirement.
+    editAfterDeadline:
+      type: string
+      enum: [ "true", "false" ]
+      description: Allow members to edit after the confirmation deadline.
+  example:
+    field: f_2
+    name: Allergies
+    pL: ""
+    pR: ""
+    editAfterDeadline: "false"
+response:
+  schema:
+    $ref: EventStructureResponse
+  examples:
+    default:
+      value:
+        - field: f_2
+          name: Allergies
+  description: "Updated column structure in `data`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

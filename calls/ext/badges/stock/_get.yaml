@@ -1,0 +1,5 @@
+path: /ext/badges/stock/
+method: GET
+summary: Badge stock
+description: "`getBadgeStockPDF` and `getBadgeStockShoppingPDF` return documents to download."
+response: Stock rows.

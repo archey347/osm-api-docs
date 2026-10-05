@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/finances/invoices/
+action: updateCategory
+summary: Rename a budget
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    categoryid:
+      type: string
+    value:
+      type: string
+      description: New budget name.
+  example:
+    categoryid: "9500001"
+    value: Camp meals
+response:
+  schema:
+    $ref: OkResponse
+  examples:
+    updateCategory:
+      summary: updateCategory
+      value:
+        ok: true
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js ]

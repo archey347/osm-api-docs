@@ -1,0 +1,19 @@
+kind: v3-route
+method: GET
+path: "/v3/members/review/elsewhere/{sectionid}"
+summary: Get removed members who are active elsewhere
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value: [ ]
+  description: "Members; fields not read by the web app's list code."
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/reports/sharing/
+action: getSharedReports
+summary: List shared reports
+description: "`getSharedReports` is a read-only listing."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: ReportSharedReportsResponse
+  examples:
+    getSharedReports:
+      summary: Reports shared by this section and available to it
+      value:
+        data:
+          my_reports:
+            - report_id: "910001"
+              dashboard_id: "910100"
+              name: Member list
+          available_reports:
+            - report_id: "910200"
+              name: Badge progress
+              new: 1
+        meta:
+          dashboards:
+            "910100": Section Overview
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

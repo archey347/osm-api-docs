@@ -1,0 +1,21 @@
+type: array
+items:
+  type: object
+  properties:
+    date:
+      type: string
+    date_raw:
+      type: string
+    summary:
+      type: string
+      description: HTML.
+    verbose: { }
+    type:
+      type: string
+    code:
+      type: string
+    scope: { }
+    section_id: { }
+    hidden:
+      type: boolean
+  additionalProperties: true

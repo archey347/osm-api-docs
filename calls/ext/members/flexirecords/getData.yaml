@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: getData
+summary: Get a flexi-record's data
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+  termid:
+    type: string
+  nototal:
+    type: string
+    description: Sent as a bare flag.
+response:
+  schema:
+    $ref: FlexiRecordData
+  examples:
+    getData:
+      summary: One row per member
+      value:
+        identifier: scoutid
+        items:
+          - scoutid: "3100001"
+            firstname: Jamie
+            lastname: River
+            f_1: "Yes"
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

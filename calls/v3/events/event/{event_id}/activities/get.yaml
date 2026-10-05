@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/activities"
+summary: List activities linked to an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventActivities
+  examples:
+    default:
+      value:
+        - id: "800001"
+          notes: Bring spare batteries
+          activityid: "1001"
+          activity_unique_id: "0"
+          activity:
+            title: Night Hike
+  description: Linked activities.
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

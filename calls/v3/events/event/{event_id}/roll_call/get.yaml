@@ -1,0 +1,37 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/roll_call"
+summary: Get the event roll call
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+query:
+  shared:
+    type: string
+    enum: [ "true", "false" ]
+    required: true
+    description: "`true` for the combined roll call across sections of a shared event."
+response:
+  schema:
+    $ref: EventRollCall
+  examples:
+    default:
+      value:
+        members:
+          - id: 3100001
+            event_id: 9600001
+            first_name: Alex
+            last_name: Scout
+            patrol_id: 8000001
+        roll_call:
+          - member_id: 3100001
+            event_id: 9600001
+            user_id: 5000001
+            is_present: true
+            local_generic_time: "2025-07-20 09:05:00"
+  description: Attending members and their roll call marks.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

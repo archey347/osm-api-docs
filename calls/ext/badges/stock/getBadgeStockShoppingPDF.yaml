@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/badges/stock/
+action: getBadgeStockShoppingPDF
+summary: Download badge shopping list as PDF
+description: "`getBadgeStockPDF` and `getBadgeStockShoppingPDF` return documents to download."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+  termid:
+    type: string
+  section_ids:
+    type: string
+  badgetypes:
+    type: string
+    description: Comma-separated badge type keys.
+  badgenames:
+    type: string
+    description: Comma-separated badge type names.
+response:
+  document: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js, ext.dashboard.82a61c008183022fe2cd.js ]

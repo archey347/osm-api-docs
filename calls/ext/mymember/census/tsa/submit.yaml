@@ -1,0 +1,53 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/census/tsa/
+action: submit
+summary: Save parent portal census (TSA) answers
+description: "Sent each time a field changes; an unanswered field is sent as `-1`."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    gender:
+      type: string
+      required: true
+      description: "`Male`, `Female`, `Self-identify`, `Prefer not to say` or `-1`."
+    ethnicity:
+      type: string
+      required: true
+      description: "Census code and label such as `A1: English, Welsh, Scottish, Northern Irish or British`, or `-1`."
+    religion:
+      type: string
+      required: true
+      description: "Option label such as `No religion` or `Prefer not to say`, or `-1`."
+    "disabilities[<name>]":
+      type: string
+      description: |-
+        One field per option, `true` or `false`. Options: `No disability`, `Prefer not to say`,
+        `Developmental`, `Injury`, `Physical`, `Medical`, `Mental Health`, `Progressive`, `Sensory`, `Self-describe`.
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    gender: Prefer not to say
+    ethnicity: "G: Not disclosed"
+    religion: Prefer not to say
+    "disabilities[Prefer not to say]": "true"
+    "disabilities[No disability]": "false"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+  description: Answers saved.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

@@ -1,0 +1,14 @@
+type: object
+properties:
+  status:
+    type: boolean
+  data:
+    type: object
+    properties:
+      preferences:
+        type: array
+        description: Opted-in types, from `help`, `news`, `offers`.
+        items:
+          type: string
+    additionalProperties: true
+additionalProperties: true

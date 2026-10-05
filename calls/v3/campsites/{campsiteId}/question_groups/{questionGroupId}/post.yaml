@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/question_groups/{questionGroupId}"
+summary: Rename a question group
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+  questionGroupId:
+    type: string
+    description: Question group ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+      description: "3 to 32 characters."
+  example:
+    name: Allergies
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

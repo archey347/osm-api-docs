@@ -1,0 +1,12 @@
+path: /ext/programme/
+method: GET
+summary: Programme endpoints
+description: |-
+  Programme endpoints share this path with different `action` values.
+  Use `getProgrammeSummary` for term overview, `getProgramme` for details,
+  `getMeetingNames` for a term's meeting list, `getMembersForParentRota`
+  for parent rota members, or `programmeAttachmentsManifest` for
+  attachment metadata.
+response: |-
+  Programme response. `printProgramme` and `printEntireProgramme`
+  return a printable document rather than JSON (format not confirmed).

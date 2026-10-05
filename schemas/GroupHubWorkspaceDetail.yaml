@@ -1,0 +1,43 @@
+type: object
+properties:
+  id: { }
+  name:
+    type: string
+  sections:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        section_id: { }
+        section_name: { }
+        status:
+          type: string
+        is_owning_section:
+          type: boolean
+        can_administer:
+          type: boolean
+        synced_domains:
+          type: array
+          items:
+            type: string
+        follows_new_settings:
+          type: boolean
+        accepted_at: { }
+        departed_at: { }
+      additionalProperties: true
+  settings_domains:
+    type: array
+    items:
+      type: string
+  candidate_sections:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        can_administer:
+          type: boolean
+      additionalProperties: true
+additionalProperties: true

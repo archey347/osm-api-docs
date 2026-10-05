@@ -1,0 +1,21 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/sections/{sectionId}/settings/all"
+summary: Follow all workspace settings
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: GroupHubManagedSettingsResult
+  examples:
+    default:
+      value:
+        managed_settings: { }
+  description: Updated managed settings.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

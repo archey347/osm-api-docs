@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/settings/terms/recurring/{sectionId}"
+summary: Get recurring terms configuration
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        recurring_config:
+          horizon_years: 2
+          terms:
+            - name: Autumn
+        terms: [ ]
+  description: "`data.recurring_config` is null when not set up."
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

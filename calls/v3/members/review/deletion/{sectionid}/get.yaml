@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/members/review/deletion/{sectionid}"
+summary: Get deletable members
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+path_params:
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: DeletableMembers
+  examples:
+    default:
+      value:
+        - firstname: Pat
+          lastname: Stone
+          date_deleted: "2023-10-01"
+          id: 3100004
+  description: Deletable members response.
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

@@ -1,0 +1,5 @@
+type: object
+properties:
+  code:
+    type: string
+additionalProperties: true

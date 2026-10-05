@@ -1,0 +1,14 @@
+type: object
+properties:
+  id: { }
+  type:
+    type: string
+  description:
+    type: string
+  date:
+    type: string
+  amount: { }
+  categorised: { }
+  categories: { }
+  attachments_id: { }
+additionalProperties: true

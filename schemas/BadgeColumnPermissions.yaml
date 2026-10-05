@@ -1,0 +1,16 @@
+type: object
+properties:
+  special_permissions:
+    type: string
+    description: "`no` when the column uses the badge's default permissions."
+  permissions:
+    type: object
+    properties:
+      visible:
+        type: array
+        items: { }
+      editable:
+        type: array
+        items: { }
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,42 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/availability/{availabilityTypeId}"
+summary: Get an availability type
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  availabilityTypeId:
+    type: string
+    description: Availability type ID.
+response:
+  schema:
+    $ref: CampsiteAvailabilityType
+  examples:
+    default:
+      value:
+        id: 7400001
+        name: Summer season
+        effective_from:
+          - id: 7410001
+            from: "1970-01-01"
+            is_past: true
+            availability_days:
+              - id: 7420001
+                day: 5
+                unavailable_from: "00:00:00"
+                unavailable_to: "12:00:00"
+            availability_booking_times:
+              - id: 7430001
+                mode: minimum_days_before
+                days: 7
+            availability_blocked_dates:
+              - id: 7440001
+                unavailable_from: "2026-12-24"
+                unavailable_to: "2026-12-26"
+            availability_max_on_site:
+              - id: 7450001
+                max_on_site: 60
+  description: The type and its rules.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

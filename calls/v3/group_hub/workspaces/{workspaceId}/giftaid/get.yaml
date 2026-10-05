@@ -1,0 +1,47 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/giftaid"
+summary: Get Gift Aid status across the workspace
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+query:
+  start:
+    type: string
+    description: "Range start, `YYYY-MM-DD`. Sent together with `end`; omitted for the default range."
+  end:
+    type: string
+    description: "Range end, `YYYY-MM-DD`."
+response:
+  schema:
+    $ref: GroupHubGiftAid
+  examples:
+    default:
+      value:
+        group_charity_name: "1st Riverside Scout Group"
+        charity_names: [ "1st Riverside Scout Group" ]
+        stats: { }
+        sections:
+          - section_id: 45001
+            name: Cubs
+            charity_name: "1st Riverside Scout Group"
+            is_waiting_list: false
+            can_edit_finance: true
+        members:
+          - member_id: 3100001
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            status: missing
+            section_id: 45001
+            section_name: Cubs
+            donations_in_range: 24.5
+            charity_mismatch: false
+            declaration_charity_name: null
+  description: Per-section charity names and per-member declaration status.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

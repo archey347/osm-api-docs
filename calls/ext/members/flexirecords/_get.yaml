@@ -1,0 +1,8 @@
+path: /ext/members/flexirecords/
+method: GET
+summary: Get flexi-records
+description: |-
+  Flexi-record reads share this path with different `action` values.
+  `archive`, `changeMenuVisibility` and `deleteSet` change data despite
+  being GETs. `printFlexiRecord` returns a printable document rather than JSON.
+response: Flexi-record response.

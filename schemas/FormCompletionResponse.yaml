@@ -1,0 +1,30 @@
+type: object
+properties:
+  title:
+    type: string
+  section_id:
+    type: integer
+  created_by:
+    type: object
+    nullable: true
+    additionalProperties: true
+  created_at_local_datetime:
+    type: string
+  updated_by:
+    type: object
+    nullable: true
+    additionalProperties: true
+  updated_at_local_datetime:
+    type: string
+  delete_at:
+    type: string
+  values:
+    type: array
+    items:
+      type: object
+      properties:
+        form_field_id:
+          type: integer
+        data: { }
+      additionalProperties: true
+additionalProperties: true

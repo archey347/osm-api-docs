@@ -1,0 +1,7 @@
+path: /ext/quartermaster/
+method: POST
+summary: Change quartermaster lists
+description: |-
+  `acceptLists` and `rejectLists` answer lists other sections have shared with this one.
+  `shareList` takes one `section[<sectionid>]` field per target section.
+response: "`status` is false on failure. The web app ignores the body of `acceptLists` and `rejectLists`."

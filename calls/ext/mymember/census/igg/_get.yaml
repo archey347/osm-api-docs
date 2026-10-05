@@ -1,0 +1,8 @@
+path: /ext/mymember/census/igg/
+method: GET
+summary: Parent portal census (IGG) status
+description: |-
+  `getDetails` returns the census status and any invoices.
+  `downloadInvoice` and `downloadReceipt` return a document (opened in a new window) and
+  take `invoice_id`.
+response: "Census status for `getDetails`; a document for the download actions."

@@ -1,0 +1,188 @@
+info:
+  title: Online Scout Manager API (Unofficial)
+  version: "0.4.0"
+  license:
+    name: MIT
+    url: https://github.com/archey347/osm-api-client/blob/main/LICENSE
+  description: |
+    Unofficial OpenAPI specification for the
+    [Online Scout Manager](https://www.onlinescoutmanager.co.uk) (OSM) API, built
+    from a combination of static analysis of OSM's client-side code and checks
+    against real traffic.
+
+    Parameters are discovered from how the code uses them, so response structures
+    may not be perfect. Calls that have been verified against real traffic are more
+    likely to be complete, and are marked **observed**; the rest are **inferred**.
+    The sources and tooling this spec is built from are in the
+    [osm-api-client](https://github.com/archey347/osm-api-client) repository, where
+    contributions are welcome.
+
+    OSM does not publish a public API specification. This project fills that gap
+    for developers building tools on top of OSM, whether that's a badge tracker, a
+    patrol planner, or anything else that helps leaders run their sections.
+
+    > **Provided as-is with no guarantees.** OSM's API is undocumented and can
+    > change without notice. Calls, parameters and response shapes were observed or
+    > inferred at the time of writing and may drift. Test against the live API
+    > before relying on anything here. Not affiliated with OSM; use at your own risk.
+
+    Credit to the City of Newcastle Scouts Digital Team for
+    [osm-api-docs](https://github.com/newcastlescouts/osm-api-docs), which this project
+    builds on.
+
+    ## Authentication
+
+    OSM uses **OAuth 2.0 (Authorization Code)** for API access. To get started:
+
+    1. Log in to OSM and navigate to **Settings → My Account Details → Developer Tools**.
+    2. Create an OAuth application to obtain your `client_id` and `client_secret`.
+    3. Implement the standard OAuth 2.0 authorization code flow — redirect users to
+       OSM's authorization endpoint, exchange the code for tokens via `/oauth/token`.
+    4. Include the access token as a **Bearer token** in the `Authorization` header
+       on every API request.
+    5. Tokens expire — use the refresh token flow to obtain new access tokens.
+
+    ## Using the API
+
+    Your browser uses a simple API for interacting with OSM, so although the API
+    is unsupported and undocumented, your application can do anything that you can
+    do on the website.
+
+    Use your browser's developer console to watch the network requests made when
+    you perform the actions you want to automate. Pay particular attention to
+    whether requests are **GET** or **POST**. Then use your OAuth client library
+    to create an authenticated request to the URL you discovered (which sets a
+    Bearer token in the Authorization header).
+
+    **Important:** All POST requests must use `application/x-www-form-urlencoded`
+    encoding, **not** JSON. Sending JSON bodies will result in your application
+    being blocked.
+
+    ## Rate limits
+
+    Please monitor the standard rate limit headers to ensure your application
+    does not get blocked automatically. Applications that are frequently blocked
+    will be **permanently blocked**.
+
+    | Header | Description |
+    |--------|-------------|
+    | `X-RateLimit-Limit` | Number of requests per hour your API can perform (per authenticated user) |
+    | `X-RateLimit-Remaining` | Requests remaining before the current user is blocked |
+    | `X-RateLimit-Reset` | Seconds until the rate limit resets back to the overall limit |
+
+    An **HTTP 429** status code is returned if the user exceeds the limit, along
+    with a `Retry-After` header indicating the number of seconds to wait.
+
+    Please also enforce your own lower rate limits, especially if you allow
+    unauthenticated users to manipulate your data (e.g. allowing members to join
+    a waiting list).
+
+    ## Other considerations
+
+    - **Check responses** — abort if they are not as expected. Your application
+      will be blocked if it frequently performs invalid requests.
+    - **`X-Deprecated` header** — anything with this header will be removed after
+      the date mentioned. Monitor for it.
+    - **`X-Blocked` header** — if set, your application has been blocked due to
+      invalid data or unauthorized access attempts. Continuing to use the API
+      after being blocked will automatically escalate to a **permanent block**.
+    - **Bot protection** — if you allow unauthenticated use of your application,
+      verify users are not bots.
+    - **Input validation** — always sanitise and validate data before sending it
+      to OSM. Invalid data will result in your application being blocked.
+    - **Privacy and GDPR** — these endpoints return personal data about young
+      people and their families. Handle it responsibly. Don't store what you
+      don't need, don't log PII, and follow your organisation's data protection
+      policies.
+servers:
+  - url: "https://www.onlinescoutmanager.co.uk"
+  - url: "https://onlinescoutmanager.co.uk"
+security:
+  - oauth2: [ ]
+tags:
+  - name: Startup
+    description: Session bootstrap and general metadata.
+  - name: Members
+    description: Member lists, details, patrols, and census.
+  - name: Attendance
+    description: Member attendance and badge requirements.
+  - name: Custom Data
+    description: Custom data groups and updates.
+  - name: Email
+    description: Member contact email selection and templates.
+  - name: Programme
+    description: Programme summaries, meetings, activities, sharing, and attachments.
+  - name: Badges
+    description: Badge-related programme metadata.
+  - name: Dashboard
+    description: Dashboard summaries and next things.
+  - name: Group Hub
+    description: Group Hub workspaces shared across a group's sections.
+  - name: Risk Assessments
+    description: Risk assessments, hazard library, and reviews.
+  - name: Campsites
+    description: "Campsite venue bookings, setup, pricing and instructors. `/v3` POSTs are form-encoded and answer with the `status`/`error`/`data`/`meta` envelope."
+  - name: Events
+    description: Events, attendance, sharing, approvals and calendar feeds.
+  - name: Reports
+    description: Report dashboards, the report editor, sharing, and notifications.
+  - name: Help Centre
+    description: Help centre articles, the Gilbert AI assistant, and customer support tickets.
+  - name: Users
+    description: Current user's notifications, push subscriptions, and section registration.
+  - name: E-Learning
+    description: E-learning module authoring and completion.
+  - name: Chat
+    description: Chat rooms, forum topics, polls, and votes.
+  - name: Comments
+    description: Comment threads attached to other records.
+  - name: Forms
+    description: Form completions.
+  - name: Facilities
+    description: Camp and local facility directory.
+  - name: Legacy
+    description: Older selection helpers still used by the web app.
+  - name: Quartermaster
+    description: Quartermaster lists, sharing, and event bookings.
+  - name: Kit
+    description: Kit lists and kit items.
+  - name: Recipes
+    description: Recipes, ingredients, prices, and recipe images.
+  - name: Todo
+    description: Section projects and tasks.
+  - name: Generic
+    description: Cross-cutting helpers such as search, member selection, pinned items and menu preferences.
+  - name: AI
+    description: AI-generated report inputs.
+  - name: Downloads
+    description: Background export jobs and generated downloads.
+  - name: Parent Portal
+    description: "Parent and member-facing calls (My.SCOUT, the parent portal). Failures return `status: false` with `error.message`."
+  - name: Accounting
+    description: Section accounts, categories, financial years, cashbook and items.
+  - name: Expense Cards
+    description: Expense card accounts, cardholders, cards and card transactions.
+  - name: Online Payments
+    description: Online payment requests and merchant set-up.
+  - name: Finances
+    description: Gift Aid, invoices, online payments, HQ payments and the shop.
+  - name: Settings
+    description: Section and account settings.
+securitySchemes:
+  oauth2:
+    type: oauth2
+    description: |
+      OSM uses OAuth 2.0 Authorization Code flow. Create an OAuth application
+      at **Settings → My Account Details → Developer Tools** in the OSM UI to
+      obtain your `client_id` and `client_secret`.
+    flows:
+      authorizationCode:
+        authorizationUrl: "https://www.onlinescoutmanager.co.uk/oauth/authorize"
+        tokenUrl: "https://www.onlinescoutmanager.co.uk/oauth/token"
+        refreshUrl: "https://www.onlinescoutmanager.co.uk/oauth/token"
+        scopes:
+          "section:member:read": Read member data for sections you have access to
+          "section:member:write": Update member data (patrols, ranks, fields)
+          "section:badge:read": Read badge records and progress
+          "section:event:read": Read events and programme data
+          "section:programme:read": Read programme summaries and meetings

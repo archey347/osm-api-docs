@@ -1,0 +1,21 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/onlinepayments/merchants/{sectionId}/authoriseStripe"
+summary: Get Stripe authorisation URL
+tags: [ Online Payments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        url: "https://example.invalid/stripe-authorise"
+  description: "`data.url` is the Stripe onboarding URL."
+sources: [ ext.finances.9f318350fda4d977c688.js ]

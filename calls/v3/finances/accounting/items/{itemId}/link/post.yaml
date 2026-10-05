@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/items/{itemId}/link"
+summary: Link an item to an event
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  itemId:
+    type: string
+    description: Item ID.
+body:
+  params:
+    associated_type:
+      type: string
+      required: true
+      description: "Observed `event`."
+    associated_id:
+      required: true
+      description: Event ID.
+    associated_section_id:
+      required: true
+      description: Section owning the event.
+  example:
+    associated_type: event
+    associated_id: 3100090
+    associated_section_id: 3100100
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

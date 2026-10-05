@@ -1,0 +1,11 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    description: "`{ message }` object or a plain string."
+  data:
+    description: Action-specific payload.
+  meta:
+    description: Action-specific extras.
+additionalProperties: true

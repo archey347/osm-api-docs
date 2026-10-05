@@ -1,0 +1,7 @@
+path: /ext/finances/giftaid/
+method: GET
+summary: Gift Aid grid and downloads
+description: |-
+  `getGrid` returns JSON. `downloadPDF` and `export` return a document
+  (PDF and HMRC spreadsheet respectively), opened in a new window.
+response: "Gift Aid grid (`getGrid`), or a downloaded document (`downloadPDF`, `export`)."

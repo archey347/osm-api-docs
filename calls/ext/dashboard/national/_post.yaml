@@ -1,0 +1,5 @@
+path: /ext/dashboard/national/
+method: POST
+summary: National dashboard searches and user changes
+description: "Read-only searches (`memberSearch`, `unitSearch`, `userSearch`) and writes (`deleteUser`, `updateGlobalRole`) share this path. Errors come back as `error` (a string or `{ message }`)."
+response: "Response depends on `action`."

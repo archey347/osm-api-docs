@@ -1,0 +1,31 @@
+type: array
+items:
+  type: object
+  properties:
+    name: { }
+    dismiss:
+      description: "Key to send as `item` when dismissing."
+    dismiss_expires: { }
+    use_slider: { }
+    level: { }
+    image: { }
+    video: { }
+    view_component: { }
+    view_function: { }
+    view_args: { }
+    view_constructor_args: { }
+    title: { type: string, nullable: true }
+    hide_dismiss: { type: boolean }
+    skip_if_dialogs_shown: { type: boolean }
+    data:
+      type: array
+      items: { }
+    actions:
+      type: array
+      items:
+        type: object
+        properties:
+          dismiss: { }
+          toast_msg: { }
+        additionalProperties: true
+  additionalProperties: true

@@ -1,0 +1,36 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/payout-details"
+summary: Change payout bank details
+description: Requires re-entering the user password.
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+body:
+  params:
+    sort_code:
+      type: string
+      required: true
+      description: "6 digits, no separators."
+    account_number:
+      type: string
+      required: true
+      description: "8 digits."
+    password:
+      type: string
+      required: true
+      description: The user's OSM password.
+  example:
+    sort_code: "000000"
+    account_number: "00000000"
+    password: example-password
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

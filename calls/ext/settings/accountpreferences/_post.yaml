@@ -1,0 +1,5 @@
+path: /ext/settings/accountpreferences/
+method: POST
+summary: Update account preferences
+description: "Changing email, password or security details needs the current password. Preference writes return the updated `prefs`."
+response: Response.

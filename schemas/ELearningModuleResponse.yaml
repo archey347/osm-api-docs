@@ -1,0 +1,82 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    additionalProperties: true
+  data:
+    type: object
+    properties:
+      module_id: { }
+      title: { }
+      intro: { }
+      ending: { }
+      repeatable: { }
+      status:
+        description: "`draft`, `open` or `closed`."
+      archived:
+        description: "`1` when archived."
+      steps:
+        type: object
+        description: "Steps keyed `s<step_id>`."
+        additionalProperties:
+          type: object
+          properties:
+            step_id: { }
+            order: { }
+            description:
+              description: Step content as HTML.
+            config:
+              type: object
+              properties:
+                media:
+                  type: object
+                  properties:
+                    type:
+                      description: "`vimeo` or `image`."
+                    vimeo_id: { }
+                    thumbnail: { }
+                    public_path: { }
+                  additionalProperties: true
+              additionalProperties: true
+            questions:
+              type: object
+              description: "Questions keyed `q<question_id>`."
+              additionalProperties:
+                type: object
+                properties:
+                  question_id: { }
+                  step_id: { }
+                  order: { }
+                  type:
+                    description: "`radio`, `checkbox` or `select`."
+                  question: { }
+                  description: { }
+                  required: { }
+                  config:
+                    type: object
+                    properties:
+                      options:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            option: { }
+                            answer:
+                              description: Whether this option is correct.
+                            reason:
+                              description: Explanation shown after answering.
+                          additionalProperties: true
+                    additionalProperties: true
+                additionalProperties: true
+          additionalProperties: true
+    additionalProperties: true
+  meta:
+    description: "`step_id` after `addModuleStep`, `question_id` after `addQuestion`; an empty array otherwise."
+    properties:
+      step_id: { }
+      question_id: { }
+    additionalProperties: true
+additionalProperties: true

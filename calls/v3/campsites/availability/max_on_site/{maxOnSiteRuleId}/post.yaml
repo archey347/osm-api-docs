@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/max_on_site/{maxOnSiteRuleId}"
+summary: Edit a maximum-on-site rule
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  maxOnSiteRuleId:
+    type: string
+    description: Maximum-on-site rule ID.
+body:
+  params:
+    max_on_site:
+      type: integer
+      required: true
+  example:
+    max_on_site: 60
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

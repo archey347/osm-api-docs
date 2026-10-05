@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/settings/accountpreferences/
+action: getCommunicationPreferences
+summary: Get communication preferences
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsCommunicationPreferences
+  examples:
+    getCommunicationPreferences:
+      summary: Opted-in communication types
+      value:
+        status: true
+        data:
+          preferences: [ help, news ]
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

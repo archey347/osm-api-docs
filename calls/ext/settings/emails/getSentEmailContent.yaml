@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/settings/emails/
+action: getSentEmailContent
+summary: View a sent email
+description: "Other actions return delivery reports; `getSentEmailContent` returns the sent email as a document."
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  email_id:
+    type: string
+  email:
+    type: string
+    description: Recipient address.
+  member_id:
+    type: string
+  _ts:
+    type: string
+    description: Cache-buster timestamp.
+response:
+  document: true
+  content_type: application/octet-stream
+  description: Sent email, shown in an iframe.

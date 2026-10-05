@@ -1,0 +1,14 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/tickets/{ticketId}/solve"
+summary: Mark a support ticket solved
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  ticketId:
+    type: string
+response:
+  description: Response body is not read by the web app.
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

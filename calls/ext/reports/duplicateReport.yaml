@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/reports/
+action: duplicateReport
+summary: Duplicate a report
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: The other actions take it in the body.
+  dashboard_id:
+    type: string
+    description: The other actions take it in the body.
+body:
+  params:
+    report_id:
+      type: string
+  example:
+    report_id: "910001"
+response:
+  schema:
+    $ref: ReportStatusResult
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

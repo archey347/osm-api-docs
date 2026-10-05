@@ -1,0 +1,51 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateProgramme
+summary: Update parent portal programme settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: Section ID.
+    programmeAllowInformedAbsence:
+      type: string
+      description: "`true` or `false`."
+    rota:
+      type: string
+    rota_email_risk_assessments:
+      type: string
+      description: "`true` or `false`."
+    ics:
+      type: string
+      description: "`true` or `false`."
+    summary:
+      type: string
+      description: "`true` or `false`."
+    times:
+      type: string
+      description: "`true` or `false`."
+    download:
+      type: string
+      description: "`true` or `false`."
+    showBadges:
+      type: string
+      description: "`true` or `false`."
+    num_meetings:
+      type: string
+    leaderInCharge:
+      type: string
+      description: "`true` or `false`."
+  example:
+    section_id: "45001"
+    ics: "true"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

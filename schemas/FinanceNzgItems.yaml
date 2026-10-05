@@ -1,0 +1,11 @@
+type: object
+properties:
+  identifier:
+    type: string
+  items:
+    type: array
+    description: "Pick list items (`item_id`, `stock_code`, `name`, `cost`, `max_quantity`, `quantity`, `section_types`) or past orders (`ts`, `date`, `mode`)."
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

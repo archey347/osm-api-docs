@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: /v3/users/register_section/group_search
+summary: Search groups by name
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    search:
+      type: string
+      required: true
+      description: At least three characters.
+    country:
+      type: string
+      description: Organisation, omitted when not applicable.
+    must_have_sections:
+      type: string
+      enum: [ "true" ]
+      description: Omitted when false.
+  example:
+    search: Example
+    country: uk
+response:
+  schema:
+    $ref: UserGroupSearchResults
+  examples:
+    default:
+      value:
+        - name: "1st Example Group"
+  description: Matching groups.
+sources: [ ext.users.aae4e50e39d06ff44c88.js ]

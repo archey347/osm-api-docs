@@ -1,0 +1,23 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: getRecentPricesForIngredient
+summary: Get recent prices for an ingredient
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  ingredient_id:
+    type: string
+  currency:
+    type: string
+response:
+  schema:
+    $ref: RecipeIngredientPriceListData
+  envelope: true
+  examples:
+    getRecentPricesForIngredient:
+      summary: No recent prices
+      value: [ ]
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

@@ -1,0 +1,7 @@
+path: /ext/badges/records/editing/
+method: GET
+summary: Read badge editing data
+description: |-
+  `getAvailableBadges` lists badges (including drafts) that can be added to a section;
+  `getGroupNames` lists badge groups for the section type.
+response: Badge list, badge details, column permissions or group names.

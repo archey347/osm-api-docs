@@ -1,0 +1,13 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        name:
+          type: string
+        members_count: { }
+      additionalProperties: true
+additionalProperties: true

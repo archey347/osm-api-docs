@@ -1,0 +1,7 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  deletion_id:
+    description: Positive when the meeting can be restored.
+additionalProperties: true

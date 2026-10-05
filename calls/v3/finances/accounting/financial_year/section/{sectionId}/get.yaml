@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/section/{sectionId}"
+summary: List financial years
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingFinancialYearList
+  examples:
+    default:
+      value:
+        - id: 3100050
+          start_date: "2025-04-01"
+          end_date: "2026-03-31"
+  description: Financial years for the section.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/finances/invoices/
+action: addNamedCategory
+summary: Add a budget
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    name:
+      type: string
+      description: "Invoice name (max 64 characters; `addInvoice`) or budget name (`addNamedCategory`)."
+  example:
+    name: Camp food
+response:
+  schema:
+    $ref: FinanceStatusResponse
+  examples:
+    addNamedCategory:
+      summary: addNamedCategory
+      value:
+        status: true
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js ]

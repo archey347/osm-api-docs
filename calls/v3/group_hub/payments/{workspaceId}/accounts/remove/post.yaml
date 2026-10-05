@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/payments/{workspaceId}/accounts/remove"
+summary: Stop sharing a payment account
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    gateway:
+      type: string
+      enum: [ stripe, gocardless ]
+      required: true
+    organisation_id:
+      type: string
+      required: true
+  example:
+    gateway: stripe
+    organisation_id: acct_000001
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

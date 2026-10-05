@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/menu/{entry_id}/delete"
+summary: Delete a menu entry
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  entry_id:
+    type: string
+body:
+  params:
+    shared:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+  example:
+    shared: "false"
+response:
+  schema:
+    $ref: EventMenu
+  description: Updated entries and costs.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

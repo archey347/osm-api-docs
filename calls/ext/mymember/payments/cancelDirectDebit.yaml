@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/payments/
+action: cancelDirectDebit
+summary: Cancel a direct debit
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+    section_id:
+      type: string
+    schedule_id:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    schedule_id: "6200001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`cancelDirectDebit`, `cancelPayment`, `removePaymentMethod`"
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

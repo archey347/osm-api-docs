@@ -1,0 +1,17 @@
+kind: v3-route
+method: POST
+path: "/v3/dashboard/whatsnew/close/{storyId}"
+summary: Dismiss a What's New story
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  storyId:
+    type: string
+    description: What's New story ID.
+response:
+  schema:
+    $ref: DashboardWhatsNewResult
+  description: "Success when `status` is truthy; the web app shows an error toast otherwise."
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

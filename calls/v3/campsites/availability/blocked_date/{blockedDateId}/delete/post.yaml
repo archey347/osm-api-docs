@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/availability/blocked_date/{blockedDateId}/delete"
+summary: Delete a blocked date
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  blockedDateId:
+    type: string
+    description: Blocked date ID.
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

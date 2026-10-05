@@ -1,0 +1,32 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    status:
+      type: string
+      description: "Observed in the UI as `invited`, `accepted`, `remove_from_list`, `stay_on_list`, `surveyed`, `still_interested`; the UI also shows `invited` past its `deadline` as expired."
+    deadline:
+      type: string
+      nullable: true
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    to_section_name:
+      type: string
+    to_group_name:
+      type: string
+    inviter_name:
+      type: string
+    inviter_photo_url:
+      type: string
+    responder_name:
+      type: string
+    responder_photo_url:
+      type: string
+    leader_message:
+      type: string
+    notes:
+      type: string
+  additionalProperties: true

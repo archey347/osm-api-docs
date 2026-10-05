@@ -1,0 +1,34 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error: { }
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        section_id: { }
+        associated_id: { }
+        type: { }
+        category_id: { }
+        manual_category: { }
+        manual_hazard: { }
+        controls: { }
+        check: { }
+        duplicated_from_id: { }
+        hub_managed:
+          type: boolean
+      additionalProperties: true
+  meta:
+    type: object
+    properties:
+      has_other_assessments:
+        type: boolean
+      review: { }
+      review_months: { }
+      hub_review: { }
+      group_hub: { }
+    additionalProperties: true
+additionalProperties: true

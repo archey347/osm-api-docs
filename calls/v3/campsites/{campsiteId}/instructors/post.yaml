@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/instructors"
+summary: Create an instructor type
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+      description: "3 to 32 characters."
+  example:
+    name: Archery instructor
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value:
+        id: 7500001
+  description: The new type.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

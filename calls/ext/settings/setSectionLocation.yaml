@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/settings/
+action: setSectionLocation
+summary: Set or clear a section's location
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    location:
+      type: string
+      description: "Literal `false` clears the location. `setSectionLocation` only."
+    "location[latitude]":
+      type: string
+      description: "`setSectionLocation` only."
+    "location[longitude]":
+      type: string
+      description: "`setSectionLocation` only."
+  example:
+    section_id: "45001"
+    "location[latitude]": "51.5"
+    "location[longitude]": "-0.12"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", osm-de353b59e43da8164ac0b179aadfacd1.js ]

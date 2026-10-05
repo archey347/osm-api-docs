@@ -1,0 +1,8 @@
+path: /ext/programme/
+method: POST
+summary: Update programme meetings
+description: |-
+  Programme writes share this path with different `action` values.
+  `deleteMeeting` takes `eveningid` and `sectionid` in the query string
+  with no body; every other action takes a form body.
+response: Result of the programme write.

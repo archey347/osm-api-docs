@@ -1,7 +1,7 @@
 openapi: "3.0.3"
 info:
   title: Online Scout Manager API (Unofficial)
-  version: "0.3.0"
+  version: "0.4.0"
   license:
     name: MIT
     url: "https://github.com/archey347/osm-api-client/blob/main/LICENSE"
@@ -14,8 +14,9 @@ info:
     Parameters are discovered from how the code uses them, so response structures
     may not be perfect. Calls that have been verified against real traffic are more
     likely to be complete, and are marked **observed**; the rest are **inferred**.
-    The analysis tooling is kept in a private repository; get in touch if you would
-    like access.
+    The sources and tooling this spec is built from are in the
+    [osm-api-client](https://github.com/archey347/osm-api-client) repository, where
+    contributions are welcome.
 
     OSM does not publish a public API specification. This project fills that gap
     for developers building tools on top of OSM, whether that's a badge tracker, a
@@ -27,7 +28,7 @@ info:
     > before relying on anything here. Not affiliated with OSM; use at your own risk.
 
     Credit to the City of Newcastle Scouts Digital Team for
-    [osm-api-docs](https://github.com/archey347/osm-api-docs), which this project
+    [osm-api-docs](https://github.com/newcastlescouts/osm-api-docs), which this project
     builds on.
 
     ## Authentication
@@ -144,6 +145,8 @@ tags:
     description: Events, attendance, sharing, approvals and calendar feeds.
   - name: Reports
     description: Report dashboards, the report editor, sharing, and notifications.
+  - name: Help Centre
+    description: Help centre articles, the Gilbert AI assistant, and customer support tickets.
   - name: Users
     description: Current user's notifications, push subscriptions, and section registration.
   - name: E-Learning
@@ -6752,7 +6755,7 @@ paths:
                         lastname: Baden Powell
                         patrolid: -2
                         active: true
-                        scoutid: 2015779
+                        scoutid: 910302
                     meetings:
                       "2025-01-07": "Welcome Back!"
         default:
@@ -6821,7 +6824,7 @@ paths:
                   value:
                     - badge_id: "1593"
                       badgeName: Communicator
-                      column_id: "100542"
+                      column_id: "910305"
                       name: Code
                       meetingdate: "2025-01-14"
                       section: cubs
@@ -7120,7 +7123,7 @@ paths:
                 eventid:
                   type: string
             example:
-              scouts: "[3008213]"
+              scouts: "[910304]"
               selectedDate: "2025-01-14"
               present: Absent
               section: cubs
@@ -8895,12 +8898,12 @@ paths:
                   summary: Selected emails for contacts
                   value:
                     emails:
-                      "2526072":
+                      "910301":
                         emails: [ "parent@example.org", "guardian@example.org" ]
                         firstname: Jamie
                         lastname: River
                         photo_guid: "00000000-0000-0000-0000-000000000000"
-                        member_id: 2526072
+                        member_id: 910301
                     count: 2
                     blocks: [ ]
                     daily_limit_reached: false
@@ -8959,12 +8962,12 @@ paths:
                   summary: Selected emails for contacts
                   value:
                     emails:
-                      "2526072":
+                      "910301":
                         emails: [ "parent@example.org" ]
                         firstname: Jamie
                         lastname: River
                         photo_guid: "00000000-0000-0000-0000-000000000000"
-                        member_id: 2526072
+                        member_id: 910301
                     count: 1
                     blocks: [ ]
                     daily_limit_reached: false
@@ -9106,7 +9109,7 @@ paths:
             example:
               subject: Weekly Meeting Reminder
               sectionid: "45001"
-              emails: "{\"2526072\":{\"firstname\":\"Jamie\",\"lastname\":\"River\",\"member_id\":2526072,\"emails\":[\"parent@example.org\"]}}"
+              emails: "{\"910301\":{\"firstname\":\"Jamie\",\"lastname\":\"River\",\"member_id\":910301,\"emails\":[\"parent@example.org\"]}}"
               edits: "{\"0\":{\"0\":{\"text\":\"<p>Don't forget to bring your swimming kit this week!</p>\"}}}"
       responses:
         "200":
@@ -11148,7 +11151,7 @@ paths:
                   description: JSON object of fields to update (e.g., title, notesforparents, primary_leader_id).
             example:
               sectionid: "12345"
-              eveningid: "9464403"
+              eveningid: "910303"
               parts: "{\"title\":\"Astronomy Night 2\"}"
       responses:
         "200":
@@ -11161,7 +11164,7 @@ paths:
                 editEveningParts:
                   summary: "`editEveningParts`: the updated meeting, not wrapped in `items`"
                   value:
-                    eveningid: "9464403"
+                    eveningid: "910303"
                     sectionid: "12345"
                     title: Astronomy Night
                     meetingdate: "2025-01-21"
@@ -11292,7 +11295,7 @@ paths:
                     status: true
                     error: null
                     data:
-                      - scoutid: "2015779"
+                      - scoutid: "910302"
                         firstname: Robert
                         lastname: Baden Powell
                         photo_guid: "00000000-0000-0000-0000-000000000000"
@@ -38898,6 +38901,864 @@ paths:
         default:
           $ref: "#/components/responses/V3Error"
       operationId: get_v3_reports_emails_By_sectionId
+  "/v3/helpcentre":
+    get:
+      summary: List help centre areas and topics
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      responses:
+        "200":
+          description: "Areas with their topics. `meta.announcement` is a banner message."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreAreas"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      - id: 1
+                        title: Getting started
+                        order: 1
+                        visibility: null
+                        topics:
+                          - id: 10
+                            title: Add your first member
+                            order: 1
+                            help_centre_area_id: 1
+                            visibility: null
+                            created_at: "2024-01-01 00:00:00"
+                            opens: [ ]
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: get_v3_helpcentre
+    post:
+      summary: Search help centre topics
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+              required: [ query ]
+            example:
+              query: add a member
+      responses:
+        "200":
+          description: "Matching topics in `data.help`."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreSearchResults"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      help:
+                        - id: 10
+                          title: Add your first member
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre
+  "/v3/helpcentre/gilbert":
+    get:
+      summary: Poll the Gilbert AI assistant conversation
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Gilbert is the in-app AI assistant. The web app also calls this path with
+        a trailing slash.
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: guid
+          in: query
+          required: true
+          description: Client-generated conversation GUID.
+          schema:
+            type: string
+        - name: term_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          description: "Observed `1`."
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Conversation state. `data.status` of `none` means no conversation exists for the GUID."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreGilbertState"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      status: completed
+                      questions:
+                        - id: 8100001
+                          question: "How do I add a member?"
+                      answers:
+                        - id: 8200001
+                          message: Go to Members and choose Add Member.
+                      runs: [ ]
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: get_v3_helpcentre_gilbert
+    post:
+      summary: Ask Gilbert a question
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Starts or continues a conversation; the answer is then polled with the GET.
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          description: "Observed `1`."
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  description: "May end with an extra `[[[ ... ]]]` block of context for the assistant."
+                initial:
+                  type: string
+                  enum: [ "true", "false" ]
+                mode:
+                  type: string
+                  description: "Observed `leader`, `parent`, `parent_portal_info`, `emailer`."
+                associated_id:
+                  type: string
+                  description: "ID of the thing being discussed; `0` for none."
+                guid:
+                  type: string
+                section_id:
+                  type: string
+                  description: "Current section, `0` for none."
+              required: [ question, mode, guid ]
+            example:
+              question: "How do I add a member?"
+              initial: "true"
+              mode: leader
+              associated_id: "0"
+              guid: "00000000-0000-0000-0000-000000000000"
+              section_id: "45001"
+      responses:
+        "200":
+          description: Conversation state, as for the GET.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreGilbertState"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      status: in_progress
+                      questions:
+                        - id: 8100001
+                          question: "How do I add a member?"
+                      answers: [ ]
+                      runs: [ ]
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert
+  "/v3/helpcentre/gilbert/delete/{questionId}":
+    post:
+      summary: Delete one Gilbert question and its answer
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                guid:
+                  type: string
+                  description: Conversation GUID.
+              required: [ guid ]
+            example:
+              guid: "00000000-0000-0000-0000-000000000000"
+      responses:
+        "200":
+          description: Remaining questions and answers.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreGilbertState"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      questions: [ ]
+                      answers: [ ]
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert_delete_By_questionId
+  "/v3/helpcentre/gilbert/engage/{questionId}":
+    post:
+      summary: Rate a Gilbert answer
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                action:
+                  type: integer
+                  description: Star rating, 1 to 5. Ratings under 3 are flagged for human review.
+                query_type:
+                  type: string
+                  description: "The question's `review_type`."
+              required: [ action ]
+            example:
+              action: 4
+              query_type: leader
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert_engage_By_questionId
+  "/v3/helpcentre/gilbert/escalate":
+    post:
+      summary: Escalate a Gilbert conversation to a support ticket
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Creates a support ticket.
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                guid:
+                  type: string
+                subject:
+                  type: string
+                  description: At least four characters.
+                section_id:
+                  type: string
+                notes:
+                  type: string
+                  description: Sent only when non-empty.
+              required: [ guid, subject, section_id ]
+            example:
+              guid: "00000000-0000-0000-0000-000000000000"
+              subject: Cannot add a member
+              section_id: "45001"
+              notes: Gilbert could not help.
+      responses:
+        "200":
+          description: "Response body is not read; success is any 2xx."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert_escalate
+  "/v3/helpcentre/gilbert/feedback/{questionId}":
+    post:
+      summary: Give thumbs up or down on a Gilbert answer
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                feedback:
+                  type: string
+                  enum: [ good, bad ]
+              required: [ feedback ]
+            example:
+              feedback: good
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert_feedback_By_questionId
+  "/v3/helpcentre/gilbert/load":
+    post:
+      summary: Load a Gilbert conversation for a record
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Used on meeting pages to reload the conversation tied to an `associated_id`.
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                guid:
+                  type: string
+                mode:
+                  type: string
+                associated_id:
+                  type: string
+              required: [ guid, mode, associated_id ]
+            example:
+              guid: "00000000-0000-0000-0000-000000000000"
+              mode: leader
+              associated_id: "9500001"
+      responses:
+        "200":
+          description: "Conversation state, as for `GET /v3/helpcentre/gilbert`."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreGilbertState"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      status: completed
+                      questions: [ ]
+                      answers: [ ]
+                      runs: [ ]
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_gilbert_load
+  "/v3/helpcentre/tickets":
+    get:
+      summary: List the user's own support tickets
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      responses:
+        "200":
+          description: "Tickets in `data.tickets`."
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreTicketList"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      tickets:
+                        - id: 6100001
+                          subject: Cannot add a member
+                          status: open
+                          message_count: 2
+                          last_activity_age_seconds: 3600
+                          last_activity_at_display: "1 Nov 2024 18:00"
+                          assigned_agent_first_name: Sam
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: get_v3_helpcentre_tickets
+  "/v3/helpcentre/tickets/{ticketId}":
+    get:
+      summary: Get a support ticket thread
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ticket and messages.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/HelpCentreTicketDetail"
+                  meta:
+                    type: object
+                    nullable: true
+              examples:
+                default:
+                  value:
+                    status: true
+                    error: null
+                    data:
+                      ticket:
+                        id: 6100001
+                        subject: Cannot add a member
+                        status: open
+                        section_name: ""
+                        can_set_section: true
+                      messages:
+                        - id: 6200001
+                          author_type: customer
+                          author_name: Alex Scout
+                          body: I cannot add a member.
+                          has_attachments: false
+                          created_at_display: "1 Nov 2024 18:00"
+                    meta: null
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: get_v3_helpcentre_tickets_By_ticketId
+  "/v3/helpcentre/tickets/{ticketId}/reply":
+    post:
+      summary: Reply to a support ticket
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: At most 10000 characters.
+                uploads_guid:
+                  type: string
+                  description: "Folder GUID of files uploaded through `/ext/helpcentre/tickets/uploads/`."
+              required: [ body ]
+            example:
+              body: Thanks, that worked.
+              uploads_guid: "00000000-0000-0000-0000-000000000000"
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_tickets_By_ticketId_reply
+  "/v3/helpcentre/tickets/{ticketId}/section":
+    post:
+      summary: Link a section to a support ticket
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+              required: [ section_id ]
+            example:
+              section_id: "45001"
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_tickets_By_ticketId_section
+  "/v3/helpcentre/tickets/{ticketId}/solve":
+    post:
+      summary: Mark a support ticket solved
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_tickets_By_ticketId_solve
+  "/v3/helpcentre/tickets/{ticketId}/typing":
+    post:
+      summary: Report typing presence on a support ticket
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Heartbeat sent about every 45 seconds while the ticket is open, and with
+        `leaving=true` on close (also by `sendBeacon` on page unload).
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: ticketId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                typing:
+                  type: string
+                  enum: [ "true", "false" ]
+                uploading:
+                  type: string
+                  enum: [ "true", "false" ]
+                focused:
+                  type: string
+                  enum: [ "true", "false" ]
+                  description: Not sent by the page-unload beacon.
+                leaving:
+                  type: string
+                  enum: [ "true" ]
+              required: [ typing, uploading ]
+            example:
+              typing: "false"
+              uploading: "false"
+              focused: "true"
+      responses:
+        "200":
+          description: Response body is not read by the web app.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data: { }
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: post_v3_helpcentre_tickets_By_ticketId_typing
+  "/v3/helpcentre/topics/{topicId}/print":
+    get:
+      summary: Print a help centre topic
+      description: |-
+        Request: inferred from the web app's code. Response: inferred from the web app's code.
+
+        Opens in a new window and returns a printable document rather than JSON.
+      tags: [ Help Centre ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Printable document.
+          content:
+            "application/octet-stream":
+              schema:
+                type: string
+                format: binary
+        default:
+          $ref: "#/components/responses/V3Error"
+      operationId: get_v3_helpcentre_topics_By_topicId_print
   "/ext/users/notifications/?action=dismiss":
     post:
       summary: Dismiss a notification
@@ -69062,6 +69923,137 @@ components:
               name: { }
               can_administer:
                 type: boolean
+            additionalProperties: true
+      additionalProperties: true
+    HelpCentreAreas:
+      type: array
+      items:
+        type: object
+        properties:
+          id: { }
+          title: { }
+          order: { }
+          visibility:
+            description: "Section visibility rule; `null` for everyone."
+          topics:
+            type: array
+            items:
+              type: object
+              properties:
+                id: { }
+                title: { }
+                summary: { }
+                description: { }
+                order: { }
+                help_centre_area_id: { }
+                visibility: { }
+                created_at: { }
+                boosted:
+                  description: Site type to rank when the topic is promoted.
+                related_articles: { }
+                opens:
+                  type: array
+                  description: "The user's earlier opens; `updated_at` newer than `created_at` marks a read topic."
+                  items:
+                    type: object
+                    properties:
+                      updated_at: { }
+                    additionalProperties: true
+              additionalProperties: true
+        additionalProperties: true
+    HelpCentreGilbertState:
+      type: object
+      properties:
+        status:
+          description: "Conversation status, e.g. `none`, `failed`, `in_progress`, `streaming`."
+        questions:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { }
+              question: { }
+              review_type: { }
+              deletable: { }
+            additionalProperties: true
+        answers:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { }
+              message: { }
+              streaming: { }
+              colour: { }
+            additionalProperties: true
+        runs:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                description: "`queued`, `in_progress` or `requires_action` while the run is active."
+            additionalProperties: true
+        bedrock: { }
+        responses: { }
+      additionalProperties: true
+    HelpCentreSearchResults:
+      type: object
+      properties:
+        help:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
+    HelpCentreTicketDetail:
+      type: object
+      properties:
+        ticket:
+          type: object
+          properties:
+            id: { }
+            subject: { }
+            status: { }
+            section_name: { }
+            can_set_section:
+              description: Whether the user may still link a section.
+          additionalProperties: true
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { }
+              author_type:
+                description: "`customer`, `agent`, `gilbert` or `system`."
+              author_name: { }
+              author_avatar: { }
+              author_is_ai: { }
+              body: { }
+              body_html: { }
+              has_attachments: { }
+              created_at: { }
+              created_at_display: { }
+              created_at_day_display: { }
+            additionalProperties: true
+      additionalProperties: true
+    HelpCentreTicketList:
+      type: object
+      properties:
+        tickets:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { }
+              subject: { }
+              status:
+                description: "`solved` and `closed` are read; other values mean the ticket is still open."
+              message_count: { }
+              last_activity_age_seconds: { }
+              last_activity_at_display: { }
+              assigned_agent_first_name: { }
             additionalProperties: true
       additionalProperties: true
     KitListResponse:

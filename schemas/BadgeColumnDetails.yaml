@@ -1,0 +1,10 @@
+type: object
+properties:
+  label:
+    type: string
+  description:
+    type: string
+  points: { }
+  field_type: { }
+  custom_columns: { }
+additionalProperties: true

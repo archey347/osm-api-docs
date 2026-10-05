@@ -1,0 +1,51 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: addIngredient
+summary: Create an ingredient
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    title:
+      type: string
+    description:
+      type: string
+    measurement_type:
+      type: string
+    aisle:
+      type: string
+    allergies:
+      type: string
+      description: JSON-encoded array.
+    pack_size:
+      type: string
+    price:
+      type: string
+      description: "Per unit for `addIngredient`; `-1` clears the price in `savePriceForIngredient`."
+    price_description:
+      type: string
+    currency:
+      type: string
+      description: Currency shortcode.
+  example:
+    title: Example Beans
+    description: ""
+    measurement_type: tin
+    aisle: tinned
+    pack_size: "4"
+    price: "0.5"
+    price_description: "4 pack"
+    currency: GBP
+    allergies: "[]"
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+  examples:
+    addIngredient:
+      value:
+        ingredient_id: "7710002"
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

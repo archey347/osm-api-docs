@@ -1,0 +1,24 @@
+type: array
+items:
+  type: object
+  properties:
+    module_id: { }
+    title: { }
+    run_status:
+      description: "`not-started`, `started` or `completed`."
+    run_id: { }
+    started_at: { }
+    completed_at: { }
+    completed_run_id:
+      description: "Run to pass to `getCertificate`."
+    repeatable: { }
+    badges:
+      type: array
+      items:
+        type: object
+        properties:
+          badge_identifier: { }
+          badgeLongName: { }
+          picture: { }
+        additionalProperties: true
+  additionalProperties: true

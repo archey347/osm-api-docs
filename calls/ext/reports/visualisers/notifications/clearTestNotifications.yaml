@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: clearTestNotifications
+summary: Clear test notifications
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: ReportStatusResult
+  examples:
+    status:
+      summary: "`clearTestNotifications`, `createNotification`, `deleteNotification`, `dismissNotification`, `editNotification`"
+      value:
+        status: true
+sources: [ "21.3e07bd5db1c55da1f0d3.js", area.reports.e212ae5ee9d683be7967.js ]

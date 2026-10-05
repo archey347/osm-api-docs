@@ -1,0 +1,13 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  scheduled:
+    type: boolean
+  scheduled_email_id: { }
+  warning:
+    type: string
+  error:
+    description: "Message string or an object with `message`."
+  error_code: { }
+additionalProperties: true

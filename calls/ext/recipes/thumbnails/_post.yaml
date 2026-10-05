@@ -1,0 +1,5 @@
+path: /ext/recipes/thumbnails/
+method: POST
+summary: Upload or crop a recipe picture
+description: "`put` takes a multipart file upload (field `qqfile`, JPEG or PNG, up to 10 MB); `crop` takes the crop box in the form body."
+response: "`put` returns the new manifest in `data.manifest`; `crop` returns `status`."

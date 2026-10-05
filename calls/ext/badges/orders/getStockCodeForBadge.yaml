@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/badges/orders/
+action: getStockCodeForBadge
+summary: Get the stock code for a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  badge_id:
+    type: string
+response:
+  schema:
+    $ref: BadgeStockCodeResponse
+  envelope: true
+  examples:
+    getStockCodeForBadge:
+      summary: Stock code
+      value:
+        code: BD-0001
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

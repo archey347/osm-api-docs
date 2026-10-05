@@ -1,0 +1,41 @@
+kind: v3-route
+method: POST
+path: "/v3/forms/{formId}/{completionId}/core"
+summary: Save a core property of a form completion
+tags: [ Forms ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  formId:
+    type: string
+  completionId:
+    type: string
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    field:
+      type: string
+      enum: [ title, delete_at ]
+      required: true
+    data:
+      type: string
+      required: true
+      description: "New title (max 30 chars), or `YYYY-MM-DD` for `delete_at` (empty clears it)."
+  example:
+    section_id: "3100"
+    field: title
+    data: Summer camp consent
+response:
+  schema:
+    $ref: FormUpdateResponse
+  examples:
+    default:
+      value:
+        updated_by:
+          full_name: Alex Scout
+        updated_at_local_datetime: "10 Mar 2025 18:35"
+  description: Who last updated the completion.
+sources: [ area.forms.6a4250d0042cb298b3e2.js ]

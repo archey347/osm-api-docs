@@ -1,0 +1,35 @@
+kind: ext-action
+method: GET
+path: /ext/events/summary/
+action: get
+summary: List the section's events for the term
+description: "`get` lists the section's events for the term, `getEvents` a lighter list (`onlyArchived=1` for archived ones), `getAudit` recent attendance changes."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  termid:
+    type: string
+  is_offline:
+    type: string
+    enum: [ "1" ]
+    description: Sent by the offline app.
+response:
+  schema:
+    $ref: EventSummaryList
+  examples:
+    get:
+      value:
+        items:
+          - eventid: "9600001"
+            name: Summer Camp
+            startdate: "2025-07-20"
+            startdate_g: "2025-07-20"
+            enddate: "2025-07-27"
+            rota_accepted: 2
+            rota_required: 4
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js, ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/cal/
+action: generateFeed
+summary: Create a calendar feed
+description: |-
+  Only `action=generateFeed` is called as a GET (campsite bookings feed). Creates the
+  iCalendar feed if the section has none yet, so it can change data.
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  feed_type:
+    type: string
+    required: true
+    description: "Feed kind, e.g. `CampsiteBookings`."
+  feed_identifier:
+    type: string
+    required: true
+    description: "Feed name, e.g. `campsite-bookings-main`."
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: CalendarFeedResponse
+  envelope: true
+  examples:
+    default:
+      value:
+        existing_feed: "https://www.onlinescoutmanager.co.uk/ext/cal/feed/00000000-0000-0000-0000-000000000000.ics"
+  description: Calendar feed response.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

@@ -1,0 +1,4 @@
+path: /ext/settings/
+method: POST
+summary: Delete section or set its location
+response: Response.

@@ -1,0 +1,15 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/cashbook/transactions/year/{financialYearId}/download"
+summary: Download cashbook
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+response:
+  description: "Document download (opened in a browser tab); format not shown by the web app code."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

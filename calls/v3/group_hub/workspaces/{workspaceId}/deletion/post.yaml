@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/deletion"
+summary: Erase members
+description: Permanently erases the members.
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    "member_ids[]":
+      type: array
+      items:
+        type: string
+      required: true
+    additional_data_to_delete:
+      type: string
+      description: JSON value naming extra data areas to erase, chosen in the web app's confirmation step.
+  example:
+    "member_ids[]": [ "3100004" ]
+    additional_data_to_delete: "[]"
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

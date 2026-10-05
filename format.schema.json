@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$defs": {
+    "param": {
+      "type": "object",
+      "description": "JSON Schema keywords plus required (boolean) and description.",
+      "properties": {
+        "type": { "type": "string" },
+        "required": { "type": "boolean" },
+        "description": { "type": "string" }
+      }
+    },
+    "params": { "type": "object", "additionalProperties": { "$ref": "#/$defs/param" } },
+    "schemaRef": { "type": "object", "description": "JSON Schema; $ref is a bare schemas/ file name." },
+    "examples": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": { "summary": { "type": "string" }, "value": {} },
+        "required": ["value"],
+        "additionalProperties": false
+      }
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "content_type": { "const": "multipart/form-data" },
+        "params": { "$ref": "#/$defs/params" },
+        "schema": { "$ref": "#/$defs/schemaRef" },
+        "example": {}
+      },
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "schema": { "$ref": "#/$defs/schemaRef" },
+        "document": { "const": true },
+        "content_type": { "type": "string" },
+        "envelope": { "type": "boolean" },
+        "description": { "type": "string" },
+        "examples": { "$ref": "#/$defs/examples" }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "description": "Provenance of the request and response docs; observed_on is one date for every observed part, or a date per part.",
+      "required": ["request", "response"],
+      "properties": {
+        "request": { "enum": ["observed", "inferred"] },
+        "response": { "enum": ["observed", "inferred", "unknown"] },
+        "observed_on": {
+          "oneOf": [
+            { "type": "string", "pattern": "^(\\d{4}-\\d{2}-\\d{2}|unknown)$" },
+            {
+              "type": "object",
+              "properties": {
+                "request": { "type": "string", "pattern": "^(\\d{4}-\\d{2}-\\d{2}|unknown)$" },
+                "response": { "type": "string", "pattern": "^(\\d{4}-\\d{2}-\\d{2}|unknown)$" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "call": {
+      "type": "object",
+      "required": ["kind", "path"],
+      "properties": {
+        "kind": { "enum": ["ext-action", "v3-route"] },
+        "method": { "enum": ["GET", "POST"] },
+        "path": { "type": "string", "pattern": "^/(ext|v3)/" },
+        "action": { "type": "string", "minLength": 1 },
+        "uses": {
+          "type": "object",
+          "required": ["template"],
+          "properties": {
+            "template": { "type": "string" },
+            "prefix": { "type": "string", "minLength": 1 },
+            "params": { "$ref": "#/$defs/params" }
+          },
+          "additionalProperties": false
+        },
+        "summary": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "notes": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "source": { "$ref": "#/$defs/source" },
+        "deprecated": { "type": ["boolean", "string"] },
+        "removed": {
+          "type": "object",
+          "required": ["http"],
+          "properties": { "http": { "type": "integer" }, "note": { "type": "string" } },
+          "additionalProperties": false
+        },
+        "path_params": { "$ref": "#/$defs/params" },
+        "query": { "$ref": "#/$defs/params" },
+        "body": { "$ref": "#/$defs/body" },
+        "response": { "$ref": "#/$defs/response" },
+        "sources": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "required": ["uses"] },
+          "then": { "properties": { "kind": { "const": "ext-action" } }, "not": { "anyOf": [{ "required": ["method"] }, { "required": ["action"] }] } },
+          "else": { "required": ["method", "summary", "source"] }
+        },
+        { "if": { "properties": { "kind": { "const": "v3-route" } }, "required": ["kind"] }, "then": { "not": { "required": ["action"] }, "properties": { "path": { "pattern": "^/v3/" } } } },
+        { "if": { "properties": { "kind": { "const": "ext-action" } }, "required": ["kind"] }, "then": { "properties": { "path": { "pattern": "^/ext/.*/$" } } } }
+      ]
+    },
+    "op": {
+      "type": "object",
+      "description": "Shared text of a multi-action operation, in _get.yaml / _post.yaml next to its calls.",
+      "required": ["path", "method"],
+      "properties": {
+        "path": { "type": "string" },
+        "method": { "enum": ["GET", "POST"] },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "response": { "type": "string" },
+        "response_examples": { "$ref": "#/$defs/examples" },
+        "request_examples": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "template": {
+      "type": "object",
+      "required": ["description", "actions"],
+      "properties": {
+        "description": { "type": "string" },
+        "params": { "$ref": "#/$defs/params" },
+        "actions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["method", "summary"],
+            "properties": {
+              "method": { "enum": ["GET", "POST"] },
+              "summary": { "type": "string" },
+              "query": { "$ref": "#/$defs/params" },
+              "body": { "$ref": "#/$defs/body" },
+              "response": { "$ref": "#/$defs/response" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "kinds": {
+      "type": "object",
+      "required": ["common", "kinds"],
+      "properties": {
+        "common": { "type": "object" },
+        "kinds": {
+          "type": "object",
+          "required": ["ext-action", "v3-route"],
+          "additionalProperties": {
+            "type": "object",
+            "required": ["description", "route", "envelope", "error"]
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

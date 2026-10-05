@@ -1,0 +1,19 @@
+path: /ext/customdata/
+method: POST
+summary: Update custom data for a member
+description: |-
+  Updates custom data fields on a member. Two `action` values are supported:
+
+  - `update` — bulk update using `data[field]=value` pairs (e.g. contact details).
+  - `updateColumn` — update a single custom data column by `column_id`.
+
+  The remaining actions manage the column structure and opt-in settings:
+  `createColumn`, `updateColumnLabel`, `deleteColumn`, `checkForSimilarData`,
+  `addOtherColumns`, `deleteInvisibleValue`, `getStructureSettings` (a read),
+  `saveStructureSettings`, `saveOptInSettings`.
+
+  Column IDs are section-specific. The only well-known core column is
+  `column_id=34` for Gender (values: Male, Female, Self-identify,
+  Prefer not to say, Other, Unspecified). Other column IDs vary per
+  section — inspect HTTP traffic to discover them.
+response: "Custom data update response. Structure actions return the generic `status` envelope; the web app reads only `status` and `error.message` from them."

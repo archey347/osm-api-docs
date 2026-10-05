@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateJson
+summary: Save a JSON preference
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    key:
+      type: string
+      description: Preference name.
+    value:
+      type: string
+      description: "Preference value; a JSON string for `updateJson`."
+  example:
+    key: groupDashboardSections
+    value: "[\"example\"]"
+response:
+  schema:
+    $ref: SettingsPreferencesResponse
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/bookings"
+summary: List bookings
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+query:
+  mode:
+    type: string
+    enum: [ current, provisional, draft, cancelled, future, past, past_unpaid, member, item, mine ]
+    description: "Which bookings to list. `member` needs `member_id`, `item` needs `item_id`."
+  member_id:
+    type: string
+  item_id:
+    type: string
+response:
+  schema:
+    $ref: CampsiteBookingList
+  examples:
+    default:
+      value:
+        - id: 7300001
+          group_name: Example Scout Group
+          start_date: "2026-08-01"
+          end_date: "2026-08-03"
+          status: confirmed
+  description: Bookings.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

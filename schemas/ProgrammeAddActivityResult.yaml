@@ -1,0 +1,5 @@
+type: object
+properties:
+  result:
+    description: "`0` on success."
+additionalProperties: true

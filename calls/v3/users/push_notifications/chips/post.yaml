@@ -1,0 +1,20 @@
+kind: v3-route
+method: POST
+path: /v3/users/push_notifications/chips
+summary: Register a device push token (chips)
+description: "Same body as `dialog`. The web app uses one or the other depending on where the user opted in."
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    token:
+      type: string
+      required: true
+      description: Browser push token.
+  example:
+    token: example-token
+response:
+  description: Response body is not read by the web app.
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

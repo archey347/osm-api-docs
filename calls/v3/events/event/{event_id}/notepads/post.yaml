@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/notepads"
+summary: Save a notepad
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      enum: [ private, public ]
+      required: true
+      description: "`public` is shown in the parent portal."
+    value:
+      type: string
+      required: true
+      description: HTML.
+  example:
+    field: public
+    value: "<p>Meet at the hut.</p>"
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: "Saved; on failure `status` is false."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/members/census/
+action: updateDisabilities
+summary: Update a member's census demographics and disabilities
+tags: [ Members ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    section_id:
+      type: string
+    member_id:
+      type: string
+    gender:
+      type: string
+    ethnicity:
+      type: string
+    religion:
+      type: string
+    disabilities:
+      type: string
+      description: JSON array of selected disability names.
+  example:
+    member_id: "3100003"
+    section_id: "45001"
+    gender: Female
+    ethnicity: ""
+    religion: ""
+    disabilities: "[\"No disability\"]"
+response:
+  schema:
+    anyOf:
+      - $ref: OkResponse
+      - $ref: CensusSendMyScoutResult
+sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

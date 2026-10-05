@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/programme/
+action: getProgrammeSummary
+summary: Get a term's programme summary
+tags: [ Programme ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+  verbose:
+    type: string
+    description: "Return verbose programme summary (observed `1`)."
+response:
+  schema:
+    $ref: ProgrammeSummary
+  examples:
+    programmeSummary:
+      summary: Programme summary
+      value:
+        items:
+          - eveningid: "9500001"
+            sectionid: "45001"
+            title: Camp Skills Night
+            notesforparents: Bring a warm coat.
+            parentsrequired: "1"
+            meetingdate: "2024-11-01"
+            starttime: "18:00:00"
+            endtime: "19:30:00"
+            soft_deleted: "0"
+sources: [ ext.programme.8d866e8ea75c304133fc.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

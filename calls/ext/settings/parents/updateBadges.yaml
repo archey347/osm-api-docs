@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateBadges
+summary: Update parent portal badge settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: Section ID.
+    badgesEmail:
+      type: string
+      description: "`true` or `false`."
+    badgesHomework:
+      type: string
+    badgesPartial:
+      type: string
+      description: "`true` or `false`."
+    badgesShowAll:
+      type: string
+      description: "`true` or `false`."
+    badgesShowRequirements:
+      type: string
+      description: "`true` or `false`."
+    badgesExtra:
+      type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

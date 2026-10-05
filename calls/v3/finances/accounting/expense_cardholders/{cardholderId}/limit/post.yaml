@@ -1,0 +1,38 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cardholders/{cardholderId}/limit"
+summary: Set a cardholder spending limit
+description: "Send `amount` for a balance limit, or the three periodic amounts. A periodic amount of 0 clears that period."
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  cardholderId:
+    type: string
+    description: Expense cardholder ID.
+query:
+  dynamic:
+    type: string
+    description: Cache-busting value sent by the web app.
+body:
+  params:
+    amount:
+      type: integer
+      description: Balance limit in pence.
+    daily_amount:
+      type: integer
+      description: Pence.
+    weekly_amount:
+      type: integer
+      description: Pence.
+    monthly_amount:
+      type: integer
+      description: Pence.
+  example:
+    amount: 20000
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

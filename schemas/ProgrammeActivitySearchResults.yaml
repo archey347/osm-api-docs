@@ -1,0 +1,21 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        activityid: { }
+        activity_unique_id: { }
+        title: { }
+        description: { }
+        icons:
+          type: array
+          items:
+            type: string
+        my_review: { }
+        review_summary:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

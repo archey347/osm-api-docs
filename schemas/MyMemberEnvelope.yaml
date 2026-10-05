@@ -1,0 +1,14 @@
+type: object
+description: "A `status` of `false` is an error and carries `error.message`."
+properties:
+  status:
+    type: boolean
+  error:
+    nullable: true
+    type: object
+    properties:
+      message:
+        type: string
+      code: { }
+    additionalProperties: true
+additionalProperties: true

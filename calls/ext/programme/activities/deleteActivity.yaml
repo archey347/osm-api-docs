@@ -1,0 +1,20 @@
+kind: ext-action
+method: POST
+path: /ext/programme/activities/
+action: deleteActivity
+summary: Delete an activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: unknown
+query:
+  id:
+    type: string
+    description: Activity ID.
+response:
+  schema:
+    anyOf:
+      - $ref: ProgrammeActivitySaveResult
+      - $ref: ProgrammeActivityRateResult
+      - $ref: ProgrammeActivitySearchResults
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

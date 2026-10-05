@@ -1,0 +1,4 @@
+path: /ext/members/census/
+method: POST
+summary: Census member actions
+response: "Action result. The web app reads nothing from the `updateDisabilities` response."

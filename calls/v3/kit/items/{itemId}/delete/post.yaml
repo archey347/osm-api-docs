@@ -1,0 +1,14 @@
+kind: v3-route
+method: POST
+path: "/v3/kit/items/{itemId}/delete"
+summary: Delete a kit item
+tags: [ Kit ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  itemId:
+    type: string
+response:
+  description: "Success when `status` is true."
+sources: [ ext.kit.92ed48541329641aa295.js ]

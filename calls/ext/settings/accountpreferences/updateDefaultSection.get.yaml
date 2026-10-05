@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/settings/accountpreferences/
+action: updateDefaultSection
+summary: Set the default section
+description: "`updateDefaultSection` also appears as a GET, and is documented here as well as under POST; its response was not captured."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: unknown
+query:
+  section_id:
+    type: string
+  section:
+    type: string
+    description: Section type.
+response:
+  schema:
+    anyOf:
+      - $ref: SettingsLoginDetailsResponse
+      - $ref: SettingsStatusResponse
+sources: [ global-2b756d915be26af38ad3ddd64f519739.js ]

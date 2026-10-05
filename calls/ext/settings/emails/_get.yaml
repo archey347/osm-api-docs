@@ -1,0 +1,5 @@
+path: /ext/settings/emails/
+method: GET
+summary: Get email configuration for a section
+description: "Returns the email/newsletter configuration for a section, including available events and patrols that can be used as recipient filters when composing emails. Also indicates whether the section has a newsletter slug configured and if it is live. Other actions return delivery reports; `getSentEmailContent` returns the sent email as a document."
+response: "JSON for the config and report actions; a document for `getSentEmailContent`."

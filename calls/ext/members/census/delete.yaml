@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/members/census/
+action: delete
+summary: Delete members' census data
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    scouts:
+      type: string
+      description: Comma-separated member IDs whose census data is removed.
+  example:
+    scouts: "3100003"
+response:
+  schema:
+    $ref: OkResponse
+  examples:
+    delete:
+      value:
+        ok: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

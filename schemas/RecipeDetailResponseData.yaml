@@ -1,0 +1,53 @@
+type: object
+properties:
+  details:
+    type: object
+    properties:
+      recipe_id:
+        type: string
+      original_recipe_id:
+        description: Greater than 0 when the recipe is a variation of another.
+      title:
+        type: string
+      description:
+        type: string
+      cooking_time:
+        type: string
+      difficulty:
+        type: string
+      sharing:
+        type: string
+      image:
+        type: string
+        description: "`upload` when a picture has been uploaded, otherwise a placeholder name."
+    additionalProperties: true
+  editable:
+    type: boolean
+  ingredients:
+    description: "Array of ingredient lines, or `false` when there are none."
+    oneOf:
+      - type: array
+        items:
+          $ref: RecipeIngredient
+      - type: boolean
+  steps:
+    type: array
+    items:
+      type: object
+      properties:
+        step_id:
+          type: string
+        description:
+          type: string
+      additionalProperties: true
+  suitability:
+    type: object
+    additionalProperties:
+      type: boolean
+  images:
+    type: object
+    properties:
+      small:
+        type: string
+    additionalProperties: true
+additionalProperties: true

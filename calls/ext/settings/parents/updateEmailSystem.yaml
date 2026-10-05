@@ -1,0 +1,18 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateEmailSystem
+summary: Update parent email system settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", area.settings.f73c3ef434f40520f0bc.js ]

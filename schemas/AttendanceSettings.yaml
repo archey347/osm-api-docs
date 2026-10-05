@@ -1,0 +1,6 @@
+type: object
+properties:
+  attendanceBadgeData:
+    type: string
+    description: "Register badge display setting; the web app falls back to `dateuk`."
+additionalProperties: true

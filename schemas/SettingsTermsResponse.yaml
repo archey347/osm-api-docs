@@ -1,0 +1,9 @@
+type: object
+properties:
+  terms:
+    type: array
+    description: Section's terms after the change.
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

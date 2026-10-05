@@ -1,0 +1,18 @@
+kind: ext-action
+method: GET
+path: /ext/members/email/
+action: getIsOverEmailDailySendingLimit
+summary: Check the daily email sending limit
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: EmailDailyLimit
+  examples:
+    getIsOverEmailDailySendingLimit:
+      summary: Not over the daily limit
+      value:
+        data: false
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js, ext.dashboard.82a61c008183022fe2cd.js ]

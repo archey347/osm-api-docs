@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: cancelPendingPayment
+summary: Cancel a pending payment
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    scheme_id:
+      type: string
+    payment_id:
+      type: string
+      description: Existing payment to edit when set.
+    member_id:
+      type: string
+  example:
+    section_id: "45001"
+    scheme_id: "9800001"
+    member_id: "3100001"
+    payment_id: "9820001"
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

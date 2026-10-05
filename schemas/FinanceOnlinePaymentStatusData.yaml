@@ -1,0 +1,18 @@
+type: object
+properties:
+  members:
+    type: array
+    description: "One row per member; each payment ID is also a key holding that member's `defaulton`, `active` and `status` history (the latest has `latest` set to 1)."
+    items:
+      type: object
+      properties:
+        scoutid:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        startdate:
+          type: string
+      additionalProperties: true
+additionalProperties: true

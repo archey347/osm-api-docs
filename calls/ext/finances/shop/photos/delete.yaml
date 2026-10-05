@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/finances/shop/photos/
+action: delete
+summary: Delete a shop item photo
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  id:
+    type: string
+    required: true
+    description: Shop item ID.
+body:
+  params:
+    section_id:
+      type: string
+    id:
+      type: string
+      description: Shop item ID.
+    path:
+      type: string
+    file:
+      type: string
+      description: Photo path from the manifest.
+  example:
+    section_id: "45001"
+    id: "9700001"
+    file: /photo1.jpg
+    path: /
+response:
+  schema:
+    $ref: FinanceShopPhotoManifest
+  envelope: true
+sources: [ area.finances_shop.27a67dba3a722302722e.js ]

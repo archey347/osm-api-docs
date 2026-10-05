@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/financial_year/budgets/year/{financialYearId}"
+summary: List budgets for a financial year
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  financialYearId:
+    type: string
+    description: Financial year ID.
+response:
+  schema:
+    $ref: AccountingBudgets
+  examples:
+    default:
+      value:
+        - id: 3100060
+          amount: 100000
+  description: Budgets for the year.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

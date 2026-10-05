@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/members/contact/actions/
+action: exportMemberCampFields
+summary: Export member camp fields
+description: |-
+  Returns a PDF of the chosen fields for the chosen members, opened in a
+  new window rather than fetched as JSON.
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  members:
+    type: string
+    required: true
+    description: Comma-separated member IDs.
+  fields:
+    type: string
+    required: true
+    description: "Comma-separated field keys, as `groupId:columnId` or `other:<name>` (`date_of_birth`, `patrol`, `joined`, `started`)."
+response:
+  document: true
+  description: PDF document.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

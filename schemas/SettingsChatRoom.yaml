@@ -1,0 +1,15 @@
+type: object
+properties:
+  id: { }
+  audience_type:
+    type: string
+    description: "`patrol` for patrol-restricted rooms."
+  owning_section_id: { }
+  chat_room_sections:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+      additionalProperties: true
+additionalProperties: true

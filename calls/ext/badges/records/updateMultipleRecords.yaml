@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: updateMultipleRecords
+summary: Update several badge records
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    scouts:
+      type: string
+      description: "JSON array of member IDs (`overrideCompletion`, `updateMultipleRecords`)."
+    field:
+      description: "Requirement column ID being edited (`updateSingleRecord`, `updateMultipleRecords`)."
+    value:
+      description: "New cell value (`updateSingleRecord`, `updateMultipleRecords`)."
+    overwrite:
+      description: "Replace existing values (`updateMultipleRecords`)."
+    payload:
+      description: "Observed `1` or `true`; asks for the updated records (`updateSingleRecord`, `updateMultipleRecords`)."
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    badge_version: "0"
+    field: "910001"
+    value: "Yes"
+    overwrite: "false"
+    scouts: "[3100001,3100002]"
+    payload: "1"
+response:
+  schema:
+    $ref: BadgeWriteResult
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/quartermaster/eventbookings/
+action: printBookedItems
+summary: Print an event's booked items
+description: "`printBookedItems` returns a PDF for download, not JSON."
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  eventid:
+    type: string
+    required: true
+response:
+  document: true
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

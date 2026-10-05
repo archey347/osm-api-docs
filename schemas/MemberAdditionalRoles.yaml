@@ -1,0 +1,24 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        patrolleader:
+          description: Role level.
+        is_primary:
+          description: Non-zero for the member's primary role.
+        start_date:
+          type: string
+          nullable: true
+        end_date:
+          type: string
+          nullable: true
+        comments:
+          type: string
+          nullable: true
+      additionalProperties: true
+  error:
+    description: Set on failure.
+additionalProperties: true

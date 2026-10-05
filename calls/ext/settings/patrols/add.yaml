@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/settings/patrols/
+action: add
+summary: Add a patrol
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    name:
+      type: string
+    sectionid:
+      type: string
+  example:
+    sectionid: "45001"
+    name: Red
+response:
+  schema:
+    $ref: SettingsPatrolsResponse
+  examples:
+    addFailed:
+      summary: Name rejected
+      value:
+        error:
+          message: Example error message
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

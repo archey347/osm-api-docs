@@ -1,0 +1,23 @@
+kind: v3-route
+method: POST
+path: "/v3/favourites/{sectionId}/reorder"
+summary: Reorder pinned items
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    ids:
+      type: array
+      items:
+        type: string
+      required: true
+      description: Favourite IDs in the new order.
+  example:
+    ids: [ "5400002", "5400001" ]
+response:
+  description: Success. The web app ignores the body.

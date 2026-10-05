@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/badges/badgesbyperson/
+action: loadBadgesByMember
+summary: List badges grouped by member
+tags: [ Badges ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  sectionid:
+    type: string
+    description: Section ID.
+  term_id:
+    type: string
+    description: Term ID.
+response:
+  schema:
+    $ref: BadgesByMemberResponse
+  envelope: true
+  examples:
+    loadBadgesByMember:
+      summary: Badges by member
+      value:
+        - scoutid: 3100001
+          firstname: Jamie
+          lastname: River
+          patrol: Blue
+          active: true
+          badges:
+            - badge_id: 1001
+              badge_version: 0
+              badge_group: "1"
+              badge_identifier: "1001_0"
+              completed: "1"
+              awarded: "1"
+              status: 1
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

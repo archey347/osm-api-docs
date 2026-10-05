@@ -1,0 +1,80 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              type: object
+              properties:
+                item_id: { }
+                name:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                type:
+                  type: string
+                  description: "`ticket` or another item type."
+                currency:
+                  type: string
+                price_min:
+                  type: string
+                price_max:
+                  type: string
+                purchase_deadline:
+                  type: string
+                  nullable: true
+                photos:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                    additionalProperties: true
+                option_names:
+                  type: array
+                  description: "Names of the options a variant is chosen by, for example `Size`."
+                  items:
+                    type: string
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      prompt:
+                        type: string
+                      required: { }
+                    additionalProperties: true
+                variants:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      variant_id: { }
+                      options:
+                        type: object
+                        description: Option name to chosen value.
+                        additionalProperties:
+                          type: string
+                      price:
+                        type: string
+                      available:
+                        type: integer
+                        nullable: true
+                        description: "Remaining stock; `null` when unlimited."
+                      in_basket:
+                        type: integer
+                    additionalProperties: true
+              additionalProperties: true
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          payments_unavailable:
+            type: boolean
+        additionalProperties: true

@@ -1,0 +1,8 @@
+path: /ext/members/email/
+method: POST
+summary: Send an email template
+description: |-
+  Email writes share this path with different `action` values.
+  `getSelectedEmailsFromContacts` is a read, but the web app sends it as a
+  POST (it also answers to the GET above).
+response: Result of the email write.

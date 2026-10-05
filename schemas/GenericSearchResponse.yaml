@@ -1,0 +1,17 @@
+type: array
+items:
+  type: object
+  properties:
+    type:
+      type: string
+    title:
+      type: string
+    subtext:
+      type: string
+    keywords:
+      type: string
+    reference:
+      type: string
+    is_pinned:
+      type: boolean
+  additionalProperties: true

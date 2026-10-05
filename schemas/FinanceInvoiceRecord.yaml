@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: string
+  recordid:
+    type: string
+  entrydate:
+    type: string
+  amount:
+    description: Numeric value, possibly sent as a string.
+  comments:
+    type: string
+  type:
+    type: string
+    enum: [ Expense, Income ]
+  payto_userid:
+    type: string
+    description: "`_x_` when nobody is to be paid."
+  categoryid:
+    type: string
+    description: Budget name.
+  upload_id:
+    description: Set when a receipt is attached.
+additionalProperties: true

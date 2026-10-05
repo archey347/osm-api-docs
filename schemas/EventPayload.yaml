@@ -1,0 +1,19 @@
+type: object
+description: "Standard `/v3` and newer `/ext/events` envelope."
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    properties:
+      message:
+        type: string
+      code:
+        type: string
+    additionalProperties: true
+  data:
+    description: Shape depends on the endpoint.
+  meta:
+    description: Shape depends on the endpoint.
+additionalProperties: true

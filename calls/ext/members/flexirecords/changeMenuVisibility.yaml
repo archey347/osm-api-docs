@@ -1,0 +1,33 @@
+kind: ext-action
+method: GET
+path: /ext/members/flexirecords/
+action: changeMenuVisibility
+summary: Show or hide a flexi-record in the menu
+notes: "`archive`, `changeMenuVisibility` and `deleteSet` change data despite being GETs."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+  visible:
+    type: string
+    enum: [ "true", "false" ]
+  name:
+    type: string
+    description: Flexi-record title, URL-escaped.
+response:
+  schema:
+    $ref: FlexiRecordConfig
+  examples:
+    changeMenuVisibility:
+      summary: "`changeMenuVisibility`, `deleteSet`: the section's updated config"
+      value:
+        config: { }
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

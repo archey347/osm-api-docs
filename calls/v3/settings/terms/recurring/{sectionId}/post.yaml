@@ -1,0 +1,39 @@
+kind: v3-route
+method: POST
+path: "/v3/settings/terms/recurring/{sectionId}"
+summary: Save recurring terms configuration
+description: Creates terms up to the horizon when enabled.
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    enabled:
+      type: string
+      enum: [ "0", "1" ]
+      required: true
+    horizon_years:
+      type: string
+      required: true
+    terms:
+      type: string
+      required: true
+      description: JSON array of term templates.
+  example:
+    enabled: "1"
+    horizon_years: "2"
+    terms: "[{\"name\":\"Autumn\"}]"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        created: 4
+        terms: [ ]
+  description: Response.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

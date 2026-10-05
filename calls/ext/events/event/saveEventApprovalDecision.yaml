@@ -1,0 +1,43 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/
+action: saveEventApprovalDecision
+summary: Save an approval decision on an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    event_id:
+      type: string
+    moderating_section_id:
+      type: string
+    check:
+      type: string
+      description: Approval check type.
+    status:
+      type: string
+      enum: [ pending, approved, rejected ]
+    reason:
+      type: string
+  example:
+    moderating_section_id: "45001"
+    event_id: "9600001"
+    check: safeguarding
+    status: approved
+    reason: ""
+response:
+  schema:
+    $ref: EventApprovalDecisionData
+  envelope: true
+  examples:
+    saveEventApprovalDecision:
+      value:
+        check:
+          type: safeguarding
+          status: approved
+          reason: ""
+          date_last_updated: "2025-03-03 10:00:00"
+          moderator: Alex Approver
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

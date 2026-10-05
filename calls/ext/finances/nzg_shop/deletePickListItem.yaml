@@ -1,0 +1,20 @@
+kind: ext-action
+method: POST
+path: /ext/finances/nzg_shop/
+action: deletePickListItem
+summary: Delete a pick list item
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    item_id:
+      type: string
+  example:
+    item_id: "9700001"
+response:
+  schema:
+    $ref: FinanceStatusResponseData
+  envelope: true
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

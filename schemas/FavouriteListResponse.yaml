@@ -1,0 +1,22 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          properties:
+            id: { }
+            type:
+              type: string
+            target_id:
+              type: string
+            label:
+              type: string
+            archived:
+              type: boolean
+          additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

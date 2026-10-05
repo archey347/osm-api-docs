@@ -1,0 +1,69 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/copy"
+summary: Copy an event
+description: "Can create a series; `data.number_of_events` says how many were made."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    startdate:
+      type: string
+      required: true
+      description: Start date of the (first) copy.
+    repeat:
+      type: string
+      description: "Repeat interval, `0` for a single copy."
+    repeat_until:
+      type: string
+    copy_columns:
+      type: string
+      enum: [ "true", "false" ]
+    copy_activities:
+      type: string
+      enum: [ "true", "false" ]
+    copy_badges:
+      type: string
+      enum: [ "true", "false" ]
+    copy_risk_assessment:
+      type: string
+      enum: [ "true", "false" ]
+    copy_parent_rota:
+      type: string
+      enum: [ "true", "false" ]
+    copy_attachments:
+      type: string
+      enum: [ "true", "false" ]
+    copy_tasks:
+      type: string
+      enum: [ "true", "false" ]
+    request_guid:
+      type: string
+      description: Client-generated GUID, regenerated after each response.
+  example:
+    startdate: "2025-09-01"
+    repeat: "0"
+    repeat_until: "2025-09-01"
+    copy_columns: "true"
+    copy_activities: "true"
+    copy_badges: "true"
+    copy_risk_assessment: "true"
+    copy_parent_rota: "true"
+    copy_attachments: "false"
+    copy_tasks: "false"
+    request_guid: "00000000-0000-0000-0000-000000000000"
+response:
+  schema:
+    $ref: EventCopyResult
+  examples:
+    default:
+      value:
+        new_event_id: "9600002"
+        number_of_events: 1
+  description: Copy created.
+sources: [ ext.events.4fe61901f961aaf5b232.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

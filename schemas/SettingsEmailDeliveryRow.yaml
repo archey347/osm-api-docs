@@ -1,0 +1,12 @@
+type: object
+properties:
+  member_id: { }
+  firstname:
+    type: string
+  lastname:
+    type: string
+  photo_guid:
+    type: string
+  email:
+    type: string
+additionalProperties: true

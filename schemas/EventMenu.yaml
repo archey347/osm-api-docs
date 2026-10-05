@@ -1,0 +1,35 @@
+type: object
+properties:
+  entries:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        day:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        colour:
+          type: string
+        associated_type:
+          type: string
+        associated_id:
+          type: integer
+        data:
+          type: object
+          properties:
+            meal:
+              type: string
+            num_people:
+              type: integer
+              nullable: true
+          additionalProperties: true
+      additionalProperties: true
+  costs:
+    type: object
+    additionalProperties: true
+additionalProperties: true

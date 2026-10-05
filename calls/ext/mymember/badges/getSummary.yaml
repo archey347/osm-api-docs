@@ -1,0 +1,48 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/badges/
+action: getSummary
+summary: 'Get a member''s badge summary'
+description: "`getSummary` lists a member's badges with progress; `getBadgeRequirements` returns the requirements of one badge."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+  v2:
+    type: string
+    description: "Always sent as `1`."
+response:
+  schema:
+    $ref: MyMemberBadgeSummaryResponse
+  examples:
+    getSummary:
+      value:
+        status: true
+        error: null
+        data:
+          badge_groups:
+            - badges: [ "9001_1" ]
+          badge_progress:
+            "9001_1":
+              title: Camp Skills
+              url: /images/badges/camp-skills.png
+              progress: 0.5
+              completed: 0
+              awarded: 0
+              awarded_date: null
+              has_unread_comments: false
+              homework: true
+          badge_extra: ""
+        meta:
+          homework: all
+          requirements: true
+          partial: true
+          uniform: false
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

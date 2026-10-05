@@ -1,0 +1,26 @@
+type: object
+properties:
+  is_full_section_admin:
+    type: boolean
+  workspace:
+    type: object
+    nullable: true
+    properties:
+      id: { }
+      name:
+        type: string
+      my_section_status:
+        type: string
+      is_owning_section:
+        type: boolean
+      owning_section_id: { }
+      owning_section_name: { }
+      can_administer:
+        type: boolean
+      can_manage_access:
+        type: boolean
+      group_permissions:
+        type: object
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

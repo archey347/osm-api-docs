@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/members/
+action: getInTouchColumnVisibility
+summary: Get column visibility for the In Touch app
+description: "`getColumnVisibility` and `getInTouchColumnVisibility` are reads sent as POSTs."
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    section_id:
+      type: string
+    status:
+      type: string
+      enum: [ parent_portal_visibility, camp_export_visibility ]
+      required: true
+response:
+  schema:
+    $ref: CustomDataColumnVisibility
+  envelope: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

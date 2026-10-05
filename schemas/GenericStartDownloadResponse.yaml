@@ -1,0 +1,12 @@
+type: object
+properties:
+  job_info:
+    type: object
+    description: "Pass `job_id` and `section_id` to `getJobInfo`."
+    properties:
+      job_id:
+        type: string
+      section_id:
+        type: string
+    additionalProperties: true
+additionalProperties: true

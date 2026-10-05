@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/menu-preferences/{sectionId}"
+summary: Get hidden menu items
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: MenuPreferenceResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          hidden: [ ext.members.contact ]
+  description: Menu references the user has hidden.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

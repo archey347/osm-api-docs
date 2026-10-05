@@ -1,0 +1,35 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/giftaid/
+action: getDetails
+summary: Gift Aid declaration status
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberGiftAidResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          status: entered
+          title: Mx
+          parentname: Alex Parent
+          address: "1 Example Street"
+          postcode: AB1 2CD
+          lastupdated: "2025-04-01"
+        meta:
+          charity_name: "1st Example Scout Group"
+  description: Gift Aid status and any existing declaration.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

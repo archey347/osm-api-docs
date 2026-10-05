@@ -1,0 +1,30 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/sharing"
+summary: Save sharing preferences for a received shared event
+description: One flag per request.
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    emailable:
+      type: string
+      enum: [ "true", "false" ]
+    personal_details_downloadable:
+      type: string
+      enum: [ "true", "false" ]
+  example:
+    emailable: "true"
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: "Saved; on failure `status` is false."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

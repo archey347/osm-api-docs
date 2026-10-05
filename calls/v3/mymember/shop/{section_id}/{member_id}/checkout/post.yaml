@@ -1,0 +1,44 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/shop/{section_id}/{member_id}/checkout"
+summary: Place an order from the basket
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+body:
+  params:
+    delivery_method:
+      type: string
+      enum: [ collect, ship ]
+      required: true
+    "shipping[name]":
+      type: string
+      description: "Used by `ship`. Also `shipping[address1]` to `shipping[address4]` and `shipping[postcode]`; name, `address1` and postcode are required."
+    as_leader:
+      type: string
+      description: "Sent as `1` when a leader is ordering on the parent's behalf."
+    payment_taken:
+      type: string
+      description: "Sent as `1` by a leader who has already taken payment."
+  example:
+    delivery_method: collect
+response:
+  schema:
+    $ref: MyMemberShopCheckoutResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          order_number: "1001"
+          scheme_id: 6200002
+          payment_id: 6300002
+  description: "Order placed. `scheme_id` and `payment_id` are set when the order needs paying online."

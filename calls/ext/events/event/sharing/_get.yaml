@@ -1,0 +1,8 @@
+path: /ext/events/event/sharing/
+method: GET
+summary: Shared event reads
+description: |-
+  Shared events: one event offered to other sections. `getStatus` is the invite list per
+  section and `getAttendance` the attendees across sections (both send `_v=2`).
+  `overwriteDefaults` replaces this event's details with the shared template and changes data.
+response: Shared event response.

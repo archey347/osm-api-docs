@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/dashboard/
+action: agreeTermsAndConditions
+summary: Agree to the terms and conditions
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    full_name:
+      type: string
+      required: true
+      description: "At least five characters and a space; typed by the parent as their signature."
+  example:
+    full_name: Alex Parent
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+  description: "Terms accepted; the web app then reloads the dashboard."
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

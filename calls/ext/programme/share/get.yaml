@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/programme/share/
+action: get
+summary: Get the pending shared programme
+description: "The receiving section reads it with `get` and then POSTs `accept` or `reject`."
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: "Section ID. The sending section for `share`, the receiving one for `get`."
+response:
+  schema:
+    $ref: ProgrammeShareSummary
+  examples:
+    get:
+      summary: "`get`: pending incoming programme"
+      value:
+        count: 8
+        min: "2024-11-01"
+        max: "2024-12-20"
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

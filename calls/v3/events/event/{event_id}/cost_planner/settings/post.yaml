@@ -1,0 +1,52 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/cost_planner/settings"
+summary: Save cost planner settings
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    leader_policy_mode:
+      type: string
+    leader_policy_value:
+      type: string
+    young_leader_policy_mode:
+      type: string
+    young_leader_policy_value:
+      type: string
+    headcount_members:
+      type: string
+      description: Empty for no override.
+    headcount_young_leaders:
+      type: string
+      description: Empty for no override.
+    headcount_leaders:
+      type: string
+      description: Empty for no override.
+    fixed_fee:
+      type: string
+    uplift_percent:
+      type: string
+    deduction:
+      type: string
+  example:
+    leader_policy_mode: nothing
+    leader_policy_value: "0"
+    young_leader_policy_mode: nothing
+    young_leader_policy_value: "0"
+    headcount_members: ""
+    headcount_young_leaders: ""
+    headcount_leaders: ""
+    fixed_fee: "0"
+    uplift_percent: "0"
+    deduction: "0"
+response:
+  schema:
+    $ref: EventPayloadData
+  description: "Saved; the app ignores the body."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

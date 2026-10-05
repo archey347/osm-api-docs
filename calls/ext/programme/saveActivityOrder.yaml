@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: saveActivityOrder
+summary: Reorder a meeting's activities
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    evening_id:
+      type: string
+    section_id:
+      type: string
+    activities:
+      type: string
+      description: JSON array of activity IDs in the new order.
+  example:
+    section_id: "45001"
+    evening_id: "9500001"
+    activities: "[\"7100002\",\"7100001\"]"
+response:
+  schema:
+    $ref: ProgrammeOkResult
+  examples:
+    ok:
+      summary: "`saveActivityOrder`, `moveParents`, `removeParents`"
+      value:
+        ok: true
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

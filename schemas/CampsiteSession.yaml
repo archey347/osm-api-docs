@@ -1,0 +1,57 @@
+type: object
+properties:
+  id:
+    type: integer
+  name:
+    type: string
+  is_in_use:
+    type: boolean
+  effective_from:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+        from:
+          type: string
+          description: "`1970-01-01` for the default set."
+        is_past:
+          type: boolean
+        is_current:
+          type: boolean
+        times:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              start_time:
+                type: string
+              end_time:
+                type: string
+              multi_day:
+                type: boolean
+              flexible_times:
+                type: boolean
+              flexible_minimum_duration: { }
+              flexible_changeover_time: { }
+              flexible_price_mode: { }
+              campsite_price_type_id: { }
+              price:
+                nullable: true
+                type: object
+                properties:
+                  name:
+                    type: string
+                additionalProperties: true
+              config:
+                nullable: true
+                type: object
+                description: "Holds `minimum_multi_day_sessions` and `maximum_multi_day_sessions`, keyed by day 1 to 7."
+                additionalProperties: true
+            additionalProperties: true
+      additionalProperties: true
+additionalProperties: true
+description: A session type and its time slots.

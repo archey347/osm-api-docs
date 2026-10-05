@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/members/flexirecords/
+action: deleteColumn
+summary: Delete a flexi-record column
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  extraid:
+    type: string
+    description: Flexi-record ID.
+body:
+  params:
+    columnId:
+      type: string
+      description: "The column's `field` from the structure."
+  example:
+    columnId: f_1
+response:
+  schema:
+    $ref: FlexiRecordStructure
+  examples:
+    structureChange:
+      summary: "`editSet`, `addColumn`, `renameColumn`, `deleteColumn`: the updated structure"
+      value:
+        extraid: "23001"
+        name: Hike Log
+        archived: "0"
+        total: none
+        structure:
+          - rows:
+              - name: Age
+                field: age
+          - rows:
+              - name: Distance (km)
+                field: f_1
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

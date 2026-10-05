@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/
+action: deleteColumnFromBadge
+summary: Delete a badge column
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    column_id:
+      description: "Requirement column ID. `-2` creates a new column in `linkBadgeToItem`."
+  example:
+    section_id: "45001"
+    badge_id: "1001"
+    badge_version: "0"
+    column_id: "910009"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    status:
+      summary: deleteColumnFromBadge, renameColumn, deleteBadgeLink
+      value:
+        status: true
+        error: null
+        data: [ ]
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

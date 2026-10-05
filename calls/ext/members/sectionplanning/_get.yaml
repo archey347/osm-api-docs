@@ -1,0 +1,4 @@
+path: /ext/members/sectionplanning/
+method: GET
+summary: Section planning reads
+response: Leader sizing for a section, or a section list.

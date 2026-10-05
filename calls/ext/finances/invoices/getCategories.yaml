@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/finances/invoices/
+action: getCategories
+summary: List budgets
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: FinanceInvoiceCategories
+  examples:
+    getCategories:
+      summary: getCategories
+      value:
+        items:
+          - categoryid: "9500001"
+            name: Camp food
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js ]

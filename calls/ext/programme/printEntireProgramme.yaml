@@ -1,0 +1,19 @@
+kind: ext-action
+method: GET
+path: /ext/programme/
+action: printEntireProgramme
+summary: Print a term's programme
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+response:
+  document: true
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

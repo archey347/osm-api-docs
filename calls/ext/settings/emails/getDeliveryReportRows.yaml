@@ -1,0 +1,36 @@
+kind: ext-action
+method: GET
+path: /ext/settings/emails/
+action: getDeliveryReportRows
+summary: List delivery rows for one email
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  email_id:
+    type: string
+  only_errors:
+    type: string
+  query:
+    type: string
+    description: Search text.
+response:
+  schema:
+    $ref: SettingsEmailDeliveryRowsResponse
+  examples:
+    getDeliveryReportRows:
+      summary: Rows for one email
+      value:
+        data:
+          - member_id: "2100001"
+            firstname: Alex
+            lastname: Scout
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            email: "parent@example.com"
+        meta:
+          can_be_forwarded_status: empty
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

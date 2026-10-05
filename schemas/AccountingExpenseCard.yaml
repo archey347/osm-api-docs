@@ -1,0 +1,9 @@
+type: object
+properties:
+  id: { }
+  status:
+    type: string
+    enum: [ active, inactive ]
+  has_been_activated:
+    type: boolean
+additionalProperties: true

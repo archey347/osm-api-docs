@@ -1,0 +1,35 @@
+kind: v3-route
+method: GET
+path: "/v3/members/email/scheduled/{sectionid}/{emailid}"
+summary: Get a scheduled email
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+  emailid:
+    type: string
+response:
+  schema:
+    $ref: EmailScheduled
+  examples:
+    default:
+      value:
+        subject: Weekly Meeting Reminder
+        from: "Alex Scout <alex.scout@example.org>"
+        cc: ""
+        guid: "00000000-0000-0000-0000-000000000000"
+        campaign_id: 5100001
+        sendtime: "2025-09-20 09:00:00"
+        sendtime_display: "20/09/2025 09:00"
+        member_ids: [ 3100001 ]
+        contact_groups: [ "1" ]
+        excluded_emails: { }
+        edits:
+          "5200001":
+            "0":
+              text: "<p>Hello</p>"
+  description: "The scheduled email. `status` is `false` without access."
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

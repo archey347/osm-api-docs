@@ -1,0 +1,11 @@
+type: object
+properties:
+  status:
+    type: boolean
+  data:
+    type: object
+    properties:
+      discoverable:
+        type: boolean
+    additionalProperties: true
+additionalProperties: true

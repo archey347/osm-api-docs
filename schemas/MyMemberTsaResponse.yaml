@@ -1,0 +1,20 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          required:
+            description: Whether the parent still has to fill the form in.
+          gender:
+            type: string
+          ethnicity:
+            type: string
+          religion:
+            type: string
+          disabilities:
+            type: array
+            items:
+              type: string
+        additionalProperties: true

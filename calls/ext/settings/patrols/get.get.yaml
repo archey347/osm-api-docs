@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/settings/patrols/
+action: get
+summary: List patrols
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsPatrolsResponse
+  examples:
+    default:
+      value:
+        patrols:
+          - patrolid: "7100001"
+            name: Blue
+          - patrolid: "7100002"
+            name: Green
+  description: Response.
+sources:
+  - "8913.6d746d696f1aeb9d4b5a.js"
+  - area.members_census.2c86a1b27909fe9a5ad6.js
+  - ext.members.ca95317ad56b2f22a5e5.js

@@ -1,0 +1,53 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/addBooking"
+summary: Create a draft booking
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    organisation_id:
+      type: integer
+      required: true
+      description: Customer type.
+    start_date:
+      type: string
+      required: true
+    end_date:
+      type: string
+      required: true
+    group_name:
+      type: string
+      required: true
+      description: At most 64 characters.
+    mode:
+      type: string
+      enum: [ campsite, customer ]
+      description: "Booking on behalf of a customer (`campsite`) or as one (`customer`). Omitted when booking from an event."
+    associated_id:
+      type: integer
+      description: Event ID, when booking from an event.
+    associated_type:
+      type: string
+      description: "`event`, when booking from an event."
+  example:
+    organisation_id: 7200001
+    start_date: "2026-08-01"
+    end_date: "2026-08-03"
+    group_name: Example Scout Group
+    mode: campsite
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value:
+        id: 7300001
+  description: The new booking.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

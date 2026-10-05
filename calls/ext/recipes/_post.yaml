@@ -1,0 +1,4 @@
+path: /ext/recipes/
+method: POST
+summary: Edit recipes, steps, and ingredients
+response: "Envelope with `status`. `editRecipe` and `createVariation` return the new `data.recipe_id`, `addIngredient` returns `data.ingredient_id`, and `updateSharing` returns `data.variation`."

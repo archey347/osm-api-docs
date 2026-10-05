@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/bookings/items/{bookingItemId}/instructors"
+summary: Update instructors for a booked item
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bookingItemId:
+    type: string
+    description: "Booked item ID (the `id` in the booking's `items`)."
+body:
+  params:
+    number_instructors_required_override:
+      type: integer
+      description: "`-1` to use the item default."
+    updates:
+      type: string
+      required: true
+      description: "JSON array of `{\"user_id\": 3100020, \"action\": \"add\"|\"remove\"}`."
+  example:
+    number_instructors_required_override: -1
+    updates: "[{\"user_id\":3100020,\"action\":\"add\"}]"
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ ext.campsites.fb843cdfc650e56db2ee.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

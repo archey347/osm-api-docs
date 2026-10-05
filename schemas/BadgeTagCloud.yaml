@@ -1,0 +1,13 @@
+type: object
+properties:
+  tags:
+    type: object
+    additionalProperties:
+      type: integer
+  tag_count:
+    type: integer
+  badges:
+    type: object
+    additionalProperties:
+      type: integer
+additionalProperties: true

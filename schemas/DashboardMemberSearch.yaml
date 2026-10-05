@@ -1,0 +1,19 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        scoutid: { }
+        sectionid: { }
+        sectionname: { }
+        firstname: { }
+        lastname: { }
+        photo_guid: { }
+        emails:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
+additionalProperties: true

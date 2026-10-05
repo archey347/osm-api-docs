@@ -1,0 +1,22 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/upgrade/{sectionId}"
+summary: Start the accounting free trial
+description: Enables the accounting tools for the section.
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        all_configs: { }
+  description: "`data.all_configs` replaces the section configs held by the web app."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

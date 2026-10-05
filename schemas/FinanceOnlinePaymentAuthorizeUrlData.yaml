@@ -1,0 +1,6 @@
+type: object
+properties:
+  url:
+    type: string
+    description: Payment provider URL to connect an account.
+additionalProperties: true

@@ -1,0 +1,220 @@
+kind: ext-action
+method: GET
+path: /ext/generic/startup/
+action: getDataPayload
+summary: Get startup data
+description: |-
+  Migrate to `action=getDataPayload`.
+
+  **`action=getDataPayload`** returns a JSON payload containing CDN resource URLs, user globals, section roles and permissions, user preferences, terms, and session metadata needed to bootstrap the application after login.
+
+  returns the full JSON startup payload.
+tags: [ Startup ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-06-23
+response:
+  schema:
+    $ref: StartupDataPayload
+  envelope: true
+  examples:
+    getDataPayload:
+      summary: Response for action=getDataPayload
+      value:
+        cdn: "https://oymcdn.co.uk/"
+        resources:
+          - /built/postlogin-combined/postlogin-combined-abc123.js
+          - /built/global/global-abc123.js
+          - /built/style-main-blue/style-main-blue-abc123.css
+          - /built/highcharts/highcharts-abc123.js
+          - /built/vendors/vendors-abc123.js
+          - /built/runtime/runtime-abc123.js
+          - /built/menu/menu-abc123.js
+        config_hash: abc123def456abc123def456abc123de
+        required_cdn_built_files:
+          osm.js: "https://oymcdn.co.uk/built/osm/osm-abc123.js"
+          react.js: "https://oymcdn.co.uk/built/react/react-abc123.js"
+        cache_bust: v=abc123
+        globals:
+          post_login_action: false
+          theme: blue
+          userid: 100001
+          roles:
+            - groupname: Example Scout Group
+              groupid: "10001"
+              group_country: uk
+              sectionid: "45001"
+              sectionname: Beavers
+              section: beavers
+              isDefault: "0"
+              permissions:
+                badge: 20
+                member: 20
+                user: 100
+                register: 20
+                programme: 20
+                events: 20
+                flexi: 20
+                finance: 100
+                quartermaster: 20
+              sectionConfig:
+                subscription_level: 3
+                subscription_expires: "2027-01-01"
+                section_type: beavers
+                sectionType: beavers
+                parentSectionId: "0"
+                subscription_active: false
+                meeting_day: Mon
+                hierarchy_lowest_level: false
+                hierarchy_operating_level: level_0
+            - groupname: Example Scout Group
+              groupid: "10001"
+              group_country: uk
+              sectionid: "45002"
+              sectionname: Cubs
+              section: cubs
+              isDefault: "1"
+              permissions:
+                badge: 20
+                member: 20
+                user: "100"
+                register: 20
+                programme: 20
+                events: 20
+                flexi: 20
+                quartermaster: 20
+                finance: 100
+              sectionConfig:
+                subscription_level: 3
+                subscription_expires: "2027-01-01"
+                section_type: cubs
+                sectionType: cubs
+                parentSectionId: "0"
+                subscription_active: false
+                meeting_day: Wed
+                hierarchy_lowest_level: false
+                hierarchy_operating_level: level_0
+            - groupname: Example Scout Group
+              groupid: "10001"
+              group_country: uk
+              sectionid: "45003"
+              sectionname: Leaders
+              section: adults
+              isDefault: "0"
+              permissions:
+                badge: 100
+                member: 100
+                user: 100
+                register: 100
+                contact: 100
+                programme: 100
+                events: 100
+                finance: 100
+                flexi: 100
+                quartermaster: 100
+              sectionConfig:
+                subscription_level: 1
+                subscription_expires: "2027-01-01"
+                section_type: adults
+                sectionType: adults
+                parentSectionId: "0"
+                subscription_active: false
+                hierarchy_lowest_level: false
+                hierarchy_operating_level: level_0
+          active_user_member: false
+          associated_member_id: false
+          email: "leader@example.org"
+          firstname: Alex
+          lastname: Scout
+          fullname: Alex Scout
+          preferences:
+            logins: "100"
+            theme: blue
+            date: uk
+            sort: dob
+            has_assistive_technology: false
+            hotkeys_enabled: false
+            disable_animations: false
+            beta: false
+            beta_functions: [ ]
+          member_access:
+            "45002":
+              name: "Example Scout Group: Cubs"
+              group: Example Scout Group
+              section: Cubs
+              abbrv: Cubs
+              type: cubs
+              label: Cubs
+              members:
+                "2100001":
+                  first_name: Alex
+                  last_name: Scout
+                  photo_guid: "00000000-0000-0000-0000-000000000000"
+                  abbrv_name: Alex
+                  chat_rooms: [ ]
+                  access_type: member
+                  has_unread_chat_rooms: false
+                  permissions: true
+                  patrol: Leaders
+              access: true
+              config:
+                badges: true
+                programme: true
+                emailbolton: true
+                details: true
+                events: true
+                chat: false
+                at_home: false
+                email_address: "Example Scout Group Cubs <cubs@example.org>"
+                giftaid: true
+                payments: true
+                attachments: false
+                photos: true
+              noticeboard: false
+              patrol_label: Six
+          member_access_unactivated: false
+          terms:
+            "45002":
+              - termid: "200001"
+                sectionid: "45002"
+                name: Summer 2025
+                startdate: "2025-04-01"
+                enddate: "2025-07-31"
+                master_term: null
+                past: true
+              - termid: "200002"
+                sectionid: "45002"
+                name: Autumn 2025
+                startdate: "2025-09-01"
+                enddate: "2025-12-31"
+                master_term: null
+                past: false
+          global_roles: [ ]
+          hasSectionAccess: true
+          notepads: [ ]
+          sockets: "45001-abc123,45002-abc123,45003-abc123"
+          user_socket: "100001-abc123"
+          session_id: abc123def456abc123def456abc123def456abc123def456abc123def456abc1
+          security_prompt: false
+          user_has_image: /sites/onlinescoutmanager.co.uk/public/user_photos/100000/100001/00000000-0000-0000-0000-000000000000
+          user_hash: abc123def456abc123def456abc123def456abc123def456abc123def456abc1
+          user_hash_legacy: abc123def456abc123def456abc123def456abc123def456abc123def456abc1
+          language: en-GB
+          gamification:
+            "1":
+              total_steps: 3
+              steps_completed: 2
+              id: 1
+            events:
+              total_steps: 10
+              steps_completed: 7
+              id: 2
+          gamification_rank: 500
+          gamification_total: 100000
+          features_used: [ accessed, viewed events, edited attendance register, sent email ]
+          unread_message_count: 0
+          client_time: "1700000000000"
+        dojo:
+          cacheBust: v=abc123
+          locale: en-gb

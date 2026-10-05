@@ -1,0 +1,40 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/categories/{categoryId}"
+summary: Update a category
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  categoryId:
+    type: string
+    description: Category ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+    type:
+      type: string
+      enum: [ income, expense ]
+      required: true
+    budget:
+      description: Optional budget figure.
+    visibilities:
+      type: string
+      description: JSON-encoded array of section IDs the category is shared with.
+    section_id:
+      type: string
+      description: Section the category belongs to.
+  example:
+    name: Subs
+    type: income
+    budget: ""
+    visibilities: "[]"
+    section_id: "3100100"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

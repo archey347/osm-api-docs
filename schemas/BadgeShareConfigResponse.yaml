@@ -1,0 +1,7 @@
+type: object
+properties:
+  all_configs:
+    type: object
+    description: Refreshed section configuration, applied by the web app to its session.
+    additionalProperties: true
+additionalProperties: true

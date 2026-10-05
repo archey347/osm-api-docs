@@ -1,0 +1,5 @@
+type: object
+properties:
+  warn:
+    type: string
+additionalProperties: true

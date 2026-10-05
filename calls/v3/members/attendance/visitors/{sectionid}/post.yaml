@@ -1,0 +1,45 @@
+kind: v3-route
+method: POST
+path: "/v3/members/attendance/visitors/{sectionid}"
+summary: Record or remove a register visitor
+description: "Sending `present=Absent` for an existing visitor removes them; renaming a visitor sends that followed by the new name."
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionid:
+    type: string
+body:
+  params:
+    name:
+      type: string
+      required: true
+    meeting_date:
+      type: string
+      format: date
+      required: true
+    present:
+      type: string
+      required: true
+      description: "Attendance status, or `Absent` to remove."
+    type:
+      type: string
+      required: true
+      description: "Visitor type as returned in the register's `visitors`."
+    member_id:
+      type: string
+      description: Set when the visitor is an existing member of another section.
+  example:
+    name: Pat Visitor
+    meeting_date: "2025-01-14"
+    present: "Yes"
+    type: visitor
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  examples:
+    default:
+      value: [ ]
+  description: Result.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

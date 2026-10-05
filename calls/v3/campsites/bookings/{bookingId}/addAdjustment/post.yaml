@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/bookings/{bookingId}/addAdjustment"
+summary: Add a booking adjustment
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bookingId:
+    type: string
+    description: Booking ID.
+body:
+  params:
+    amount:
+      type: number
+      required: true
+    details:
+      type: string
+      required: true
+  example:
+    amount: -10.5
+    details: Early booking discount
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ ext.campsites.fb843cdfc650e56db2ee.js ]

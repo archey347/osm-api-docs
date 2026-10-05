@@ -1,0 +1,7 @@
+path: /ext/members/flexirecords/
+method: POST
+summary: Change flexi-records
+description: |-
+  Flexi-record writes share this path with different `action` values.
+  Column changes return the full updated structure.
+response: Flexi-record write result.

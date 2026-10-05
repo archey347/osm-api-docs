@@ -1,0 +1,17 @@
+type: object
+properties:
+  error: { }
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        user_id: { }
+        fname: { }
+        lname: { }
+        email: { }
+        associated_member_id: { }
+        lastlogin_generic: { }
+        numlogins: { }
+      additionalProperties: true
+additionalProperties: true

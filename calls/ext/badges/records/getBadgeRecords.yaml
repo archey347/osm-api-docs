@@ -1,0 +1,76 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getBadgeRecords
+summary: Get badge records
+description: "`getBadgeRecords` — returns per-member completion records for a specific badge."
+tags: [ Badges ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+    description: "Section ID (used with `getAvailableBadges`)."
+  term_id:
+    type: string
+    description: Term ID.
+  type_id:
+    type: string
+    enum: [ "-1", "1", "2", "3", "4" ]
+    description: Badge type ID. 1 = Challenge, 2 = Activity, 3 = Staged, 4 = Core, -1 = all types.
+  badge_id:
+    type: string
+    description: "Badge ID (required for `getBadgeRecords`, `getEligibleMembers`, `getColumnsForBadge`)."
+  badge_version:
+    type: string
+    description: "Badge version (required for `getBadgeRecords`, `getColumnsForBadge`)."
+  scout_id:
+    type: string
+    description: Member ID.
+  payload:
+    type: string
+    enum: [ "1" ]
+    description: "Include full payload (observed value `1`). Without it `getAvailableBadges` returns `items` instead of `data`."
+  context:
+    type: string
+    enum: [ none, self, national ]
+    description: "Context (observed `none`, `self`, `national`)."
+response:
+  schema:
+    $ref: BadgeRecordsResponse
+  envelope: true
+  examples:
+    badgeRecords:
+      summary: getBadgeRecords with payload=1
+      value:
+        details:
+          name: Teamwork
+          description: Work as part of a team.
+          config: { }
+        members:
+          - scout_id: 3100001
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            updated_at: "2025-01-14 19:05:00"
+            uploads: 0
+            column_data:
+              "910001": "Yes"
+            completed_requirements: [ 910001 ]
+            covered_requirements: [ ]
+        requirements:
+          - requirement_id: 910001
+            module: a
+            name: Work with others
+            editable: "true"
+        modules:
+          a:
+            module_id: 5001
+            required: 1
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

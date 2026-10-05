@@ -1,0 +1,14 @@
+type: object
+properties:
+  deletion_id: { }
+  item_type:
+    type: string
+  title:
+    type: string
+  can_restore:
+    type: boolean
+  removed:
+    type: string
+  user:
+    type: string
+additionalProperties: true

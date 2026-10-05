@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/members/email/campaigns/
+action: listCampaigns
+summary: List email templates
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: EmailCampaigns
+  envelope: true
+  examples:
+    default:
+      value:
+        - campaign_id: 5100001
+          title: Weekly newsletter
+          template: default
+          created_at: "2025-01-10 12:00:00"
+          last_used: "2025-09-01 18:00:00"
+          has_scheduled_email: false
+  description: Email templates (campaigns) for the section.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

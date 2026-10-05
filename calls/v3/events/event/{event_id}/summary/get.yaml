@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/summary"
+summary: Get the event summary tab
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventSummary
+  examples:
+    default:
+      value:
+        members: { }
+        reserved: 0
+        cost: "120.00"
+  description: Event summary.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

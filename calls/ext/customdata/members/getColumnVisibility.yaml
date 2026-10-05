@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/members/
+action: getColumnVisibility
+summary: Get who can see custom columns
+description: "`getColumnVisibility` and `getInTouchColumnVisibility` are reads sent as POSTs."
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    status:
+      type: string
+      enum: [ parent_portal_visibility, camp_export_visibility ]
+      required: true
+  example:
+    status: parent_portal_visibility
+response:
+  schema:
+    $ref: CustomDataColumnVisibility
+  envelope: true
+  examples:
+    getColumnVisibility:
+      summary: Groups with the columns they contain
+      value:
+        - group_id: 7
+          identifier: floating
+          columns:
+            - column_id: 41
+sources: [ area.settings.f73c3ef434f40520f0bc.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

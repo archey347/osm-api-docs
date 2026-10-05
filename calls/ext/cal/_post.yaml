@@ -1,0 +1,8 @@
+path: /ext/cal/
+method: POST
+summary: Manage a calendar feed
+description: |-
+  Calendar (iCalendar) feed for events, programme or campsite data.
+  `getFeedInformation` returns the existing feed URL (`data.existing_feed`) or none,
+  `generateFeed` creates it, `deleteFeed` removes it (the response has no `data`).
+response: Calendar feed response.

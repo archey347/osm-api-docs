@@ -1,0 +1,16 @@
+type: object
+properties:
+  status:
+    type: boolean
+  incorrect_password:
+    type: boolean
+  error:
+    type: array
+    items:
+      type: string
+    description: Error messages.
+  prefs:
+    type: object
+    description: Updated user preferences.
+    additionalProperties: true
+additionalProperties: true

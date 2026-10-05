@@ -1,0 +1,30 @@
+kind: ext-action
+method: GET
+path: /ext/badges/report/
+action: printReport
+summary: Print badge report
+description: Returns a document to download, not JSON.
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+  startdate:
+    type: string
+    description: "`YYYY-MM-DD`."
+  enddate:
+    type: string
+    description: "`YYYY-MM-DD`."
+  group_by:
+    type: string
+    enum: [ badge, member ]
+response:
+  document: true
+  description: Report document.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

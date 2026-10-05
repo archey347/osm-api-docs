@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/national/
+action: userSearch
+summary: Search users
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    firstname:
+      type: string
+    lastname:
+      type: string
+    email:
+      type: string
+    member_id:
+      type: string
+  example:
+    email: "alex@example.com"
+response:
+  schema:
+    $ref: DashboardNationalUserSearch
+  examples:
+    userSearch:
+      value:
+        items:
+          - user_id: "100001"
+            fname: Alex
+            lname: Scout
+            email: "alex@example.com"
+            lastlogin_generic: "2025-01-10 19:00:00"
+            numlogins: 12
+sources: [ area.national_dashboard.24a9dd00242256a71961.js, ext.dashboard.82a61c008183022fe2cd.js ]

@@ -1,0 +1,26 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByBadge
+summary: Search activities by badge
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  badge:
+    type: string
+    description: "Badge identifier or `badge_id_version`."
+  column:
+    type: string
+    description: "Badge requirement column; `none` for any."
+  section:
+    type: string
+    description: "Section type; limits results to activities suitable for it."
+  section_id:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

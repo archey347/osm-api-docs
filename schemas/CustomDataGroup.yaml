@@ -1,0 +1,31 @@
+type: object
+properties:
+  group_id:
+    type: integer
+  config:
+    nullable: true
+    type: object
+    additionalProperties: true
+  group_type:
+    type: string
+  identifier:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  description_mymember:
+    type: string
+  is_considered_core:
+    type: string
+  allow_new_columns:
+    type: string
+  display:
+    type: string
+  columns:
+    type: array
+    items:
+      $ref: CustomDataColumn
+  custom_order:
+    type: integer
+additionalProperties: true

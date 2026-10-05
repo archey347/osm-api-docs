@@ -1,0 +1,21 @@
+type: object
+properties:
+  details:
+    type: object
+    properties:
+      name:
+        type: string
+      startdate:
+        type: string
+      starttime:
+        type: string
+      enddate:
+        type: string
+      endtime:
+        type: string
+      location:
+        type: string
+      cost:
+        type: string
+    additionalProperties: true
+additionalProperties: true

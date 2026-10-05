@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/chat/
+action: getRooms
+summary: Chat rooms a member can see
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberChatRoomsResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          - id: 7100001
+            name: Parents chat
+            mode: chat
+            userHasUnreadMessages: false
+  description: Chat rooms.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/categories/section/{sectionId}/visible"
+summary: List categories shared with a section
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+query:
+  financial_years:
+    type: string
+    description: Comma-separated financial year IDs.
+response:
+  schema:
+    $ref: AccountingVisibleCategories
+  examples:
+    default:
+      value: { }
+  description: Shared categories and the financial years available.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: /v3/helpcentre
+summary: Search help centre topics
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    query:
+      type: string
+      required: true
+  example:
+    query: add a member
+response:
+  schema:
+    $ref: HelpCentreSearchResults
+  examples:
+    default:
+      value:
+        help:
+          - id: 10
+            title: Add your first member
+  description: "Matching topics in `data.help`."
+sources: [ area.chat.6b506d390b35ea85d510.js, area.helpcentre.342e479358e7d16ec1b4.js ]

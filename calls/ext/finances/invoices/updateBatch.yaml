@@ -1,0 +1,62 @@
+kind: ext-action
+method: POST
+path: /ext/finances/invoices/
+action: updateBatch
+summary: Add or edit an invoice record
+description: "`updateBatch` adds a record when `id` is `0`, otherwise edits it."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    context:
+      type: string
+    date:
+      type: string
+      format: date
+    id:
+      type: string
+      description: "Record ID (`0` for a new record in `updateBatch`). Also the owning record for attachment actions."
+    invoice_id:
+      type: string
+    section_id:
+      type: string
+    associated_id:
+      type: string
+    amount:
+      type: string
+    comments:
+      type: string
+    type:
+      type: string
+      enum: [ Expense, Income ]
+    pay_username:
+      type: string
+      description: "Person to pay back, or `_x_` for no one."
+    category:
+      type: string
+      description: Budget name.
+  example:
+    section_id: "45001"
+    invoice_id: "9400001"
+    context: invoice
+    id: "0"
+    date: "2024-07-21"
+    amount: "12.50"
+    comments: Sausages
+    type: Expense
+    pay_username: _x_
+    category: Camp food
+response:
+  schema:
+    $ref: FinanceStatusResponse
+  examples:
+    updateBatch:
+      summary: updateBatch
+      value:
+        status: true
+        error: null
+        data:
+          id: "9600001"
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

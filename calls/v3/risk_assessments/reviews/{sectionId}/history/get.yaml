@@ -1,0 +1,33 @@
+kind: v3-route
+method: GET
+path: "/v3/risk_assessments/reviews/{sectionId}/history"
+summary: Get risk assessment review history
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+query:
+  type:
+    type: string
+    required: true
+  associated_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: RiskAssessmentReviewHistory
+  examples:
+    default:
+      value:
+        - id: "5300001"
+          reviewed_on: "2025-01-10"
+          next_review_on: "2026-01-10"
+          reviewed_by_name: Alex Scout
+          notes: No changes needed.
+          can_undo: true
+  description: Past reviews, newest first as displayed.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

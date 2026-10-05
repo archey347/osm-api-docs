@@ -1,0 +1,33 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/campaigns/
+action: createCampaign
+summary: Create an email template
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    title:
+      type: string
+    template:
+      type: string
+      description: Template style name.
+  example:
+    section_id: "45001"
+    title: Weekly newsletter
+    template: default
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    createCampaign:
+      summary: ID of the new template
+      value:
+        campaign_id: 5100002
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

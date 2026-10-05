@@ -1,0 +1,46 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/timetable"
+summary: Add a timetable entry
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    day:
+      type: string
+      description: Days since the event start.
+    start_time:
+      type: string
+      description: "`H:M:SS`."
+    duration:
+      type: string
+      description: Seconds.
+    colour:
+      type: string
+      description: "Hex without `#`."
+    title:
+      type: string
+    description:
+      type: string
+    shared:
+      type: string
+      enum: [ "true", "false" ]
+      description: Edit the shared (template) event's timetable.
+  example:
+    day: "0"
+    start_time: "10:0:00"
+    duration: "3600"
+    colour: "673ab7"
+    title: Tent pitching
+    description: ""
+    shared: "false"
+response:
+  schema:
+    $ref: EventTimetableEntries
+  description: "Updated entries in `data.entries`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

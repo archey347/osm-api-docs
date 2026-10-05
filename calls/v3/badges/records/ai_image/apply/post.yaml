@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: /v3/badges/records/ai_image/apply
+summary: Apply a generated badge image
+description: "Sets one of the images returned by `ai_image/generate` as the badge picture."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id:
+      type: string
+    badge_version:
+      type: string
+    image_base64:
+      type: string
+      description: "One entry of the `images` array pushed after `ai_image/generate`."
+  example:
+    badge_id: "1001"
+    badge_version: "1"
+    image_base64: iVBORw0KGgoAAAANSUhEUgAA...
+response:
+  schema:
+    $ref: BadgeV3Response
+  examples:
+    ok:
+      summary: Applied
+      value: [ ]
+  description: Applied. The web app does not read the body.
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

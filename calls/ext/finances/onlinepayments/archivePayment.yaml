@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: archivePayment
+summary: Archive or unarchive a payment
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  payload:
+    type: string
+    description: "Sent with `archivePayment`, `changeStartDate` and `initiateScouts` (observed `1`)."
+body:
+  params:
+    sectionid:
+      type: string
+    schemeid:
+      type: string
+    paymentid:
+      type: string
+    togo:
+      type: integer
+      enum: [ 0, 1 ]
+      description: "`1` archives, `0` unarchives."
+  example:
+    sectionid: "45001"
+    schemeid: "9800001"
+    paymentid: "9820001"
+    togo: 1
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

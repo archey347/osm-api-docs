@@ -1,0 +1,25 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: restoreTemplate
+summary: Restore a parent email template to its default
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    key:
+      type: string
+      description: Template key.
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    restoreTemplate:
+      summary: Default template restored
+      value: "<p>Default body</p>"
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

@@ -1,0 +1,16 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        date:
+          type: string
+        paid_by:
+          type: string
+        amount:
+          type: string
+      additionalProperties: true
+additionalProperties: true

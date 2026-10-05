@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/payments/{workspaceId}/payouts"
+summary: List payouts for shared payment accounts
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubPayouts
+  examples:
+    default:
+      value:
+        - id: "6100001"
+          paid_date: "2025-01-15"
+          account_name: Group Account
+          reference: PAYOUT-0001
+          amount: "120.50"
+          fees: "1.80"
+  description: Payouts.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

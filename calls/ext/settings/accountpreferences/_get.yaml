@@ -1,0 +1,5 @@
+path: /ext/settings/accountpreferences/
+method: GET
+summary: Get account preferences
+description: "`updateDefaultSection` also appears as a GET, and is documented here as well as under POST; its response was not captured."
+response: Response.

@@ -1,0 +1,11 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      meta:
+        type: object
+        properties:
+          offer:
+            type: string
+            description: Key selecting the confirmation message.
+        additionalProperties: true

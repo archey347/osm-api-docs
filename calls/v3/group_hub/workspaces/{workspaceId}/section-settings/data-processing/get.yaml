@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/data-processing"
+summary: Get data processing agreements for the workspace's sections
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubDataProcessing
+  examples:
+    default:
+      value:
+        sections:
+          - section_id: 45001
+            name: Cubs
+            can_sign: true
+            signed:
+              - signed_by: Alex Scout
+  description: Agreement status per section.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

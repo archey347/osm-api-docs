@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/giftaid/pdf"
+summary: Download the Gift Aid summary as PDF
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+query:
+  start:
+    type: string
+    description: "Range start, `YYYY-MM-DD`. Sent together with `end`; omitted for the default range."
+  end:
+    type: string
+    description: "Range end, `YYYY-MM-DD`."
+response:
+  document: true
+  content_type: application/pdf
+  description: PDF document, opened in a new window.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

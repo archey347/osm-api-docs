@@ -1,0 +1,28 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/programme/
+action: getCalendarFeed
+summary: Get the programme calendar feed
+description: "`getDetails` lists meetings, `getCalendarFeed` returns the member's calendar feed URL, and `download` returns a programme document (opened in a new window; format not confirmed)."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberCalendarFeedResponse
+  examples:
+    getCalendarFeed:
+      value:
+        status: true
+        error: null
+        data:
+          existing: "https://www.onlinescoutmanager.co.uk/ext/cal/example-feed.ics"
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

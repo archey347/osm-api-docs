@@ -1,0 +1,38 @@
+type: array
+items:
+  type: object
+  properties:
+    notification_id: { }
+    report_id: { }
+    section_id: { }
+    target_section_id: { }
+    target_member_id: { }
+    related_member_id: { }
+    via:
+      type: string
+      description: "How it was delivered; email notifications carry `subject` and `addresses`."
+    type:
+      type: string
+      enum: [ normal, warning, critical ]
+    message:
+      type: string
+      description: HTML.
+    subject:
+      type: string
+    addresses:
+      type: object
+      description: "Recipients, each with `to` and `cc` lists of addresses."
+      additionalProperties: true
+    status:
+      type: string
+      description: "Observed `expired`, `dismissed`, `dismissed-expired`."
+    dismissible:
+      type: boolean
+    is_test:
+      type: string
+      description: "`yes` for test notifications."
+    date_created:
+      type: string
+    date_expired:
+      type: string
+  additionalProperties: true

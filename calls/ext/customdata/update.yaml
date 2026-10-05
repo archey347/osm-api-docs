@@ -1,0 +1,56 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: update
+summary: Update a contact group's values
+description: "`update` — bulk update using `data[field]=value` pairs (e.g. contact details)."
+tags: [ Custom Data ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    associated_type:
+      type: string
+    associated_id:
+      type: string
+    group_id:
+      type: string
+    context:
+      type: string
+    "data[{field}]":
+      type: string
+      description: New value for that field.
+  example:
+    associated_id: "3100003"
+    associated_type: member
+    group_id: "2"
+    context: members
+    "data[firstname]": Helen
+    "data[lastname]": Park
+response:
+  schema:
+    $ref: CustomDataColumnUpdateResponse
+  envelope: true
+  examples:
+    bulkUpdate:
+      summary: Bulk update response
+      value:
+        lastname: Park
+    columnUpdate:
+      summary: Column update response
+      value:
+        column_id: 34
+        type: select
+        required: "no"
+        varname: gender
+        label: Gender
+        value: Male
+        is_core: "yes"
+        order: "12"
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

@@ -1,0 +1,21 @@
+kind: ext-action
+method: GET
+path: /ext/facilities/
+action: getTypes
+summary: List facility types
+tags: [ Facilities ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    type: array
+    items:
+      $ref: FacilityType
+  examples:
+    getTypes:
+      value:
+        - typeid: "11"
+          categoryid: "1"
+          category: Campsites
+sources: [ area.facilities.e75a3e5352d708ac499b.js ]

@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/parent_portal"
+summary: Get parent portal (My.SCOUT) settings
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventParentPortal
+  examples:
+    default:
+      value:
+        cost: "120.00"
+        confirmation_deadline: "2025-06-01"
+        allow_changes_before_deadline: false
+        allow_booking_when_show_in_portal: true
+        disable_invitation_reminders: false
+        send_attendance_reminders: 0
+        kit_list_collection_id: "0"
+        latitude: null
+        longitude: null
+  description: Parent portal settings.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,43 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/prices/price/{priceId}"
+summary: Edit a price
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  priceId:
+    type: string
+    description: Price ID.
+body:
+  params:
+    price_per_person:
+      type: number
+    price_per_session:
+      type: number
+    free_people_per_session:
+      type: integer
+    minimum_price:
+      type: number
+      description: Needs a per-person or per-session price.
+    deposit_amount:
+      type: number
+    deposit_percent:
+      type: number
+      description: "0 to 100."
+  example:
+    price_per_person: 5
+    price_per_session: 0
+    free_people_per_session: 0
+    minimum_price: 0
+    deposit_amount: 0
+    deposit_percent: 25
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

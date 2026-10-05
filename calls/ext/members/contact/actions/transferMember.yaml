@@ -1,0 +1,95 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/
+action: transferMember
+summary: Transfer members to another section
+description: "**`transferMember`** — moves (`Transfer`) or copies (`Copy`) members to another section."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    scouts:
+      type: string
+      description: "`removeMember`, `returnMember`, `transferMember`. Comma-separated member IDs."
+    type:
+      type: string
+      enum: [ keepall, keepcontact, keepname, delete, erase, Transfer, Copy, cancelled ]
+      description: "`removeMember`: data retention level. `transferMember`: `Transfer` or `Copy`. `returnMembersFromTransfer`: `cancelled`."
+    targetSection:
+      type: string
+      description: "`transferMember` only. Destination section ID."
+    leftDate:
+      type: string
+      format: date
+      description: "`transferMember` with `type=Transfer`. Date the member leaves; `1970-01-01` when the section does not use accurate end dates."
+    isWaiting:
+      type: string
+      enum: [ "true" ]
+      description: "`transferMember`. Sent only when the section is a waiting list."
+  example:
+    scouts: "3100005,3100006"
+    targetSection: "45002"
+    type: Transfer
+    leftDate: "2025-08-19"
+response:
+  schema:
+    type: object
+    description: |-
+      `removeMember`, `returnMember`, `transferMember`, `deletePhoto` response.
+      The web app reads no fields from `acceptAndRejectTransfers` or
+      `returnMembersFromTransfer` responses.
+    properties:
+      ok:
+        type: boolean
+      scouts:
+        type: array
+        items:
+          type: integer
+        description: Scout IDs affected.
+      msg:
+        type: string
+        description: "Error message (`removeMember`, `returnMember`)."
+      error:
+        type: string
+      prohibited:
+        type: array
+        items:
+          type: string
+        description: "`transferMember`. Members that could not be moved."
+      members_present_elsewhere:
+        type: array
+        items:
+          type: integer
+        description: "`removeMember`. Removed members who are still active in another section."
+      members_linked_to_users:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. Set when a confirmation of linked-user access is needed; resend with `access[...]` choices."
+      members_linked_to_users_forced:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. As `members_linked_to_users`, with no option to keep access."
+      last_section_warnings:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+        description: "`removeMember`. Members whose last section this is; each has `member_id` and `name`."
+      group_name:
+        type: string
+      remove_last_access_final:
+        type: string
+  examples:
+    transferMember:
+      summary: Members transferred
+      value:
+        ok: true
+        scouts: [ 3100005, 3100006 ]
+        prohibited: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

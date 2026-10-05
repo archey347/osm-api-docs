@@ -1,0 +1,21 @@
+type: object
+properties:
+  people:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        first_name:
+          type: string
+        last_name:
+          type: string
+        relationship:
+          type: object
+          properties:
+            representative:
+              type: boolean
+              description: Primary representative.
+          additionalProperties: true
+      additionalProperties: true
+additionalProperties: true

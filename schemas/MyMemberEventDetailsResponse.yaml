@@ -1,0 +1,141 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          name:
+            type: string
+          startdate:
+            type: string
+          when:
+            type: string
+            description: Formatted date range.
+          attendance:
+            type: string
+            description: "`yes`, `no`, `invited`, `open`, `reserved` or `info`."
+          allowchanges:
+            description: Whether attendance can still be changed.
+          confdate:
+            type: string
+            description: Confirmation deadline.
+          location:
+            type: string
+          latitude: { }
+          longitude: { }
+          cost:
+            type: string
+            description: "`-1.00` when the cost is to be confirmed."
+          currency:
+            type: string
+          payments:
+            type: object
+            description: Keyed by payment schedule ID.
+            additionalProperties:
+              type: array
+              items:
+                type: object
+                properties:
+                  payment_id: { }
+                  payment_name:
+                    type: string
+                  status:
+                    type: string
+                  currency:
+                    type: string
+                  amount: { }
+                additionalProperties: true
+          files: { }
+          columns:
+            type: array
+            description: Information the parent supplies when signing up.
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                label:
+                  type: string
+                hint:
+                  type: string
+                required: { }
+                value:
+                  type: string
+                editAfterDeadline: { }
+              additionalProperties: true
+          badges:
+            type: array
+            items:
+              type: object
+              properties:
+                title:
+                  type: string
+                url:
+                  type: string
+              additionalProperties: true
+          kit_list_instructions:
+            type: string
+          kit_list_items:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                heading:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                quantity:
+                  type: number
+                purchase_link:
+                  type: string
+                section_id: { }
+              additionalProperties: true
+          kit_list_packed_items:
+            type: array
+            description: IDs of kit list items already packed.
+            items:
+              type: integer
+          rota:
+            type: object
+            description: "Parent rota for the event; `false` when there is none."
+            properties:
+              help:
+                type: string
+                description: "`offered`, `accepted`, `not_needed` or another value when no help has been offered."
+              help_required: { }
+              details:
+                type: string
+            additionalProperties: true
+          at_home:
+            type: object
+            description: Events at home settings and activities.
+            properties:
+              enabled:
+                type: boolean
+              introduction:
+                type: string
+              activities:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+              parent_uploads_enabled:
+                type: boolean
+              chat_enabled:
+                type: boolean
+            additionalProperties: true
+          publicnotes:
+            type: string
+            description: HTML notes for parents.
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          confirm_personal_details:
+            description: Whether the parent must confirm contact details before signing up.
+        additionalProperties: true

@@ -1,0 +1,46 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: getStructureSettings
+summary: Get custom data group settings
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+  _bypass_service_worker:
+    type: string
+    description: "Observed `1`."
+body:
+  params:
+    associated_type:
+      type: string
+      enum: [ member ]
+  example:
+    associated_type: member
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    getStructureSettings:
+      summary: Groups with their columns
+      value:
+        - group_id: 7
+          identifier: floating
+          name: Other
+          type: opt-in
+          orderable: true
+          setting: 1
+          config:
+            settings_optin_description: Extra details to collect.
+          fields:
+            "41":
+              column_id: 41
+              label: Swimming ability
+              opted: false
+              config: { }
+sources: [ "21.3e07bd5db1c55da1f0d3.js", "8913.6d746d696f1aeb9d4b5a.js" ]

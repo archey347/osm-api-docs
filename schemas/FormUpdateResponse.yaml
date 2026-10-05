@@ -1,0 +1,12 @@
+type: object
+properties:
+  updated_by:
+    type: object
+    nullable: true
+    properties:
+      full_name:
+        type: string
+    additionalProperties: true
+  updated_at_local_datetime:
+    type: string
+additionalProperties: true

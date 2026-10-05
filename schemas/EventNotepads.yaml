@@ -1,0 +1,7 @@
+type: object
+properties:
+  private:
+    type: string
+  public:
+    type: string
+additionalProperties: true

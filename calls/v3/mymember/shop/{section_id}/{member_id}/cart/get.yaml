@@ -1,0 +1,46 @@
+kind: v3-route
+method: GET
+path: "/v3/mymember/shop/{section_id}/{member_id}/cart"
+summary: Shop basket
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberShopCartResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          cart:
+            currency: GBP
+            subtotal: "5.00"
+            shipping_fee: "0.00"
+            minimum_order_total: "0.00"
+            delivery_methods: [ collect ]
+            reserves_stock: false
+            expires_at: null
+            lines:
+              - line_id: 7500001
+                item_id: 7300001
+                variant_id: 7400001
+                item_name: Group scarf
+                variant_label: Medium
+                photo_url: null
+                answers: [ ]
+                warning: null
+                quantity: 1
+                line_total: "5.00"
+        meta:
+          server_time: "2025-09-01T18:00:00+00:00"
+          payments_unavailable: false
+  description: "The basket; `data.cart` is `null` when it is empty."

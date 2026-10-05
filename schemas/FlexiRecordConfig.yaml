@@ -1,0 +1,7 @@
+type: object
+properties:
+  config:
+    type: object
+    description: The section's updated config.
+    additionalProperties: true
+additionalProperties: true

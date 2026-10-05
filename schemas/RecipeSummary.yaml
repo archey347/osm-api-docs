@@ -1,0 +1,30 @@
+type: object
+properties:
+  recipe_id:
+    type: string
+  original_recipe_id:
+    description: Greater than 0 when the recipe is a variation of another.
+  title:
+    type: string
+  cache:
+    type: object
+    description: Precomputed tags used for filtering.
+    properties:
+      suitability:
+        type: object
+        additionalProperties:
+          type: boolean
+      tags:
+        type: object
+        properties:
+          meals:
+            type: array
+            items:
+              type: string
+          cooking_methods:
+            type: array
+            items:
+              type: string
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

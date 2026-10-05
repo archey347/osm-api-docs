@@ -1,0 +1,4 @@
+path: /ext/generic/locks/
+method: POST
+summary: Obtain or clear an edit lock
+response: "`obtain` returns the new `data.lock_id`; `clear` returns `status: true`."

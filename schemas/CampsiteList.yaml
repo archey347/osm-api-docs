@@ -1,0 +1,19 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    latitude:
+      description: "Only with `mode=map`."
+    longitude:
+      description: "Only with `mode=map`."
+    organisations:
+      type: array
+      description: "Only with `section_id`."
+      items:
+        $ref: CampsiteOrganisation
+  additionalProperties: true
+description: Campsites visible to the caller.

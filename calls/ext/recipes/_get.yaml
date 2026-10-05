@@ -1,0 +1,5 @@
+path: /ext/recipes/
+method: GET
+summary: Read recipes and ingredients
+description: "`removePicture` changes data despite being a GET."
+response: "Envelope with `status` and `data`; on failure `status` is false."

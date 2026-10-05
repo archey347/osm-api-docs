@@ -1,0 +1,5 @@
+type: array
+items:
+  type: object
+  additionalProperties: true
+  description: "A budget row; includes `id` and `amount`."

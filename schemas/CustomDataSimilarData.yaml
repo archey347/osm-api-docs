@@ -1,0 +1,7 @@
+type: object
+properties:
+  has_existing_data:
+    type: boolean
+  existing_value:
+    type: string
+additionalProperties: true

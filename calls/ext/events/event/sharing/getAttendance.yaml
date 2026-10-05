@@ -1,0 +1,39 @@
+kind: ext-action
+method: GET
+path: /ext/events/event/sharing/
+action: getAttendance
+summary: List attendees across sharing sections
+description: "`getStatus` is the invite list per section and `getAttendance` the attendees across sections (both send `_v=2`)."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  eventid:
+    type: string
+    required: true
+  sectionid:
+    type: string
+    required: true
+  _v:
+    type: string
+    enum: [ "2" ]
+    description: Response version.
+  attendance:
+    type: string
+    enum: [ Reserved ]
+    description: Only the reserved list.
+response:
+  schema:
+    $ref: EventSharingAttendanceData
+  envelope: true
+  examples:
+    getAttendance:
+      value:
+        items:
+          - scoutid: "3100010"
+            firstname: Jo
+            lastname: Cub
+            sectionname: Example Cubs
+            groupname: "1st Example"
+            age: "9 / 4"

@@ -1,0 +1,45 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/giftaid/
+action: makeDeclaration
+summary: Make a Gift Aid declaration
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    title:
+      type: string
+      description: At most 12 characters.
+    full_name:
+      type: string
+      description: At least 5 characters.
+    address:
+      type: string
+    post_code:
+      type: string
+      description: UK postcode.
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    title: Mx
+    full_name: Alex Parent
+    address: "1 Example Street"
+    post_code: AB1 2CD
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    recorded:
+      summary: Recorded
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

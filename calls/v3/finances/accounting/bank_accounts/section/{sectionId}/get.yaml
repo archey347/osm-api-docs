@@ -1,0 +1,30 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/bank_accounts/section/{sectionId}"
+summary: List bank accounts
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: AccountingBankAccountList
+  examples:
+    default:
+      value:
+        - id: 3100001
+          name: Main account
+          opening_balance: 50000
+          opening_date: "2025-04-01"
+          current_balance: 72350
+          deleted_at: null
+          first_transaction_date: "2025-04-03"
+          last_transaction_date: "2026-09-20"
+          number_unprocessed_transactions: 2
+          expense_account: null
+  description: Bank accounts for the section.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

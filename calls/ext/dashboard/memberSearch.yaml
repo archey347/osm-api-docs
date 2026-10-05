@@ -1,0 +1,33 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/
+action: memberSearch
+summary: Search members
+description: "`getNextThings` is the section dashboard; `getGroupDashboard` and `memberSearch` serve the group dashboard across several sections."
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sections:
+    type: string
+    description: JSON array of section IDs.
+  v:
+    type: string
+    description: "Always `2`."
+response:
+  schema:
+    $ref: DashboardMemberSearch
+  envelope: true
+  examples:
+    memberSearch:
+      value:
+        items:
+          - scoutid: "3100001"
+            sectionid: "45001"
+            sectionname: Cubs
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            emails: [ "parent@example.com" ]
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

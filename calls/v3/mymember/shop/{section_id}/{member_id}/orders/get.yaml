@@ -1,0 +1,45 @@
+kind: v3-route
+method: GET
+path: "/v3/mymember/shop/{section_id}/{member_id}/orders"
+summary: Shop orders for a member
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberShopOrdersResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          orders:
+            - order_id: 7600001
+              order_number: "1001"
+              created_at: "2025-09-01 18:05:00"
+              status: open
+              payment_status: awaiting_payment
+              delivery_method: collect
+              shipping: null
+              tickets_only: false
+              fulfilled_at: null
+              scheme_id: 6200002
+              payment_id: 6300002
+              currency: GBP
+              shipping_fee: "0.00"
+              total: "5.00"
+              lines:
+                - item_name: Group scarf
+                  variant_label: Medium
+                  quantity: 1
+                  unit_price: "5.00"
+                  answers: [ ]
+  description: Orders for the member.

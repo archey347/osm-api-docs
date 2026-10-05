@@ -1,0 +1,67 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          name:
+            type: string
+          url:
+            type: string
+          awarded:
+            description: "Award message; falsy when not awarded."
+          description:
+            type: string
+          label_mode: { }
+          requires:
+            description: Array of arrays of module letters describing which modules are alternatives.
+          modules:
+            description: Array, or an object keyed by module.
+            type: array
+            items:
+              type: object
+              properties:
+                title:
+                  type: string
+                letter:
+                  type: string
+                required:
+                  type: number
+                points_required:
+                  type: number
+                awarded: { }
+                columns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      column_id: { }
+                      text:
+                        type: string
+                      tooltip:
+                        type: string
+                      value: { }
+                      checked: { }
+                      has_evidence: { }
+                      points:
+                        type: number
+                    additionalProperties: true
+              additionalProperties: true
+          num_modules_required:
+            type: number
+          min_modules_started:
+            type: number
+          min_requirements_completed:
+            type: number
+          min_points_completed:
+            type: number
+        additionalProperties: true
+      meta:
+        type: object
+        properties:
+          homework:
+            description: Whether the badge can be worked on at home.
+          homework_introduction:
+            type: string
+        additionalProperties: true

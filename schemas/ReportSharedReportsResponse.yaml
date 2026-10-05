@@ -1,0 +1,38 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      my_reports:
+        type: array
+        description: Reports this section shares.
+        items:
+          type: object
+          properties:
+            report_id: { }
+            dashboard_id: { }
+            name:
+              type: string
+          additionalProperties: true
+      available_reports:
+        type: array
+        description: Reports shared with this section.
+        items:
+          type: object
+          properties:
+            report_id: { }
+            name:
+              type: string
+            new:
+              description: Greater than 0 when not yet added to a dashboard.
+          additionalProperties: true
+    additionalProperties: true
+  meta:
+    type: object
+    properties:
+      dashboards:
+        type: object
+        description: Dashboard names keyed by ID.
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,17 @@
+type: object
+properties:
+  result:
+    description: Truthy when sent.
+  msg:
+    type: string
+    description: "Success text, or the error message when `result` is absent."
+  errors:
+    type: array
+    description: "`sendGroupSMS` only. Per-section failures."
+    items:
+      type: string
+  config:
+    type: object
+    description: "`sendText` only. Updated section config (credits)."
+    additionalProperties: true
+additionalProperties: true

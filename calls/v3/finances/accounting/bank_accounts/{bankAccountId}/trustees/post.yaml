@@ -1,0 +1,42 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/bank_accounts/{bankAccountId}/trustees"
+summary: Add a trustee
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bankAccountId:
+    type: string
+    description: Bank account ID.
+body:
+  params:
+    first_name:
+      type: string
+      required: true
+    last_name:
+      type: string
+      required: true
+    email:
+      type: string
+      required: true
+    phone:
+      type: string
+      required: true
+      description: "International format, e.g. `+441234567890`."
+    date_of_birth:
+      type: string
+      format: date
+      required: true
+  example:
+    first_name: Alex
+    last_name: Scout
+    email: "alex.scout@example.invalid"
+    phone: "+441234567890"
+    date_of_birth: "1980-01-01"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

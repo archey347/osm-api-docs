@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: /v3/settings/account_preferences
+summary: Set a preference
+description: "Responds with the updated `data.preferences`."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    preference:
+      type: string
+    value:
+      type: string
+  example:
+    preference: example_preference
+    value: "1"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        preferences:
+          example_preference: "1"
+  description: Response.
+sources:
+  - area.settings.f73c3ef434f40520f0bc.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - ext.mymember.eb573b16408e09aef101.js

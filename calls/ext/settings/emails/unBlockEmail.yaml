@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/settings/emails/
+action: unBlockEmail
+summary: Unblock an email address
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    email_id:
+      type: string
+    email:
+      type: string
+  example:
+    section_id: "45001"
+    email_id: "9100001"
+    email: "parent@example.com"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

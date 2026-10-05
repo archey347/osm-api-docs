@@ -1,0 +1,28 @@
+kind: v3-route
+method: POST
+path: /v3/users/register_section/group_search/sections
+summary: List a group's existing sections
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    group_name:
+      type: string
+      required: true
+    highlight_inactive:
+      type: string
+      description: "Observed `1`; not sent by every caller."
+  example:
+    group_name: "1st Example Group"
+    highlight_inactive: "1"
+response:
+  schema:
+    $ref: UserGroupSections
+  examples:
+    default:
+      value:
+        - name: Example Cubs
+  description: Sections in the group.
+sources: [ ext.users.aae4e50e39d06ff44c88.js ]

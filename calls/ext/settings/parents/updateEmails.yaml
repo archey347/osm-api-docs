@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateEmails
+summary: Update parent email sender settings
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    from:
+      type: string
+      description: From name or address.
+    cc:
+      type: string
+    disabled_contacts:
+      type: string
+  example:
+    section_id: "45001"
+    from: "leaders@example.com"
+    cc: ""
+    disabled_contacts: ""
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    updateEmailsInvalid:
+      summary: Invalid from address
+      value:
+        status: false
+        error:
+          code: invalid-from-email
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

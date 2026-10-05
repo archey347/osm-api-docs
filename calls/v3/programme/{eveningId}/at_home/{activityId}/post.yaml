@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: "/v3/programme/{eveningId}/at_home/{activityId}"
+summary: Toggle programme-at-home for a meeting activity
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  eveningId:
+    type: string
+    description: Meeting ID.
+  activityId:
+    type: string
+    description: Activity ID.
+body:
+  params:
+    enabled:
+      type: string
+      enum: [ "true", "false" ]
+      required: true
+  example:
+    enabled: "true"
+response:
+  description: "Success when `status` is truthy; otherwise an error payload."
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

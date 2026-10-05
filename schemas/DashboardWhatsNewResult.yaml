@@ -1,0 +1,8 @@
+type: object
+properties:
+  number_likes:
+    type: integer
+  action:
+    type: string
+    description: "`added` when the like was added; otherwise removed."
+additionalProperties: true

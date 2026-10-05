@@ -1,0 +1,22 @@
+kind: ext-action
+method: GET
+path: /ext/members/sectionplanning/
+action: getSectionLeaderSize
+summary: Get a section's leader count
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: MemberSectionLeaderSize
+  examples:
+    getSectionLeaderSize:
+      value:
+        idealsize: 24
+        idealleaders: 4
+        numleaders: 3
+sources: [ area.settings_upgrades.17d3298d7edacc309869.js ]

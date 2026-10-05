@@ -1,0 +1,29 @@
+kind: v3-route
+method: GET
+path: "/v3/generic/select/{sectionId}/{mode}/{optionId}"
+summary: Get member IDs for a selection option
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  mode:
+    type: string
+    enum: [ events, meetings ]
+  optionId:
+    type: string
+    description: Event or meeting ID.
+query:
+  attendance:
+    type: string
+    description: "Sent for `events` only. Attendance value to match, e.g. `yes`, `no`, `reserved`, `blank`."
+response:
+  schema:
+    $ref: GenericMemberIdsResponse
+  examples:
+    default:
+      value: [ 3000001, 3000002 ]
+  description: Matching member IDs.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

@@ -1,0 +1,55 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/items"
+summary: List bookable items
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: "Campsite ID. `0` is sent when the section has no campsite of its own."
+query:
+  mode:
+    type: string
+    enum: [ booking, diary, editor ]
+  audience:
+    type: string
+    enum: [ customer, venue ]
+  start_date:
+    type: string
+    description: "With `mode=diary`."
+  end_date:
+    type: string
+    description: "With `mode=diary`."
+  organisation_id:
+    type: string
+    description: "With `mode=diary`; `0` for bookings only."
+  booking_id:
+    type: string
+    description: "With `mode=booking`."
+  ignore_availability_rules:
+    type: string
+    enum: [ "1" ]
+    description: Staff only.
+response:
+  schema:
+    $ref: CampsiteItemList
+  examples:
+    default:
+      value:
+        - id: 7700001
+          name: Field 1
+          parent_id: 0
+          quantity: 1
+          session:
+            name: Overnight
+          price:
+            name: Standard
+          description: ""
+          instructions: ""
+          terms_and_conditions: ""
+          pictures: [ ]
+  description: Items.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

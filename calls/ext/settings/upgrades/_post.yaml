@@ -1,0 +1,4 @@
+path: /ext/settings/upgrades/
+method: POST
+summary: Apply a free trial, pay manually or remove a subscription
+response: Response.

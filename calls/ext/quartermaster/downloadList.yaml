@@ -1,0 +1,23 @@
+kind: ext-action
+method: GET
+path: /ext/quartermaster/
+action: downloadList
+summary: Download a list
+description: "`downloadList` returns a file for download, not JSON."
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  section:
+    type: string
+    required: true
+    description: "Section type, e.g. `scouts`."
+  listid:
+    type: string
+response:
+  document: true
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js ]

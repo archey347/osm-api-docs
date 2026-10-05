@@ -1,0 +1,11 @@
+path: /ext/risk_assessments/
+method: GET
+summary: Risk assessment endpoints
+description: |-
+  Risk assessments attach to a meeting, activity or event, identified by
+  `type` and `associated_id`. `getCategories`, `getHazards` and `getHarms`
+  read the prepopulated hazard library used when the site's
+  `risk_assessments_config.mode` is `prepopulated`.
+response: |-
+  Risk assessment response. `downloadRiskAssessment` opens in a new
+  window and returns a document rather than JSON (format not confirmed).

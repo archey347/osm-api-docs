@@ -1,0 +1,5 @@
+path: /ext/dashboard/national/
+method: GET
+summary: National dashboard lookups
+description: "National office tools. Actions share this path with different `action` values. `listRolesForSection` is only read by a legacy screen as a Dojo item store, so its response is not described."
+response: "Response depends on `action`."

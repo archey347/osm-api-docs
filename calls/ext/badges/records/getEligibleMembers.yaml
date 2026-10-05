@@ -1,0 +1,34 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getEligibleMembers
+summary: List members eligible for a badge
+description: "`getEligibleMembers` — returns members flagged eligible for a badge in the term."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID (used with `getAvailableBadges`)."
+  term_id:
+    type: string
+    description: Term ID.
+  badge_id:
+    type: string
+    description: "Badge ID (required for `getBadgeRecords`, `getEligibleMembers`, `getColumnsForBadge`)."
+response:
+  schema:
+    $ref: BadgeRecordsResponse
+  envelope: true
+  examples:
+    eligibleMembers:
+      summary: getEligibleMembers
+      value:
+        - scout_id: 3100001
+          firstname: Jamie
+          lastname: River
+          photo_guid: "00000000-0000-0000-0000-000000000000"
+          eligible: true
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

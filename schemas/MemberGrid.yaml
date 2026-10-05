@@ -1,0 +1,25 @@
+type: object
+description: Members keyed by member ID.
+additionalProperties:
+  type: object
+  properties:
+    member_id: { }
+    first_name:
+      type: string
+    last_name:
+      type: string
+    photo_guid:
+      type: string
+    patrol: { }
+    patrol_id: { }
+    patrol_role_level: { }
+    date_of_birth:
+      description: "Date, or `hidden` when the user may not see it."
+    started: { }
+    joined: { }
+    active: { }
+    read_only:
+      type: array
+      items:
+        type: string
+  additionalProperties: true

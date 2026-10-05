@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/reports/emails/{sectionId}"
+summary: List reports usable for role-based emails
+description: Reports that can supply recipients for the leadership directory's role-based email.
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: ReportEmailsResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          - id: "910001"
+            name: Member list
+            members_count: 28
+  description: Reports with their member counts.
+sources: [ area.national.4e0a010c70498ce7f9fb.js ]

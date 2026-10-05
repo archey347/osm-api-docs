@@ -1,0 +1,45 @@
+kind: ext-action
+method: GET
+path: /ext/reports/
+action: loadReports
+summary: Load a report dashboard
+description: "Returns a dashboard's reports. Each report's own data is fetched separately from the `report` URL it carries."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  dashboard_id:
+    type: string
+    required: true
+    description: "`0` for the section's default dashboard."
+  mode:
+    type: string
+    description: "Base path the dashboard is served from, normally `/ext/reports/`."
+response:
+  schema:
+    $ref: ReportLoadResponse
+  examples:
+    default:
+      value:
+        data:
+          dashboard:
+            name: Section Overview
+            permissions:
+              create: true
+              update: true
+              delete: true
+          reports:
+            - report_id: "910001"
+              dashboard_id: "910100"
+              type: DataGrid
+              name: Member list
+              description: Members and their patrols.
+              report: "/ext/reports/viewer/?action=view&report_id=910001"
+              can_manage: true
+              can_refresh: true
+  description: Dashboard details and its reports.
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

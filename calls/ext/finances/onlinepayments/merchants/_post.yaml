@@ -1,0 +1,4 @@
+path: /ext/finances/onlinepayments/merchants/
+method: POST
+summary: Rename or delete a merchant account
+response: "Result. `renameAccount` is only checked for a non-empty response."

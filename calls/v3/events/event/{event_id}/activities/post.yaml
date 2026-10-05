@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/activities"
+summary: Link an activity to an event
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    activity_id:
+      type: string
+      required: true
+    activity_unique_id:
+      type: string
+      description: "`0` for a non-custom activity."
+    notes:
+      type: string
+  example:
+    activity_id: "1001"
+    activity_unique_id: "0"
+    notes: Bring spare batteries
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value: [ ]
+  description: Activity linked.
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

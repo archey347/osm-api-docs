@@ -1,0 +1,38 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/
+action: register
+summary: Register a parent portal account
+description: "`register` and `resendGuid` are used on the login page before a session exists; `guid_expiry` is the opaque token from a parent invitation link."
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    email:
+      type: string
+    firstname:
+      type: string
+    lastname:
+      type: string
+    password:
+      type: string
+    guid_expiry:
+      type: string
+  example:
+    email: "alex.parent@example.com"
+    firstname: Alex
+    lastname: Scout
+    password: example-password
+    guid_expiry: example-guid-token
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`sendActivationCode`, `removeMember`, `register`, `resendGuid`, `track`"
+      value:
+        status: true
+        error: null
+sources: [ ext.users.7ebb8288c6fbfcf3d823.js ]

@@ -1,0 +1,20 @@
+kind: v3-route
+method: GET
+path: /v3/users/gamification
+summary: Get feature-usage progress
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: UserGamification
+  examples:
+    default:
+      value:
+        modules:
+          attendance: [ take_register ]
+        used: [ take_register ]
+        achievements: [ ]
+  description: Feature IDs per module, the features the user has used, and achievements.
+sources: [ ext.users.aae4e50e39d06ff44c88.js ]

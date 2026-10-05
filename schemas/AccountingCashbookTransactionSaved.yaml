@@ -1,0 +1,8 @@
+type: object
+properties:
+  id: { }
+  guessed_category_id:
+    description: "`0` when no category was guessed."
+  guessed_item_id: { }
+additionalProperties: true
+description: Response when creating a cashbook entry.

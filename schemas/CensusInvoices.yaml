@@ -1,0 +1,14 @@
+type: object
+properties:
+  period: { }
+  done_this_period:
+    type: boolean
+  invoices:
+    type: object
+    description: Census invoices keyed by invoice ID.
+    additionalProperties: true
+  related_members:
+    type: object
+    description: Members across related sections, keyed by member ID.
+    additionalProperties: true
+additionalProperties: true

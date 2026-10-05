@@ -1,0 +1,22 @@
+kind: ext-action
+method: POST
+path: /ext/quartermaster/
+action: acceptLists
+summary: Accept shared lists
+description: "`acceptLists` and `rejectLists` answer lists other sections have shared with this one."
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      required: true
+  example:
+    sectionid: "3100001"
+response:
+  schema:
+    $ref: QuartermasterActionResponse
+  envelope: true
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

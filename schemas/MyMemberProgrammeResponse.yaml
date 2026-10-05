@@ -1,0 +1,69 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            eveningid: { }
+            meetingdate:
+              type: string
+            title:
+              type: string
+            starttime:
+              type: string
+            endtime:
+              type: string
+            notesforparents:
+              type: string
+            notesforhelpingparents:
+              type: string
+            primary_leader:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+              additionalProperties: true
+            attendance:
+              type: string
+              description: "`Absent` or `No` once the parent has said the member will not attend."
+            help_required: { }
+            help_signed_up: { }
+            help_enough: { }
+            badges:
+              type: object
+              description: Badges worked on at the meeting.
+              additionalProperties:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  url:
+                    type: string
+                additionalProperties: true
+            activities:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+            config:
+              type: object
+              additionalProperties: true
+          additionalProperties: true
+      meta:
+        type: object
+        description: Which parts of the programme the section shows to parents.
+        properties:
+          calendar:
+            type: boolean
+          download: { }
+          times: { }
+          summary: { }
+          attendance: { }
+          help: { }
+          badges: { }
+        additionalProperties: true

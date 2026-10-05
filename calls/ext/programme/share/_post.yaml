@@ -1,0 +1,4 @@
+path: /ext/programme/share/
+method: POST
+summary: Respond to a shared programme
+response: "`accept` returns `warn` when something could not be imported; the `reject` body is ignored."

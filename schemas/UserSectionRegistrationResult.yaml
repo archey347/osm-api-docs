@@ -1,0 +1,5 @@
+type: object
+properties:
+  id: { }
+  section_id: { }
+additionalProperties: true

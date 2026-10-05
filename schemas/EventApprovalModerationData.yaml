@@ -1,0 +1,10 @@
+type: object
+properties:
+  assigned_to:
+    type: integer
+    description: "Approver user ID, `0` when unassigned."
+  approvals_required:
+    type: array
+    items:
+      $ref: EventApprovalCheck
+additionalProperties: true

@@ -1,0 +1,7 @@
+type: object
+properties:
+  job_info:
+    type: object
+    description: Background job to track.
+    additionalProperties: true
+additionalProperties: true

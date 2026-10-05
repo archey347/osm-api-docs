@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/items"
+summary: Create a bookable item
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+      description: "3 to 64 characters."
+  example:
+    name: Field 1
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value:
+        id: 7700001
+  description: The new item.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

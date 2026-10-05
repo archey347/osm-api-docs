@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/access/
+action: getDetails
+summary: List users with access to a member
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberAccessResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          access:
+            - user_id: 2100001
+              fullname: Alex Parent
+              photo_url: null
+  description: Users who can see this member in the parent portal.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

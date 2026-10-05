@@ -1,0 +1,27 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/sharing/
+action: saveTemplate
+summary: Save the shared-event template
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    eventid:
+      type: string
+    mode:
+      type: string
+      description: "`notepad-private`, `notepad-public` or the detail tab being saved."
+    privateNotepad:
+      type: string
+    publicNotepad:
+      type: string
+response:
+  schema:
+    $ref: EventSharingTemplateSaved
+sources: [ osm-de353b59e43da8164ac0b179aadfacd1.js ]

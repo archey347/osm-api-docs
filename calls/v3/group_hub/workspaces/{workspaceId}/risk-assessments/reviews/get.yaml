@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/risk-assessments/reviews"
+summary: List risk assessment reviews across the workspace
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubRiskAssessmentReviews
+  examples:
+    default:
+      value:
+        - section_id: 45001
+          section_name: Cubs
+          section_type: cubs
+  description: Review status per section.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

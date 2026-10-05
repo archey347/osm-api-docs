@@ -1,0 +1,22 @@
+kind: v3-route
+method: POST
+path: "/v3/dashboard/whatsnew/like/{storyId}"
+summary: Toggle a like on a What's New story
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  storyId:
+    type: string
+    description: What's New story ID.
+response:
+  schema:
+    $ref: DashboardWhatsNewResult
+  examples:
+    default:
+      value:
+        number_likes: 3
+        action: added
+  description: Current like count and whether the call added or removed the like.
+sources: [ ext.dashboard.82a61c008183022fe2cd.js, ext.generic.d987496afe1a0330ff1a.js ]

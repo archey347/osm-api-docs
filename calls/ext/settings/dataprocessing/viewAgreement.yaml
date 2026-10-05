@@ -1,0 +1,23 @@
+kind: ext-action
+method: GET
+path: /ext/settings/dataprocessing/
+action: viewAgreement
+summary: View the data processing agreement
+description: "`viewAgreement` returns the agreement document, opened in a new window."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+  document:
+    type: string
+    description: Which document to view.
+response:
+  document: true
+  content_type: application/octet-stream
+  description: Agreement document, opened in a new window.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", area.group_hub.87ce6caf70ff9fb3d1d1.js ]

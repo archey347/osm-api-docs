@@ -1,0 +1,24 @@
+kind: ext-action
+method: POST
+path: /ext/members/nationalcensus/
+action: editAmount
+summary: Change a census invoice's amount
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    invoice_id:
+      type: string
+      description: "Every action except `complete`."
+    amount:
+      type: string
+  example:
+    invoice_id: "7100001"
+    amount: "12.50"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

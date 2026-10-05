@@ -1,0 +1,40 @@
+kind: ext-action
+method: GET
+path: /ext/customdata/
+action: getAvailableColumns
+summary: List columns that can still be added to a group
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID.
+  associated_id:
+    type: string
+    description: "Member ID, or `false` when none."
+  associated_type:
+    type: string
+    enum: [ member ]
+  associated_is_section:
+    type: string
+    description: "Section association flag; sent as `false` or the literal `null`."
+  group_id:
+    type: string
+    description: Custom data group to list unused columns for.
+  context:
+    type: string
+    enum: [ members ]
+response:
+  schema:
+    $ref: CustomDataAvailableColumns
+  envelope: true
+  examples:
+    getAvailableColumns:
+      summary: Columns that can still be added to the group
+      value:
+        items:
+          - column_id: 41
+            name: Swimming ability
+            disabled: false

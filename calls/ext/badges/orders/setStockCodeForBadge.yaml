@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/badges/orders/
+action: setStockCodeForBadge
+summary: Set badge stock code
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    stock_code:
+      type: string
+  example:
+    badge_id: "1001"
+    stock_code: BD-0001
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    ok:
+      summary: Saved
+      value:
+        status: true
+        error: null
+        data: [ ]
+  description: Result.
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

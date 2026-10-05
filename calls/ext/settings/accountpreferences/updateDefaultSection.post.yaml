@@ -1,0 +1,22 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateDefaultSection
+summary: Set the default section
+tags: [ Settings ]
+source:
+  request: inferred
+  response: unknown
+query:
+  section_id:
+    type: string
+  section:
+    type: string
+    description: Section type.
+response:
+  schema:
+    anyOf:
+      - $ref: SettingsAccountChangeResponse
+      - $ref: SettingsPreferencesResponse
+      - $ref: SettingsStatusResponse
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

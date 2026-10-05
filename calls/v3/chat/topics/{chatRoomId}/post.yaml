@@ -1,0 +1,43 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/{chatRoomId}"
+summary: Create a topic
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  chatRoomId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+    message:
+      type: string
+      required: true
+    section_id:
+      type: string
+    poll_options:
+      description: "JSON-encoded array of option strings, or `false` for no poll."
+    poll_multi_select:
+      type: boolean
+    uploads_guid:
+      type: string
+    member_id:
+      type: string
+  example:
+    title: Camp kit
+    message: "Who is bringing the stoves?"
+    section_id: "3100"
+    poll_options: false
+    poll_multi_select: false
+response:
+  schema:
+    $ref: ChatTopicCreateResponse
+  examples:
+    default:
+      value:
+        id: 7100002
+  description: "Created topic ID in `data.id`."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

@@ -1,0 +1,26 @@
+kind: v3-route
+method: POST
+path: "/v3/settings/retention/{sectionId}/{area}"
+summary: Set retention for a data area
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  area:
+    type: string
+    description: "Data area key, as in the `data` keys of the GET."
+body:
+  params:
+    years:
+      type: string
+      required: true
+  example:
+    years: "3"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  description: Response body is not read by the web app.
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

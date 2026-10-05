@@ -1,0 +1,39 @@
+kind: ext-action
+method: POST
+path: /ext/members/flexirecords/
+action: multiUpdate
+summary: Set one column for several members
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    extraid:
+      type: string
+    scouts:
+      type: string
+      description: JSON array of member IDs.
+    col:
+      type: string
+      description: "Column `field` to set."
+    value:
+      type: string
+  example:
+    scouts: "[3100001,3100002]"
+    value: "Yes"
+    col: f_1
+    extraid: "23001"
+response:
+  schema:
+    $ref: FlexiRecordWriteResult
+  examples:
+    multiUpdate:
+      summary: "`multiUpdate`: `error` is `false` on success"
+      value:
+        error: false
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

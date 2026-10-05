@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/attendance/columns/delete"
+summary: Delete an attendance column
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      required: true
+      description: "Column key (`f_<id>`)."
+  example:
+    field: f_2
+response:
+  schema:
+    $ref: EventStructureResponse
+  examples:
+    default:
+      value: [ ]
+  description: "Updated column structure in `data`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

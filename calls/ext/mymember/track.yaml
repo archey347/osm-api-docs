@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/
+action: track
+summary: Record a portal page view
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+    section_id:
+      type: string
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`sendActivationCode`, `removeMember`, `register`, `resendGuid`, `track`"
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

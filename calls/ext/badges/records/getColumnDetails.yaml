@@ -1,0 +1,27 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getColumnDetails
+summary: 'Get a badge column''s details'
+description: "`getColumnDetails` — returns one requirement column's label, description and points."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  column_id:
+    type: string
+    description: Requirement column ID.
+response:
+  schema:
+    $ref: BadgeColumnDetails
+  examples:
+    columnDetails:
+      summary: getColumnDetails
+      value:
+        label: Work with others
+        description: Take part in a group task.
+        points: "0"
+        field_type: text
+        custom_columns: "0"
+sources: [ area.badges_editing.47f136c28950473153c4.js ]

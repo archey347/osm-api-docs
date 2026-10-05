@@ -1,0 +1,23 @@
+type: object
+properties:
+  title:
+    type: string
+  read_only:
+    type: boolean
+  in_use_elsewhere:
+    type: boolean
+  shared:
+    type: boolean
+    description: "Set by `deleteReport`."
+  dashboard_id: { }
+  dashboard_name:
+    type: string
+  is_new_dashboard:
+    type: boolean
+  job_info:
+    type: object
+    description: Background job to track while the report builds.
+    additionalProperties: true
+  report:
+    $ref: ReportItem
+additionalProperties: true

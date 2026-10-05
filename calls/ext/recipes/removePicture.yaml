@@ -1,0 +1,18 @@
+kind: ext-action
+method: GET
+path: /ext/recipes/
+action: removePicture
+summary: Remove a recipe's picture
+notes: "`removePicture` changes data despite being a GET."
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+query:
+  recipe_id:
+    type: string
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/events/
+action: updatePackedKit
+summary: 'Update a member''s packed kit for an event'
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    event_id:
+      type: string
+      required: true
+    item_id:
+      type: string
+      description: Kit list item ID.
+    packed:
+      type: string
+      description: "`1` or `0`."
+  example:
+    member_id: "3100001"
+    section_id: "45001"
+    event_id: "8100001"
+    item_id: "8200001"
+    packed: "1"
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    ok:
+      summary: "`updateAttendanceDetails`, `updatePackedKit`, or `updateAttendance` with a place"
+      value:
+        status: true
+        error: null
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

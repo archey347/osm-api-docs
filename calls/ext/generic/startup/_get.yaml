@@ -1,0 +1,18 @@
+path: /ext/generic/startup/
+method: GET
+summary: Get startup data
+description: |-
+  Returns startup and session data depending on the `action` parameter.
+
+  **`action=getData` has been permanently removed** — this action was removed without
+  notice. HTTP 410 Gone is the only response you will ever receive for this action.
+  It will not be reinstated. Migrate to `action=getDataPayload`.
+
+  **`action=getDataPayload`** returns a JSON payload containing CDN resource URLs,
+  user globals, section roles and permissions, user preferences, terms, and session
+  metadata needed to bootstrap the application after login.
+
+  **`action=getConfigPayload`** returns global, non-user-specific site configuration:
+  section type definitions, patrol role labels, beta features, upgrade pricing, feature
+  flags, recipe metadata, and form configurations.
+response: "JSON startup payload (schema varies by `action`; see examples)."

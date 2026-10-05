@@ -1,0 +1,23 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          data:
+            description: Custom data groups for the member.
+          read_only_columns:
+            type: array
+            items: { }
+          has_confirmation:
+            type: boolean
+          confirmation_requested:
+            type: boolean
+          confirmation_type: { }
+          confirmation_requires_data:
+            type: boolean
+          header:
+            description: Message from the leaders shown above the form.
+          group_identifier_for_young_person_access: { }
+        additionalProperties: true

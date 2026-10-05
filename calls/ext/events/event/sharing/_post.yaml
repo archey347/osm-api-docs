@@ -1,0 +1,9 @@
+path: /ext/events/event/sharing/
+method: POST
+summary: Shared event actions
+description: |-
+  Share an event with other sections and respond to shares. Failures return
+  `{error: "message"}` (a string) rather than the `status`/`error` envelope.
+  Most successful responses carry `sectionConfig` (or `config` for `accept`/`reject`),
+  the refreshed section config the app merges into its session data.
+response: Shared event response.

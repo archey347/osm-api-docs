@@ -1,0 +1,36 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/sharing/
+action: accept
+summary: Accept a shared event invite
+description: "Most successful responses carry `sectionConfig` (or `config` for `accept`/`reject`), the refreshed section config the app merges into its session data."
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      description: Section ID.
+    eventid:
+      type: string
+    emailable:
+      type: string
+      enum: [ "0", "1" ]
+    personal_details_downloadable:
+      type: string
+      enum: [ "0", "1" ]
+  example:
+    eventid: "9600001"
+    sectionid: "45002"
+    emailable: "1"
+    personal_details_downloadable: "0"
+response:
+  schema:
+    $ref: EventSharingResult
+  examples:
+    accept:
+      value:
+        config: { }
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

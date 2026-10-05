@@ -1,0 +1,8 @@
+type: object
+properties:
+  help:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

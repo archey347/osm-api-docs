@@ -1,0 +1,36 @@
+kind: v3-route
+method: GET
+path: "/v3/ai/generators/trustees/{sectionId}"
+summary: Get activity summary for AI trustee/AGM report
+description: The web app turns the response into the prompt for its report generator.
+tags: [ AI ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  start_date:
+    type: string
+    required: true
+    description: "`YYYY-MM-DD`."
+  guid:
+    type: string
+    required: true
+    description: Client-generated ID for the report conversation.
+response:
+  schema:
+    $ref: AiTrusteeSummaryResponse
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          meetings:
+            - title: Campfire night
+          events:
+            - title: Summer camp
+          chief_scout_awards: 2
+  description: Past meetings and events.
+sources: [ area.ai.e9c917064961a3737939.js ]

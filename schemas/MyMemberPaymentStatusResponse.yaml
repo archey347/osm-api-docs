@@ -1,0 +1,14 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          status:
+            type: string
+            description: "`added` once the direct debit is set up."
+          gift_aid:
+            type: boolean
+            description: Whether the Gift Aid dialog should follow.
+        additionalProperties: true

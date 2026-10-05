@@ -1,0 +1,23 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/organisations"
+summary: List customer types
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+response:
+  schema:
+    $ref: CampsiteOrganisationList
+  examples:
+    default:
+      value:
+        - id: 7200001
+          name: Scout groups
+          description: Registered groups
+  description: Customer types.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

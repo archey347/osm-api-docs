@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: listNotifications
+summary: List notifications
+description: "`listNotifications` and `getUserNotificationsList` are read-only."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+    report_id:
+      type: string
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "910001"
+response:
+  schema:
+    $ref: ReportNotificationsResponseData
+  envelope: true
+  examples:
+    listNotifications:
+      summary: "Notification rules on the report; `meta.roles` are the recipient roles on offer"
+      value:
+        - id: "920001"
+          name: Consent reminder
+          schedule: once
+sources: [ area.reports.e212ae5ee9d683be7967.js ]

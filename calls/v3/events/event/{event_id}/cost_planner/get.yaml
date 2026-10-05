@@ -1,0 +1,39 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/cost_planner"
+summary: Get the event cost planner
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  schema:
+    $ref: EventCostPlanner
+  examples:
+    default:
+      value:
+        entries:
+          - id: 600001
+            title: Food
+            category: food
+            charging_method: per_person
+            unit_cost: "4.50"
+            block_size: "12"
+            participants_mode: all
+            participants_count: "0"
+            sort_order: 0
+        settings:
+          leader_policy:
+            mode: nothing
+            value: 0
+          fixed_fee: "0"
+          uplift_percent: "0"
+          deduction: "0"
+        nights: 7
+        days: 8
+        section_member_count: 18
+  description: Cost planner.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

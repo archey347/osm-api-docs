@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/elearning/viewer/
+action: completeModule
+summary: Complete a module run
+description: "`startModule`, `checkStep` and `completeModule` change data."
+tags: [ E-Learning ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    module_id:
+      type: string
+      required: true
+    run_id:
+      type: string
+      description: Sent once a run has started.
+  example:
+    section_id: "45001"
+    module_id: "7100001"
+    run_id: "7400001"
+response:
+  schema:
+    anyOf:
+      - $ref: ELearningModuleResponse
+      - $ref: ELearningStartResponse
+      - $ref: ELearningCheckStepResponse
+sources: [ area.elearning.78729e36e08410a6eaec.js ]

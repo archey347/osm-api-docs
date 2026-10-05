@@ -1,0 +1,39 @@
+kind: ext-action
+method: GET
+path: /ext/badges/stock/
+action: getBadgeStock
+summary: Get badge stock
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+  term_id:
+    type: string
+  noShared:
+    type: string
+    enum: [ "y" ]
+  seeIfShared:
+    type: string
+    enum: [ "y" ]
+response:
+  schema:
+    $ref: BadgeStockResponse
+  examples:
+    getBadgeStock:
+      summary: Stock
+      value:
+        items:
+          - badge_id: 1001
+            level: 1
+            name: Teamwork
+            group_name: ""
+            stock: 4
+            desired: 10
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

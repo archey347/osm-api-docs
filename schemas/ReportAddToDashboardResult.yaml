@@ -1,0 +1,8 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      dashboard_id: { }
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,9 @@
+path: /ext/finances/nzg_shop/
+method: POST
+summary: Edit NZG shop pick list items
+response: Result.
+response_examples:
+  default:
+    value:
+      status: true
+      error: null

@@ -1,0 +1,38 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/attendance/updateMany"
+summary: Update a field for several members
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      required: true
+      description: "`attending` or a custom column key."
+    value:
+      type: string
+      required: true
+      description: "Setting `attending` to `invited` sends invitations."
+    member_ids:
+      type: string
+      required: true
+      description: Comma-separated member IDs.
+  example:
+    field: attending
+    value: invited
+    member_ids: "3100001,3100003"
+response:
+  schema:
+    $ref: EventPayloadData
+  examples:
+    default:
+      value:
+        warnings: [ ]
+  description: "Updated; `data.warnings` lists members that could not be fully updated."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

@@ -1,0 +1,7 @@
+path: /ext/finances/nzg_shop/
+method: GET
+summary: NZG shop pick list and orders
+description: |-
+  `deleteFile` deletes a draft order despite being a GET. `generateOrders` starts
+  a background job. `downloadOrder` returns a document.
+response: "Pick list, order history, job info, or (`downloadOrder`) a document."

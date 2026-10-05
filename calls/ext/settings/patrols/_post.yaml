@@ -1,0 +1,5 @@
+path: /ext/settings/patrols/
+method: POST
+summary: List, add, rename or delete patrols
+description: "`get` is also sent as a GET."
+response: "Patrol list for `get`; the other actions' bodies are only checked for `error.message`."

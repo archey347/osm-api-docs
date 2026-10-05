@@ -1,0 +1,35 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: moveBadge
+summary: Move a badge
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    badge_id: { }
+    badge_version: { }
+    section_id: { }
+    type_id:
+      description: "Badge type ID (see `getAvailableBadges`)."
+    group:
+      description: "Badge group (`moveBadge`)."
+  example:
+    badge_id: "1001"
+    badge_version: "0"
+    section_id: "45001"
+    type_id: "1"
+    group: Outdoors
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    status:
+      summary: deleteBadge, moveBadge, editColumnPermissions
+      value:
+        status: true
+        error: null
+        data: [ ]
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

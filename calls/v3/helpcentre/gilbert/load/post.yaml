@@ -1,0 +1,36 @@
+kind: v3-route
+method: POST
+path: /v3/helpcentre/gilbert/load
+summary: Load a Gilbert conversation for a record
+description: "Used on meeting pages to reload the conversation tied to an `associated_id`."
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    guid:
+      type: string
+      required: true
+    mode:
+      type: string
+      required: true
+    associated_id:
+      type: string
+      required: true
+  example:
+    guid: "00000000-0000-0000-0000-000000000000"
+    mode: leader
+    associated_id: "9500001"
+response:
+  schema:
+    $ref: HelpCentreGilbertState
+  examples:
+    default:
+      value:
+        status: completed
+        questions: [ ]
+        answers: [ ]
+        runs: [ ]
+  description: "Conversation state, as for `GET /v3/helpcentre/gilbert`."
+sources: [ ext.helpcentre.b7a1deb267cad56138a2.js ]

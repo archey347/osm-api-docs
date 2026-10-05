@@ -1,0 +1,43 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/onlinepayments/schemes/{scheduleId}/recurring"
+summary: Turn recurring payments on or off for a scheme
+tags: [ Online Payments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  scheduleId:
+    type: string
+    description: Payment schedule ID.
+body:
+  params:
+    enabled:
+      type: integer
+      enum: [ 0, 1 ]
+      required: true
+    day_of_month:
+      type: integer
+    amount:
+      type: string
+      description: Pounds with two decimals.
+    horizon_months:
+      type: integer
+    months:
+      type: string
+      description: JSON-encoded object mapping month position (1-based) to the payment name.
+  example:
+    enabled: 1
+    day_of_month: 1
+    amount: "5.00"
+    horizon_months: 6
+    months: "{\"1\":\"October subs\"}"
+response:
+  schema:
+    $ref: AccountingResponse
+  examples:
+    default:
+      value:
+        created: 6
+  description: "`data.created` is the number of payments created when enabling."
+sources: [ ext.finances.9f318350fda4d977c688.js ]

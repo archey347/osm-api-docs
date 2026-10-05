@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/giftaid/charity-name"
+summary: Set the Gift Aid charity name
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    charity:
+      type: string
+      required: true
+      description: Up to 128 characters.
+  example:
+    charity: "1st Riverside Scout Group"
+response:
+  schema:
+    $ref: GroupHubUpdatedResult
+  examples:
+    default:
+      value:
+        updated: 2
+  description: Number of sections updated.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

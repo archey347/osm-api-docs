@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/emailbolton/
+action: getEmailDetails
+summary: Get one sent email
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+  email_id:
+    type: string
+response:
+  schema:
+    $ref: MyMemberEmailDetailsResponse
+  examples:
+    getEmailDetails:
+      value:
+        status: true
+        error: null
+        data:
+          subject: Camp kit list
+          sent_time: "2025-05-01 18:30:00"
+          from: Alex Leader
+          from_email: "leader@example.com"
+          content: "<p>Please bring a torch.</p>"
+          has_attachments: false
+          to:
+            - to: "alex.parent@example.com"
+              status: true
+              time: "2025-05-01 18:30:05"
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

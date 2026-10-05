@@ -1,0 +1,66 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          gocardless_api_enabled:
+            type: boolean
+            description: "Whether online payment is available; named for GoCardless but also true for Stripe schemes."
+          currency:
+            type: string
+          scheme:
+            type: object
+            properties:
+              scheme_id: { }
+              name:
+                type: string
+              description:
+                type: string
+              gateway:
+                type: string
+                description: "`gocardless` or `stripe`."
+            additionalProperties: true
+          member:
+            type: object
+            properties:
+              direct_debit:
+                type: string
+                description: "`active` when a direct debit is set up."
+            additionalProperties: true
+          payment_methods:
+            type: array
+            description: Saved cards or bank accounts.
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+              additionalProperties: true
+          payments:
+            type: array
+            items:
+              type: object
+              properties:
+                payment_id: { }
+                name:
+                  type: string
+                description:
+                  type: string
+                amount: { }
+                status:
+                  type: string
+                  description: "Includes `overdue`, `initiated`, `submitted`, `paid`, `received` and `paid-manually`."
+                details:
+                  type: string
+                last_updated:
+                  type: string
+                due_date:
+                  type: string
+                pay_now:
+                  description: "When not `null` or `false` (and `pay_days` is not `0`), the payment can be paid now."
+                pay_days: { }
+                pay_on: { }
+              additionalProperties: true
+        additionalProperties: true

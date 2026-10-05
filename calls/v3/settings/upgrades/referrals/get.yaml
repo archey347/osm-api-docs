@@ -1,0 +1,20 @@
+kind: v3-route
+method: GET
+path: /v3/settings/upgrades/referrals
+summary: Get referral programme details
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        code: EXAMPLE
+        registrations: 0
+        pending: 0
+        gift_card_codes: [ ]
+  description: Response.
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

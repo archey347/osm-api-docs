@@ -1,0 +1,7 @@
+type: object
+properties:
+  needs_name:
+    type: boolean
+    description: "Set when no user exists for the email; repeat the request with `name`."
+  user_id: { }
+additionalProperties: true

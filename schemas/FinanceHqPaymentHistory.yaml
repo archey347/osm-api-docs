@@ -1,0 +1,31 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    description: "Error message or `{ message }` object; null on success."
+  data:
+    type: object
+    properties:
+      current:
+        type: object
+        description: Absent when no request exists for the member.
+        properties:
+          status:
+            type: string
+            description: "e.g. `not paid`, `partially paid`, `paid`, `cancelled`."
+          total_amount:
+            type: string
+          paid_amount:
+            type: string
+          invoice_id:
+            type: string
+        additionalProperties: true
+    additionalProperties: true
+  items:
+    type: array
+    description: "History rows (`payment_name`, `updated_timestamp`, `firstname`, `history_type`, `data`)."
+    items:
+      type: object
+      additionalProperties: true
+additionalProperties: true

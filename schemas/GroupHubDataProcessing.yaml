@@ -1,0 +1,21 @@
+type: object
+properties:
+  sections:
+    type: array
+    items:
+      type: object
+      properties:
+        section_id: { }
+        name: { }
+        can_sign:
+          type: boolean
+        signed:
+          type: array
+          items:
+            type: object
+            properties:
+              signed_by: { }
+            additionalProperties: true
+        agreement: { }
+      additionalProperties: true
+additionalProperties: true

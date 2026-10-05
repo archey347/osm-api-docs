@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: "/v3/finances/accounting/expense_cardholders/{cardholderId}/categories"
+summary: Set allowed spending categories
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  cardholderId:
+    type: string
+    description: Expense cardholder ID.
+body:
+  params:
+    categories:
+      type: string
+      required: true
+      description: JSON-encoded array of category IDs.
+  example:
+    categories: "[3100041]"
+response:
+  schema:
+    $ref: AccountingResponse
+  description: "Success when `status` is true."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

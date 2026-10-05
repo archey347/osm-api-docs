@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/finances/onlinepayments/
+action: saveScheduleDetail
+summary: Save a scheme detail
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    schedule_id:
+      type: string
+    field:
+      type: string
+      description: "One of `name`, `description`, `account_id`, `default_on`, `pay_now`, `gift_aid`."
+    value:
+      type: string
+      description: "New field value for `saveScheduleDetail`, or the new status for `updatePaymentStatus` (e.g. `Paid manually`, `Payment not required`)."
+  example:
+    section_id: "45001"
+    schedule_id: "9800001"
+    field: name
+    value: Termly subs
+response:
+  schema:
+    $ref: FinanceStatusResponse
+sources: [ ext.finances.9f318350fda4d977c688.js ]

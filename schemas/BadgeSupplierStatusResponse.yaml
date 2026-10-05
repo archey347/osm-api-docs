@@ -1,0 +1,10 @@
+type: object
+properties:
+  supplier:
+    type: object
+    properties:
+      id: { }
+      status:
+        type: string
+    additionalProperties: true
+additionalProperties: true

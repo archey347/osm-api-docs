@@ -1,0 +1,19 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: searchByMyLikedActivities
+summary: List the user's liked activities
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    description: "Section type; limits results to activities suitable for it."
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    $ref: ProgrammeActivitySearchResults

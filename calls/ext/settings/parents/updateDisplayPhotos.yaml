@@ -1,0 +1,20 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/
+action: updateDisplayPhotos
+summary: Update parent portal photo display
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    photos:
+      type: string
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

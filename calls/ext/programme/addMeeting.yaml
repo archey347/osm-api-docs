@@ -1,0 +1,51 @@
+kind: ext-action
+method: POST
+path: /ext/programme/
+action: addMeeting
+summary: Add a meeting
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+    title:
+      type: string
+    start:
+      type: string
+      description: "First meeting date, `YYYY-MM-DD`."
+    starttime:
+      type: string
+      description: "`HH:MM`."
+    endtime:
+      type: string
+      description: "`HH:MM`."
+    repeat:
+      type: string
+      description: "Days between repeats (the web app offers 1, 7, 14, 21, 28); omitted for a single meeting."
+    end:
+      type: string
+      description: "Last repeat date, `YYYY-MM-DD`."
+    request_guid:
+      type: string
+      description: Client-generated GUID, regenerated after a failed attempt.
+  example:
+    request_guid: "00000000-0000-0000-0000-000000000000"
+    sectionid: "45001"
+    start: "2024-11-08"
+    starttime: "18:00"
+    endtime: "19:30"
+    title: Camp Skills Night
+    repeat: "7"
+    end: "2024-11-29"
+response:
+  schema:
+    $ref: ProgrammeAddMeetingResult
+  examples:
+    addMeeting:
+      summary: "`addMeeting`: ID of the last meeting created, or -1 on failure"
+      value:
+        lastmeetingadded: 9500002
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

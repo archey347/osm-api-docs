@@ -1,0 +1,45 @@
+kind: ext-action
+method: POST
+path: /ext/members/sms/
+action: sendText
+summary: Send a text to a section's members
+description: "`sendText` sends to members of one section; `sendGroupSMS` sends to members of several sections."
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+body:
+  params:
+    type:
+      type: string
+      description: Sent empty.
+    scouts:
+      type: string
+      description: Comma-separated member IDs.
+    contactGroups:
+      type: string
+      description: JSON array of contact group keys.
+    msg:
+      type: string
+    source:
+      type: string
+      description: "Sender name or number; `false` for no replies."
+  example:
+    msg: Camp kit list is on the website.
+    scouts: "3100001,3100002"
+    source: Cubs
+    type: ""
+    contactGroups: "[\"1\",\"2\"]"
+response:
+  schema:
+    $ref: MemberSmsResult
+  examples:
+    sendText:
+      summary: "`sendText`, `sendGroupSMS`. Failure sets `msg` (and, for groups, `errors`) instead of `result`."
+      value:
+        result: true
+        msg: "2 texts sent."
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

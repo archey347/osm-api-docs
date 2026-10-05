@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: /v3/users/push_notifications/subscriptions
+summary: Save notification subscriptions
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    subscriptions:
+      type: string
+      required: true
+      description: JSON object of topic name to value.
+    section_id:
+      type: string
+      required: true
+  example:
+    subscriptions: "{\"example_topic\":true}"
+    section_id: "45001"
+response:
+  schema:
+    $ref: UserStatusResponseData
+  description: Result.
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js ]

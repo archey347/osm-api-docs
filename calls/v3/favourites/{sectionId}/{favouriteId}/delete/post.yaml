@@ -1,0 +1,15 @@
+kind: v3-route
+method: POST
+path: "/v3/favourites/{sectionId}/{favouriteId}/delete"
+summary: Unpin an item
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  favouriteId:
+    type: string
+response:
+  description: Success. The web app ignores the body and re-lists.

@@ -1,0 +1,24 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/national/
+action: getSectionType
+summary: 'Get a section''s type'
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `getSectionType` takes the section being looked up; `listGroups` and `listSections` take the caller's own section; `listRolesForSection` takes the section whose roles to list."
+  _section_id:
+    type: string
+    description: The caller's own section ID.
+response:
+  schema:
+    $ref: DashboardNationalSectionType
+  examples:
+    getSectionType:
+      value:
+        type: cubs
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

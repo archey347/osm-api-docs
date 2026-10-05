@@ -1,0 +1,22 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/questions/question_group/{questionGroupId}"
+summary: List questions in a group
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionGroupId:
+    type: string
+    description: Question group ID.
+response:
+  schema:
+    $ref: CampsiteQuestionList
+  examples:
+    default:
+      value:
+        - id: 7910001
+          question: "Any allergies?"
+  description: Questions.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

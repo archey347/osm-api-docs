@@ -1,0 +1,29 @@
+kind: ext-action
+method: GET
+path: /ext/settings/emails/
+action: getDeliveryReport
+summary: List sent emails for the delivery report
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  generic_date:
+    type: string
+  include_scheduled:
+    type: string
+response:
+  schema:
+    type: array
+    items:
+      type: object
+      additionalProperties: true
+  examples:
+    getDeliveryReport:
+      summary: "Delivery report; the web app drops a leading row of type `all`"
+      value:
+        - type: all
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

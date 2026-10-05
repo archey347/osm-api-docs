@@ -1,0 +1,7 @@
+type: object
+properties:
+  income: { }
+  expense: { }
+  bank_accounts: { }
+  summary: { }
+additionalProperties: true

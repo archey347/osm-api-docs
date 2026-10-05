@@ -1,0 +1,10 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  facilityid:
+    description: ID of the created or updated facility.
+  remaining_changes:
+    type: integer
+    description: Present when the user is rate limited on facility edits.
+additionalProperties: true

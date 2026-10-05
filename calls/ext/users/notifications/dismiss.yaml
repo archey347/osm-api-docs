@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/users/notifications/
+action: dismiss
+summary: Dismiss a notification
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    item:
+      type: string
+      required: true
+      description: "The notification's `dismiss` key."
+    expires:
+      type: string
+      description: "Hide-until value from the notification's `dismiss_expires` or the clicked action's `dismiss`."
+    reload:
+      type: string
+  example:
+    section_id: "45001"
+    item: example_notification
+    expires: "7"
+response:
+  schema:
+    $ref: UserStatusResponseData
+  envelope: true
+  examples:
+    default:
+      value:
+        hidden: true
+  description: "`data.hidden` is `true` when the notification was hidden."
+sources: [ ext.generic.d987496afe1a0330ff1a.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

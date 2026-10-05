@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/badges/stock/
+action: acceptSharedStock
+summary: Accept shared stock
+description: "`acceptSharedStock`, `rejectSharedStock` and `shareStock` return the section's refreshed configuration in `all_configs`."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id: { }
+    their_section_id:
+      description: Other section in the share.
+  example:
+    section_id: "45001"
+    their_section_id: "45002"
+response:
+  schema:
+    $ref: BadgeShareConfigResponse
+  examples:
+    shareConfig:
+      summary: acceptSharedStock, rejectSharedStock, shareStock
+      value:
+        all_configs:
+          "45001":
+            "45001": { }
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

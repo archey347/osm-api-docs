@@ -1,0 +1,31 @@
+kind: ext-action
+method: GET
+path: /ext/members/contact/
+action: getParentChanges
+summary: List pending parent changes for a section
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: Section ID (alternate naming).
+response:
+  schema:
+    $ref: MemberParentChanges
+  examples:
+    parentChanges:
+      summary: Parent-portal changes awaiting review
+      value:
+        data:
+          - member_id: "3100001"
+            firstname: Jamie
+            lastname: River
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            changes:
+              "Essential Information":
+                - columnname: Phone 1
+                  originalvalue: "07700900123"
+                  newvalue: "07700900456"
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

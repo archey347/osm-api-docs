@@ -1,0 +1,40 @@
+kind: ext-action
+method: POST
+path: /ext/mymember/programme/
+action: signUpToRota
+summary: Sign up to help on a meeting rota
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    member_id:
+      type: string
+      required: true
+    meeting_id:
+      type: string
+      required: true
+      description: "The meeting's `eveningid`."
+    parent_name:
+      type: string
+      required: true
+      description: At most 50 characters.
+  example:
+    section_id: "45001"
+    member_id: "3100001"
+    meeting_id: "9500001"
+    parent_name: Alex Parent
+response:
+  schema:
+    $ref: MyMemberEnvelope
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+  description: Signed up.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

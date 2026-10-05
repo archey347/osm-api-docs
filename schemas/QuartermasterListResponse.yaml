@@ -1,0 +1,34 @@
+type: object
+properties:
+  list:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      sectionid:
+        description: "Owning section; differs from the current section for shared lists."
+      read_only:
+        type: boolean
+    additionalProperties: true
+  columns:
+    type: array
+    items:
+      type: object
+      properties:
+        columnid:
+          type: string
+        columnname:
+          type: string
+        columntype:
+          type: string
+          description: "The web app special-cases `date`, `float`, `currency` and `integer`."
+      additionalProperties: true
+  rows:
+    type: object
+    description: "Keyed by item row identifier; each row maps column ID to value."
+    additionalProperties:
+      type: object
+      additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,16 @@
+type: object
+properties:
+  structure:
+    type: array
+    description: One column per payment request.
+    items:
+      type: object
+      properties:
+        request_id:
+          type: string
+        payment_name:
+          type: string
+        section_id:
+          type: string
+      additionalProperties: true
+additionalProperties: true

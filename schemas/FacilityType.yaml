@@ -1,0 +1,10 @@
+type: object
+properties:
+  typeid:
+    type: string
+  categoryid:
+    type: string
+    description: "`1` campsite, `2` local facility, `3` activity."
+  category:
+    type: string
+additionalProperties: true

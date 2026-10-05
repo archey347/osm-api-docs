@@ -1,0 +1,82 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getAvailableBadges
+summary: List available badges
+description: "`getAvailableBadges` — returns the list of badges available for a section and type."
+tags: [ Badges ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+    description: "Section ID (used with `getAvailableBadges`)."
+  sectionid:
+    type: string
+    description: "Section ID (alternate naming, used with some actions). `0` with `getAvailableBadges` and `context=national`."
+  termid:
+    type: string
+    description: "Term ID (alternate naming, used with `getAvailableBadges`)."
+  type_id:
+    type: string
+    enum: [ "-1", "1", "2", "3", "4" ]
+    description: Badge type ID. 1 = Challenge, 2 = Activity, 3 = Staged, 4 = Core, -1 = all types.
+  payload:
+    type: string
+    enum: [ "1" ]
+    description: "Include full payload (observed value `1`). Without it `getAvailableBadges` returns `items` instead of `data`."
+  context:
+    type: string
+    enum: [ none, self, national ]
+    description: "Context (observed `none`, `self`, `national`)."
+  member_id:
+    type: string
+    description: "Member ID filter (observed value `0` for all members)."
+  mode:
+    type: string
+    enum: [ verbose ]
+    description: "Observed `verbose` with `getAvailableBadges`."
+  addGroupToName:
+    type: string
+    enum: [ "y" ]
+    description: Append the badge group to the badge name.
+  asNumericArray:
+    type: string
+    enum: [ "y" ]
+    description: "Return `items` as an array instead of an object."
+  liveOnly:
+    type: string
+    enum: [ "y" ]
+    description: Exclude draft badges.
+  no_read_only:
+    type: string
+    enum: [ "y" ]
+    description: Exclude read-only badges.
+response:
+  schema:
+    $ref: BadgeRecordsResponse
+  envelope: true
+  examples:
+    availableBadges:
+      summary: getAvailableBadges with payload=1
+      value:
+        - badge_id: 1001
+          badge_version: 0
+          name: Teamwork
+          picture: badges/teamwork.png
+          type_id: 1
+          config: "{}"
+          has_stock: false
+sources:
+  - "21.3e07bd5db1c55da1f0d3.js"
+  - area.elearning.78729e36e08410a6eaec.js
+  - area.national.4e0a010c70498ce7f9fb.js
+  - ext.badges.6a63e40102b2845e63ab.js
+  - ext.programme.8d866e8ea75c304133fc.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

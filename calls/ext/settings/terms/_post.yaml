@@ -1,0 +1,5 @@
+path: /ext/settings/terms/
+method: POST
+summary: Add, edit or delete a term
+description: "`addTerm` with a `term_id` edits the term; `0` creates one."
+response: Response.

@@ -1,0 +1,15 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/expense_cards/section/{sectionId}/downloadCharges"
+summary: Download expense card fees
+tags: [ Expense Cards ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+    description: Section ID.
+response:
+  description: "Document download (opened in a browser tab); format not shown by the web app code."
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

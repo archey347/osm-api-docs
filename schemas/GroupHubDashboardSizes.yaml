@@ -1,0 +1,15 @@
+type: object
+properties:
+  section_ids:
+    type: array
+    items: { }
+  sizes:
+    type: object
+    additionalProperties: true
+  ages:
+    type: object
+    additionalProperties: true
+  size_predictor:
+    type: object
+    additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,12 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        value:
+          description: Meeting date.
+      additionalProperties: true
+additionalProperties: true

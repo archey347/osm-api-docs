@@ -1,0 +1,36 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/bookings/summary"
+summary: Download bookings summary
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+query:
+  start_date:
+    type: string
+    required: true
+  end_date:
+    type: string
+    required: true
+  include_fees:
+    type: string
+    enum: [ "true" ]
+    description: Include fees.
+  customer_details:
+    type: string
+    enum: [ "true" ]
+    description: Include customer details.
+  status:
+    type: string
+    enum: [ requires-deposit, outstanding-balance ]
+    description: "Only bookings with this status; omitted for all."
+response:
+  document: true
+  content_type: application/pdf
+  description: Printable summary (opened in a new window).
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

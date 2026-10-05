@@ -1,0 +1,20 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          name:
+            type: string
+          address1:
+            type: string
+          address2:
+            type: string
+          address3:
+            type: string
+          address4:
+            type: string
+          postcode:
+            type: string
+        additionalProperties: true

@@ -1,0 +1,21 @@
+kind: v3-route
+method: GET
+path: "/v3/group_hub/workspaces/{workspaceId}/section-settings/email-templates"
+summary: List customised email templates
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+response:
+  schema:
+    $ref: GroupHubEmailTemplates
+  examples:
+    default:
+      value:
+        customised: [ email-payments ]
+  description: Keys of templates that have been customised.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

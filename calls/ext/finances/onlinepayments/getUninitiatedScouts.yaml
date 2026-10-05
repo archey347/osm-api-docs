@@ -1,0 +1,33 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: getUninitiatedScouts
+summary: List members without an initiated payment
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  termid:
+    type: string
+  schemeid:
+    type: string
+response:
+  schema:
+    $ref: FinanceOnlinePaymentUninitiated
+  examples:
+    getUninitiatedScouts:
+      summary: getUninitiatedScouts
+      value:
+        items:
+          - scoutid: "3100002"
+            firstname: Jo
+            lastname: Scout
+        payments:
+          - paymentid: "9820001"
+            archived: "0"
+            date: "2024-10-01"
+sources: [ ext.finances.9f318350fda4d977c688.js ]

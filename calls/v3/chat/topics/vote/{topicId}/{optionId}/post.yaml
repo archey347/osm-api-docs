@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/topics/vote/{topicId}/{optionId}"
+summary: Toggle a vote on a poll option
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  topicId:
+    type: string
+  optionId:
+    type: string
+body:
+  schema:
+    type: object
+    description: "Optional extra params such as `member_id`."
+    additionalProperties: true
+response:
+  schema:
+    $ref: ChatPollResponse
+  examples:
+    default:
+      value:
+        poll_options:
+          - id: 8100001
+            title: "Yes"
+            engagements:
+              - user_id: 3100001
+  description: Updated poll options.
+sources: [ area.chat.6b506d390b35ea85d510.js ]

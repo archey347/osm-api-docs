@@ -1,0 +1,34 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: savePriceForIngredient
+summary: Save a price for an ingredient
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    description:
+      type: string
+    ingredient_id:
+      type: string
+    pack_size:
+      type: string
+    price:
+      type: string
+      description: "Per unit for `addIngredient`; `-1` clears the price in `savePriceForIngredient`."
+    currency:
+      type: string
+      description: Currency shortcode.
+  example:
+    ingredient_id: "7710001"
+    price: "2"
+    pack_size: "4"
+    description: "4 pack"
+    currency: GBP
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

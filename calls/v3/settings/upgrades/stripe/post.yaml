@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: /v3/settings/upgrades/stripe
+summary: Pay with a card
+description: "`data.prompt_for_3ds` means the client must confirm the payment intent with Stripe."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  _bypass_service_worker:
+    type: string
+    description: "Observed `1`."
+body:
+  params:
+    payment_method:
+      type: string
+      description: Stripe payment method ID.
+    details:
+      type: string
+  example:
+    payment_method: pm_example
+    details: example
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        success: true
+        all_section_configs: { }
+  description: Response.
+sources: [ "899.b65bceb407b68f881505.js" ]

@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/settings/upgrades/
+action: getUpgradeHistory
+summary: List payment history
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+response:
+  schema:
+    $ref: SettingsUpgradeHistory
+  examples:
+    getUpgradeHistory:
+      summary: "Payments; columns include `date`, `paid_by` and `amount`"
+      value:
+        data:
+          - id: "9500001"
+            date: "2025-01-01"
+            paid_by: Alex Scout
+            amount: "£1.00"
+sources: [ area.settings_upgrades.17d3298d7edacc309869.js ]

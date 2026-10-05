@@ -1,0 +1,17 @@
+type: object
+properties:
+  error: { }
+  items:
+    type: array
+    items:
+      type: object
+      properties:
+        group_id: { }
+        groupname: { }
+        section_id: { }
+        sectionname: { }
+      additionalProperties: true
+  roles:
+    type: array
+    items: { }
+additionalProperties: true

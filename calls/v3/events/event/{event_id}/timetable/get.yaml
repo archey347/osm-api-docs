@@ -1,0 +1,36 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/timetable"
+summary: Get the event timetable
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+query:
+  shared:
+    type: string
+    enum: [ "true" ]
+    description: Read the shared (template) event's timetable.
+response:
+  schema:
+    $ref: EventTimetable
+  examples:
+    default:
+      value:
+        start_date: "2025-07-20"
+        start_time: "09:00:00"
+        end_date: "2025-07-27"
+        end_time: "17:00:00"
+        entries:
+          - id: 620001
+            day: 0
+            start_time: "10:00:00"
+            duration: 3600
+            colour: "673ab7"
+            title: Tent pitching
+            description: ""
+  description: Timetable entries.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

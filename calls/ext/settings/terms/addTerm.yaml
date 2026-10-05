@@ -1,0 +1,41 @@
+kind: ext-action
+method: POST
+path: /ext/settings/terms/
+action: addTerm
+summary: Add or edit a term
+description: "`addTerm` with a `term_id` edits the term; `0` creates one."
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    term_id:
+      type: string
+    name:
+      type: string
+    start_date:
+      type: string
+    end_date:
+      type: string
+    section_id:
+      type: string
+  example:
+    section_id: "45001"
+    term_id: "0"
+    name: Autumn 2025
+    start_date: "2025-09-01"
+    end_date: "2025-12-15"
+response:
+  schema:
+    $ref: SettingsTermsResponse
+  examples:
+    addTerm:
+      summary: Terms after the change
+      value:
+        terms:
+          - termid: "9200001"
+            name: Autumn 2025
+            startdate: "2025-09-01"
+            enddate: "2025-12-15"
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

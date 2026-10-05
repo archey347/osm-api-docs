@@ -1,0 +1,34 @@
+kind: v3-route
+method: GET
+path: "/v3/generic/search/{sectionId}/remote"
+summary: Run remote search
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  q:
+    type: string
+    required: true
+  term_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: GenericRemoteSearchResponse
+  examples:
+    default:
+      value:
+        groups:
+          - type: members
+            label: Members
+            total: 1
+            see_all: null
+            items:
+              - title: Alex Scout
+                subtext: Example Troop
+  description: Result groups, one per remote search type.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

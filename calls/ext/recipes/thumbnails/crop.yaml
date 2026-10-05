@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/thumbnails/
+action: crop
+summary: Crop a recipe picture
+description: "`put` takes a multipart file upload (field `qqfile`, JPEG or PNG, up to 10 MB); `crop` takes the crop box in an ordinary form body."
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+    cw:
+      type: string
+      description: Width of the displayed image, in pixels.
+    ch:
+      type: string
+      description: Height of the displayed image, in pixels.
+    l:
+      type: string
+      description: Crop box left edge, in pixels of the displayed image.
+    t:
+      type: string
+      description: Crop box top edge, in pixels of the displayed image.
+    w:
+      type: string
+      description: Crop box width, in pixels of the displayed image.
+    h:
+      type: string
+      description: Crop box height, in pixels of the displayed image.
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

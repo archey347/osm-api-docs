@@ -1,0 +1,37 @@
+kind: ext-action
+method: POST
+path: /ext/reports/editor/
+action: stage1
+summary: Load report editor step 1
+description: "`initEditor` opens it, `stage1` to `stage4` load a step, and `stageNValidate` submits it."
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    dashboard_id:
+      type: string
+      required: true
+    report_id:
+      type: string
+      required: true
+      description: "`0` when creating a report."
+  example:
+    section_id: "45001"
+    dashboard_id: "910100"
+    report_id: "0"
+response:
+  schema:
+    $ref: ReportEditorResponse
+  envelope: true
+  examples:
+    stage:
+      summary: "`initEditor`, `stage1` to `stage4`"
+      value:
+        title: Member list
+        read_only: false
+        in_use_elsewhere: false

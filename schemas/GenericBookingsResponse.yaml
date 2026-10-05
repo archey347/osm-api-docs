@@ -1,0 +1,11 @@
+type: object
+properties:
+  bookings:
+    type: array
+    items:
+      type: object
+      properties:
+        booking_id: { }
+        campsite: { }
+      additionalProperties: true
+additionalProperties: true

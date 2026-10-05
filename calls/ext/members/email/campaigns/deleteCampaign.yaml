@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/members/email/campaigns/
+action: deleteCampaign
+summary: Delete an email template
+tags: [ Email ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    campaign_id:
+      type: string
+      description: "Every action except `createCampaign`."
+  example:
+    section_id: "45001"
+    campaign_id: "5100001"
+response:
+  schema:
+    $ref: MemberStatusResponseData
+  envelope: true
+  examples:
+    ok:
+      summary: Other actions
+      value: [ ]
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

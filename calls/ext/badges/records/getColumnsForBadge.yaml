@@ -1,0 +1,74 @@
+kind: ext-action
+method: GET
+path: /ext/badges/records/
+action: getColumnsForBadge
+summary: 'List a badge''s columns'
+description: "`getColumnsForBadge` — returns a badge's requirement columns."
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: Section type.
+  section_id:
+    type: string
+    description: "Section ID (used with `getAvailableBadges`)."
+  sectionid:
+    type: string
+    description: "Section ID (alternate naming, used with some actions). `0` with `getAvailableBadges` and `context=national`."
+  badge_id:
+    type: string
+    description: "Badge ID (required for `getBadgeRecords`, `getEligibleMembers`, `getColumnsForBadge`)."
+  badge_version:
+    type: string
+    description: "Badge version (required for `getBadgeRecords`, `getColumnsForBadge`)."
+  editable:
+    type: string
+    enum: [ "y" ]
+  hidden:
+    type: string
+    enum: [ "y" ]
+  hideLevelLabels:
+    type: string
+    enum: [ "y" ]
+  hideSameAs:
+    type: string
+    enum: [ "y" ]
+  isElsewhere:
+    type: string
+    enum: [ "y" ]
+  noCustom:
+    type: string
+    enum: [ "y" ]
+  noHidden:
+    type: string
+    enum: [ "y" ]
+  none:
+    type: string
+    enum: [ "y" ]
+  pleaseselect:
+    type: string
+    enum: [ "y" ]
+response:
+  schema:
+    $ref: BadgeItemsResponse
+  examples:
+    columnsForBadge:
+      summary: getColumnsForBadge
+      value:
+        items:
+          - column_id: "910001"
+            label: Work with others
+            description: Take part in a group task.
+            module_letter: a
+            points: "0"
+            field_type: text
+            custom_columns: "0"
+sources:
+  - area.badges_editing.47f136c28950473153c4.js
+  - ext.badges.6a63e40102b2845e63ab.js
+  - ext.programme.8d866e8ea75c304133fc.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

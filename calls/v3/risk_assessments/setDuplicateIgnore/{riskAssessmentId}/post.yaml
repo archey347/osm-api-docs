@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: "/v3/risk_assessments/setDuplicateIgnore/{riskAssessmentId}"
+summary: Ignore a risk assessment's out-of-date warning
+description: Dismisses the prompt shown when the assessment this one was copied from has changed.
+tags: [ Risk Assessments ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  riskAssessmentId:
+    type: string
+    description: Risk assessment item ID.
+response:
+  schema:
+    $ref: RiskAssessmentWriteResult
+  description: Result.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

@@ -1,0 +1,35 @@
+kind: ext-action
+method: GET
+path: /ext/mymember/details/
+action: getContactDetails
+summary: Member contact details
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+  member_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MyMemberContactDetailsResponse
+  examples:
+    default:
+      value:
+        status: true
+        error: null
+        data:
+          data: [ ]
+          read_only_columns: [ ]
+          has_confirmation: true
+          confirmation_requested: true
+          confirmation_type: annual
+          header: null
+  description: |-
+    Contact details as custom data groups. `data.data` has the same shape as the
+    member custom data groups used elsewhere and is not modelled here.
+sources: [ ext.mymember.eb573b16408e09aef101.js ]

@@ -1,0 +1,34 @@
+kind: v3-route
+method: POST
+path: "/v3/favourites/{sectionId}"
+summary: Pin an item
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+body:
+  params:
+    type:
+      type: string
+      required: true
+      description: "The web app pins menu entries with `menu`."
+    target_id:
+      type: string
+      required: true
+    label:
+      type: string
+      required: true
+    term_id:
+      type: string
+      required: true
+  example:
+    type: menu
+    target_id: ext.members.contact
+    label: Contacts
+    term_id: "9100001"
+response:
+  description: Success. The web app ignores the body and re-lists.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

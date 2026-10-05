@@ -1,0 +1,21 @@
+kind: v3-route
+method: GET
+path: "/v3/generic/select/{sectionId}/patrols/{patrolId}"
+summary: Get member IDs in a patrol
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  patrolId:
+    type: string
+response:
+  schema:
+    $ref: GenericMemberIdsResponse
+  examples:
+    default:
+      value: [ 3000001, 3000002 ]
+  description: Member IDs in the patrol.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

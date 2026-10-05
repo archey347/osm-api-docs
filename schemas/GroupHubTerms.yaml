@@ -1,0 +1,14 @@
+type: object
+properties:
+  recurring_config:
+    type: object
+    nullable: true
+    properties:
+      horizon_years: { }
+      terms:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+    additionalProperties: true
+additionalProperties: true

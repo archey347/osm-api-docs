@@ -1,0 +1,12 @@
+type: object
+properties:
+  shop:
+    type: object
+    properties:
+      tracks_stock:
+        type: boolean
+    additionalProperties: true
+  metrics:
+    type: object
+    additionalProperties: true
+additionalProperties: true

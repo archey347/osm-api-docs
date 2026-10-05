@@ -1,0 +1,9 @@
+type: object
+properties:
+  result: { }
+  id: { }
+  title: { }
+  activity_unique_id: { }
+  error:
+    description: Set when the activity saved but part of the save failed.
+additionalProperties: true

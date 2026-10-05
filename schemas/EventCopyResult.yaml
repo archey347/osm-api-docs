@@ -1,0 +1,7 @@
+type: object
+properties:
+  new_event_id:
+    type: string
+  number_of_events:
+    type: integer
+additionalProperties: true

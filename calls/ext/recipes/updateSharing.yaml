@@ -1,0 +1,32 @@
+kind: ext-action
+method: POST
+path: /ext/recipes/
+action: updateSharing
+summary: Change a recipe's sharing
+tags: [ Recipes ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    recipe_id:
+      type: string
+      description: "Not sent by the ingredient actions other than `addIngredientToRecipe`. `editRecipe` uses `-1` to create a new recipe."
+    section_id:
+      type: string
+    sharing:
+      type: string
+      description: "The web app only sends `public`."
+  example:
+    recipe_id: "7700001"
+    section_id: "3100001"
+    sharing: public
+response:
+  schema:
+    $ref: RecipeStatusResponseData
+  envelope: true
+  examples:
+    updateSharing:
+      value:
+        variation: false
+sources: [ area.recipes.53c3c66b94a33a6a9bad.js ]

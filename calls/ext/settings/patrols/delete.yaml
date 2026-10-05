@@ -1,0 +1,23 @@
+kind: ext-action
+method: POST
+path: /ext/settings/patrols/
+action: delete
+summary: Delete a patrol
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      required: true
+    patrolid:
+      type: string
+  example:
+    sectionid: "45001"
+    patrolid: "7100001"
+response:
+  schema:
+    $ref: SettingsPatrolsResponse
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

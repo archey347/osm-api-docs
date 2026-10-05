@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/settings/upgrades/
+action: applyFreeTrial
+summary: Apply a free trial
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    type:
+      type: string
+      description: Upgrade type.
+  example:
+    section_id: "45001"
+    type: example-upgrade
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    applyFreeTrial:
+      summary: Trial applied
+      value:
+        all_section_configs: { }
+sources: [ ext.react_oym.abba2b5e109cd07734d7.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

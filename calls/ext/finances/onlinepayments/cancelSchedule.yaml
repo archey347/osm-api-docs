@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/finances/onlinepayments/
+action: cancelSchedule
+summary: Delete a payment scheme
+description: "`cancelSchedule` deletes the payment scheme despite being a GET."
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    description: "Section ID. `getScheduleDetails` and `getAuthorizeUrl` use `section_id`."
+  schemeid:
+    type: string
+response:
+  schema:
+    $ref: FinanceStatusResponse
+  examples:
+    cancelSchedule:
+      summary: cancelSchedule
+      value:
+        status: true
+sources: [ ext.finances.9f318350fda4d977c688.js ]

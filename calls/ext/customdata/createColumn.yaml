@@ -1,0 +1,59 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: createColumn
+summary: Create a custom column
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    label:
+      type: string
+    column_reference:
+      type: string
+      description: Existing column ID to reuse, or empty.
+    associated_id:
+      type: string
+      description: Member scout ID.
+    associated_type:
+      type: string
+      enum: [ member ]
+    associated_is_section:
+      type: string
+      description: "Section association flag (observed `false`)."
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+    value:
+      type: string
+      description: "New value for the column (`updateColumn` action only)."
+    context:
+      type: string
+      enum: [ members ]
+  example:
+    associated_type: member
+    associated_id: "3100005"
+    associated_is_section: "false"
+    group_id: "7"
+    label: Swimming ability
+    column_reference: ""
+    value: "Yes"
+    context: members
+response:
+  schema:
+    $ref: CustomDataStructureSettings
+  envelope: true
+  examples:
+    structureWrite:
+      summary: "`createColumn`, `updateColumnLabel`, `deleteColumn`, `addOtherColumns`, `deleteInvisibleValue`, `saveStructureSettings`"
+      value: [ ]
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

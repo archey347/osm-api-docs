@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    type: integer
+  title:
+    type: string
+  tasks_total: { }
+  tasks_completed: { }
+  tasks_overdue: { }
+additionalProperties: true

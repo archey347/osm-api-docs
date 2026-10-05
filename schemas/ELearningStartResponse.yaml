@@ -1,0 +1,21 @@
+type: object
+properties:
+  status:
+    type: boolean
+  error:
+    type: object
+    nullable: true
+    additionalProperties: true
+  data:
+    type: object
+    properties:
+      run_id: { }
+      completed_steps:
+        type: object
+        description: "Answers already given, keyed `s<step_id>` then `q<question_id>`."
+        additionalProperties: true
+      resume_step:
+        description: "`s<step_id>` to resume at, or `false` for a fresh run."
+    additionalProperties: true
+  meta: { }
+additionalProperties: true

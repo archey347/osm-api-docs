@@ -1,0 +1,25 @@
+kind: v3-route
+method: POST
+path: /v3/group_hub/workspaces
+summary: Create a Group Hub workspace
+description: "Fails with error code `group-hub-no-adults-section` when the group has no adult section."
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: The caller's current section.
+    owning_section_id:
+      type: string
+      required: true
+      description: Adult section that will own the workspace.
+  example:
+    section_id: "45001"
+    owning_section_id: "45001"
+response:
+  description: Success. The web app ignores the body.
+sources: [ area.group_hub.87ce6caf70ff9fb3d1d1.js ]

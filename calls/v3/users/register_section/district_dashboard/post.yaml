@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: /v3/users/register_section/district_dashboard
+summary: Register a district dashboard
+description: Creates data.
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_name:
+      type: string
+      required: true
+    code:
+      type: string
+      required: true
+    level:
+      type: string
+      required: true
+  example:
+    section_name: Example District
+    code: EXAMPLE
+    level: district
+response:
+  schema:
+    $ref: UserSectionRegistrationResult
+  examples:
+    default:
+      value:
+        id: 45004
+  description: "The new section's ID is read from `data.id`, falling back to `data.section_id`."
+sources: [ ext.users.aae4e50e39d06ff44c88.js ]

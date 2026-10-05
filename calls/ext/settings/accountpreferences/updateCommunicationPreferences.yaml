@@ -1,0 +1,26 @@
+kind: ext-action
+method: POST
+path: /ext/settings/accountpreferences/
+action: updateCommunicationPreferences
+summary: Update communication preferences
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    help:
+      type: string
+      description: "`true` or `false`. One communication preference per request."
+    news:
+      type: string
+      description: "As `help`."
+    offers:
+      type: string
+      description: "As `help`."
+  example:
+    news: "false"
+response:
+  schema:
+    $ref: SettingsStatusResponse
+sources: [ area.settings.f73c3ef434f40520f0bc.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

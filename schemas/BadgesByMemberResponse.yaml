@@ -1,0 +1,36 @@
+type: array
+items:
+  type: object
+  properties:
+    scoutid:
+      type: integer
+    firstname:
+      type: string
+    lastname:
+      type: string
+    patrol:
+      type: string
+    active:
+      type: boolean
+    badges:
+      type: array
+      items:
+        type: object
+        properties:
+          badge_id:
+            type: integer
+          badge_version:
+            type: integer
+          badge_group:
+            type: string
+            description: Badge type ID.
+          badge_identifier:
+            type: string
+          completed:
+            type: string
+          awarded:
+            type: string
+          status:
+            type: number
+        additionalProperties: true
+  additionalProperties: true

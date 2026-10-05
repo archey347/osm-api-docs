@@ -1,0 +1,33 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/payment/columns/add"
+summary: Add an online payment column
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    payment_id:
+      type: string
+      required: true
+    existing:
+      type: string
+      enum: [ "true", "false" ]
+      description: Also add it for members already on the event.
+  example:
+    payment_id: "400001"
+    existing: "true"
+response:
+  schema:
+    $ref: EventStructureResponse
+  examples:
+    default:
+      value:
+        - field: p400001
+          name: Camp fee
+  description: "Updated column structure in `data`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

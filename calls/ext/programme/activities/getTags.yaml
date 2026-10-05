@@ -1,0 +1,20 @@
+kind: ext-action
+method: GET
+path: /ext/programme/activities/
+action: getTags
+summary: List activity tags
+tags: [ Programme ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: ProgrammeActivityTags
+  examples:
+    getTags:
+      summary: Activity tags
+      value:
+        items:
+          - name: skills
+          - name: outdoors
+sources: [ ext.programme.8d866e8ea75c304133fc.js ]

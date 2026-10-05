@@ -1,0 +1,14 @@
+allOf:
+  - $ref: MyMemberEnvelope
+  - type: object
+    properties:
+      data:
+        type: object
+        properties:
+          existing:
+            type: string
+            description: Calendar feed URL.
+          existing_feed:
+            type: string
+            description: "Alternative name for `existing`; the web app accepts either."
+        additionalProperties: true

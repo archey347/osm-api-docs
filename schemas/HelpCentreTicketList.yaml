@@ -1,0 +1,17 @@
+type: object
+properties:
+  tickets:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        subject: { }
+        status:
+          description: "`solved` and `closed` are read; other values mean the ticket is still open."
+        message_count: { }
+        last_activity_age_seconds: { }
+        last_activity_at_display: { }
+        assigned_agent_first_name: { }
+      additionalProperties: true
+additionalProperties: true

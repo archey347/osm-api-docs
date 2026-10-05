@@ -1,0 +1,14 @@
+kind: v3-route
+method: GET
+path: "/v3/events/event/{event_id}/download/activities"
+summary: Download linked activities
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+response:
+  description: Document download, opened in a new window.
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

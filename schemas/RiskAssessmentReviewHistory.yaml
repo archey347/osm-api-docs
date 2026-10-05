@@ -1,0 +1,15 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    reviewed_on: { }
+    next_review_on:
+      description: Empty string when none was set.
+    reviewed_by_name:
+      type: string
+    notes:
+      type: string
+    can_undo:
+      type: boolean
+  additionalProperties: true

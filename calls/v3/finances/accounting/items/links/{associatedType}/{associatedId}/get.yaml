@@ -1,0 +1,40 @@
+kind: v3-route
+method: GET
+path: "/v3/finances/accounting/items/links/{associatedType}/{associatedId}"
+summary: List transactions for a linked item
+tags: [ Accounting ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  associatedType:
+    type: string
+    description: "Observed `event`."
+  associatedId:
+    type: string
+    description: Linked event ID.
+query:
+  page:
+    type: integer
+  per_page:
+    type: integer
+  visibility_id:
+    type: string
+    description: Sent by the web app when viewing shared categories.
+response:
+  schema:
+    $ref: AccountingItemTransactionList
+  examples:
+    default:
+      value:
+        - id: 3100070
+          type: expense
+          description: Example supplies
+          date: "2026-09-20"
+          amount: 2500
+          categories:
+            - category_id: 3100040
+              item_id: 0
+              amount: 2500
+  description: Page of transactions.
+sources: [ area.finances_accounting.d777bc5d449d2323971a.js ]

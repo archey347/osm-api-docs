@@ -1,0 +1,15 @@
+kind: v3-route
+method: POST
+path: "/v3/todo/tasks/{taskId}/read"
+summary: Mark a task as read
+description: "Updates the caller's `last_read_at` on the task, which clears its \"new\" badge."
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  taskId:
+    type: string
+response:
+  description: Success. The web app ignores the body.
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

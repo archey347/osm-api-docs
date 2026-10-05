@@ -1,0 +1,31 @@
+kind: v3-route
+method: POST
+path: "/v3/campsites/{campsiteId}/organisations"
+summary: Create a customer type
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+body:
+  params:
+    name:
+      type: string
+      required: true
+      description: At least 3 characters.
+    description:
+      type: string
+  example:
+    name: Scout groups
+    description: Registered groups
+response:
+  schema:
+    $ref: CampsiteResponse
+  examples:
+    default:
+      value: [ ]
+  description: Result envelope.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

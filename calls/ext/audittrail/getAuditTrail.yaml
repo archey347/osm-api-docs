@@ -1,0 +1,82 @@
+kind: ext-action
+method: POST
+path: /ext/audittrail/
+action: getAuditTrail
+summary: Get a member's audit trail
+description: "`createAuditTrailMessage` adds a note (`code` is one of `meta.note_types`) and `toggleAuditTrailMessageVisibility` hides or shows an entry; both identify the record in the body like `getAuditTrail`."
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  section_id:
+    type: string
+    description: Section ID.
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+      description: Section ID (repeated in body).
+    id:
+      type: string
+      required: true
+      description: Member scout ID.
+    type:
+      type: string
+      enum: [ member ]
+      required: true
+      description: "Must be `member`."
+    year:
+      type: string
+      description: "Only entries from this year; `meta.available_years` lists the options."
+  example:
+    section_id: "45001"
+    id: "3100001"
+    type: member
+    year: "2025"
+response:
+  schema:
+    $ref: AuditTrailResponse
+  envelope: true
+  examples:
+    getAuditTrail:
+      summary: Audit trail entries
+      value:
+        - date: "15/09/2025 19:42"
+          date_raw: "2025-09-15 19:42:10"
+          summary: "<strong>Jamie River</strong> has had their <strong>Consents: Photographs</strong> added as <strong>Yes</strong> by <strong>Alex Scout</strong>"
+          verbose: ""
+          type: details
+          code: new
+          hidden: false
+        - date: "15/09/2025 19:38"
+          date_raw: "2025-09-15 19:38:31"
+          summary: "<strong>Jamie River</strong> is now a <strong>Sixer</strong> in the Blue six in <strong>Cubs</strong> (previously <strong>Seconder</strong>), changed by <strong>Alex Scout</strong>."
+          verbose: ""
+          type: patrol-leader
+          code: promoted
+          hidden: false
+        - date: "15/09/2025 19:37"
+          date_raw: "2025-09-15 19:37:04"
+          summary: "<strong>Jamie River</strong> was added to the <strong>Blue</strong> six."
+          verbose: ""
+          type: patrols
+          code: add-to
+          hidden: false
+        - date: "15/09/2025 19:35"
+          date_raw: "2025-09-15 19:35:54"
+          summary: "<strong>Alex Scout</strong> updated <strong>Date of Birth</strong> for <strong>Jamie River</strong> from <strong>22/04/2015</strong> to <strong>23/04/2015</strong>"
+          verbose: ""
+          type: details
+          code: field
+          hidden: false
+        - date: "15/09/2025 19:34"
+          date_raw: "2025-09-15 19:34:07"
+          summary: "<strong>Jamie River</strong> has been added to <strong>1st Riverside Scouts: Cubs</strong> by <strong>Alex Scout</strong>."
+          verbose: ""
+          type: members
+          code: add
+          hidden: false
+sources: [ react.f8944691765f57115151.js ]

@@ -1,0 +1,17 @@
+kind: v3-route
+method: GET
+path: /v3/badges/records/national/accessible_section_types
+summary: List section types the user can view badges for
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: BadgeAccessibleSectionTypesResponse
+  examples:
+    types:
+      summary: Types
+      value: [ cubs, scouts ]
+  description: Section types.
+sources: [ "21.3e07bd5db1c55da1f0d3.js" ]

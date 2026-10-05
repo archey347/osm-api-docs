@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: /v3/settings/upgrades/stripe
+summary: Start a card setup
+description: Returns the keys needed to start a card setup with Stripe, and the stored card if there is one.
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  examples:
+    default:
+      value:
+        public_key: pk_example_not_real
+        client_secret: seti_example_secret_not_real
+        existing_card:
+          id: pm_example
+          brand: visa
+          ends: "0000"
+          expires: "01/2030"
+  description: Response.
+sources: [ "899.b65bceb407b68f881505.js" ]

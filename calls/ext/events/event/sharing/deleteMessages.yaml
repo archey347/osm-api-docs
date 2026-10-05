@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/events/event/sharing/
+action: deleteMessages
+summary: Delete shared-event messages
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+    "message[<originating_eventid>][<messageid>]":
+      type: string
+      enum: [ "yes", "no" ]
+      description: Whether to delete each message.
+  example:
+    section_id: "45002"
+    "message[9600001][500001]": "yes"
+response:
+  schema:
+    $ref: EventPayloadData
+  envelope: true
+  examples:
+    deleteMessages:
+      value:
+        config: { }
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

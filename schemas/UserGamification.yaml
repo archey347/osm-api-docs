@@ -1,0 +1,18 @@
+type: object
+properties:
+  modules:
+    type: object
+    description: Feature IDs per module ID.
+    additionalProperties:
+      type: array
+      items:
+        type: string
+  used:
+    type: array
+    description: "Feature IDs the user has used; `%` in a module's feature ID acts as a wildcard."
+    items:
+      type: string
+  achievements:
+    type: array
+    items: { }
+additionalProperties: true

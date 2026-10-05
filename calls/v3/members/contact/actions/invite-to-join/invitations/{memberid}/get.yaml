@@ -1,0 +1,31 @@
+kind: v3-route
+method: GET
+path: "/v3/members/contact/actions/invite-to-join/invitations/{memberid}"
+summary: List a member's invitations
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  memberid:
+    type: string
+query:
+  from_section_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: MemberInvitations
+  examples:
+    default:
+      value:
+        - id: 8100001
+          status: invited
+          deadline: "2025-10-31"
+          created_at: "2025-09-15"
+          to_section_name: Scouts
+          to_group_name: "1st Riverside Scouts"
+          inviter_name: Alex Scout
+          leader_message: Spaces are open from January.
+  description: Invitations sent for the member from the section, oldest first.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

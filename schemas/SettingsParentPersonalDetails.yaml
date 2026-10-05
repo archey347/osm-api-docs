@@ -1,0 +1,13 @@
+type: object
+properties:
+  status:
+    type: boolean
+  data:
+    type: object
+    properties:
+      has_parent_confirmation_field:
+        type: boolean
+      parent_contact_changes_notifications:
+        type: boolean
+    additionalProperties: true
+additionalProperties: true

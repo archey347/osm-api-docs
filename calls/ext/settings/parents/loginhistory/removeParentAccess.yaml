@@ -1,0 +1,29 @@
+kind: ext-action
+method: POST
+path: /ext/settings/parents/loginhistory/
+action: removeParentAccess
+summary: Remove a parent's access
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    member_id:
+      type: string
+      required: true
+    section_id:
+      type: string
+      required: true
+    user_id:
+      type: string
+      required: true
+  example:
+    member_id: "2100001"
+    section_id: "45001"
+    user_id: "3100002"
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+sources: [ area.settings.f73c3ef434f40520f0bc.js ]

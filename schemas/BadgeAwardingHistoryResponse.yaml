@@ -1,0 +1,15 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    user_name:
+      type: string
+    photo_url:
+      type: string
+    level: { }
+    awarded_date:
+      type: string
+    created_date:
+      type: string
+  additionalProperties: true

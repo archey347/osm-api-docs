@@ -1,0 +1,57 @@
+kind: ext-action
+method: POST
+path: /ext/customdata/
+action: checkForSimilarData
+summary: Check for a similar existing column
+tags: [ Custom Data ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    description: "Section ID. `addOtherColumns`, `deleteInvisibleValue` and `saveOptInSettings` send it in the body instead."
+body:
+  params:
+    label:
+      type: string
+    column_reference:
+      type: string
+      description: Existing column ID to reuse, or empty.
+    associated_id:
+      type: string
+      description: Member scout ID.
+    associated_type:
+      type: string
+      enum: [ member ]
+    associated_is_section:
+      type: string
+      description: "Section association flag (observed `false`)."
+    group_id:
+      type: string
+      description: |-
+        Custom data group ID. For `update` action this matches
+        the contact group (1–6). For `updateColumn` this is the
+        custom data group containing the column.
+    context:
+      type: string
+      enum: [ members ]
+  example:
+    associated_id: "3100005"
+    associated_type: member
+    associated_is_section: "false"
+    label: Swimming ability
+    group_id: "7"
+    context: members
+    column_reference: ""
+response:
+  schema:
+    $ref: CustomDataSimilarData
+  envelope: true
+  examples:
+    checkForSimilarData:
+      summary: Existing value found
+      value:
+        has_existing_data: true
+        existing_value: "Yes"
+sources: [ ext.customdata.39da109e1f3de4a7b8b4.js ]

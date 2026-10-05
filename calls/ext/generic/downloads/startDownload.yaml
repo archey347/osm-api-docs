@@ -1,0 +1,84 @@
+kind: ext-action
+method: POST
+path: /ext/generic/downloads/
+action: startDownload
+summary: Start a background export job
+description: |-
+  Queues an export and returns a job to poll with `GET /ext/generic/jobs/?action=getJobInfo`.
+  The `type` values seen are `AccountsCashbookAttachmentsZip`, `EventSharedMemberPhotosZip`,
+  `EventSharedMemberRecordCards`, `EventSpreadsheet`, `HQBadgeAwardsDue`, `MemberRecordCard`,
+  `MemberRecordZip` and `PersonalDetails`.
+tags: [ Downloads ]
+source:
+  request: inferred
+  response: inferred
+query:
+  type:
+    type: string
+    required: true
+    description: Export generator to run.
+  section_id:
+    type: string
+    required: true
+body:
+  params:
+    format:
+      type: string
+      description: "`spreadsheet` or `zip` in the web app."
+    member_ids:
+      type: string
+      description: "Comma-separated member IDs (`PersonalDetails`, `MemberRecordZip`)."
+    fields:
+      type: string
+      description: "Comma-separated field names (`PersonalDetails`)."
+    includePersonal:
+      type: boolean
+      description: "`MemberRecordZip`."
+    badgesAllAges:
+      type: boolean
+      description: "`MemberRecordZip`."
+    event_id:
+      type: string
+      description: "`EventSpreadsheet`."
+    term_id:
+      type: string
+      description: "`EventSpreadsheet`."
+    all:
+      type: string
+      description: "`EventSpreadsheet`."
+    attendance:
+      type: string
+      description: "`EventSpreadsheet`. `Yes` or `Reserved`."
+    section_type:
+      type: string
+      description: "`HQBadgeAwardsDue`."
+    award_badges:
+      type: boolean
+      description: "`HQBadgeAwardsDue`."
+    financial_year:
+      type: string
+      description: "`AccountsCashbookAttachmentsZip`."
+    extra_info:
+      type: string
+      enum: [ "1" ]
+      description: "`EventSpreadsheet`."
+  example:
+    format: spreadsheet
+    member_ids: "3100001,3100002"
+    fields: first_name,last_name
+response:
+  schema:
+    $ref: GenericStartDownloadResponse
+  envelope: true
+  examples:
+    default:
+      value:
+        job_info:
+          job_id: "8800001"
+          section_id: "1001"
+  description: "Job started when `status` is true; otherwise `error.message` is set."
+sources:
+  - area.finances_accounting.d777bc5d449d2323971a.js
+  - area.national.4e0a010c70498ce7f9fb.js
+  - ext.members.ca95317ad56b2f22a5e5.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

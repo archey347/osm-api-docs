@@ -6,7 +6,7 @@ built from a combination of statically analysing OSM's client-side code and chec
 This means that params are discovered by usage, so the structure of responses may not be perfect. I have verified some
 endpoints against real traffic, so they are more likely to be complete; these are marked **observed** in the spec.
 
-I've kept the analysis stuff in a private repo, but email me if you want access or to take a look.
+The sources and build tools are in this repo (the code that scans OSM's front-end is kept separately); see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 OSM doesn't publish a public API specification. This project fills that gap for developers building tools on top of
 OSM, whether that's a badge tracker, a patrol planner, or anything else that helps leaders run their sections.
@@ -26,6 +26,9 @@ Browse the docs at <https://scrapbook.archbar.me/osm-api>.
 `openapi.yaml` is an OpenAPI 3.0.3 document. Open it in [Redoc](https://redocly.github.io/redoc/),
 [Swagger Editor](https://editor.swagger.io/), Postman or Insomnia, or feed it to a client generator.
 
+For TypeScript there's a typed client with zod validators in [`clients/typescript`](clients/typescript) (not yet on
+npm).
+
 Each call is labelled **observed** (seen in real traffic) or **inferred** (from static analysis of OSM's client-side
 code). Treat inferred calls with more suspicion.
 
@@ -43,8 +46,18 @@ code). Treat inferred calls with more suspicion.
 
 ## Contributing
 
-The files here are generated, so PRs can't be merged directly, but issues are still welcome: open an issue or PR for a
-missing call or a mistake and I'll try and figure out why my analysis scripts didn't pick it up.
+PRs are welcome. The spec is built from the files in `calls/` and `schemas/`, so edit those and `openapi.yaml` is
+regenerated from them (`bun run gen:openapi`). Issues are welcome too: open one for a missing call or a mistake. See
+[CONTRIBUTING.md](CONTRIBUTING.md) and [FORMAT.md](FORMAT.md).
+
+## Building
+
+```
+bun install
+bun run gen:openapi
+bun run check -- --examples
+bun test
+```
 
 ## Licence
 

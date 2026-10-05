@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    paid_date: { }
+    account_name: { }
+    reference: { }
+    amount: { }
+    fees: { }
+  additionalProperties: true

@@ -1,0 +1,77 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/
+action: returnMember
+summary: Return removed members to a section
+description: "**`returnMember`** — restores a previously removed member."
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    scouts:
+      type: string
+      description: "`removeMember`, `returnMember`, `transferMember`. Comma-separated member IDs."
+  example:
+    scouts: "3100005"
+response:
+  schema:
+    type: object
+    description: |-
+      `removeMember`, `returnMember`, `transferMember`, `deletePhoto` response.
+      The web app reads no fields from `acceptAndRejectTransfers` or
+      `returnMembersFromTransfer` responses.
+    properties:
+      ok:
+        type: boolean
+      scouts:
+        type: array
+        items:
+          type: integer
+        description: Scout IDs affected.
+      msg:
+        type: string
+        description: "Error message (`removeMember`, `returnMember`)."
+      error:
+        type: string
+      prohibited:
+        type: array
+        items:
+          type: string
+        description: "`transferMember`. Members that could not be moved."
+      members_present_elsewhere:
+        type: array
+        items:
+          type: integer
+        description: "`removeMember`. Removed members who are still active in another section."
+      members_linked_to_users:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. Set when a confirmation of linked-user access is needed; resend with `access[...]` choices."
+      members_linked_to_users_forced:
+        type: object
+        additionalProperties: true
+        description: "`removeMember`. As `members_linked_to_users`, with no option to keep access."
+      last_section_warnings:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+        description: "`removeMember`. Members whose last section this is; each has `member_id` and `name`."
+      group_name:
+        type: string
+      remove_last_access_final:
+        type: string
+  examples:
+    returnMember:
+      summary: Member restored
+      value:
+        ok: true
+        scouts: [ 3100005 ]
+sources: [ area.members_review.a96b805bc0040bdc5da5.js, ext.members.ca95317ad56b2f22a5e5.js ]

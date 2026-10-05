@@ -1,0 +1,17 @@
+kind: ext-action
+method: GET
+path: /ext/elearning/viewer/
+action: getCertificate
+summary: Download a completion certificate
+description: "`getCertificate` returns a certificate document rather than JSON (opened in a new window; format not confirmed)."
+tags: [ E-Learning ]
+source:
+  request: inferred
+  response: inferred
+query:
+  run_id:
+    type: string
+    description: "The module's `completed_run_id`."
+response:
+  document: true
+sources: [ area.elearning.78729e36e08410a6eaec.js ]

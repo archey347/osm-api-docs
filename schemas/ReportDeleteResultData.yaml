@@ -1,0 +1,6 @@
+type: object
+properties:
+  shared:
+    type: boolean
+    description: "True when other sections use the item and `confirmation` is needed."
+additionalProperties: true

@@ -1,0 +1,91 @@
+kind: ext-action
+method: POST
+path: /ext/members/contact/actions/
+action: acceptAndRejectTransfers
+summary: Accept or reject incoming transfers
+description: "**`acceptAndRejectTransfers`**, **`returnMembersFromTransfer`** — resolve pending transfers from the members review screen."
+tags: [ Members ]
+source:
+  request: inferred
+  response: unknown
+body:
+  params:
+    accepts:
+      type: string
+      description: "`acceptAndRejectTransfers`. JSON array of member IDs to accept."
+    rejects:
+      type: string
+      description: "`acceptAndRejectTransfers`. JSON array of member IDs to reject."
+    sectionid:
+      type: string
+      description: Section ID.
+  example:
+    sectionid: "45001"
+    accepts: "[3100005]"
+    rejects: "[]"
+response:
+  schema:
+    anyOf:
+      - type: object
+        description: "`newMember` response."
+        properties:
+          result:
+            type: string
+            enum: [ ok ]
+          out_of_term:
+            type: boolean
+            description: Whether the start date falls outside the given term.
+          scoutid:
+            type: integer
+            description: The newly assigned member ID.
+          firstname:
+            type: string
+          lastname:
+            type: string
+      - type: object
+        description: |-
+          `removeMember`, `returnMember`, `transferMember`, `deletePhoto` response.
+          The web app reads no fields from `acceptAndRejectTransfers` or
+          `returnMembersFromTransfer` responses.
+        properties:
+          ok:
+            type: boolean
+          scouts:
+            type: array
+            items:
+              type: integer
+            description: Scout IDs affected.
+          msg:
+            type: string
+            description: "Error message (`removeMember`, `returnMember`)."
+          error:
+            type: string
+          prohibited:
+            type: array
+            items:
+              type: string
+            description: "`transferMember`. Members that could not be moved."
+          members_present_elsewhere:
+            type: array
+            items:
+              type: integer
+            description: "`removeMember`. Removed members who are still active in another section."
+          members_linked_to_users:
+            type: object
+            additionalProperties: true
+            description: "`removeMember`. Set when a confirmation of linked-user access is needed; resend with `access[...]` choices."
+          members_linked_to_users_forced:
+            type: object
+            additionalProperties: true
+            description: "`removeMember`. As `members_linked_to_users`, with no option to keep access."
+          last_section_warnings:
+            type: array
+            items:
+              type: object
+              additionalProperties: true
+            description: "`removeMember`. Members whose last section this is; each has `member_id` and `name`."
+          group_name:
+            type: string
+          remove_last_access_final:
+            type: string
+sources: [ area.members_review.a96b805bc0040bdc5da5.js ]

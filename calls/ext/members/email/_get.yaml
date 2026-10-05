@@ -1,0 +1,4 @@
+path: /ext/members/email/
+method: GET
+summary: Get selected contact emails
+response: Selected emails for contacts, or the daily sending limit check.

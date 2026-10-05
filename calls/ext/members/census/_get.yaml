@@ -1,0 +1,4 @@
+path: /ext/members/census/
+method: GET
+summary: Get census details
+response: "Census detail response. `export` returns a spreadsheet download rather than JSON."

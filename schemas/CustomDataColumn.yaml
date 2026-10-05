@@ -1,0 +1,37 @@
+type: object
+properties:
+  column_id:
+    type: integer
+  type:
+    type: string
+  required:
+    type: string
+  display_in_advanced_view:
+    type: string
+  display_if_empty:
+    type: string
+  hide_from_group_display:
+    type: string
+  config:
+    type: object
+    additionalProperties: true
+  varname:
+    type: string
+  label:
+    type: string
+  value: { }
+  is_core:
+    type: string
+  order:
+    type: string
+  force_read_only:
+    type: string
+  special_permissions:
+    type: string
+  permissions:
+    type: array
+    items:
+      type: string
+  orig_label:
+    type: string
+additionalProperties: true

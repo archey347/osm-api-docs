@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/badges/records/editing/
+action: editColumnPermissions
+summary: 'Edit a badge''s column permissions'
+tags: [ Badges ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    column_id:
+      description: "(`editColumnPermissions`)."
+    permissions:
+      type: string
+      description: "JSON `{visible: [roles], editable: [roles]}` (`editColumnPermissions`)."
+  example:
+    column_id: "910001"
+    permissions: "{\"visible\":[\"leader\"],\"editable\":[\"leader\"]}"
+response:
+  schema:
+    $ref: BadgeWriteResult
+  examples:
+    status:
+      summary: deleteBadge, moveBadge, editColumnPermissions
+      value:
+        status: true
+        error: null
+        data: [ ]
+sources: [ ext.badges.6a63e40102b2845e63ab.js ]

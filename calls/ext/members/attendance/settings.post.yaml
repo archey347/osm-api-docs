@@ -1,0 +1,42 @@
+kind: ext-action
+method: POST
+path: /ext/members/attendance/
+action: settings
+summary: Save attendance display settings
+description: "`settings` saves the register setting."
+tags: [ Attendance ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  termid:
+    type: string
+  section:
+    type: string
+    description: Section type.
+  save:
+    type: string
+    enum: [ "true" ]
+body:
+  params:
+    attendanceBadgeData:
+      type: string
+      description: "Observed `dateuk`."
+  example:
+    attendanceBadgeData: dateuk
+response:
+  schema:
+    type: object
+    properties:
+      ok:
+        description: "`1` on success for `settings`."
+    additionalProperties: true
+  examples:
+    settings:
+      summary: "`settings`"
+      value:
+        ok: 1
+sources: [ "8913.6d746d696f1aeb9d4b5a.js" ]

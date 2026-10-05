@@ -1,0 +1,24 @@
+type: object
+properties:
+  items:
+    type: array
+    description: Members not yet on the scheme.
+    items:
+      type: object
+      properties:
+        scoutid:
+          type: string
+      additionalProperties: true
+  payments:
+    type: array
+    items:
+      type: object
+      properties:
+        paymentid:
+          type: string
+        archived:
+          type: string
+        date:
+          type: string
+      additionalProperties: true
+additionalProperties: true

@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/{campsiteId}/invoicing/export"
+summary: Download payments spreadsheet
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  campsiteId:
+    type: string
+    description: Campsite ID.
+query:
+  start_date:
+    type: string
+    required: true
+  end_date:
+    type: string
+    required: true
+response:
+  document: true
+  content_type: application/octet-stream
+  description: Spreadsheet download.
+sources: [ area.campsites.7dbe230fc118fbcb159f.js ]

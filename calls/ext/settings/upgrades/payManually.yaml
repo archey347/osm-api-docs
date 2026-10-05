@@ -1,0 +1,30 @@
+kind: ext-action
+method: POST
+path: /ext/settings/upgrades/
+action: payManually
+summary: Record a manual payment
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    amount:
+      type: string
+    details:
+      type: string
+  example:
+    amount: "10.00"
+    details: example
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    payManually:
+      summary: Payment recorded
+      value:
+        all_section_configs: { }
+        upgrade_id: "9500001"
+        reference_letters: AB
+sources: [ area.settings_upgrades.17d3298d7edacc309869.js ]

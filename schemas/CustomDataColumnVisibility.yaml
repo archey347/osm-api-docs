@@ -1,0 +1,15 @@
+type: array
+items:
+  type: object
+  properties:
+    group_id: { }
+    identifier:
+      type: string
+    columns:
+      type: array
+      items:
+        type: object
+        properties:
+          column_id: { }
+        additionalProperties: true
+  additionalProperties: true

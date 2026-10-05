@@ -1,0 +1,15 @@
+type: object
+description: "Response to `updateScout`: flat JSON of the changed values, or an `error` string."
+properties:
+  scoutid:
+    type: string
+  error:
+    type: string
+  error_code:
+    type: string
+    description: "`event_full_with_reserved` when the event is full but has reserved places."
+  warning_title:
+    type: string
+  warning_msg:
+    type: string
+additionalProperties: true

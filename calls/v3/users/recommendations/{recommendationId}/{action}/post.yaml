@@ -1,0 +1,27 @@
+kind: v3-route
+method: POST
+path: "/v3/users/recommendations/{recommendationId}/{action}"
+summary: Record a response to a dashboard recommendation
+tags: [ Users ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  recommendationId:
+    type: string
+  action:
+    type: string
+    enum: [ action, clicked, dismiss, snooze ]
+    description: "`action` performs the recommendation's own action; the others record the user's response."
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+  example:
+    section_id: "45001"
+response:
+  schema:
+    $ref: UserStatusResponseData
+  description: "Result. The web app treats `status: true` as success."
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

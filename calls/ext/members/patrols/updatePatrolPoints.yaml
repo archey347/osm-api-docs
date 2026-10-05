@@ -1,0 +1,28 @@
+kind: ext-action
+method: POST
+path: /ext/members/patrols/
+action: updatePatrolPoints
+summary: Update patrol points
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+body:
+  params:
+    patrolid:
+      type: string
+      required: true
+    points:
+      type: string
+      required: true
+  example:
+    patrolid: "12001"
+    points: "5"
+response:
+  description: Points saved. The web app reads nothing from the response.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

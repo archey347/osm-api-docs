@@ -1,0 +1,43 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/cost_planner/{entry_id}"
+summary: Update a cost planner line
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  entry_id:
+    type: string
+body:
+  params:
+    title:
+      type: string
+    category:
+      type: string
+      description: "`food`, `activities`, `equipment`, `fees` or `other`."
+    charging_method:
+      type: string
+    unit_cost:
+      type: string
+    block_size:
+      type: string
+    participants_mode:
+      type: string
+    participants_count:
+      type: string
+  example:
+    title: Food
+    category: food
+    charging_method: per_person
+    unit_cost: "5.00"
+    block_size: "12"
+    participants_mode: all
+    participants_count: "0"
+response:
+  schema:
+    $ref: EventPayloadData
+  description: "Saved; the app ignores the body."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

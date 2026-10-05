@@ -1,0 +1,43 @@
+kind: ext-action
+method: GET
+path: /ext/members/contact/
+action: getIndividual
+summary: Get a member's details
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-01-18
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+  termid:
+    type: string
+    description: Term ID.
+  scoutid:
+    type: string
+    description: Member unique identifier.
+  context:
+    type: string
+    enum: [ members ]
+    description: Context for member detail retrieval.
+response:
+  schema:
+    $ref: MemberDetail
+  examples:
+    memberDetail:
+      summary: Member detail
+      value:
+        ok: true
+        read_only: [ ]
+        data:
+          scoutid: "3100001"
+          firstname: Jamie
+          lastname: River
+          dob: "2015-04-22"
+          started: "2021-09-01"
+          sectionid: 45001
+          active: true
+        meta: [ ]
+sources: [ "21.3e07bd5db1c55da1f0d3.js", ext.members.ca95317ad56b2f22a5e5.js ]

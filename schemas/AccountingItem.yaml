@@ -1,0 +1,14 @@
+type: object
+properties:
+  id: { }
+  name:
+    type: string
+  archived_at:
+    description: May be null.
+  associated_id: { }
+  associated_name:
+    description: May be null.
+  associated_section: { }
+  income_expense: { }
+  categories: { }
+additionalProperties: true

@@ -1,0 +1,4 @@
+path: /ext/settings/edit_section/
+method: POST
+summary: Rename a group or section, or change its type
+response: Response body is not read by the web app.

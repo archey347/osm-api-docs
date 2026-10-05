@@ -1,0 +1,7 @@
+type: object
+properties:
+  rating:
+    type: number
+  number_reviews:
+    type: integer
+additionalProperties: true

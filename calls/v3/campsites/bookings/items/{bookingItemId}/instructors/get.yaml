@@ -1,0 +1,25 @@
+kind: v3-route
+method: GET
+path: "/v3/campsites/bookings/items/{bookingItemId}/instructors"
+summary: Get instructors for a booked item
+tags: [ Campsites ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  bookingItemId:
+    type: string
+    description: "Booked item ID (the `id` in the booking's `items`)."
+response:
+  schema:
+    $ref: CampsiteBookingItemInstructors
+  examples:
+    default:
+      value:
+        instructors:
+          - user_id: 3100020
+            name: Alex Scout
+            photo_url: "https://example.com/photo.jpg"
+        available_instructors: [ ]
+  description: Assigned and available instructors.
+sources: [ ext.campsites.fb843cdfc650e56db2ee.js ]

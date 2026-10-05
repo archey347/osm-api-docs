@@ -1,0 +1,36 @@
+type: object
+properties:
+  core:
+    type: object
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+      contact:
+        type: string
+      link:
+        type: string
+      latitude:
+        type: string
+      longitude:
+        type: string
+    additionalProperties: true
+  types:
+    type: array
+    description: Type IDs.
+    items:
+      type: string
+  facilities:
+    type: object
+    additionalProperties: true
+  outside:
+    type: object
+    additionalProperties: true
+  inside:
+    type: object
+    additionalProperties: true
+  specialneeds:
+    type: object
+    additionalProperties: true
+additionalProperties: true

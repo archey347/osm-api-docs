@@ -1,0 +1,39 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/members/{mode}/update/{member_id}/multiple"
+summary: Update several values for one member
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+  mode:
+    type: string
+    enum: [ attendance, rota, payments ]
+  member_id:
+    type: string
+body:
+  schema:
+    type: object
+    description: "Changed fields as `field=value` pairs (`attending`, `payment`, custom column keys, `rota_<field>`)."
+    additionalProperties:
+      type: string
+  example:
+    attending: "yes"
+    f_1: Vegetarian
+response:
+  schema:
+    $ref: EventMembersMultiUpdate
+  examples:
+    default:
+      value:
+        attending:
+          status: true
+          data: { }
+        f_1:
+          status: true
+          data: { }
+  description: "Result per submitted field in `data`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

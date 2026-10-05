@@ -1,0 +1,40 @@
+kind: v3-route
+method: POST
+path: "/v3/mymember/shop/{section_id}/{member_id}/cart"
+summary: Add to, change or empty lines of the basket
+tags: [ Parent Portal ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  section_id:
+    type: string
+  member_id:
+    type: string
+body:
+  params:
+    action:
+      type: string
+      enum: [ add, update, remove ]
+      required: true
+    variant_id:
+      type: string
+      description: "Used by `add`."
+    quantity:
+      type: string
+      description: "Used by `add`, `update`."
+    line_id:
+      type: string
+      description: "Used by `update`, `remove`."
+    as_leader:
+      type: string
+      description: "Used by `add`. `1` when a leader is ordering on the parent's behalf."
+    "answers[<n>]":
+      type: string
+      description: "Used by `add`. Answer to the item's `n`th question."
+  example:
+    action: add
+    variant_id: "7400001"
+    quantity: "1"
+response:
+  description: "Basket updated; the web app then refetches the basket."

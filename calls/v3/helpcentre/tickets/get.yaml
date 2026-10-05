@@ -1,0 +1,24 @@
+kind: v3-route
+method: GET
+path: /v3/helpcentre/tickets
+summary: List the user's own support tickets
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+response:
+  schema:
+    $ref: HelpCentreTicketList
+  examples:
+    default:
+      value:
+        tickets:
+          - id: 6100001
+            subject: Cannot add a member
+            status: open
+            message_count: 2
+            last_activity_age_seconds: 3600
+            last_activity_at_display: "1 Nov 2024 18:00"
+            assigned_agent_first_name: Sam
+  description: "Tickets in `data.tickets`."
+sources: [ area.helpcentre.342e479358e7d16ec1b4.js ]

@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/members/sectionplanning/
+action: updateSectionLeaderSize
+summary: Update section leader sizing
+tags: [ Members ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    sectionid:
+      type: string
+      required: true
+    idealSize:
+      type: string
+      required: true
+    idealLeaders:
+      type: string
+      required: true
+    currentLeaders:
+      type: string
+      required: true
+  example:
+    sectionid: "45001"
+    idealSize: "24"
+    idealLeaders: "4"
+    currentLeaders: "3"
+response:
+  description: Saved. The web app reads nothing from the response.
+sources: [ area.settings_upgrades.17d3298d7edacc309869.js ]

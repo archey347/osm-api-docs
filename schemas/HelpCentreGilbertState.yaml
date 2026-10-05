@@ -1,0 +1,35 @@
+type: object
+properties:
+  status:
+    description: "Conversation status, e.g. `none`, `failed`, `in_progress`, `streaming`."
+  questions:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        question: { }
+        review_type: { }
+        deletable: { }
+      additionalProperties: true
+  answers:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        message: { }
+        streaming: { }
+        colour: { }
+      additionalProperties: true
+  runs:
+    type: array
+    items:
+      type: object
+      properties:
+        status:
+          description: "`queued`, `in_progress` or `requires_action` while the run is active."
+      additionalProperties: true
+  bedrock: { }
+  responses: { }
+additionalProperties: true

@@ -1,0 +1,14 @@
+type: object
+properties:
+  ok:
+    type: boolean
+  prefs:
+    type: object
+    description: Updated user preferences.
+    additionalProperties: true
+  incorrect_password:
+    type: boolean
+  error:
+    type: string
+    description: "Error code such as `phone`."
+additionalProperties: true

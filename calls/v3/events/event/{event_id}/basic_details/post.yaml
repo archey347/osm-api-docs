@@ -1,0 +1,37 @@
+kind: v3-route
+method: POST
+path: "/v3/events/event/{event_id}/basic_details"
+summary: Update one basic detail
+description: Returns the same payload as the GET.
+tags: [ Events ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  event_id:
+    type: string
+body:
+  params:
+    field:
+      type: string
+      enum:
+        - name
+        - location
+        - start_date
+        - start_time
+        - end_date
+        - end_time
+        - attendance_limit
+        - attendance_limit_includes_leaders
+      required: true
+    value:
+      type: string
+      required: true
+  example:
+    field: location
+    value: Example Campsite
+response:
+  schema:
+    $ref: EventBasicDetails
+  description: "Updated event details; on failure `status` is false with `error.message`."
+sources: [ ext.events.4fe61901f961aaf5b232.js ]

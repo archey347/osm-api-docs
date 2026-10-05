@@ -1,0 +1,8 @@
+type: object
+properties:
+  itemrowidentifier:
+    type: object
+    description: Quantity booked per item row ID.
+    additionalProperties:
+      type: integer
+additionalProperties: true

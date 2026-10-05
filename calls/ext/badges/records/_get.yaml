@@ -1,0 +1,13 @@
+path: /ext/badges/records/
+method: GET
+summary: Get badge records or available badges
+description: |-
+  Returns badge data. The `action` parameter controls the behavior:
+  - `getBadgeRecords` — returns per-member completion records for a specific badge.
+  - `getAvailableBadges` — returns the list of badges available for a section and type.
+  - `getColumnDetails` — returns one requirement column's label, description and points.
+  - `getColumnsForBadge` — returns a badge's requirement columns.
+  - `getEligibleMembers` — returns members flagged eligible for a badge in the term.
+  - `getIndividualAchievements` — returns one member's awarded badges.
+  - `printBadge` — downloads a printable badge record (document, not JSON).
+response: "Badge records, available badges or column details (see `action`); `printBadge` returns a document to download instead of JSON."

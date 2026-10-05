@@ -1,0 +1,37 @@
+kind: ext-action
+method: GET
+path: /ext/quartermaster/eventbookings/
+action: loadListsForEvent
+summary: Get an event's booked lists
+tags: [ Quartermaster ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  eventid:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: QuartermasterEventListsResponse
+  envelope: true
+  examples:
+    default:
+      summary: Lists available to the event
+      value:
+        lists:
+          - list:
+              id: "7100001"
+              name: Camp kitchen
+              hasbookings: true
+            items:
+              - itemrowidentifier: "7300001"
+                name: Frying pan
+                condition: Good
+                location: Store A
+                available: 4
+                booked: 2
+sources: [ ext.quartermaster.595dcb7d4cb2b5ff49ee.js, osm-de353b59e43da8164ac0b179aadfacd1.js ]

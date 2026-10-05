@@ -1,0 +1,41 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/national/
+action: memberSearch
+summary: Search members
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      description: Caller's own section ID.
+    search:
+      type: string
+    firstname:
+      type: string
+    lastname:
+      type: string
+    role:
+      type: string
+    includeInactive:
+      type: string
+      enum: [ "true", "false" ]
+  example:
+    section_id: "45001"
+    includeInactive: "false"
+    firstname: Alex
+response:
+  schema:
+    $ref: DashboardNationalMemberSearch
+  examples:
+    memberSearch:
+      value:
+        items:
+          - scoutid_sectionid_patrolrolid: "3100001_45001_-2"
+            firstname: Jamie
+            lastname: River
+        meta: { }
+sources: [ area.national_dashboard.24a9dd00242256a71961.js, ext.dashboard.82a61c008183022fe2cd.js ]

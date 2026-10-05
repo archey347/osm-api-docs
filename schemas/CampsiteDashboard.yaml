@@ -1,0 +1,33 @@
+type: object
+properties:
+  notepad: { }
+  number_on_site:
+    type: integer
+  provisional_bookings:
+    type: integer
+  upgrade_required:
+    type: boolean
+  unpaid_leaving_today:
+    type: integer
+  remaining_credit:
+    description: "Number, or `false` when not applicable."
+  booking_search:
+    type: boolean
+  item_bookings_requiring_instructors:
+    type: integer
+  subscription_expiring_soon:
+    type: boolean
+  user_to_do_tasks:
+    type: object
+    properties:
+      tasks:
+        type: array
+        items:
+          type: object
+          additionalProperties: true
+      users:
+        type: object
+        additionalProperties: true
+    additionalProperties: true
+additionalProperties: true
+description: Campsite dashboard figures.

@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/helpcentre/gilbert/delete/{questionId}"
+summary: Delete one Gilbert question and its answer
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  questionId:
+    type: string
+body:
+  params:
+    guid:
+      type: string
+      required: true
+      description: Conversation GUID.
+  example:
+    guid: "00000000-0000-0000-0000-000000000000"
+response:
+  schema:
+    $ref: HelpCentreGilbertState
+  examples:
+    default:
+      value:
+        questions: [ ]
+        answers: [ ]
+  description: Remaining questions and answers.
+sources: [ ext.helpcentre.b7a1deb267cad56138a2.js ]

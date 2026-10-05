@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/national/
+action: getUserSectionAccess
+summary: 'Get a user''s section access'
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  user_id:
+    type: string
+response:
+  schema:
+    $ref: DashboardNationalUserSectionAccess
+  examples:
+    getUserSectionAccess:
+      summary: "Per-section access. Another screen reads a `roles` list from the same action."
+      value:
+        items:
+          - group_id: "8100001"
+            groupname: "1st Riverside"
+            section_id: "45001"
+            sectionname: Cubs
+sources: [ area.national_dashboard.24a9dd00242256a71961.js ]

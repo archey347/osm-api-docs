@@ -1,0 +1,22 @@
+type: object
+properties:
+  id: { }
+  name:
+    type: string
+  opening_balance:
+    description: Pence.
+  opening_date:
+    type: string
+    format: date
+  current_balance:
+    description: Pence.
+  deleted_at:
+    description: Set when the account is closed. May be null.
+  first_transaction_date:
+    description: May be null.
+  last_transaction_date:
+    description: May be null.
+  number_unprocessed_transactions: { }
+  expense_account:
+    description: Set for the expense card account. May be null.
+additionalProperties: true

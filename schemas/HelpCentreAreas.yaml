@@ -1,0 +1,35 @@
+type: array
+items:
+  type: object
+  properties:
+    id: { }
+    title: { }
+    order: { }
+    visibility:
+      description: "Section visibility rule; `null` for everyone."
+    topics:
+      type: array
+      items:
+        type: object
+        properties:
+          id: { }
+          title: { }
+          summary: { }
+          description: { }
+          order: { }
+          help_centre_area_id: { }
+          visibility: { }
+          created_at: { }
+          boosted:
+            description: Site type to rank when the topic is promoted.
+          related_articles: { }
+          opens:
+            type: array
+            description: "The user's earlier opens; `updated_at` newer than `created_at` marks a read topic."
+            items:
+              type: object
+              properties:
+                updated_at: { }
+              additionalProperties: true
+        additionalProperties: true
+  additionalProperties: true

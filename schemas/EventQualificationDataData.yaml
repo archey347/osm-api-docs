@@ -1,0 +1,39 @@
+type: object
+properties:
+  types:
+    type: object
+    description: Event types keyed by ID.
+    additionalProperties:
+      type: object
+      properties:
+        type_id:
+          type: string
+        selected:
+          type: boolean
+        qualifications:
+          type: array
+          items:
+            type: object
+            properties:
+              qualification_id:
+                type: string
+            additionalProperties: true
+      additionalProperties: true
+  qualifications:
+    type: object
+    description: Required qualifications keyed by ID.
+    additionalProperties:
+      type: object
+      properties:
+        qualification_id:
+          type: string
+        mode:
+          type: string
+          description: "`mine`, `other` or `none`."
+        member_id:
+          type: string
+      additionalProperties: true
+  approval_status:
+    type: string
+additionalProperties: true
+description: Event types and leader qualification assignments.

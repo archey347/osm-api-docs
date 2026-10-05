@@ -1,0 +1,8 @@
+path: /ext/programme/share/
+method: GET
+summary: Programme sharing
+description: |-
+  `share` sends a term's programme to another section the user has a
+  role in, and is a GET despite changing data. The receiving section
+  reads it with `get` and then POSTs `accept` or `reject`.
+response: Sharing response.

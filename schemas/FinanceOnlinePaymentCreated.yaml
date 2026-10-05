@@ -1,0 +1,15 @@
+type: object
+properties:
+  status:
+    type: boolean
+  data:
+    type: object
+    properties:
+      schedule_id:
+        type: string
+        description: "Set by `createSchedule`."
+      id:
+        type: string
+        description: "Payment ID. Set by `savePaymentRequest`."
+    additionalProperties: true
+additionalProperties: true

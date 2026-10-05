@@ -1,0 +1,50 @@
+kind: v3-route
+method: POST
+path: "/v3/members/contact/{sectionid}/removalWarnings"
+summary: Get pre-removal warnings for a member
+description: |-
+  Checks whether there are any warnings before removing a member from a
+  section (e.g. outstanding payments). Call this before `removeMember`
+  to display confirmation prompts to the user.
+tags: [ Members ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+path_params:
+  sectionid:
+    type: string
+    description: Section ID.
+body:
+  params:
+    "member_ids[0]":
+      type: integer
+      required: true
+      description: "Scout ID of the member to check. Additional members can be sent as `member_ids[1]`, `member_ids[2]`, etc."
+  example:
+    "member_ids[0]": 3100005
+response:
+  schema:
+    type: object
+    properties:
+      payments:
+        type: array
+        items:
+          type: string
+        description: IDs of members with initiated, unpaid payments.
+      active_elsewhere:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+        description: Member ID to the sections where they are still active.
+    additionalProperties: true
+  examples:
+    default:
+      value:
+        payments: [ "3100005" ]
+        active_elsewhere:
+          "3100005": [ "1st Riverside Scouts: Scouts" ]
+  description: Removal warnings.
+sources: [ ext.members.ca95317ad56b2f22a5e5.js ]

@@ -1,0 +1,4 @@
+path: /ext/finances/onlinepayments/merchants/
+method: GET
+summary: Online payment merchant accounts
+response: Accounts, or whether an account can be deleted.

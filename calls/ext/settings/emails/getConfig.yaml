@@ -1,0 +1,85 @@
+kind: ext-action
+method: GET
+path: /ext/settings/emails/
+action: getConfig
+summary: Get newsletter configuration for a section
+tags: [ Email ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-03-05
+query:
+  sectionid:
+    type: string
+    description: Section ID.
+response:
+  schema:
+    type: object
+    properties:
+      found:
+        type: boolean
+      result:
+        type: object
+        properties:
+          sectionid:
+            type: string
+          slug:
+            type: string
+            description: Newsletter slug for the section.
+          numemails:
+            type: string
+            description: Number of emails sent (as string).
+          live:
+            type: string
+            enum: [ "0", "1" ]
+            description: Whether the newsletter is live.
+      events:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        description: Upcoming events that can be used as email filters.
+      patrols:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+        description: Patrols/sixes in the section.
+      leaders:
+        type: boolean
+        description: Whether leaders are available as recipients.
+    additionalProperties: true
+  examples:
+    getConfig:
+      summary: Email configuration
+      value:
+        found: true
+        result:
+          sectionid: "45001"
+          slug: "1stRiversideCubs"
+          numemails: "0"
+          live: "1"
+        events:
+          - name: Summer Camp 2025
+            slug: SummerCamp2025
+          - name: Investiture Ceremony
+            slug: InvestitureCeremony
+        patrols:
+          - name: Blue
+            slug: Blue
+          - name: Green
+            slug: Green
+          - name: Red
+            slug: Red
+          - name: Yellow
+            slug: Yellow
+        leaders: true
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", area.settings.f73c3ef434f40520f0bc.js ]

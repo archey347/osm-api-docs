@@ -1,0 +1,22 @@
+kind: v3-route
+method: POST
+path: "/v3/chat/poll/{optionId}"
+summary: Rename a poll option
+tags: [ Chat ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  optionId:
+    type: string
+body:
+  params:
+    title:
+      type: string
+      maxLength: 32
+      required: true
+  example:
+    title: Maybe
+response:
+  description: "Success when `status` is true."
+sources: [ area.chat.6b506d390b35ea85d510.js ]

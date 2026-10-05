@@ -1,0 +1,38 @@
+kind: ext-action
+method: GET
+path: /ext/finances/invoices/summary/
+action: getInvoiceSummary
+summary: Invoice summary list
+tags: [ Finances ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  termid:
+    type: string
+    required: true
+  is_dgrid:
+    type: string
+    description: "Observed `true`."
+  archived:
+    type: string
+    description: "Send `true` to list archived invoices."
+response:
+  schema:
+    $ref: FinanceInvoiceSummary
+  examples:
+    default:
+      value:
+        items:
+          - invoiceid: "9400001"
+            name: Summer camp
+            entrydate: "2024-07-20"
+            exp: "40.00"
+            in: "60.00"
+            total: "20.00"
+            finalised: "0"
+  description: Invoice summary.
+sources: [ area.finances_invoices.1218deea4ce0f41c00b4.js ]

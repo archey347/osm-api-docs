@@ -1,0 +1,102 @@
+kind: ext-action
+method: GET
+path: /ext/dashboard/
+action: getNextThings
+summary: Get upcoming items
+description: "`getNextThings` is the section dashboard; `getGroupDashboard` and `memberSearch` serve the group dashboard across several sections."
+tags: [ Dashboard ]
+source:
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
+query:
+  sectionid:
+    type: string
+    description: "Section ID. Required by `getNextThings`."
+  termid:
+    type: string
+    description: "Term ID. Required by `getNextThings`."
+  section:
+    type: string
+    enum: [ squirrels, beavers, cubs, scouts, explorers ]
+    description: "Section type. Required by `getNextThings`."
+  parts:
+    type: string
+    enum: [ core, agenda, section_widgets, user_widgets ]
+    description: "Limits the response to one group of widgets; the web app requests each separately. The response then has a `parts` array."
+response:
+  schema:
+    $ref: DashboardNextThings
+  examples:
+    getNextThings:
+      summary: Next things for a section
+      value:
+        conf:
+          birthdays: 1
+          programme: 1
+          events: 1
+        is_full_admin: true
+        permissions:
+          badge: 20
+          member: 20
+          user: "100"
+        patrols:
+          - patrolid: "12001"
+            sectionid: "45001"
+            name: Blue
+            active: "1"
+            points: "0"
+            census_costs: false
+        birthdays:
+          - member_id: 3100006
+            firstname: Casey
+            lastname: Brook
+            photo_guid: "00000000-0000-0000-0000-000000000000"
+            dob: "2016-02-02"
+            age: 9
+        programme:
+          - meetingdate: "2024-11-01"
+            title: Camp Skills Night
+            eveningid: "9500001"
+        events:
+          - eventid: "1700001"
+            name: District Camp
+            date: "2025-06-19"
+            end_date: "2025-06-21"
+            "yes": 1
+        outstandingpayments:
+          - name: Subscriptions
+            amount: 45
+            scheme_id: "47001"
+            currency: GBP
+        surveys: false
+        notepad:
+          raw: "0"
+          html: "<p></p>"
+        subscription_expiring_soon: false
+        programme_reviews: [ ]
+        deletable_members:
+          count: 2
+        due_badges:
+          count: 5
+        expense_cards:
+          cardholders: [ ]
+          number_cardholders: 0
+        feature_request_voting:
+          has_feature_request: false
+        pending_expense_cardholder_application:
+          data_required: false
+        thanks:
+          messages: [ ]
+        unanswered_question:
+          has_questions: false
+        user_to_do_tasks:
+          tasks: [ ]
+          users: { }
+        whats_new:
+          title: Example Update
+          msg: "<p>Example message.</p>"
+          story_id: 100
+          like_count: 0
+          user_has_liked: false
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

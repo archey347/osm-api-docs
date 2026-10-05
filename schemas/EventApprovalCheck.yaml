@@ -1,0 +1,14 @@
+type: object
+properties:
+  type:
+    type: string
+  status:
+    type: string
+    description: "`pending`, `approved` or `rejected`."
+  reason:
+    type: string
+  date_last_updated:
+    type: string
+  moderator:
+    type: string
+additionalProperties: true

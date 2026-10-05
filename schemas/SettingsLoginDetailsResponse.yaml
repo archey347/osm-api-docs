@@ -1,0 +1,13 @@
+type: object
+properties:
+  status:
+    type: boolean
+  data:
+    type: object
+    properties:
+      security_phone:
+        type: string
+      has_expense_card:
+        type: boolean
+    additionalProperties: true
+additionalProperties: true

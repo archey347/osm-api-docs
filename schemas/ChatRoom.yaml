@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+  mode:
+    type: string
+    description: "Seen values include `topic` and `recruitment`."
+  name:
+    type: string
+  userHasUnreadMessages:
+    type: boolean
+additionalProperties: true

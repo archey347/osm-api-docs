@@ -1,0 +1,9 @@
+path: /ext/mymember/payments/
+method: POST
+summary: Pay, cancel and manage payment methods
+description: |-
+  Payment writes share this path with different `action` values. Card and direct debit
+  set-up is a two-step flow: `getScheduledDirectDebitSetupUrl` returns the gateway URL (GoCardless)
+  or client secret (Stripe), then `checkStatusOfDirectDebitSetup` (GoCardless, polled) or
+  `completePaymentAuthorisation` (Stripe) finishes it.
+response: Result of the payment action.

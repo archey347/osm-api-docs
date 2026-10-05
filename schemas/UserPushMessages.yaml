@@ -1,0 +1,21 @@
+type: object
+properties:
+  messages:
+    type: array
+    items:
+      type: object
+      properties:
+        id: { }
+        title: { }
+        message: { }
+        created_at: { }
+        group_and_section_name: { }
+        section_id:
+          description: "`-1` for all sections."
+        require: { }
+        execute: { }
+        params: { }
+        args: { }
+        action_visibility: { }
+      additionalProperties: true
+additionalProperties: true

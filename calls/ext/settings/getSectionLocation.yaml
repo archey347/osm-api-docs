@@ -1,0 +1,25 @@
+kind: ext-action
+method: GET
+path: /ext/settings/
+action: getSectionLocation
+summary: Get section location
+tags: [ Settings ]
+source:
+  request: inferred
+  response: inferred
+query:
+  section_id:
+    type: string
+    required: true
+    description: Section ID.
+response:
+  schema:
+    $ref: SettingsStatusResponseData
+  envelope: true
+  examples:
+    default:
+      value:
+        latitude: 51.5
+        longitude: -0.12
+  description: "Section location; latitude and longitude are null when unset."
+sources: [ "8913.6d746d696f1aeb9d4b5a.js", osm-de353b59e43da8164ac0b179aadfacd1.js ]

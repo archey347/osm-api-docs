@@ -1,0 +1,26 @@
+kind: v3-route
+method: GET
+path: "/v3/todo/projects/{sectionId}"
+summary: List task projects
+tags: [ Todo ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+response:
+  schema:
+    $ref: TodoProjectList
+  envelope: false
+  examples:
+    default:
+      value:
+        data:
+          - id: 5200001
+            title: Summer camp
+            tasks_total: 12
+            tasks_completed: 5
+            tasks_overdue: 1
+  description: Projects for the section.
+sources: [ ext.todo.d468071aea6cfcdf2819.js ]

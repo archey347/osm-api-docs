@@ -1,0 +1,29 @@
+kind: v3-route
+method: POST
+path: "/v3/group_hub/workspaces/{workspaceId}/risk-assessments/review-interval"
+summary: Set the risk assessment review interval for all sections
+tags: [ Group Hub ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  workspaceId:
+    type: string
+    description: Group Hub workspace ID.
+body:
+  params:
+    months:
+      type: string
+      required: true
+      description: Months between reviews.
+  example:
+    months: "12"
+response:
+  schema:
+    $ref: GroupHubUpdatedResult
+  examples:
+    default:
+      value:
+        updated: 2
+  description: Number of sections updated.
+sources: [ ext.risk_assessments.25831d7610fb31450e26.js ]

@@ -1,0 +1,44 @@
+kind: ext-action
+method: POST
+path: /ext/reports/visualisers/notifications/
+action: dismissNotification
+summary: Dismiss a notification
+tags: [ Reports ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    section_id:
+      type: string
+      required: true
+    report_id:
+      type: string
+    notification_id:
+      type: string
+    current_section_id:
+      type: string
+    target_member_id:
+      type: string
+    related_member_id:
+      type: string
+    date:
+      type: string
+      description: "`date_created` of the notification."
+  example:
+    current_section_id: "45001"
+    section_id: "45001"
+    target_member_id: "3100002"
+    related_member_id: "3100002"
+    report_id: "910001"
+    notification_id: "920001"
+    date: "2025-01-14"
+response:
+  schema:
+    $ref: ReportStatusResult
+  examples:
+    status:
+      summary: "`clearTestNotifications`, `createNotification`, `deleteNotification`, `dismissNotification`, `editNotification`"
+      value:
+        status: true
+sources: [ "21.3e07bd5db1c55da1f0d3.js", area.reports.e212ae5ee9d683be7967.js ]

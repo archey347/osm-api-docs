@@ -1,0 +1,31 @@
+kind: ext-action
+method: POST
+path: /ext/dashboard/
+action: updateNotepad
+summary: Update the dashboard notepad
+tags: [ Dashboard ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+    description: Section ID.
+body:
+  params:
+    html:
+      type: string
+      required: true
+      description: Notepad content as HTML.
+  example:
+    html: "<p>Remember the camp forms.</p>"
+response:
+  schema:
+    $ref: OkResponse
+  examples:
+    default:
+      value:
+        ok: true
+  description: "Saved when `ok` is true."
+sources: [ ext.dashboard.82a61c008183022fe2cd.js ]

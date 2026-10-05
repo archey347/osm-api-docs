@@ -1,0 +1,28 @@
+kind: v3-route
+method: GET
+path: "/v3/generic/search/{sectionId}"
+summary: Get local search index
+description: "Items for the global search box; searched client-side."
+tags: [ Generic ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+query:
+  term_id:
+    type: string
+    required: true
+response:
+  schema:
+    $ref: GenericSearchResponse
+  examples:
+    default:
+      value:
+        - type: Members
+          title: Alex Scout
+          subtext: Example Troop
+          keywords: ""
+  description: Searchable items and the remote search types available.
+sources: [ ext.generic.d987496afe1a0330ff1a.js ]

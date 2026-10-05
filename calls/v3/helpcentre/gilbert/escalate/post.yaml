@@ -1,0 +1,32 @@
+kind: v3-route
+method: POST
+path: /v3/helpcentre/gilbert/escalate
+summary: Escalate a Gilbert conversation to a support ticket
+description: Creates a support ticket.
+tags: [ Help Centre ]
+source:
+  request: inferred
+  response: inferred
+body:
+  params:
+    guid:
+      type: string
+      required: true
+    subject:
+      type: string
+      required: true
+      description: At least four characters.
+    section_id:
+      type: string
+      required: true
+    notes:
+      type: string
+      description: Sent only when non-empty.
+  example:
+    guid: "00000000-0000-0000-0000-000000000000"
+    subject: Cannot add a member
+    section_id: "45001"
+    notes: Gilbert could not help.
+response:
+  description: "Response body is not read; success is any 2xx."
+sources: [ ext.helpcentre.b7a1deb267cad56138a2.js ]

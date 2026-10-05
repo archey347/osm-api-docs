@@ -1,0 +1,18 @@
+kind: v3-route
+method: POST
+path: "/v3/kit/{sectionId}/{associatedType}/{collectionId}/duplicate"
+summary: Duplicate a kit list
+tags: [ Kit ]
+source:
+  request: inferred
+  response: inferred
+path_params:
+  sectionId:
+    type: string
+  associatedType:
+    type: string
+  collectionId:
+    type: string
+response:
+  description: "Success when `status` is true."
+sources: [ ext.kit.92ed48541329641aa295.js ]

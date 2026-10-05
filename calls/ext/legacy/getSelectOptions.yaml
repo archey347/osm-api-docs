@@ -1,0 +1,39 @@
+kind: ext-action
+method: GET
+path: /ext/legacy/
+action: getSelectOptions
+summary: List selection options
+tags: [ Legacy ]
+source:
+  request: inferred
+  response: inferred
+query:
+  sectionid:
+    type: string
+    required: true
+  type:
+    type: string
+    enum: [ patrol, meeting, event ]
+    required: true
+  termid:
+    type: string
+  incleaders:
+    type: string
+    enum: [ "true" ]
+  reverse:
+    type: string
+    enum: [ "true" ]
+    description: The web app sends it when listing events.
+response:
+  schema:
+    $ref: LegacySelectResponse
+  examples:
+    getSelectOptions:
+      value:
+        items:
+          - value: "9400001"
+            label: Example Camp
+sources:
+  - ext.badges.6a63e40102b2845e63ab.js
+  - ext.programme.8d866e8ea75c304133fc.js
+  - osm-de353b59e43da8164ac0b179aadfacd1.js

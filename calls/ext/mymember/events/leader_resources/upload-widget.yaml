@@ -1,0 +1,20 @@
+kind: ext-action
+path: /ext/mymember/events/leader_resources/
+uses:
+  template: upload-widget
+  params:
+    section_id:
+      type: string
+    id:
+      type: string
+      description: Event ID.
+    event_id:
+      type: string
+      description: Event ID.
+    path:
+      type: string
+      description: Always `/`.
+    temp:
+      type: string
+      enum: [ "true", "false" ]
+tags: [ Parent Portal ]

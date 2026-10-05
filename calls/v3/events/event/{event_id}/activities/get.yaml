@@ -4,8 +4,9 @@ path: "/v3/events/event/{event_id}/activities"
 summary: List activities linked to an event
 tags: [ Events ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 path_params:
   event_id:
     type: string

@@ -4,8 +4,9 @@ path: "/v3/chat/rooms/{sectionId}"
 summary: List chat rooms for a section
 tags: [ Chat ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 path_params:
   sectionId:
     type: string

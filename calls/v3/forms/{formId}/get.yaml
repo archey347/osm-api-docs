@@ -5,8 +5,9 @@ summary: List form completions
 description: "The group dashboard calls this with form IDs `1` and `3` plus `section_ids` and `after`."
 tags: [ Forms ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 path_params:
   formId:
     type: string

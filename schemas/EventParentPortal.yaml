@@ -1,5 +1,7 @@
 type: object
 properties:
+  start_date:
+    type: string
   cost:
     description: Cost shown to parents.
   confirmation_deadline:
@@ -13,7 +15,9 @@ properties:
   send_attendance_reminders:
     type: integer
   kit_list_collection_id:
-    type: string
+    oneOf:
+      - type: string
+      - type: integer
   latitude:
     description: May be null.
   longitude:

@@ -1,5 +1,7 @@
 type: object
 properties:
+  identifier:
+    type: string
   items:
     type: array
     items:
@@ -9,15 +11,51 @@ properties:
           type: string
         name:
           type: string
+        date:
+          type: string
         startdate:
           type: string
         startdate_g:
           type: string
         enddate:
           type: string
+        starttime:
+          type: string
+        endtime:
+          type: string
+        cost:
+          type: string
+        location:
+          type: string
+        approval_status:
+          type: string
+          nullable: true
+        rota_offered:
+          type: integer
         rota_accepted:
           type: integer
         rota_required:
+          type: integer
+          nullable: true
+        yes:
+          type: integer
+        yes_members:
+          type: integer
+        yes_yls:
+          type: integer
+        yes_leaders:
+          type: integer
+        reserved:
+          type: integer
+        no:
+          type: integer
+        absent:
+          type: integer
+        invited:
+          type: integer
+        shown:
+          type: integer
+        x:
           type: integer
       additionalProperties: true
 additionalProperties: true

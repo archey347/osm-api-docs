@@ -4,18 +4,19 @@ path: "/v3/programme/{meetingId}/bookings"
 summary: List campsite bookings for a meeting
 tags: [ Generic ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 path_params:
   meetingId:
     type: string
 response:
   schema:
-    $ref: GenericBookingsResponse
+    $ref: MeetingBookings
   examples:
     default:
       value:
         bookings:
           - booking_id: 5500001
             campsite: { }
-  description: "Bookings; the web app drops those with a null `campsite`."
+  description: "The meeting and its bookings; the web app drops bookings with a null `campsite`."

@@ -5,8 +5,9 @@ action: getRiskAssessment
 summary: Get risk assessments
 tags: [ Risk Assessments ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 query:
   section_id:
     type: string

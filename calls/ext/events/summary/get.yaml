@@ -6,8 +6,9 @@ summary: List the section's events for the term
 description: "`get` lists the section's events for the term, `getEvents` a lighter list (`onlyArchived=1` for archived ones), `getAudit` recent attendance changes."
 tags: [ Events ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 query:
   sectionid:
     type: string

@@ -1,8 +1,7 @@
 kind: ext-action
-path: /ext/programme/
+path: /ext/mymember/programme/leader_resources/
 uses:
   template: upload-widget
-  prefix: programmeAttachments
   params:
     section_id:
       type: string
@@ -12,13 +11,7 @@ uses:
     path:
       type: string
       description: Always `/`.
-    evening_id:
-      type: string
-      description: Meeting (evening) ID.
     temp:
       type: string
       enum: [ "true", "false" ]
-    upload_mode:
-      type: string
-      enum: [ programme ]
-tags: [ Programme ]
+tags: [ Parent Portal ]

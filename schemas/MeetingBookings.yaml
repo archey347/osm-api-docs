@@ -1,0 +1,42 @@
+description: The meeting record plus its campsite bookings.
+allOf:
+  - $ref: GenericBookingsResponse
+  - type: object
+    properties:
+      eveningid:
+        type: integer
+      sectionid:
+        type: integer
+      title:
+        type: string
+      meetingdate:
+        type: string
+      starttime:
+        type: string
+      endtime:
+        type: string
+      notesforparents:
+        type: string
+      notesforhelpingparents:
+        type: string
+        nullable: true
+      parentsrequired:
+        type: integer
+      games:
+        type: string
+      prenotes:
+        type: string
+      postnotes:
+        type: string
+      leaders:
+        type: string
+      primary_leader_id:
+        type: integer
+      config:
+        type: object
+        additionalProperties: true
+      googlecalendar:
+        description: May be null.
+      soft_deleted:
+        type: integer
+    additionalProperties: true

@@ -1,0 +1,73 @@
+description: The event record plus its campsite bookings.
+allOf:
+  - $ref: GenericBookingsResponse
+  - type: object
+    properties:
+      eventid:
+        type: integer
+      sectionid:
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+        nullable: true
+      startdate:
+        type: string
+      enddate:
+        type: string
+      starttime:
+        type: string
+      endtime:
+        type: string
+      cost: { }
+      location:
+        type: string
+      latitude:
+        description: May be null.
+      longitude:
+        description: May be null.
+      notes:
+        type: string
+      notepad:
+        type: string
+      publicnotes:
+        type: string
+        nullable: true
+      config:
+        type: object
+        nullable: true
+        additionalProperties: true
+      extra:
+        type: object
+        additionalProperties: true
+      kit_list_collection_id:
+        type: integer
+      googlecalendar:
+        description: May be null.
+      archived:
+        type: boolean
+      soft_deleted:
+        type: boolean
+      confdate:
+        type: string
+      allowchanges:
+        type: boolean
+      disablereminders:
+        type: boolean
+      attendancelimit:
+        type: integer
+      limitincludesleaders:
+        type: boolean
+      allowbooking:
+        type: boolean
+      attendancereminder:
+        type: integer
+      approval_status:
+        type: string
+        nullable: true
+      created_at:
+        type: string
+      created_by:
+        type: integer
+    additionalProperties: true

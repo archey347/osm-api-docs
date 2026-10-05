@@ -5,8 +5,9 @@ action: deleteItem
 summary: Delete a risk assessment item
 tags: [ Risk Assessments ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-05
 body:
   params:
     section_id:

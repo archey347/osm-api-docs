@@ -17,7 +17,7 @@ OSM, whether that's a badge tracker, a patrol planner, or anything else that hel
 > relying on anything here. We are not affiliated with OSM; use at your own risk.
 
 Credit to the City of Newcastle Scouts Digital Team in
-[osm-api-docs](https://github.com/archey347/osm-api-docs), which this project builds on.
+[osm-api-docs](https://github.com/newcastlescouts/osm-api-docs), which this project builds on.
 
 ## Using the spec
 

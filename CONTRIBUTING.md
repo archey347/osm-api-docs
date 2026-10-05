@@ -26,11 +26,12 @@ use OSM, your own traffic can confirm or correct them.
    This marks the calls it saw as **observed** in their call files, and writes a report of where real replies differ
    from the spec to `.cache/observation-scan.md`. The report holds structure only (field names and types), never
    values, and the capture itself never leaves your machine.
+
+   I'd recommend using your favourite AI code editor to do this and the steps below for you, using the skill at
+   [`.claude/skills/record-osm-observations/SKILL.md`](.claude/skills/record-osm-observations/SKILL.md).
 3. Fix the differences the report lists in the call and schema files (see [Edit a call](#3-edit-a-call)), or, if you'd
    rather not edit them, open an issue describing them.
 4. Open a PR with the updated call files, following [Before opening a PR](#before-opening-a-pr).
-
-The `record-osm-observations` skill for Claude Code walks through these steps.
 
 ## 3. Edit a call
 

@@ -46,9 +46,13 @@ code). Treat inferred calls with more suspicion.
 
 ## Contributing
 
-PRs are welcome. The spec is built from the files in `calls/` and `schemas/`, so edit those and `openapi.yaml` is
-regenerated from them (`bun run gen:openapi`). Issues are welcome too: open one for a missing call or a mistake. See
-[CONTRIBUTING.md](CONTRIBUTING.md) and [FORMAT.md](FORMAT.md).
+Issues and PRs are welcome. If you use OSM, the most useful thing you can do is check the spec against your own
+traffic: save a HAR capture from your browser and run `bun run scan -- my-capture.har`. It reads the capture
+automatically, marks the calls it saw as **observed**, and reports where real replies differ from the spec, without
+the capture or any values leaving your machine.
+
+The spec is built from the files in `calls/` and `schemas/`, so edit those and `openapi.yaml` is regenerated from them
+(`bun run gen:openapi`). See [CONTRIBUTING.md](CONTRIBUTING.md) and [FORMAT.md](FORMAT.md).
 
 ## Building
 

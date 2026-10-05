@@ -1,5 +1,9 @@
 type: object
 properties:
+  status:
+    type: boolean
+  error:
+    description: May be null.
   data:
     type: array
     items:
@@ -7,6 +11,8 @@ properties:
   meta:
     type: object
     properties:
+      can_read:
+        type: boolean
       can_edit:
         type: boolean
       users:

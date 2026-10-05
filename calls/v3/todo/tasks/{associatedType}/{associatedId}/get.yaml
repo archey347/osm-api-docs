@@ -4,8 +4,9 @@ path: "/v3/todo/tasks/{associatedType}/{associatedId}"
 summary: List tasks attached to an item
 tags: [ Todo ]
 source:
-  request: inferred
+  request: observed
   response: inferred
+  observed_on: 2026-10-05
 path_params:
   associatedType:
     type: string

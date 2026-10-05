@@ -7,11 +7,40 @@ items:
     associated_id: { }
     type: { }
     category_id: { }
+    category: { }
+    hazard_id: { }
+    hazard: { }
+    harm: { }
+    risk: { }
+    residual_risk:
+      type: string
+      nullable: true
     manual_category: { }
     manual_hazard: { }
     controls: { }
     check: { }
+    who:
+      type: string
     duplicated_from_id: { }
+    duplicate_ignored_at:
+      type: string
+      nullable: true
     hub_managed:
       type: boolean
+    primary:
+      type: boolean
+    deletable:
+      type: boolean
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    created_at_local_time:
+      type: string
+    updated_at_local_time:
+      type: string
+    created_by_full_name:
+      type: string
+    updated_by_full_name:
+      type: string
   additionalProperties: true

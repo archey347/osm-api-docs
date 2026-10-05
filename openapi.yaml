@@ -1999,12 +1999,12 @@ paths:
   "/ext/members/census/?action=getDetails":
     get:
       summary: Get census details
-      description: "Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Members ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -2286,7 +2286,7 @@ paths:
     get:
       summary: List a section's members
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Retrieves member data. The `action` parameter controls the behavior.
         This endpoint is also used to return full member contact/emergency data
@@ -2295,7 +2295,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -5335,12 +5335,12 @@ paths:
   "/ext/members/patrols/?action=getPatrolsWithPeople":
     get:
       summary: List patrols with their members
-      description: "Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Members ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -6696,14 +6696,14 @@ paths:
     get:
       summary: Get a section's attendance register
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Use `get` for attendance records or `getAttendanceBadgeRequirements` for badge requirements tied to a date.
       tags: [ Attendance ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -6765,14 +6765,14 @@ paths:
     get:
       summary: Get badge requirements met at a meeting
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Use `get` for attendance records or `getAttendanceBadgeRequirements` for badge requirements tied to a date.
       tags: [ Attendance ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -11119,7 +11119,7 @@ paths:
     post:
       summary: Edit meeting details
       description: |-
-        Request: observed in captured traffic, 2026-10-04. Response: observed in captured traffic, 2026-10-04.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Programme writes share this path with different `action` values.
         `deleteMeeting` takes `eveningid` and `sectionid` in the query string
@@ -11128,7 +11128,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-04"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -11242,7 +11242,7 @@ paths:
     get:
       summary: List members for the parent rota
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Programme endpoints share this path with different `action` values.
         Use `getProgrammeSummary` for term overview, `getProgramme` for details,
@@ -11253,7 +11253,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -11308,7 +11308,7 @@ paths:
     get:
       summary: Get programme details
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Programme endpoints share this path with different `action` values.
         Use `getProgrammeSummary` for term overview, `getProgramme` for details,
@@ -11319,7 +11319,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -11376,7 +11376,7 @@ paths:
     get:
       summary: Get a term's programme summary
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Programme endpoints share this path with different `action` values.
         Use `getProgrammeSummary` for term overview, `getProgramme` for details,
@@ -11387,7 +11387,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -11624,6 +11624,15 @@ paths:
                 path:
                   type: string
                   description: "Always `/`."
+                evening_id:
+                  type: string
+                  description: Meeting (evening) ID.
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+                upload_mode:
+                  type: string
+                  enum: [ programme ]
       responses:
         "200":
           description: Successful response.
@@ -11678,6 +11687,24 @@ paths:
           description: "Always `/`."
           schema:
             type: string
+        - name: evening_id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+        - name: upload_mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ programme ]
       responses:
         "200":
           description: Successful response.
@@ -11732,6 +11759,24 @@ paths:
           description: "Always `/`."
           schema:
             type: string
+        - name: evening_id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+        - name: upload_mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ programme ]
       responses:
         "200":
           description: Successful response.
@@ -11786,6 +11831,24 @@ paths:
           description: "Always `/`."
           schema:
             type: string
+        - name: evening_id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+        - name: upload_mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ programme ]
       requestBody:
         required: true
         content:
@@ -11870,6 +11933,24 @@ paths:
           description: "Always `/`."
           schema:
             type: string
+        - name: evening_id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+        - name: upload_mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ programme ]
       requestBody:
         required: true
         content:
@@ -11938,6 +12019,15 @@ paths:
                 path:
                   type: string
                   description: "Always `/`."
+                evening_id:
+                  type: string
+                  description: Meeting (evening) ID.
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+                upload_mode:
+                  type: string
+                  enum: [ programme ]
               required: [ qqfile ]
       responses:
         "200":
@@ -11990,6 +12080,15 @@ paths:
                 path:
                   type: string
                   description: "Always `/`."
+                evening_id:
+                  type: string
+                  description: Meeting (evening) ID.
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+                upload_mode:
+                  type: string
+                  enum: [ programme ]
       responses:
         "200":
           description: Successful response.
@@ -21480,7 +21579,7 @@ paths:
     post:
       summary: Add or update a risk assessment item
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Writes share this path with different `action` values. `addCategory`,
         `deleteCategory`, `addHazard` and `deleteHazard` edit the section's
@@ -21488,8 +21587,9 @@ paths:
         or event.
       tags: [ Risk Assessments ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -21568,7 +21668,7 @@ paths:
                     nullable: true
                     description: "`null` on success."
                   data:
-                    $ref: "#/components/schemas/RiskAssessmentWriteResult"
+                    $ref: "#/components/schemas/RiskAssessmentItemSaved"
                   meta:
                     type: object
                     nullable: true
@@ -21755,7 +21855,7 @@ paths:
     post:
       summary: Delete a risk assessment item
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Writes share this path with different `action` values. `addCategory`,
         `deleteCategory`, `addHazard` and `deleteHazard` edit the section's
@@ -21763,8 +21863,9 @@ paths:
         or event.
       tags: [ Risk Assessments ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -22170,7 +22271,7 @@ paths:
     get:
       summary: Get risk assessments
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Risk assessments attach to a meeting, activity or event, identified by
         `type` and `associated_id`. `getCategories`, `getHazards` and `getHarms`
@@ -22178,8 +22279,9 @@ paths:
         `risk_assessments_config.mode` is `prepopulated`.
       tags: [ Risk Assessments ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -22319,6 +22421,489 @@ paths:
         default:
           $ref: "#/components/responses/ExtError"
       operationId: ext_risk_assessments_reuseItem
+  "/ext/risk_assessments/uploads/?action=commitTemp":
+    post:
+      summary: Attach temporary uploads to the saved record
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ commitTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting, activity or event ID.
+                type:
+                  type: string
+                  description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+                path:
+                  type: string
+                  description: "`/<type>/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_commitTemp
+  "/ext/risk_assessments/uploads/?action=config":
+    get:
+      summary: Widget limits and endpoint names
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ config ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting, activity or event ID.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "`/<type>/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_config
+  "/ext/risk_assessments/uploads/?action=manifest":
+    get:
+      summary: List uploaded files
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ manifest ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting, activity or event ID.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "`/<type>/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_manifest
+  "/ext/risk_assessments/uploads/?action=partPut":
+    post:
+      summary: Upload one chunk of a large file
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ partPut ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting, activity or event ID.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "`/<type>/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The chunk.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_partPut
+  "/ext/risk_assessments/uploads/?action=put":
+    post:
+      summary: Upload a file, or the last chunk of one
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ put ]
+        - name: completePut
+          in: query
+          required: false
+          description: Upload GUID that finishes a chunked upload.
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          description: Total file size in bytes.
+          schema:
+            type: string
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "1" ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting, activity or event ID.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "`/<type>/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_put
+  "/ext/risk_assessments/uploads/?action=putTemp":
+    post:
+      summary: Upload a file for a record that is not saved yet
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ putTemp ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting, activity or event ID.
+                type:
+                  type: string
+                  description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+                path:
+                  type: string
+                  description: "`/<type>/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_putTemp
+  "/ext/risk_assessments/uploads/?action=revertTemp":
+    post:
+      summary: Discard temporary uploads
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Risk Assessments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ revertTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting, activity or event ID.
+                type:
+                  type: string
+                  description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+                path:
+                  type: string
+                  description: "`/<type>/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_risk_assessments_uploads_revertTemp
   "/v3/risk_assessments/reviews/{sectionId}":
     get:
       summary: List risk assessment reviews
@@ -22617,12 +23202,12 @@ paths:
   "/v3/risk_assessments/{sectionId}/categories":
     get:
       summary: Show programme risk assessment categories
-      description: "Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Risk Assessments ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-05"
       parameters:
         - name: sectionId
           in: path
@@ -33969,13 +34554,14 @@ paths:
     get:
       summary: List the section's events for the term
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         `get` lists the section's events for the term, `getEvents` a lighter list (`onlyArchived=1` for archived ones), `getAudit` recent attendance changes.
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: action
           in: query
@@ -34127,11 +34713,12 @@ paths:
   "/v3/events/event/{event_id}/activities":
     get:
       summary: List activities linked to an event
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -34441,11 +35028,12 @@ paths:
   "/v3/events/event/{event_id}/basic_details":
     get:
       summary: Get event basic details
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -34496,13 +35084,14 @@ paths:
     post:
       summary: Update one basic detail
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         Returns the same payload as the GET.
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -35716,11 +36305,12 @@ paths:
   "/v3/events/event/{event_id}/members/{mode}":
     get:
       summary: List event members for a tab
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -36350,11 +36940,12 @@ paths:
   "/v3/events/event/{event_id}/parent_portal":
     get:
       summary: Get parent portal (My.SCOUT) settings
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -36646,11 +37237,12 @@ paths:
   "/v3/events/event/{event_id}/summary":
     get:
       summary: Get the event summary tab
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -36692,11 +37284,12 @@ paths:
   "/v3/events/event/{event_id}/timetable":
     get:
       summary: Get the event timetable
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Events ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: event_id
           in: path
@@ -41103,11 +41696,12 @@ paths:
   "/v3/chat/rooms/{sectionId}":
     get:
       summary: List chat rooms for a section
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Chat ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: sectionId
           in: path
@@ -41994,13 +42588,14 @@ paths:
     get:
       summary: List form completions
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
 
         The group dashboard calls this with form IDs `1` and `3` plus `section_ids` and `after`.
       tags: [ Forms ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: formId
           in: path
@@ -46104,11 +46699,12 @@ paths:
   "/v3/todo/tasks/{associatedType}/{associatedId}":
     get:
       summary: List tasks attached to an item
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: inferred from the web app's code."
       tags: [ Todo ]
       x-source:
-        request: inferred
+        request: observed
         response: inferred
+        observed_on: "2026-10-05"
       parameters:
         - name: associatedType
           in: path
@@ -46659,11 +47255,12 @@ paths:
   "/v3/events/{eventId}/bookings":
     get:
       summary: List campsite bookings for an event
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Generic ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: eventId
           in: path
@@ -46672,7 +47269,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Bookings; the web app drops those with a null `campsite`."
+          description: "The event and its bookings; the web app drops bookings with a null `campsite`."
           content:
             "application/json":
               schema:
@@ -46685,7 +47282,7 @@ paths:
                     nullable: true
                     description: "`null` on success."
                   data:
-                    $ref: "#/components/schemas/GenericBookingsResponse"
+                    $ref: "#/components/schemas/EventBookings"
                   meta:
                     type: object
                     nullable: true
@@ -47295,11 +47892,12 @@ paths:
   "/v3/programme/{meetingId}/bookings":
     get:
       summary: List campsite bookings for a meeting
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
       tags: [ Generic ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-05"
       parameters:
         - name: meetingId
           in: path
@@ -47308,7 +47906,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Bookings; the web app drops those with a null `campsite`."
+          description: "The meeting and its bookings; the web app drops bookings with a null `campsite`."
           content:
             "application/json":
               schema:
@@ -47321,7 +47919,7 @@ paths:
                     nullable: true
                     description: "`null` on success."
                   data:
-                    $ref: "#/components/schemas/GenericBookingsResponse"
+                    $ref: "#/components/schemas/MeetingBookings"
                   meta:
                     type: object
                     nullable: true
@@ -49447,6 +50045,489 @@ paths:
         default:
           $ref: "#/components/responses/ExtError"
       operationId: ext_mymember_events_updateParentRota
+  "/ext/mymember/events/leader_resources/?action=commitTemp":
+    post:
+      summary: Attach temporary uploads to the saved record
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ commitTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Event ID.
+                event_id:
+                  type: string
+                  description: Event ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_commitTemp
+  "/ext/mymember/events/leader_resources/?action=config":
+    get:
+      summary: Widget limits and endpoint names
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ config ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: event_id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_config
+  "/ext/mymember/events/leader_resources/?action=manifest":
+    get:
+      summary: List uploaded files
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ manifest ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: event_id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_manifest
+  "/ext/mymember/events/leader_resources/?action=partPut":
+    post:
+      summary: Upload one chunk of a large file
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ partPut ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: event_id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The chunk.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_partPut
+  "/ext/mymember/events/leader_resources/?action=put":
+    post:
+      summary: Upload a file, or the last chunk of one
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ put ]
+        - name: completePut
+          in: query
+          required: false
+          description: Upload GUID that finishes a chunked upload.
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          description: Total file size in bytes.
+          schema:
+            type: string
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "1" ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: event_id
+          in: query
+          required: false
+          description: Event ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_put
+  "/ext/mymember/events/leader_resources/?action=putTemp":
+    post:
+      summary: Upload a file for a record that is not saved yet
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ putTemp ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Event ID.
+                event_id:
+                  type: string
+                  description: Event ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_putTemp
+  "/ext/mymember/events/leader_resources/?action=revertTemp":
+    post:
+      summary: Discard temporary uploads
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ revertTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Event ID.
+                event_id:
+                  type: string
+                  description: Event ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_events_leader_resources_revertTemp
   "/ext/mymember/giftaid/?action=decline":
     post:
       summary: Decline Gift Aid
@@ -50454,6 +51535,456 @@ paths:
         default:
           $ref: "#/components/responses/ExtError"
       operationId: ext_mymember_programme_signUpToRota
+  "/ext/mymember/programme/leader_resources/?action=commitTemp":
+    post:
+      summary: Attach temporary uploads to the saved record
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ commitTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting (evening) ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_commitTemp
+  "/ext/mymember/programme/leader_resources/?action=config":
+    get:
+      summary: Widget limits and endpoint names
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ config ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_config
+  "/ext/mymember/programme/leader_resources/?action=manifest":
+    get:
+      summary: List uploaded files
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ manifest ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_manifest
+  "/ext/mymember/programme/leader_resources/?action=partPut":
+    post:
+      summary: Upload one chunk of a large file
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ partPut ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The chunk.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_partPut
+  "/ext/mymember/programme/leader_resources/?action=put":
+    post:
+      summary: Upload a file, or the last chunk of one
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ put ]
+        - name: completePut
+          in: query
+          required: false
+          description: Upload GUID that finishes a chunked upload.
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          description: Total file size in bytes.
+          schema:
+            type: string
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "1" ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: Meeting (evening) ID.
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: "Always `/`."
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_put
+  "/ext/mymember/programme/leader_resources/?action=putTemp":
+    post:
+      summary: Upload a file for a record that is not saved yet
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ putTemp ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting (evening) ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_putTemp
+  "/ext/mymember/programme/leader_resources/?action=revertTemp":
+    post:
+      summary: Discard temporary uploads
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Parent Portal ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ revertTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                id:
+                  type: string
+                  description: Meeting (evening) ID.
+                path:
+                  type: string
+                  description: "Always `/`."
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_mymember_programme_leader_resources_revertTemp
   "/v3/mymember/badges/homework/{badge_id}/{section_id}":
     post:
       summary: Tick or untick a badge requirement done at home
@@ -64925,9 +66456,21 @@ components:
           type: integer
       additionalProperties: true
     AttendanceBadgeRequirements:
-      type: array
-      items:
-        $ref: "#/components/schemas/AttendanceBadgeRequirement"
+      description: "A bare array, or `{ badges, badges_updated_at }` when the request sends `v=2`."
+      oneOf:
+        - type: array
+          items:
+            $ref: "#/components/schemas/AttendanceBadgeRequirement"
+        - type: object
+          properties:
+            badges:
+              type: array
+              items:
+                $ref: "#/components/schemas/AttendanceBadgeRequirement"
+            badges_updated_at:
+              type: array
+              items: { }
+          additionalProperties: true
     AttendanceList:
       type: object
       properties:
@@ -67666,6 +69209,7 @@ components:
           description: Event cost.
         approval_status:
           type: string
+          nullable: true
           description: "`pending` or `approved` lock editing."
         properties:
           type: object
@@ -67675,6 +69219,80 @@ components:
           type: object
           additionalProperties: true
       additionalProperties: true
+    EventBookings:
+      description: The event record plus its campsite bookings.
+      allOf:
+        - $ref: "#/components/schemas/GenericBookingsResponse"
+        - type: object
+          properties:
+            eventid:
+              type: integer
+            sectionid:
+              type: integer
+            name:
+              type: string
+            type:
+              type: string
+              nullable: true
+            startdate:
+              type: string
+            enddate:
+              type: string
+            starttime:
+              type: string
+            endtime:
+              type: string
+            cost: { }
+            location:
+              type: string
+            latitude:
+              description: May be null.
+            longitude:
+              description: May be null.
+            notes:
+              type: string
+            notepad:
+              type: string
+            publicnotes:
+              type: string
+              nullable: true
+            config:
+              type: object
+              nullable: true
+              additionalProperties: true
+            extra:
+              type: object
+              additionalProperties: true
+            kit_list_collection_id:
+              type: integer
+            googlecalendar:
+              description: May be null.
+            archived:
+              type: boolean
+            soft_deleted:
+              type: boolean
+            confdate:
+              type: string
+            allowchanges:
+              type: boolean
+            disablereminders:
+              type: boolean
+            attendancelimit:
+              type: integer
+            limitincludesleaders:
+              type: boolean
+            allowbooking:
+              type: boolean
+            attendancereminder:
+              type: integer
+            approval_status:
+              type: string
+              nullable: true
+            created_at:
+              type: string
+            created_by:
+              type: integer
+          additionalProperties: true
     EventColumns:
       type: object
       properties:
@@ -67818,6 +69436,23 @@ components:
         properties:
           member_id:
             type: integer
+          patrol_id:
+            type: integer
+          first_name:
+            type: string
+          last_name:
+            type: string
+          _filterString:
+            type: string
+            description: Names joined for the web app's search box.
+          photo_guid:
+            type: string
+            nullable: true
+          emailable:
+            type: boolean
+          age_at_start:
+            type: string
+            description: Age at the event's start.
           attending:
             type: string
             description: "`yes`, `no`, `absent`, `invited`, `reserved` or `show_in_parent_portal`; empty when unset."
@@ -67832,6 +69467,12 @@ components:
           rota:
             type: object
             additionalProperties: true
+          received_income:
+            type: integer
+            description: Payments tab.
+          expected_income:
+            type: integer
+            description: Payments tab.
         additionalProperties: true
       description: "Member records for a members tab; the column structure is in `meta.structure`."
     EventMembersMultiUpdate:
@@ -67902,6 +69543,8 @@ components:
     EventParentPortal:
       type: object
       properties:
+        start_date:
+          type: string
         cost:
           description: Cost shown to parents.
         confirmation_deadline:
@@ -67915,7 +69558,9 @@ components:
         send_attendance_reminders:
           type: integer
         kit_list_collection_id:
-          type: string
+          oneOf:
+            - type: string
+            - type: integer
         latitude:
           description: May be null.
         longitude:
@@ -68406,6 +70051,8 @@ components:
     EventSummaryList:
       type: object
       properties:
+        identifier:
+          type: string
         items:
           type: array
           items:
@@ -68415,15 +70062,51 @@ components:
                 type: string
               name:
                 type: string
+              date:
+                type: string
               startdate:
                 type: string
               startdate_g:
                 type: string
               enddate:
                 type: string
+              starttime:
+                type: string
+              endtime:
+                type: string
+              cost:
+                type: string
+              location:
+                type: string
+              approval_status:
+                type: string
+                nullable: true
+              rota_offered:
+                type: integer
               rota_accepted:
                 type: integer
               rota_required:
+                type: integer
+                nullable: true
+              "yes":
+                type: integer
+              yes_members:
+                type: integer
+              yes_yls:
+                type: integer
+              yes_leaders:
+                type: integer
+              reserved:
+                type: integer
+              "no":
+                type: integer
+              absent:
+                type: integer
+              invited:
+                type: integer
+              shown:
+                type: integer
+              x:
                 type: integer
             additionalProperties: true
       additionalProperties: true
@@ -70103,6 +71786,49 @@ components:
                 description: "Used by `getSelectBy`."
             additionalProperties: true
       additionalProperties: true
+    MeetingBookings:
+      description: The meeting record plus its campsite bookings.
+      allOf:
+        - $ref: "#/components/schemas/GenericBookingsResponse"
+        - type: object
+          properties:
+            eveningid:
+              type: integer
+            sectionid:
+              type: integer
+            title:
+              type: string
+            meetingdate:
+              type: string
+            starttime:
+              type: string
+            endtime:
+              type: string
+            notesforparents:
+              type: string
+            notesforhelpingparents:
+              type: string
+              nullable: true
+            parentsrequired:
+              type: integer
+            games:
+              type: string
+            prenotes:
+              type: string
+            postnotes:
+              type: string
+            leaders:
+              type: string
+            primary_leader_id:
+              type: integer
+            config:
+              type: object
+              additionalProperties: true
+            googlecalendar:
+              description: May be null.
+            soft_deleted:
+              type: integer
+          additionalProperties: true
     MemberAdditionalRoles:
       type: object
       properties:
@@ -72387,6 +74113,18 @@ components:
       items:
         type: object
         additionalProperties: true
+    RiskAssessmentItemSaved:
+      type: object
+      properties:
+        id: { }
+        controls:
+          type: string
+        check:
+          type: string
+        residual_risk:
+          type: string
+          nullable: true
+      additionalProperties: true
     RiskAssessmentList:
       type: object
       properties:
@@ -72432,13 +74170,42 @@ components:
           associated_id: { }
           type: { }
           category_id: { }
+          category: { }
+          hazard_id: { }
+          hazard: { }
+          harm: { }
+          risk: { }
+          residual_risk:
+            type: string
+            nullable: true
           manual_category: { }
           manual_hazard: { }
           controls: { }
           check: { }
+          who:
+            type: string
           duplicated_from_id: { }
+          duplicate_ignored_at:
+            type: string
+            nullable: true
           hub_managed:
             type: boolean
+          primary:
+            type: boolean
+          deletable:
+            type: boolean
+          created_at:
+            type: string
+          updated_at:
+            type: string
+          created_at_local_time:
+            type: string
+          updated_at_local_time:
+            type: string
+          created_by_full_name:
+            type: string
+          updated_by_full_name:
+            type: string
         additionalProperties: true
     RiskAssessmentReviewHistory:
       type: array
@@ -73251,6 +75018,10 @@ components:
     TodoTaskList:
       type: object
       properties:
+        status:
+          type: boolean
+        error:
+          description: May be null.
         data:
           type: array
           items:
@@ -73258,6 +75029,8 @@ components:
         meta:
           type: object
           properties:
+            can_read:
+              type: boolean
             can_edit:
               type: boolean
             users:
@@ -73284,6 +75057,15 @@ components:
         manifest:
           type: object
           description: Files in the folder, keyed by path.
+          additionalProperties: true
+        upload:
+          type: object
+          description: "The file just uploaded (`Put`)."
+          properties:
+            path:
+              type: string
+            filename:
+              type: string
           additionalProperties: true
       additionalProperties: true
     UserGamification:

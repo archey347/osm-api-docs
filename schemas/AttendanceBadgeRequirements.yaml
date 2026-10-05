@@ -1,3 +1,15 @@
-type: array
-items:
-  $ref: AttendanceBadgeRequirement
+description: "A bare array, or `{ badges, badges_updated_at }` when the request sends `v=2`."
+oneOf:
+  - type: array
+    items:
+      $ref: AttendanceBadgeRequirement
+  - type: object
+    properties:
+      badges:
+        type: array
+        items:
+          $ref: AttendanceBadgeRequirement
+      badges_updated_at:
+        type: array
+        items: { }
+    additionalProperties: true

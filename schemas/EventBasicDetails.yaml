@@ -20,6 +20,7 @@ properties:
     description: Event cost.
   approval_status:
     type: string
+    nullable: true
     description: "`pending` or `approved` lock editing."
   properties:
     type: object

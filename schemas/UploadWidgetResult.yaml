@@ -9,4 +9,13 @@ properties:
     type: object
     description: Files in the folder, keyed by path.
     additionalProperties: true
+  upload:
+    type: object
+    description: The file just uploaded (`Put`).
+    properties:
+      path:
+        type: string
+      filename:
+        type: string
+    additionalProperties: true
 additionalProperties: true

@@ -1,0 +1,20 @@
+kind: ext-action
+path: /ext/risk_assessments/uploads/
+uses:
+  template: upload-widget
+  params:
+    section_id:
+      type: string
+    id:
+      type: string
+      description: Meeting, activity or event ID.
+    type:
+      type: string
+      description: "Kind of thing assessed, as `type` on `getRiskAssessment`."
+    path:
+      type: string
+      description: "`/<type>/`."
+    temp:
+      type: string
+      enum: [ "true", "false" ]
+tags: [ Risk Assessments ]

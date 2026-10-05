@@ -4,6 +4,23 @@ items:
   properties:
     member_id:
       type: integer
+    patrol_id:
+      type: integer
+    first_name:
+      type: string
+    last_name:
+      type: string
+    _filterString:
+      type: string
+      description: Names joined for the web app's search box.
+    photo_guid:
+      type: string
+      nullable: true
+    emailable:
+      type: boolean
+    age_at_start:
+      type: string
+      description: Age at the event's start.
     attending:
       type: string
       description: "`yes`, `no`, `absent`, `invited`, `reserved` or `show_in_parent_portal`; empty when unset."
@@ -18,6 +35,12 @@ items:
     rota:
       type: object
       additionalProperties: true
+    received_income:
+      type: integer
+      description: Payments tab.
+    expected_income:
+      type: integer
+      description: Payments tab.
   additionalProperties: true
 description: |-
   Member records for a members tab; the column structure is in `meta.structure`.

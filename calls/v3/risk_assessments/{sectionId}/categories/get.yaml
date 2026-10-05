@@ -6,7 +6,7 @@ tags: [ Risk Assessments ]
 source:
   request: observed
   response: observed
-  observed_on: 2026-01-18
+  observed_on: 2026-10-05
 path_params:
   sectionId:
     type: string

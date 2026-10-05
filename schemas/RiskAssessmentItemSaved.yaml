@@ -1,0 +1,11 @@
+type: object
+properties:
+  id: { }
+  controls:
+    type: string
+  check:
+    type: string
+  residual_risk:
+    type: string
+    nullable: true
+additionalProperties: true

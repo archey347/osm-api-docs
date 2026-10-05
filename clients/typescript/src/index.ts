@@ -224,9 +224,9 @@ export const AttendanceBadgeRequirement = php(z.looseObject({ badge: lax(z.strin
 export type AttendanceBadgeRequirement = z.output<typeof AttendanceBadgeRequirement>;
 export const AttendanceBadgeRequirementStrict = php(z.looseObject({ badge: z.string().optional(), badge_id: z.string().optional(), badge_version: z.string().optional(), column_id: z.string().optional(), badgeName: z.string().optional(), badgetype: z.string().optional(), columngroup: z.string().optional(), columnname: z.string().optional(), description: z.string().optional(), data: z.string().optional(), eveningid: z.number().optional(), meetingdate: z.string().optional(), link_from: z.string().optional(), name: z.string().optional(), section: z.string().optional(), sameas_counter: z.number().optional(), sectionid: z.number().optional() }));
 export type AttendanceBadgeRequirementStrict = z.output<typeof AttendanceBadgeRequirementStrict>;
-export const AttendanceBadgeRequirements = z.array(AttendanceBadgeRequirement);
+export const AttendanceBadgeRequirements = z.union([z.array(AttendanceBadgeRequirement), php(z.looseObject({ badges: lax(z.array(AttendanceBadgeRequirement)), badges_updated_at: lax(z.array(z.unknown())) }))]);
 export type AttendanceBadgeRequirements = z.output<typeof AttendanceBadgeRequirements>;
-export const AttendanceBadgeRequirementsStrict = z.array(AttendanceBadgeRequirementStrict);
+export const AttendanceBadgeRequirementsStrict = z.union([z.array(AttendanceBadgeRequirementStrict), php(z.looseObject({ badges: z.array(AttendanceBadgeRequirementStrict).optional(), badges_updated_at: z.array(z.unknown()).optional() }))]);
 export type AttendanceBadgeRequirementsStrict = z.output<typeof AttendanceBadgeRequirementsStrict>;
 export const AttendanceList = php(z.looseObject({ identifier: lax(z.string()), label: lax(z.string()), items: lax(z.array(php(z.record(z.string(), z.unknown())))), meetings: lax(php(z.record(z.string(), lax(z.string())))), visitors: lax(php(z.record(z.string(), z.unknown()))), parent_rota: z.unknown().optional() }));
 export type AttendanceList = z.output<typeof AttendanceList>;
@@ -384,6 +384,10 @@ export const ChatRoom = php(z.looseObject({ id: lax(z.number()), mode: lax(z.str
 export type ChatRoom = z.output<typeof ChatRoom>;
 export const ChatRoomList = z.array(ChatRoom);
 export type ChatRoomList = z.output<typeof ChatRoomList>;
+export const ChatRoomStrict = php(z.looseObject({ id: z.number().optional(), mode: z.string().optional(), name: z.string().optional(), userHasUnreadMessages: z.boolean().optional() }));
+export type ChatRoomStrict = z.output<typeof ChatRoomStrict>;
+export const ChatRoomListStrict = z.array(ChatRoomStrict);
+export type ChatRoomListStrict = z.output<typeof ChatRoomListStrict>;
 export const ChatTopic = php(z.looseObject({ id: lax(z.number()), topic_id: lax(z.number()), chat_room_id: lax(z.number()), topic_title: lax(z.string()), message: lax(z.string()), local_time: lax(z.string()), user_id: lax(z.number()), user: lax(php(z.looseObject({ id: lax(z.number()), full_name: lax(z.string()), photo_url: lax(z.string()) }))), status: lax(z.string().nullable()), number_likes: lax(z.number()), number_comments: lax(z.number()), deletable: lax(z.boolean()), has_uploads: lax(z.boolean()), engagements: lax(z.array(php(z.record(z.string(), z.unknown())))), engagement_summary: lax(php(z.record(z.string(), z.unknown()))), poll_mode: lax(z.string()), poll_options: lax(z.array(ChatPollOption)), topic_configs: lax(z.array(php(z.record(z.string(), z.unknown())))), chat_room_config: lax(php(z.record(z.string(), z.unknown()))) }));
 export type ChatTopic = z.output<typeof ChatTopic>;
 export const ChatTopicCreateResponse = php(z.looseObject({ id: lax(z.number()) }));
@@ -490,6 +494,8 @@ export const EmailSendResultStrict = php(z.looseObject({ ok: z.boolean().optiona
 export type EmailSendResultStrict = z.output<typeof EmailSendResultStrict>;
 export const EventActivities = z.array(php(z.looseObject({ id: lax(z.string()), notes: lax(z.string()), activityid: lax(z.string()), activity_unique_id: lax(z.string()), activity: lax(php(z.record(z.string(), z.unknown()))) })));
 export type EventActivities = z.output<typeof EventActivities>;
+export const EventActivitiesStrict = z.array(php(z.looseObject({ id: z.string().optional(), notes: z.string().optional(), activityid: z.string().optional(), activity_unique_id: z.string().optional(), activity: php(z.record(z.string(), z.unknown())).optional() })));
+export type EventActivitiesStrict = z.output<typeof EventActivitiesStrict>;
 export const EventAdded = php(z.looseObject({ status: lax(z.boolean()), error: lax(php(z.looseObject({ message: lax(z.string()), code: lax(z.string()) })).nullable()), data: lax(php(z.looseObject({ id: lax(z.string()), title: lax(z.string()) }))), meta: z.unknown().optional() }));
 export type EventAdded = z.output<typeof EventAdded>;
 export const EventApprovalCheck = php(z.looseObject({ type: lax(z.string()), status: lax(z.string()), reason: lax(z.string()), date_last_updated: lax(z.string()), moderator: lax(z.string()) }));
@@ -512,8 +518,18 @@ export const EventAttachments = php(z.looseObject({ status: lax(z.boolean()), er
 export type EventAttachments = z.output<typeof EventAttachments>;
 export const EventAttendance = php(z.looseObject({ identifier: lax(z.string()), items: lax(z.array(php(z.looseObject({ scoutid: lax(z.string()), firstname: lax(z.string()), lastname: lax(z.string()), patrolid: lax(z.string()), attending: lax(z.string()) })))) }));
 export type EventAttendance = z.output<typeof EventAttendance>;
-export const EventBasicDetails = php(z.looseObject({ name: lax(z.string()), location: lax(z.string()), start_date: lax(z.string()), start_time: lax(z.string()), end_date: lax(z.string()), end_time: lax(z.string()), attendance_limit: lax(z.number()), attendance_limit_includes_leaders: lax(z.boolean()), cost: z.unknown().optional(), approval_status: lax(z.string()), properties: lax(php(z.record(z.string(), z.unknown()))), extra: lax(php(z.record(z.string(), z.unknown()))) }));
+export const EventBasicDetails = php(z.looseObject({ name: lax(z.string()), location: lax(z.string()), start_date: lax(z.string()), start_time: lax(z.string()), end_date: lax(z.string()), end_time: lax(z.string()), attendance_limit: lax(z.number()), attendance_limit_includes_leaders: lax(z.boolean()), cost: z.unknown().optional(), approval_status: lax(z.string().nullable()), properties: lax(php(z.record(z.string(), z.unknown()))), extra: lax(php(z.record(z.string(), z.unknown()))) }));
 export type EventBasicDetails = z.output<typeof EventBasicDetails>;
+export const EventBasicDetailsStrict = php(z.looseObject({ name: z.string().optional(), location: z.string().optional(), start_date: z.string().optional(), start_time: z.string().optional(), end_date: z.string().optional(), end_time: z.string().optional(), attendance_limit: z.number().optional(), attendance_limit_includes_leaders: z.boolean().optional(), cost: z.unknown().optional(), approval_status: z.string().nullable().optional(), properties: php(z.record(z.string(), z.unknown())).optional(), extra: php(z.record(z.string(), z.unknown())).optional() }));
+export type EventBasicDetailsStrict = z.output<typeof EventBasicDetailsStrict>;
+export const GenericBookingsResponse = php(z.looseObject({ bookings: lax(z.array(php(z.looseObject({ booking_id: z.unknown().optional(), campsite: z.unknown().optional() })))) }));
+export type GenericBookingsResponse = z.output<typeof GenericBookingsResponse>;
+export const EventBookings = z.intersection(GenericBookingsResponse, php(z.looseObject({ eventid: lax(z.number()), sectionid: lax(z.number()), name: lax(z.string()), type: lax(z.string().nullable()), startdate: lax(z.string()), enddate: lax(z.string()), starttime: lax(z.string()), endtime: lax(z.string()), cost: z.unknown().optional(), location: lax(z.string()), latitude: z.unknown().optional(), longitude: z.unknown().optional(), notes: lax(z.string()), notepad: lax(z.string()), publicnotes: lax(z.string().nullable()), config: lax(php(z.record(z.string(), z.unknown())).nullable()), extra: lax(php(z.record(z.string(), z.unknown()))), kit_list_collection_id: lax(z.number()), googlecalendar: z.unknown().optional(), archived: lax(z.boolean()), soft_deleted: lax(z.boolean()), confdate: lax(z.string()), allowchanges: lax(z.boolean()), disablereminders: lax(z.boolean()), attendancelimit: lax(z.number()), limitincludesleaders: lax(z.boolean()), allowbooking: lax(z.boolean()), attendancereminder: lax(z.number()), approval_status: lax(z.string().nullable()), created_at: lax(z.string()), created_by: lax(z.number()) })));
+export type EventBookings = z.output<typeof EventBookings>;
+export const GenericBookingsResponseStrict = php(z.looseObject({ bookings: z.array(php(z.looseObject({ booking_id: z.unknown().optional(), campsite: z.unknown().optional() }))).optional() }));
+export type GenericBookingsResponseStrict = z.output<typeof GenericBookingsResponseStrict>;
+export const EventBookingsStrict = z.intersection(GenericBookingsResponseStrict, php(z.looseObject({ eventid: z.number().optional(), sectionid: z.number().optional(), name: z.string().optional(), type: z.string().nullable().optional(), startdate: z.string().optional(), enddate: z.string().optional(), starttime: z.string().optional(), endtime: z.string().optional(), cost: z.unknown().optional(), location: z.string().optional(), latitude: z.unknown().optional(), longitude: z.unknown().optional(), notes: z.string().optional(), notepad: z.string().optional(), publicnotes: z.string().nullable().optional(), config: php(z.record(z.string(), z.unknown())).nullable().optional(), extra: php(z.record(z.string(), z.unknown())).optional(), kit_list_collection_id: z.number().optional(), googlecalendar: z.unknown().optional(), archived: z.boolean().optional(), soft_deleted: z.boolean().optional(), confdate: z.string().optional(), allowchanges: z.boolean().optional(), disablereminders: z.boolean().optional(), attendancelimit: z.number().optional(), limitincludesleaders: z.boolean().optional(), allowbooking: z.boolean().optional(), attendancereminder: z.number().optional(), approval_status: z.string().nullable().optional(), created_at: z.string().optional(), created_by: z.number().optional() })));
+export type EventBookingsStrict = z.output<typeof EventBookingsStrict>;
 export const EventStructureColumnSets = z.array(php(z.looseObject({ rows: lax(z.array(php(z.looseObject({ field: lax(z.string()), name: lax(z.string()), editable: lax(z.boolean()), type: lax(z.string()), options: lax(z.array(z.string())), pL: lax(z.string()), pR: lax(z.string()) })))) })));
 export type EventStructureColumnSets = z.output<typeof EventStructureColumnSets>;
 export const EventColumns = php(z.looseObject({ structure: lax(EventStructureColumnSets) }));
@@ -532,16 +548,20 @@ export const EventMemberHistory = z.array(php(z.looseObject({ date: lax(z.string
 export type EventMemberHistory = z.output<typeof EventMemberHistory>;
 export const EventMemberUpdate = php(z.looseObject({ warning: lax(z.string()), updates: lax(php(z.looseObject({ details: lax(php(z.record(z.string(), z.unknown()))) }))) }));
 export type EventMemberUpdate = z.output<typeof EventMemberUpdate>;
-export const EventMembers = z.array(php(z.looseObject({ member_id: lax(z.number()), attending: lax(z.string()), payment: lax(z.string()), reserved_place: lax(z.number()), details: lax(php(z.record(z.string(), z.unknown()))), rota: lax(php(z.record(z.string(), z.unknown()))) })));
+export const EventMembers = z.array(php(z.looseObject({ member_id: lax(z.number()), patrol_id: lax(z.number()), first_name: lax(z.string()), last_name: lax(z.string()), _filterString: lax(z.string()), photo_guid: lax(z.string().nullable()), emailable: lax(z.boolean()), age_at_start: lax(z.string()), attending: lax(z.string()), payment: lax(z.string()), reserved_place: lax(z.number()), details: lax(php(z.record(z.string(), z.unknown()))), rota: lax(php(z.record(z.string(), z.unknown()))), received_income: lax(z.number()), expected_income: lax(z.number()) })));
 export type EventMembers = z.output<typeof EventMembers>;
 export const EventMembersMultiUpdate = php(z.record(z.string(), lax(php(z.looseObject({ status: lax(z.boolean()), error: lax(php(z.looseObject({ code: lax(z.string()) }))), data: lax(php(z.looseObject({ warning: lax(z.string()) }))) })))));
 export type EventMembersMultiUpdate = z.output<typeof EventMembersMultiUpdate>;
+export const EventMembersStrict = z.array(php(z.looseObject({ member_id: z.number().optional(), patrol_id: z.number().optional(), first_name: z.string().optional(), last_name: z.string().optional(), _filterString: z.string().optional(), photo_guid: z.string().nullable().optional(), emailable: z.boolean().optional(), age_at_start: z.string().optional(), attending: z.string().optional(), payment: z.string().optional(), reserved_place: z.number().optional(), details: php(z.record(z.string(), z.unknown())).optional(), rota: php(z.record(z.string(), z.unknown())).optional(), received_income: z.number().optional(), expected_income: z.number().optional() })));
+export type EventMembersStrict = z.output<typeof EventMembersStrict>;
 export const EventMenu = php(z.looseObject({ entries: lax(z.array(php(z.looseObject({ id: lax(z.number()), day: lax(z.number()), title: lax(z.string()), description: lax(z.string()), colour: lax(z.string()), associated_type: lax(z.string()), associated_id: lax(z.number()), data: lax(php(z.looseObject({ meal: lax(z.string()), num_people: lax(z.number().nullable()) }))) })))), costs: lax(php(z.record(z.string(), z.unknown()))) }));
 export type EventMenu = z.output<typeof EventMenu>;
 export const EventNotepads = php(z.looseObject({ private: lax(z.string()), public: lax(z.string()) }));
 export type EventNotepads = z.output<typeof EventNotepads>;
-export const EventParentPortal = php(z.looseObject({ cost: z.unknown().optional(), confirmation_deadline: lax(z.string()), allow_changes_before_deadline: lax(z.boolean()), allow_booking_when_show_in_portal: lax(z.boolean()), disable_invitation_reminders: lax(z.boolean()), send_attendance_reminders: lax(z.number()), kit_list_collection_id: lax(z.string()), latitude: z.unknown().optional(), longitude: z.unknown().optional() }));
+export const EventParentPortal = php(z.looseObject({ start_date: lax(z.string()), cost: z.unknown().optional(), confirmation_deadline: lax(z.string()), allow_changes_before_deadline: lax(z.boolean()), allow_booking_when_show_in_portal: lax(z.boolean()), disable_invitation_reminders: lax(z.boolean()), send_attendance_reminders: lax(z.number()), kit_list_collection_id: lax(z.union([z.string(), z.number()])), latitude: z.unknown().optional(), longitude: z.unknown().optional() }));
 export type EventParentPortal = z.output<typeof EventParentPortal>;
+export const EventParentPortalStrict = php(z.looseObject({ start_date: z.string().optional(), cost: z.unknown().optional(), confirmation_deadline: z.string().optional(), allow_changes_before_deadline: z.boolean().optional(), allow_booking_when_show_in_portal: z.boolean().optional(), disable_invitation_reminders: z.boolean().optional(), send_attendance_reminders: z.number().optional(), kit_list_collection_id: z.union([z.string(), z.number()]).optional(), latitude: z.unknown().optional(), longitude: z.unknown().optional() }));
+export type EventParentPortalStrict = z.output<typeof EventParentPortalStrict>;
 export const EventPayload = php(z.looseObject({ status: lax(z.boolean()), error: lax(php(z.looseObject({ message: lax(z.string()), code: lax(z.string()) })).nullable()), data: z.unknown().optional(), meta: z.unknown().optional() }));
 export type EventPayload = z.output<typeof EventPayload>;
 export const EventPayloadData = z.unknown();
@@ -582,14 +602,22 @@ export const EventSummary = php(z.looseObject({ members: z.unknown().optional(),
 export type EventSummary = z.output<typeof EventSummary>;
 export const EventSummaryAudit = php(z.looseObject({ items: lax(z.array(php(z.looseObject({ eventid: lax(z.string()), name: lax(z.string()), generic_date: lax(z.string()), member_id: lax(z.string()), firstname: lax(z.string()), lastname: lax(z.string()), photo_guid: lax(z.string()), type: lax(z.string()), desc: lax(z.string()) })))) }));
 export type EventSummaryAudit = z.output<typeof EventSummaryAudit>;
-export const EventSummaryList = php(z.looseObject({ items: lax(z.array(php(z.looseObject({ eventid: lax(z.string()), name: lax(z.string()), startdate: lax(z.string()), startdate_g: lax(z.string()), enddate: lax(z.string()), rota_accepted: lax(z.number()), rota_required: lax(z.number()) })))) }));
+export const EventSummaryList = php(z.looseObject({ identifier: lax(z.string()), items: lax(z.array(php(z.looseObject({ eventid: lax(z.string()), name: lax(z.string()), date: lax(z.string()), startdate: lax(z.string()), startdate_g: lax(z.string()), enddate: lax(z.string()), starttime: lax(z.string()), endtime: lax(z.string()), cost: lax(z.string()), location: lax(z.string()), approval_status: lax(z.string().nullable()), rota_offered: lax(z.number()), rota_accepted: lax(z.number()), rota_required: lax(z.number().nullable()), yes: lax(z.number()), yes_members: lax(z.number()), yes_yls: lax(z.number()), yes_leaders: lax(z.number()), reserved: lax(z.number()), no: lax(z.number()), absent: lax(z.number()), invited: lax(z.number()), shown: lax(z.number()), x: lax(z.number()) })))) }));
 export type EventSummaryList = z.output<typeof EventSummaryList>;
+export const EventSummaryListStrict = php(z.looseObject({ identifier: z.string().optional(), items: z.array(php(z.looseObject({ eventid: z.string().optional(), name: z.string().optional(), date: z.string().optional(), startdate: z.string().optional(), startdate_g: z.string().optional(), enddate: z.string().optional(), starttime: z.string().optional(), endtime: z.string().optional(), cost: z.string().optional(), location: z.string().optional(), approval_status: z.string().nullable().optional(), rota_offered: z.number().optional(), rota_accepted: z.number().optional(), rota_required: z.number().nullable().optional(), yes: z.number().optional(), yes_members: z.number().optional(), yes_yls: z.number().optional(), yes_leaders: z.number().optional(), reserved: z.number().optional(), no: z.number().optional(), absent: z.number().optional(), invited: z.number().optional(), shown: z.number().optional(), x: z.number().optional() }))).optional() }));
+export type EventSummaryListStrict = z.output<typeof EventSummaryListStrict>;
+export const EventSummaryStrict = php(z.looseObject({ members: z.unknown().optional(), reserved: z.unknown().optional(), online_payments: z.unknown().optional(), transactions: z.unknown().optional(), at_home: z.unknown().optional(), sharing: z.unknown().optional(), risk_assessments: z.unknown().optional(), cost: z.unknown().optional() }));
+export type EventSummaryStrict = z.output<typeof EventSummaryStrict>;
 export const EventTimetableEntryList = z.array(php(z.looseObject({ id: lax(z.number()), day: lax(z.number()), start_time: lax(z.string()), duration: lax(z.number()), colour: lax(z.string()), title: lax(z.string()), description: lax(z.string()) })));
 export type EventTimetableEntryList = z.output<typeof EventTimetableEntryList>;
 export const EventTimetable = php(z.looseObject({ start_date: lax(z.string()), start_time: lax(z.string()), end_date: lax(z.string()), end_time: lax(z.string()), entries: lax(EventTimetableEntryList) }));
 export type EventTimetable = z.output<typeof EventTimetable>;
 export const EventTimetableEntries = php(z.looseObject({ entries: lax(EventTimetableEntryList) }));
 export type EventTimetableEntries = z.output<typeof EventTimetableEntries>;
+export const EventTimetableEntryListStrict = z.array(php(z.looseObject({ id: z.number().optional(), day: z.number().optional(), start_time: z.string().optional(), duration: z.number().optional(), colour: z.string().optional(), title: z.string().optional(), description: z.string().optional() })));
+export type EventTimetableEntryListStrict = z.output<typeof EventTimetableEntryListStrict>;
+export const EventTimetableStrict = php(z.looseObject({ start_date: z.string().optional(), start_time: z.string().optional(), end_date: z.string().optional(), end_time: z.string().optional(), entries: EventTimetableEntryListStrict.optional() }));
+export type EventTimetableStrict = z.output<typeof EventTimetableStrict>;
 export const FacilityDetails = php(z.looseObject({ core: lax(php(z.looseObject({ title: lax(z.string()), description: lax(z.string()), contact: lax(z.string()), link: lax(z.string()), latitude: lax(z.string()), longitude: lax(z.string()) }))), types: lax(z.array(z.string())), facilities: lax(php(z.record(z.string(), z.unknown()))), outside: lax(php(z.record(z.string(), z.unknown()))), inside: lax(php(z.record(z.string(), z.unknown()))), specialneeds: lax(php(z.record(z.string(), z.unknown()))) }));
 export type FacilityDetails = z.output<typeof FacilityDetails>;
 export const FacilityLocationSearchResponse = z.union([z.array(php(z.looseObject({ display_name: lax(z.string()), address: lax(php(z.looseObject({ country_code: lax(z.string()) }))) }))), z.boolean()]);
@@ -676,14 +704,14 @@ export const FlexiRecords = php(z.looseObject({ identifier: lax(z.string()), lab
 export type FlexiRecords = z.output<typeof FlexiRecords>;
 export const FormCompletionList = z.array(php(z.looseObject({ id: lax(z.number()), title: lax(z.string()), group_name: lax(z.string()), section_name: lax(z.string()), formatted_created_at: lax(z.string()), formatted_delete_at: lax(z.string()) })));
 export type FormCompletionList = z.output<typeof FormCompletionList>;
+export const FormCompletionListStrict = z.array(php(z.looseObject({ id: z.number().optional(), title: z.string().optional(), group_name: z.string().optional(), section_name: z.string().optional(), formatted_created_at: z.string().optional(), formatted_delete_at: z.string().optional() })));
+export type FormCompletionListStrict = z.output<typeof FormCompletionListStrict>;
 export const FormCompletionResponse = php(z.looseObject({ title: lax(z.string()), section_id: lax(z.number()), created_by: lax(php(z.record(z.string(), z.unknown())).nullable()), created_at_local_datetime: lax(z.string()), updated_by: lax(php(z.record(z.string(), z.unknown())).nullable()), updated_at_local_datetime: lax(z.string()), delete_at: lax(z.string()), values: lax(z.array(php(z.looseObject({ form_field_id: lax(z.number()), data: z.unknown().optional() })))) }));
 export type FormCompletionResponse = z.output<typeof FormCompletionResponse>;
 export const FormResponse = php(z.record(z.string(), z.unknown()));
 export type FormResponse = z.output<typeof FormResponse>;
 export const FormUpdateResponse = php(z.looseObject({ updated_by: lax(php(z.looseObject({ full_name: lax(z.string()) })).nullable()), updated_at_local_datetime: lax(z.string()) }));
 export type FormUpdateResponse = z.output<typeof FormUpdateResponse>;
-export const GenericBookingsResponse = php(z.looseObject({ bookings: lax(z.array(php(z.looseObject({ booking_id: z.unknown().optional(), campsite: z.unknown().optional() })))) }));
-export type GenericBookingsResponse = z.output<typeof GenericBookingsResponse>;
 export const GenericContactUsResponse = php(z.looseObject({ resp: lax(z.union([z.boolean(), z.string()])), ticket_only: lax(z.boolean()) }));
 export type GenericContactUsResponse = z.output<typeof GenericContactUsResponse>;
 export const GenericDownloadManifest = php(z.looseObject({ manifest: lax(php(z.record(z.string(), z.unknown()))) }));
@@ -772,6 +800,10 @@ export const KitListResponse = z.array(php(z.looseObject({ id: lax(z.number()), 
 export type KitListResponse = z.output<typeof KitListResponse>;
 export const LegacySelectResponse = php(z.looseObject({ items: lax(z.array(php(z.looseObject({ value: lax(z.string()), label: lax(z.string()), scoutid: lax(z.string()) })))) }));
 export type LegacySelectResponse = z.output<typeof LegacySelectResponse>;
+export const MeetingBookings = z.intersection(GenericBookingsResponse, php(z.looseObject({ eveningid: lax(z.number()), sectionid: lax(z.number()), title: lax(z.string()), meetingdate: lax(z.string()), starttime: lax(z.string()), endtime: lax(z.string()), notesforparents: lax(z.string()), notesforhelpingparents: lax(z.string().nullable()), parentsrequired: lax(z.number()), games: lax(z.string()), prenotes: lax(z.string()), postnotes: lax(z.string()), leaders: lax(z.string()), primary_leader_id: lax(z.number()), config: lax(php(z.record(z.string(), z.unknown()))), googlecalendar: z.unknown().optional(), soft_deleted: lax(z.number()) })));
+export type MeetingBookings = z.output<typeof MeetingBookings>;
+export const MeetingBookingsStrict = z.intersection(GenericBookingsResponseStrict, php(z.looseObject({ eveningid: z.number().optional(), sectionid: z.number().optional(), title: z.string().optional(), meetingdate: z.string().optional(), starttime: z.string().optional(), endtime: z.string().optional(), notesforparents: z.string().optional(), notesforhelpingparents: z.string().nullable().optional(), parentsrequired: z.number().optional(), games: z.string().optional(), prenotes: z.string().optional(), postnotes: z.string().optional(), leaders: z.string().optional(), primary_leader_id: z.number().optional(), config: php(z.record(z.string(), z.unknown())).optional(), googlecalendar: z.unknown().optional(), soft_deleted: z.number().optional() })));
+export type MeetingBookingsStrict = z.output<typeof MeetingBookingsStrict>;
 export const MemberAdditionalRoles = php(z.looseObject({ data: lax(z.array(php(z.looseObject({ patrolleader: z.unknown().optional(), is_primary: z.unknown().optional(), start_date: lax(z.string().nullable()), end_date: lax(z.string().nullable()), comments: lax(z.string().nullable()) })))), error: z.unknown().optional() }));
 export type MemberAdditionalRoles = z.output<typeof MemberAdditionalRoles>;
 export const MemberApplicantStatus = php(z.looseObject({ errors: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
@@ -982,16 +1014,24 @@ export const RiskAssessmentCategoriesData = z.array(php(z.record(z.string(), z.u
 export type RiskAssessmentCategoriesData = z.output<typeof RiskAssessmentCategoriesData>;
 export const RiskAssessmentCategoriesDataStrict = z.array(php(z.record(z.string(), z.unknown())));
 export type RiskAssessmentCategoriesDataStrict = z.output<typeof RiskAssessmentCategoriesDataStrict>;
+export const RiskAssessmentItemSaved = php(z.looseObject({ id: z.unknown().optional(), controls: lax(z.string()), check: lax(z.string()), residual_risk: lax(z.string().nullable()) }));
+export type RiskAssessmentItemSaved = z.output<typeof RiskAssessmentItemSaved>;
+export const RiskAssessmentItemSavedStrict = php(z.looseObject({ id: z.unknown().optional(), controls: z.string().optional(), check: z.string().optional(), residual_risk: z.string().nullable().optional() }));
+export type RiskAssessmentItemSavedStrict = z.output<typeof RiskAssessmentItemSavedStrict>;
 export const RiskAssessmentList = php(z.looseObject({ status: lax(z.boolean()), error: z.unknown().optional(), data: lax(z.array(php(z.looseObject({ id: z.unknown().optional(), section_id: z.unknown().optional(), associated_id: z.unknown().optional(), type: z.unknown().optional(), category_id: z.unknown().optional(), manual_category: z.unknown().optional(), manual_hazard: z.unknown().optional(), controls: z.unknown().optional(), check: z.unknown().optional(), duplicated_from_id: z.unknown().optional(), hub_managed: lax(z.boolean()) })))), meta: lax(php(z.looseObject({ has_other_assessments: lax(z.boolean()), review: z.unknown().optional(), review_months: z.unknown().optional(), hub_review: z.unknown().optional(), group_hub: z.unknown().optional() }))) }));
 export type RiskAssessmentList = z.output<typeof RiskAssessmentList>;
-export const RiskAssessmentListData = z.array(php(z.looseObject({ id: z.unknown().optional(), section_id: z.unknown().optional(), associated_id: z.unknown().optional(), type: z.unknown().optional(), category_id: z.unknown().optional(), manual_category: z.unknown().optional(), manual_hazard: z.unknown().optional(), controls: z.unknown().optional(), check: z.unknown().optional(), duplicated_from_id: z.unknown().optional(), hub_managed: lax(z.boolean()) })));
+export const RiskAssessmentListData = z.array(php(z.looseObject({ id: z.unknown().optional(), section_id: z.unknown().optional(), associated_id: z.unknown().optional(), type: z.unknown().optional(), category_id: z.unknown().optional(), category: z.unknown().optional(), hazard_id: z.unknown().optional(), hazard: z.unknown().optional(), harm: z.unknown().optional(), risk: z.unknown().optional(), residual_risk: lax(z.string().nullable()), manual_category: z.unknown().optional(), manual_hazard: z.unknown().optional(), controls: z.unknown().optional(), check: z.unknown().optional(), who: lax(z.string()), duplicated_from_id: z.unknown().optional(), duplicate_ignored_at: lax(z.string().nullable()), hub_managed: lax(z.boolean()), primary: lax(z.boolean()), deletable: lax(z.boolean()), created_at: lax(z.string()), updated_at: lax(z.string()), created_at_local_time: lax(z.string()), updated_at_local_time: lax(z.string()), created_by_full_name: lax(z.string()), updated_by_full_name: lax(z.string()) })));
 export type RiskAssessmentListData = z.output<typeof RiskAssessmentListData>;
+export const RiskAssessmentListDataStrict = z.array(php(z.looseObject({ id: z.unknown().optional(), section_id: z.unknown().optional(), associated_id: z.unknown().optional(), type: z.unknown().optional(), category_id: z.unknown().optional(), category: z.unknown().optional(), hazard_id: z.unknown().optional(), hazard: z.unknown().optional(), harm: z.unknown().optional(), risk: z.unknown().optional(), residual_risk: z.string().nullable().optional(), manual_category: z.unknown().optional(), manual_hazard: z.unknown().optional(), controls: z.unknown().optional(), check: z.unknown().optional(), who: z.string().optional(), duplicated_from_id: z.unknown().optional(), duplicate_ignored_at: z.string().nullable().optional(), hub_managed: z.boolean().optional(), primary: z.boolean().optional(), deletable: z.boolean().optional(), created_at: z.string().optional(), updated_at: z.string().optional(), created_at_local_time: z.string().optional(), updated_at_local_time: z.string().optional(), created_by_full_name: z.string().optional(), updated_by_full_name: z.string().optional() })));
+export type RiskAssessmentListDataStrict = z.output<typeof RiskAssessmentListDataStrict>;
 export const RiskAssessmentReviewHistory = z.array(php(z.looseObject({ id: z.unknown().optional(), reviewed_on: z.unknown().optional(), next_review_on: z.unknown().optional(), reviewed_by_name: lax(z.string()), notes: lax(z.string()), can_undo: lax(z.boolean()) })));
 export type RiskAssessmentReviewHistory = z.output<typeof RiskAssessmentReviewHistory>;
 export const RiskAssessmentReviews = z.array(php(z.looseObject({ type: z.unknown().optional(), associated_id: z.unknown().optional() })));
 export type RiskAssessmentReviews = z.output<typeof RiskAssessmentReviews>;
 export const RiskAssessmentWriteResult = php(z.looseObject({ id: z.unknown().optional() }));
 export type RiskAssessmentWriteResult = z.output<typeof RiskAssessmentWriteResult>;
+export const RiskAssessmentWriteResultStrict = php(z.looseObject({ id: z.unknown().optional() }));
+export type RiskAssessmentWriteResultStrict = z.output<typeof RiskAssessmentWriteResultStrict>;
 export const SelectedContactEmails = php(z.looseObject({ emails: lax(php(z.record(z.string(), lax(php(z.looseObject({ emails: lax(z.array(z.string())), firstname: lax(z.string()), lastname: lax(z.string()), photo_guid: lax(z.string()), member_id: lax(z.number()) })))))), count: lax(z.number()), blocks: lax(z.array(php(z.record(z.string(), z.unknown())))), daily_limit_reached: lax(z.boolean()) }));
 export type SelectedContactEmails = z.output<typeof SelectedContactEmails>;
 export const SelectedContactEmailsStrict = php(z.looseObject({ emails: php(z.record(z.string(), php(z.looseObject({ emails: z.array(z.string()).optional(), firstname: z.string().optional(), lastname: z.string().optional(), photo_guid: z.string().optional(), member_id: z.number().optional() })))).optional(), count: z.number().optional(), blocks: z.array(php(z.record(z.string(), z.unknown()))).optional(), daily_limit_reached: z.boolean().optional() }));
@@ -1050,9 +1090,9 @@ export const TodoProjectResponse = php(z.looseObject({ data: lax(php(z.looseObje
 export type TodoProjectResponse = z.output<typeof TodoProjectResponse>;
 export const TodoTask = php(z.looseObject({ id: z.unknown().optional(), title: lax(z.string()), description: lax(z.string()), status: lax(z.string()), due_date: lax(z.string().nullable()), available_date: lax(z.string().nullable()), repeat_frequency: z.unknown().optional(), repeat_period: lax(z.string().nullable()), section_id: z.unknown().optional(), associated_name: lax(z.string()), group_and_section_name: lax(z.string()), created_at: lax(z.string()), updated_at: lax(z.string()), owners: lax(z.array(php(z.looseObject({ user_id: z.unknown().optional(), last_read_at: lax(z.string().nullable()), user: lax(php(z.looseObject({ full_name: lax(z.string()), photo_url: z.unknown().optional() }))) })))) }));
 export type TodoTask = z.output<typeof TodoTask>;
-export const TodoTaskList = php(z.looseObject({ data: lax(z.array(TodoTask)), meta: lax(php(z.looseObject({ can_edit: lax(z.boolean()), users: lax(php(z.record(z.string(), lax(php(z.looseObject({ user_id: z.unknown().optional(), name: lax(z.string()), photo_url: z.unknown().optional() })))))) }))) }));
+export const TodoTaskList = php(z.looseObject({ status: lax(z.boolean()), error: z.unknown().optional(), data: lax(z.array(TodoTask)), meta: lax(php(z.looseObject({ can_read: lax(z.boolean()), can_edit: lax(z.boolean()), users: lax(php(z.record(z.string(), lax(php(z.looseObject({ user_id: z.unknown().optional(), name: lax(z.string()), photo_url: z.unknown().optional() })))))) }))) }));
 export type TodoTaskList = z.output<typeof TodoTaskList>;
-export const UploadWidgetResult = php(z.looseObject({ config: lax(php(z.record(z.string(), z.unknown()))), manifest: lax(php(z.record(z.string(), z.unknown()))) }));
+export const UploadWidgetResult = php(z.looseObject({ config: lax(php(z.record(z.string(), z.unknown()))), manifest: lax(php(z.record(z.string(), z.unknown()))), upload: lax(php(z.looseObject({ path: lax(z.string()), filename: lax(z.string()) }))) }));
 export type UploadWidgetResult = z.output<typeof UploadWidgetResult>;
 export const UserGamification = php(z.looseObject({ modules: lax(php(z.record(z.string(), lax(z.array(z.string()))))), used: lax(z.array(z.string())), achievements: lax(z.array(z.unknown())) }));
 export type UserGamification = z.output<typeof UserGamification>;
@@ -3102,9 +3142,9 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/events/summary/",
         action: "get",
-        source: {"request":"inferred","response":"inferred"},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid: string; termid?: string; is_offline?: "1" }, undefined>(),
-        response: { data: lax(EventSummaryList), envelope: false, strict: false },
+        response: { data: EventSummaryListStrict, envelope: false, strict: true },
       }),
       /** List recent attendance changes */
       getAudit: defineCall({
@@ -4319,7 +4359,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/attendance/",
         action: "get",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid: string; termid?: string; section: string; nototal?: string }, undefined>(),
         response: { data: AttendanceListStrict, envelope: false, strict: true },
       }),
@@ -4330,7 +4370,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/attendance/",
         action: "getAttendanceBadgeRequirements",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid: string; section: string; date?: string; event_id?: string; v?: "2" }, undefined>(),
         response: { data: AttendanceBadgeRequirementsStrict, envelope: false, strict: true },
       }),
@@ -4442,7 +4482,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/census/",
         action: "getDetails",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid: string; termid: string }, undefined>(),
         response: { data: CensusDetailsStrict, envelope: false, strict: true },
       }),
@@ -4625,7 +4665,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/contact/",
         action: "getListOfMembers",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid?: string; termid?: string; section?: "squirrels" | "beavers" | "cubs" | "scouts" | "explorers"; sort?: "dob" | "firstname" | "lastname" | "patrol" }, undefined>(),
         response: { data: MembersListStrict, envelope: false, strict: true },
       }),
@@ -5176,7 +5216,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/patrols/",
         action: "getPatrolsWithPeople",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
         params: p<undefined, { sectionid: string; termid: string; include_no_patrol?: "y" | "n" }, undefined>(),
         response: { data: php(z.record(z.string(), z.unknown())), envelope: false, strict: true },
       }),
@@ -5525,6 +5565,88 @@ export const OsmApi = {
         params: p<undefined, { section_id: string; member_id: string; event_id?: string }, undefined>(),
         response: { data: lax(MyMemberEventDetailsResponse), envelope: false, strict: false },
       }),
+      leader_resources: {
+        /** Widget limits and endpoint names */
+        config: defineCall({
+          id: "GET /ext/mymember/events/leader_resources/?action=config",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "config",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** List uploaded files */
+        manifest: defineCall({
+          id: "GET /ext/mymember/events/leader_resources/?action=manifest",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "manifest",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file, or the last chunk of one */
+        put: defineCall({
+          id: "POST /ext/mymember/events/leader_resources/?action=put",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "put",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false"; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload one chunk of a large file */
+        partPut: defineCall({
+          id: "POST /ext/mymember/events/leader_resources/?action=partPut",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "partPut",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file for a record that is not saved yet */
+        putTemp: defineCall({
+          id: "POST /ext/mymember/events/leader_resources/?action=putTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "putTemp",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Attach temporary uploads to the saved record */
+        commitTemp: defineCall({
+          id: "POST /ext/mymember/events/leader_resources/?action=commitTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "commitTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Discard temporary uploads */
+        revertTemp: defineCall({
+          id: "POST /ext/mymember/events/leader_resources/?action=revertTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/events/leader_resources/",
+          action: "revertTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; id?: string; event_id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+      },
       /** Update a member's event attendance */
       updateAttendance: defineCall({
         id: "POST /ext/mymember/events/?action=updateAttendance",
@@ -5788,6 +5910,88 @@ export const OsmApi = {
         params: p<undefined, { section_id: string; member_id: string }, undefined>(),
         response: { data: lax(MyMemberProgrammeResponse), envelope: false, strict: false },
       }),
+      leader_resources: {
+        /** Widget limits and endpoint names */
+        config: defineCall({
+          id: "GET /ext/mymember/programme/leader_resources/?action=config",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "config",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** List uploaded files */
+        manifest: defineCall({
+          id: "GET /ext/mymember/programme/leader_resources/?action=manifest",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "manifest",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file, or the last chunk of one */
+        put: defineCall({
+          id: "POST /ext/mymember/programme/leader_resources/?action=put",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "put",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false"; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload one chunk of a large file */
+        partPut: defineCall({
+          id: "POST /ext/mymember/programme/leader_resources/?action=partPut",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "partPut",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file for a record that is not saved yet */
+        putTemp: defineCall({
+          id: "POST /ext/mymember/programme/leader_resources/?action=putTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "putTemp",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Attach temporary uploads to the saved record */
+        commitTemp: defineCall({
+          id: "POST /ext/mymember/programme/leader_resources/?action=commitTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "commitTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Discard temporary uploads */
+        revertTemp: defineCall({
+          id: "POST /ext/mymember/programme/leader_resources/?action=revertTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/mymember/programme/leader_resources/",
+          action: "revertTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+      },
       /** Sign up to help on a meeting rota */
       signUpToRota: defineCall({
         id: "POST /ext/mymember/programme/?action=signUpToRota",
@@ -6113,7 +6317,7 @@ export const OsmApi = {
       method: "POST",
       path: "/ext/programme/",
       action: "editEveningParts",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-04","response":"2026-10-04"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, undefined, { eveningid?: string; sectionid?: string; parts?: string }>(),
       response: { data: ProgrammeMeetingStrict, envelope: false, strict: true },
     }),
@@ -6135,7 +6339,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/programme/",
       action: "getMembersForParentRota",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, { section_id?: string }, undefined>(),
       response: { data: ProgrammeParentRotaMembersStrict, envelope: true, strict: true },
     }),
@@ -6146,7 +6350,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/programme/",
       action: "getProgramme",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, { sectionid?: string; termid?: string; eveningid?: string }, undefined>(),
       response: { data: ProgrammeDetailsStrict, envelope: false, strict: true },
     }),
@@ -6157,7 +6361,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/programme/",
       action: "getProgrammeSummary",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, { sectionid?: string; termid?: string; verbose?: string }, undefined>(),
       response: { data: ProgrammeSummaryStrict, envelope: false, strict: true },
     }),
@@ -6281,7 +6485,7 @@ export const OsmApi = {
       path: "/ext/programme/",
       action: "programmeAttachmentsConfig",
       source: {"request":"inferred","response":"inferred"},
-      params: p<undefined, { section_id?: string; id?: string; path?: string }, undefined>(),
+      params: p<undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }, undefined>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** List uploaded files */
@@ -6292,7 +6496,7 @@ export const OsmApi = {
       path: "/ext/programme/",
       action: "programmeAttachmentsManifest",
       source: {"request":"inferred","response":"inferred"},
-      params: p<undefined, { section_id?: string; id?: string; path?: string }, undefined>(),
+      params: p<undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }, undefined>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** Upload a file, or the last chunk of one */
@@ -6304,7 +6508,7 @@ export const OsmApi = {
       action: "programmeAttachmentsPut",
       source: {"request":"inferred","response":"inferred"},
       contentType: "multipart/form-data",
-      params: p<undefined, { section_id?: string; id?: string; path?: string; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
+      params: p<undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme"; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** Upload one chunk of a large file */
@@ -6316,7 +6520,7 @@ export const OsmApi = {
       action: "programmeAttachmentsPartPut",
       source: {"request":"inferred","response":"inferred"},
       contentType: "multipart/form-data",
-      params: p<undefined, { section_id?: string; id?: string; path?: string }, { qqfile: FileValue }>(),
+      params: p<undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }, { qqfile: FileValue }>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** Upload a file for a record that is not saved yet */
@@ -6328,7 +6532,7 @@ export const OsmApi = {
       action: "programmeAttachmentsPutTemp",
       source: {"request":"inferred","response":"inferred"},
       contentType: "multipart/form-data",
-      params: p<undefined, { section_id?: string; id?: string; path?: string }, { qqfile: FileValue }>(),
+      params: p<undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }, { qqfile: FileValue }>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** Attach temporary uploads to the saved record */
@@ -6339,7 +6543,7 @@ export const OsmApi = {
       path: "/ext/programme/",
       action: "programmeAttachmentsCommitTemp",
       source: {"request":"inferred","response":"inferred"},
-      params: p<undefined, undefined, { section_id?: string; id?: string; path?: string }>(),
+      params: p<undefined, undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
     /** Discard temporary uploads */
@@ -6350,7 +6554,7 @@ export const OsmApi = {
       path: "/ext/programme/",
       action: "programmeAttachmentsRevertTemp",
       source: {"request":"inferred","response":"inferred"},
-      params: p<undefined, undefined, { section_id?: string; id?: string; path?: string }>(),
+      params: p<undefined, undefined, { section_id?: string; id?: string; path?: string; evening_id?: string; temp?: "true" | "false"; upload_mode?: "programme" }>(),
       response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
     }),
   },
@@ -7164,9 +7368,9 @@ export const OsmApi = {
       method: "POST",
       path: "/ext/risk_assessments/",
       action: "addItem",
-      source: {"request":"inferred","response":"inferred"},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, undefined, { section_id?: string; type?: string; associated_id?: string; id?: string; hazard?: string; category?: string; hazard_id?: string; category_id?: string; residual_risk?: string; controls?: string; check?: string; who?: string; save_to_group_hub?: string; gilbert_guid?: string; gilbert_query_id?: string }>(),
-      response: { data: lax(RiskAssessmentWriteResult), envelope: true, strict: false },
+      response: { data: RiskAssessmentItemSavedStrict, envelope: true, strict: true },
     }),
     /** Copy risk assessments from another meeting, activity or event */
     copyAssessments: defineCall({
@@ -7208,9 +7412,9 @@ export const OsmApi = {
       method: "POST",
       path: "/ext/risk_assessments/",
       action: "deleteItem",
-      source: {"request":"inferred","response":"inferred"},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, undefined, { section_id?: string; type?: string; associated_id?: string; id?: string; from_associated_id?: string }>(),
-      response: { data: lax(RiskAssessmentWriteResult), envelope: true, strict: false },
+      response: { data: RiskAssessmentWriteResultStrict, envelope: true, strict: true },
     }),
     /** Remove a linked risk assessment item */
     deleteLink: defineCall({
@@ -7285,9 +7489,9 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/risk_assessments/",
       action: "getRiskAssessment",
-      source: {"request":"inferred","response":"inferred"},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
       params: p<undefined, { section_id?: string; type?: string; associated_id?: string }, undefined>(),
-      response: { data: lax(RiskAssessmentListData), envelope: true, strict: false },
+      response: { data: RiskAssessmentListDataStrict, envelope: true, strict: true },
     }),
     /** Reuse a risk assessment item */
     reuseItem: defineCall({
@@ -7300,6 +7504,88 @@ export const OsmApi = {
       params: p<undefined, undefined, { section_id?: string; type?: string; associated_id?: string; id?: string; mode?: string }>(),
       response: { data: lax(RiskAssessmentWriteResult), envelope: true, strict: false },
     }),
+    uploads: {
+      /** Widget limits and endpoint names */
+      config: defineCall({
+        id: "GET /ext/risk_assessments/uploads/?action=config",
+        kind: "ext-action",
+        method: "GET",
+        path: "/ext/risk_assessments/uploads/",
+        action: "config",
+        source: {"request":"inferred","response":"inferred"},
+        params: p<undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** List uploaded files */
+      manifest: defineCall({
+        id: "GET /ext/risk_assessments/uploads/?action=manifest",
+        kind: "ext-action",
+        method: "GET",
+        path: "/ext/risk_assessments/uploads/",
+        action: "manifest",
+        source: {"request":"inferred","response":"inferred"},
+        params: p<undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** Upload a file, or the last chunk of one */
+      put: defineCall({
+        id: "POST /ext/risk_assessments/uploads/?action=put",
+        kind: "ext-action",
+        method: "POST",
+        path: "/ext/risk_assessments/uploads/",
+        action: "put",
+        source: {"request":"inferred","response":"inferred"},
+        contentType: "multipart/form-data",
+        params: p<undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false"; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** Upload one chunk of a large file */
+      partPut: defineCall({
+        id: "POST /ext/risk_assessments/uploads/?action=partPut",
+        kind: "ext-action",
+        method: "POST",
+        path: "/ext/risk_assessments/uploads/",
+        action: "partPut",
+        source: {"request":"inferred","response":"inferred"},
+        contentType: "multipart/form-data",
+        params: p<undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** Upload a file for a record that is not saved yet */
+      putTemp: defineCall({
+        id: "POST /ext/risk_assessments/uploads/?action=putTemp",
+        kind: "ext-action",
+        method: "POST",
+        path: "/ext/risk_assessments/uploads/",
+        action: "putTemp",
+        source: {"request":"inferred","response":"inferred"},
+        contentType: "multipart/form-data",
+        params: p<undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** Attach temporary uploads to the saved record */
+      commitTemp: defineCall({
+        id: "POST /ext/risk_assessments/uploads/?action=commitTemp",
+        kind: "ext-action",
+        method: "POST",
+        path: "/ext/risk_assessments/uploads/",
+        action: "commitTemp",
+        source: {"request":"inferred","response":"inferred"},
+        params: p<undefined, undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+      /** Discard temporary uploads */
+      revertTemp: defineCall({
+        id: "POST /ext/risk_assessments/uploads/?action=revertTemp",
+        kind: "ext-action",
+        method: "POST",
+        path: "/ext/risk_assessments/uploads/",
+        action: "revertTemp",
+        source: {"request":"inferred","response":"inferred"},
+        params: p<undefined, undefined, { section_id?: string; id?: string; type?: string; path?: string; temp?: "true" | "false" }>(),
+        response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+      }),
+    },
   },
   settings: {
     accountpreferences: {
@@ -9786,9 +10072,9 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/chat/rooms/{sectionId}",
-            source: {"request":"inferred","response":"inferred"},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
             params: p<{ sectionId: string }, undefined, undefined>(),
-            response: { data: lax(ChatRoomList), envelope: true, strict: false },
+            response: { data: ChatRoomListStrict, envelope: true, strict: true },
           }),
         },
       },
@@ -10039,9 +10325,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/events/event/{event_id}/activities",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, undefined, undefined>(),
-              response: { data: lax(EventActivities), envelope: true, strict: false },
+              response: { data: EventActivitiesStrict, envelope: true, strict: true },
             }),
             /** Link an activity to an event */
             post: defineCall({
@@ -10109,9 +10395,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/events/event/{event_id}/basic_details",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, undefined, undefined>(),
-              response: { data: lax(EventBasicDetails), envelope: true, strict: false },
+              response: { data: EventBasicDetailsStrict, envelope: true, strict: true },
             }),
             /** Update one basic detail */
             post: defineCall({
@@ -10119,9 +10405,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "POST",
               path: "/v3/events/event/{event_id}/basic_details",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, undefined, { field: "name" | "location" | "start_date" | "start_time" | "end_date" | "end_time" | "attendance_limit" | "attendance_limit_includes_leaders"; value: string }>(),
-              response: { data: lax(EventBasicDetails), envelope: true, strict: false },
+              response: { data: EventBasicDetailsStrict, envelope: true, strict: true },
             }),
           },
           copy: {
@@ -10382,9 +10668,9 @@ export const OsmApi = {
                 kind: "v3-route",
                 method: "GET",
                 path: "/v3/events/event/{event_id}/members/{mode}",
-                source: {"request":"inferred","response":"inferred"},
+                source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
                 params: p<{ event_id: string; mode: "attendance" | "rota" | "payments" }, { term_id?: string }, undefined>(),
-                response: { data: lax(EventMembers), envelope: true, strict: false },
+                response: { data: EventMembersStrict, envelope: true, strict: true },
               }),
               update: {
                 $member_id: {
@@ -10501,9 +10787,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/events/event/{event_id}/parent_portal",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, undefined, undefined>(),
-              response: { data: lax(EventParentPortal), envelope: true, strict: false },
+              response: { data: EventParentPortalStrict, envelope: true, strict: true },
             }),
             /** Update one parent portal setting */
             post: defineCall({
@@ -10557,9 +10843,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/events/event/{event_id}/summary",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, undefined, undefined>(),
-              response: { data: lax(EventSummary), envelope: true, strict: false },
+              response: { data: EventSummaryStrict, envelope: true, strict: true },
             }),
           },
           timetable: {
@@ -10581,9 +10867,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/events/event/{event_id}/timetable",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
               params: p<{ event_id: string }, { shared?: "true" }, undefined>(),
-              response: { data: lax(EventTimetable), envelope: true, strict: false },
+              response: { data: EventTimetableStrict, envelope: true, strict: true },
             }),
             /** Add a timetable entry */
             post: defineCall({
@@ -10630,9 +10916,9 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/events/{eventId}/bookings",
-            source: {"request":"inferred","response":"inferred"},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
             params: p<{ eventId: string }, undefined, undefined>(),
-            response: { data: lax(GenericBookingsResponse), envelope: true, strict: false },
+            response: { data: EventBookingsStrict, envelope: true, strict: true },
           }),
         },
       },
@@ -11745,9 +12031,9 @@ export const OsmApi = {
           kind: "v3-route",
           method: "GET",
           path: "/v3/forms/{formId}",
-          source: {"request":"inferred","response":"inferred"},
+          source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
           params: p<{ formId: string }, { section_id: string; section_ids?: string; state?: string; hierarchy?: "true" | "false"; page?: number; per_page?: number; after?: string }, undefined>(),
-          response: { data: lax(FormCompletionList), envelope: true, strict: false },
+          response: { data: FormCompletionListStrict, envelope: true, strict: true },
         }),
         /** Start a form completion */
         post: defineCall({
@@ -13418,9 +13704,9 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/programme/{meetingId}/bookings",
-            source: {"request":"inferred","response":"inferred"},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
             params: p<{ meetingId: string }, undefined, undefined>(),
-            response: { data: lax(GenericBookingsResponse), envelope: true, strict: false },
+            response: { data: MeetingBookingsStrict, envelope: true, strict: true },
           }),
         },
       },
@@ -13568,7 +13854,7 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/risk_assessments/{sectionId}/categories",
-            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
             params: p<{ sectionId: string }, undefined, undefined>(),
             response: { data: RiskAssessmentCategoriesDataStrict, envelope: true, strict: true },
           }),
@@ -13899,7 +14185,7 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/todo/tasks/{associatedType}/{associatedId}",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"inferred","observedOn":{"request":"2026-10-05"}},
               params: p<{ associatedType: string; associatedId: string }, { section_id: string }, undefined>(),
               response: { data: lax(TodoTaskList), envelope: false, strict: false },
             }),

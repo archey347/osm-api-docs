@@ -48,6 +48,8 @@ sources: [ front-end bundle names the call was found in ]
 
 `observed`: seen in captured traffic (HAR files or shape logs, below). `inferred`: worked out from the web app's JS. `unknown` (response only): the code never reads the reply. `observed_on` (YYYY-MM-DD) is required for each observed part: one date for all observed parts, `{ request, response }` when they differ, or `unknown` when the date is lost. `bun run scan -- file.har|file.jsonl ...` sets `observed` and the date from your captures and reports how observed replies differ from the schemas (`--dry-run` writes nothing; `--json` prints a summary; report in `.cache/observation-scan.md`). With no arguments it reads the files listed in a git-ignored `scan.local.json`, `{ "inputs": ["path/or/*.har", ...] }`. Captures are read locally and never committed. The scan exits non-zero when an observed call's structure is rejected by its strict validator (type errors only for shape logs, which hold no values). Template actions are always `inferred`.
 
+A label describes the current docs, not the best evidence ever seen. If a part is later changed from the code in a way that conflicts with what was observed (a new required parameter, a changed type, a different reply shape), set it back to `inferred` and drop its `observed_on`. The scan only marks a part observed when the capture agrees with the docs: for a request, no undocumented parameters and no missing required ones; for a response, no type or envelope mismatch and nothing the strict validator rejects. Extra reply fields the docs lack don't block it; they're reported.
+
 An upload-widget path is one file per prefix, with no `method`:
 
 ```yaml

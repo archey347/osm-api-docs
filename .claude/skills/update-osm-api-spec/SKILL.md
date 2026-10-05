@@ -32,10 +32,10 @@ With none, stop and say "no API changes".
 
 ## 2. Edit
 
-- **New call:** create the `calls/...` file (kind, method, path, action, summary, tags, params, response) with `source: {request: inferred, response: inferred|unknown}`. Add `sources` only if known.
+- **New call:** create the `calls/...` file (kind, method, path, action, summary, tags, params, response) with `source: {request: inferred, response: inferred|unknown}`. Add `sources` only if known. If it came from a capture, re-run the scan on that capture afterwards so it's labelled `observed` from the traffic.
 - **Changed params:** edit the existing file.
 - **Gone:** deprecate (see rules).
-- **Observation:** set `source: observed` with `observed_on`. Observed beats inferred: never downgrade `observed` to `inferred`.
+- **Labels:** the scan sets `observed`. Set it by hand only for a part you've seen in traffic yourself, with that date, request and response separately; calls found in OSM's code are `inferred`. Labels describe the current docs: if you change a part from the code in a way that conflicts with what was observed, set that part back to `inferred` and drop its `observed_on` (see `FORMAT.md`, "Source labels").
 - **Schema disagreement:** widen the schema (add seen fields and types, `nullable`, alternative types); never remove documented fields.
 - Large updates: split across subagents by path prefix, each owning its own `calls/` subtree, briefed with these rules.
 

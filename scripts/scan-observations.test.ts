@@ -56,3 +56,17 @@ test("unknown calls and extra parameter names are reported without values", () =
   expect(out.unmatched).toEqual(["GET /ext/nope/{id}/"]);
   expect(out.labelChanges.every((c: { to: string }) => c.to !== "observed/observed")).toBe(true);
 });
+
+test("a reply the strict check rejects leaves the response label alone", () => {
+  const { out } = scan([line(items(s("object", { k: { emails: s("string") } })))]);
+  expect(out.labelChanges).toContainEqual({ file: "ext/dashboard/memberSearch.yaml", from: "inferred/inferred", to: "observed/inferred" });
+});
+
+test("a capture missing a required parameter leaves the request label alone", () => {
+  const pending = { path: "/ext/events/approvals/", action: "getPendingEventCount" };
+  const count = envelope(s("object", { k: { count: s("integer") } }));
+  const without = scan([line(count, { ...pending, query_keys: ["max_days"] })]).out;
+  expect(without.labelChanges).toContainEqual({ file: "ext/events/approvals/getPendingEventCount.yaml", from: "inferred/inferred", to: "inferred/observed" });
+  const withIt = scan([line(count, { ...pending, query_keys: ["section_id", "max_days"] })]).out;
+  expect(withIt.labelChanges).toContainEqual({ file: "ext/events/approvals/getPendingEventCount.yaml", from: "inferred/inferred", to: "observed/observed" });
+});

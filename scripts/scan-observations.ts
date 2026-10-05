@@ -536,12 +536,25 @@ let withJson = 0;
 for (const a of [...aggs.values()].sort((x, y) => (x.target.id < y.target.id ? -1 : 1))) {
   const t = a.target;
   if (!t.file) templateMatched++;
-  const wantReq = a.qualifies;
-  const wantRes = a.responses > 0 && !t.removed && !t.document;
   if (a.responses) withJson++;
+  if (a.strict.size) rejected.push({ id: t.id, issues: [...a.strict].sort() });
+
+  let diff: Diff | undefined;
+  const notes: string[] = [];
+  if (a.raw.size) {
+    const shape = docShape(t.schema);
+    diff = compare(normalise(a.raw, shape), shape);
+    if (t.wrap && a.bare) notes.push(`${a.bare} captured repl${a.bare === 1 ? "y" : "ies"} not wrapped in the envelope`);
+    if (!t.wrap && a.enveloped) notes.push(`${a.enveloped} captured repl${a.enveloped === 1 ? "y" : "ies"} wrapped in the envelope, documented as bare`);
+    if (diff.undocumented.size || diff.neverSeen.length || diff.mismatch.length || notes.length) diffs.push({ id: t.id, diff, notes });
+  }
+
+  const missing = t.doc ? (t.names ?? []).filter((n) => !/[[{<]/.test(n) && !a.seenNames.has(n)).map((n) => (t.required.has(n) ? `${n}*` : n)) : [];
+  // A capture that contradicts the docs (perhaps one older than a later code-based change) must not relabel them observed.
+  const wantReq = a.qualifies && !missing.some((n) => n.endsWith("*"));
+  const wantRes = a.responses > 0 && !t.removed && !t.document && !a.strict.size && !diff?.mismatch.length && !notes.length;
 
   if (t.doc) {
-    const missing = (t.names ?? []).filter((n) => !/[[{<]/.test(n) && !a.seenNames.has(n)).map((n) => (t.required.has(n) ? `${n}*` : n));
     if (a.extra.size || missing.length) paramNotes.push({ id: t.id, extra: [...a.extra].sort(), missing });
     const from: Source = t.doc.source ?? { request: "inferred", response: "inferred" };
     const old = observedDates(from);
@@ -558,16 +571,6 @@ for (const a of [...aggs.values()].sort((x, y) => (x.target.id < y.target.id ? -
     }
   }
 
-  if (a.strict.size) rejected.push({ id: t.id, issues: [...a.strict].sort() });
-
-  if (a.raw.size) {
-    const shape = docShape(t.schema);
-    const diff = compare(normalise(a.raw, shape), shape);
-    const notes: string[] = [];
-    if (t.wrap && a.bare) notes.push(`${a.bare} captured repl${a.bare === 1 ? "y" : "ies"} not wrapped in the envelope`);
-    if (!t.wrap && a.enveloped) notes.push(`${a.enveloped} captured repl${a.enveloped === 1 ? "y" : "ies"} wrapped in the envelope, documented as bare`);
-    if (diff.undocumented.size || diff.neverSeen.length || diff.mismatch.length || notes.length) diffs.push({ id: t.id, diff, notes });
-  }
 }
 
 const count = (s: Source) => `${s.request}/${s.response}`;

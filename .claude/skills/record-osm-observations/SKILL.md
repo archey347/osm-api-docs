@@ -5,7 +5,7 @@ description: Scan your own HAR captures (or shape logs) for OSM API calls actual
 
 # Record OSM observations
 
-Rules are in `update-osm-api-spec`: no live OSM requests from here, structure only, no push. Observed beats inferred.
+Rules are in `update-osm-api-spec`: no live OSM requests from here, structure only, no push. Only the scan sets `observed`, and only where the capture agrees with the docs.
 
 **Captures never leave your machine.** HAR files hold personal data: never commit them, attach them to issues or PRs, or paste values from them. Only structure (field names and types) goes into the repo.
 
@@ -29,7 +29,8 @@ It marks calls seen in traffic `source: observed` with `observed_on` (latest dat
 - `labelChanges`: sanity-check; a call is observed only when every seen parameter name is documented.
 - `structuralDifferences`: seen-but-undocumented fields, type mismatches, documented-but-never-seen. Fix the docs to match what was seen, but a field never seen in a small sample is not evidence it is wrong.
 - `rejected` (scan exits non-zero): the observed structure fails the strict validator. Widen the schema: add seen fields and types, `nullable`, alternative types; never remove documented fields, never copy values.
-- `unmatched`: possibly undocumented calls; add as new `inferred`/`unknown` calls via `update-osm-api-spec`, or mention in an issue.
+- `unmatched`: possibly undocumented calls; add them via `update-osm-api-spec`, then re-run the scan on the same capture so they're labelled `observed` from the traffic. Or mention them in an issue.
+- A difference that contradicts the docs (a type or envelope mismatch, a rejected reply, a missing required parameter) leaves that part's label as it was. Decide whether the docs or the capture are out of date before changing either.
 
 ## 3. Hand off
 

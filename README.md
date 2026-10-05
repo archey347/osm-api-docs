@@ -32,6 +32,17 @@ npm).
 Each call is labelled **observed** (seen in real traffic) or **inferred** (from static analysis of OSM's client-side
 code). Treat inferred calls with more suspicion.
 
+<!-- coverage:start -->
+Label coverage of the 1111 operations in 0.5.0:
+
+| | Observed | Inferred | Unknown |
+|---|---|---|---|
+| Request | 53 (5%) | 1058 (95%) | – |
+| Response | 52 (5%) | 1038 (93%) | 21 (2%) |
+
+52 (5%) are observed for both request and response. Unknown: the web app never reads the reply.
+<!-- coverage:end -->
+
 ## Things to know
 
 - **Authentication**: OAuth 2.0. You need a `client_id` and `client_secret` from OSM; the bearer token goes in the

@@ -63,9 +63,10 @@ bun run changelog -- --base <ref>
 bun run gen:openapi
 bun run lint
 bun run gen:ts
+bun run coverage
 bun test
 ```
 
 `<ref>` is the previous release tag or commit to diff against (default `main` before merging). The changelog script diffs `calls/`, `schemas/`, `templates/` and `kinds.yaml` against it, bumps `spec-header.yaml` and `package.json` (breaking: major, additive: minor, else patch; pre-1.0 one level lower) and prepends an entry to `CHANGELOG.md`. Rerunning against the same ref replaces its entry. No changes: no bump, no entry; say so. If it says the baseline has no `calls/`, write the entry by hand.
 
-Regenerate after the bump so the version reaches `openapi.yaml`, then commit and tag. Don't push unless asked.
+Regenerate after the bump so the version reaches `openapi.yaml`. `coverage` counts observed and inferred labels in it and rewrites the table between the `coverage` markers in `README.md`. Then commit and tag. Don't push unless asked.

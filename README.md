@@ -21,6 +21,8 @@ Credit to the City of Newcastle Scouts Digital Team in
 
 ## Using the spec
 
+Browse the docs at <https://scrapbook.archbar.me/osm-api>.
+
 `openapi.yaml` is an OpenAPI 3.0.3 document. Open it in [Redoc](https://redocly.github.io/redoc/),
 [Swagger Editor](https://editor.swagger.io/), Postman or Insomnia, or feed it to a client generator.
 

@@ -7,7 +7,7 @@ tags: [ Custom Data ]
 source:
   request: observed
   response: observed
-  observed_on: 2026-01-18
+  observed_on: 2026-10-07
 query:
   section_id:
     type: string
@@ -23,7 +23,10 @@ query:
     description: "Section association flag; sent as `false` or the literal `null`."
   "varname_filter[]":
     type: string
-    description: "Column variable name to include; repeat per name. The literal `null` (as `varname_filter`) when not filtering."
+    description: Column variable name to include; repeat per name.
+  varname_filter:
+    type: string
+    description: "The literal `null` when not filtering."
   "hidden_groups[]":
     type: string
     description: Group identifier to leave out; repeat per group.

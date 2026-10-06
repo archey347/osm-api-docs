@@ -1,0 +1,20 @@
+kind: ext-action
+path: /ext/generic/comments/uploads/
+uses:
+  template: upload-widget
+  params:
+    section_id:
+      type: string
+    associated_type:
+      type: string
+      description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+    associated_id:
+      type: string
+    id:
+      type: string
+    path:
+      type: string
+    temp:
+      type: string
+      enum: [ "true", "false" ]
+tags: [ Comments ]

@@ -3,9 +3,12 @@ properties:
   group_id:
     type: integer
   config:
-    nullable: true
-    type: object
-    additionalProperties: true
+    description: "Empty string on some groups, e.g. `standard_fields`."
+    anyOf:
+      - type: object
+        nullable: true
+        additionalProperties: true
+      - type: string
   group_type:
     type: string
   identifier:

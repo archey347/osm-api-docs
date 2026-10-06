@@ -10,10 +10,23 @@ properties:
       full_name:
         type: string
       photo_url:
-        type: string
+        description: "`false` when the user has no photo."
+        anyOf:
+          - type: string
+          - type: boolean
     additionalProperties: true
+  section_id:
+    type: integer
+  associated_type:
+    type: string
+  associated_id:
+    type: string
   comment:
     type: string
+  number_likes:
+    type: integer
+  has_uploads:
+    type: boolean
   created_at:
     type: string
   updated_at:

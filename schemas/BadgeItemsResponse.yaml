@@ -1,5 +1,9 @@
 type: object
 properties:
+  identifier:
+    type: string
+  label:
+    type: string
   items:
     type: array
     items:

@@ -77,7 +77,8 @@ describe("generated validators", () => {
   test("lenient validators never throw on odd shapes", () => {
     const c = api.OsmApi.programme.getMeetingNames;
     expect(c.source.response).toBe("inferred");
-    expect(api.OsmApi.programme.getProgrammeSummary.source).toEqual({ request: "observed", response: "observed", observedOn: { request: "2026-10-05", response: "2026-10-05" } });
+    const seen = String(callYaml("ext/programme/getProgrammeSummary.yaml").source.observed_on);
+    expect(api.OsmApi.programme.getProgrammeSummary.source).toEqual({ request: "observed", response: "observed", observedOn: { request: seen, response: seen } });
     for (const v of [null, true, "x", 5, [], [1], { items: "nope" }, { items: [1, null, { eveningid: 5 }] }]) {
       expect(() => c.response.body.parse(v)).not.toThrow();
     }

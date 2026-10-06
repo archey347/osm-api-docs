@@ -6,8 +6,9 @@ summary: 'List a badge''s columns'
 description: "`getColumnsForBadge` — returns a badge's requirement columns."
 tags: [ Badges ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 query:
   section:
     type: string

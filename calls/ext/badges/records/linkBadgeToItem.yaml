@@ -5,8 +5,9 @@ action: linkBadgeToItem
 summary: Link a badge to an item
 tags: [ Badges ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 query:
   sectionid:
     type: string

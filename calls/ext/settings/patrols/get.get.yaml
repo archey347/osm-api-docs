@@ -5,8 +5,9 @@ action: get
 summary: List patrols
 tags: [ Settings ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 query:
   sectionid:
     type: string

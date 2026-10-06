@@ -5,8 +5,9 @@ action: getAggregates
 summary: Get census totals by category
 tags: [ Members ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 query:
   sectionid:
     type: string
@@ -32,12 +33,14 @@ response:
             Female: 3
             Self-identify: 0
             "Prefer not to say": 0
+            "": 0
             Total: 5
         Total:
-          Total:
+          "":
             Male: 2
             Female: 3
             Self-identify: 0
             "Prefer not to say": 0
+            "": 0
             Total: 5
 sources: [ area.members_census.2c86a1b27909fe9a5ad6.js ]

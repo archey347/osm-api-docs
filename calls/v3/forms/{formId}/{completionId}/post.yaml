@@ -4,8 +4,9 @@ path: "/v3/forms/{formId}/{completionId}"
 summary: Save one field of a form completion
 tags: [ Forms ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 path_params:
   formId:
     type: string

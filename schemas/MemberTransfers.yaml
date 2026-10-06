@@ -1,43 +1,29 @@
-type: object
-properties:
-  status:
-    type: boolean
-  error:
-    type: object
-    nullable: true
-  data:
-    type: array
-    items:
-      type: object
-      properties:
-        id:
-          type: string
-        direction:
-          type: string
-          enum: [ from, to ]
-        member_id: { }
-        section_id: { }
-        firstname:
-          type: string
-        lastname:
-          type: string
-        photo_guid:
-          type: string
-        type:
-          type: string
-        date:
-          type: string
-        mode:
-          type: string
-        section_name:
-          type: object
-          additionalProperties: true
-        section_long:
-          type: string
-      additionalProperties: true
-  meta:
-    type: array
-    items:
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+    direction:
+      type: string
+      enum: [ from, to ]
+    member_id: { }
+    section_id: { }
+    firstname:
+      type: string
+    lastname:
+      type: string
+    photo_guid:
+      type: string
+    type:
+      type: string
+    date:
+      type: string
+    mode:
+      type: string
+    section_name:
       type: object
       additionalProperties: true
-additionalProperties: true
+    section_long:
+      type: string
+  additionalProperties: true

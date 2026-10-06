@@ -7,7 +7,7 @@ tags: [ Members ]
 source:
   request: observed
   response: observed
-  observed_on: 2026-10-05
+  observed_on: 2026-10-07
 query:
   sectionid:
     type: string

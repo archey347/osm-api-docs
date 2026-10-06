@@ -3,21 +3,27 @@
 Unofficial OpenAPI specification for the [Online Scout Manager](https://www.onlinescoutmanager.co.uk) (OSM) API,
 built from a combination of statically analysing OSM's client-side code and checking it against real traffic.
 
-This means that params are discovered by usage, so the structure of responses may not be perfect. I have verified some
+This means request and response structures are discovered by usage, so may not be perfect. I have verified some
 endpoints against real traffic, so they are more likely to be complete; these are marked **observed** in the spec.
 
-The sources and build tools are in this repo (the code that scans OSM's front-end is kept separately); see [CONTRIBUTING.md](CONTRIBUTING.md).
+Credit to the City of Newcastle Scouts Digital Team in
+[osm-api-docs](https://github.com/newcastlescouts/osm-api-docs), which this project builds on. I ended up building an 
+intermediary api spec which seems to more closely align with the design/primitives of their API framework, 
+which the openapi spec is then built from.
 
-OSM doesn't publish a public API specification. This project fills that gap for developers building tools on top of
-OSM, whether that's a badge tracker, a patrol planner, or anything else that helps leaders run their sections.
+There are some build tools in this repo, including the one that can parse HAR files; the code that scans OSM's front-end code 
+I've kept in a private repo. I recommend reading [CONTRIBUTING.md](CONTRIBUTING.md) if you'd like to have a go at providing 
+your own HAR captures (I can only provide ones for the features my group uses). 
+
+An area I have yet to look into is a tool that can just call the API endpoints directly, and derive structure that way.
 
 > [!WARNING]
 > **Provided as-is with no guarantees.** OSM's API is undocumented and can change without notice. Calls, parameters
 > and response shapes were observed or inferred at the time of writing and may drift. Test against the live API before
 > relying on anything here. We are not affiliated with OSM; use at your own risk.
 
-Credit to the City of Newcastle Scouts Digital Team in
-[osm-api-docs](https://github.com/newcastlescouts/osm-api-docs), which this project builds on.
+OSM doesn't publish a public API specification. This project fills that gap for developers building tools on top of
+OSM, whether that's a badge tracker, a patrol planner, or anything else that helps leaders run their sections.
 
 ## Using the spec
 

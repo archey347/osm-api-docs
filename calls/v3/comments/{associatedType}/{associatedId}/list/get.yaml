@@ -4,8 +4,9 @@ path: "/v3/comments/{associatedType}/{associatedId}/list"
 summary: List comments on a record
 tags: [ Comments ]
 source:
-  request: inferred
-  response: inferred
+  request: observed
+  response: observed
+  observed_on: 2026-10-07
 path_params:
   associatedType:
     type: string

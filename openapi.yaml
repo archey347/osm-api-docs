@@ -1938,11 +1938,12 @@ paths:
   "/ext/members/census/?action=getAggregates":
     get:
       summary: Get census totals by category
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Members ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -1985,13 +1986,15 @@ paths:
                         Female: 3
                         Self-identify: 0
                         "Prefer not to say": 0
+                        "": 0
                         Total: 5
                     Total:
-                      Total:
+                      "":
                         Male: 2
                         Female: 3
                         Self-identify: 0
                         "Prefer not to say": 0
+                        "": 0
                         Total: 5
         default:
           $ref: "#/components/responses/ExtError"
@@ -1999,12 +2002,12 @@ paths:
   "/ext/members/census/?action=getDetails":
     get:
       summary: Get census details
-      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Members ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -2215,7 +2218,7 @@ paths:
     get:
       summary: Get a member's details
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Retrieves member data. The `action` parameter controls the behavior.
         This endpoint is also used to return full member contact/emergency data
@@ -2224,7 +2227,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -2362,7 +2365,7 @@ paths:
     get:
       summary: List member transfers for a section
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Retrieves member data. The `action` parameter controls the behavior.
         This endpoint is also used to return full member contact/emergency data
@@ -2371,7 +2374,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -2397,7 +2400,19 @@ paths:
           content:
             "application/json":
               schema:
-                $ref: "#/components/schemas/MemberTransfers"
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/MemberTransfers"
+                  meta:
+                    type: object
+                    nullable: true
               examples:
                 memberTransfers:
                   summary: Member transfers
@@ -2419,7 +2434,7 @@ paths:
                         section_long: "1st Riverside Scouts: Scouts"
                         mode: outgoing
                         id: outgoing-123456
-                    meta: [ ]
+                    meta: null
         default:
           $ref: "#/components/responses/ExtError"
       operationId: ext_members_contact_getMemberTransfers
@@ -2477,14 +2492,14 @@ paths:
     post:
       summary: Update a member field or contact details
       description: |-
-        Request: observed in captured traffic, 2026-03-05. Response: observed in captured traffic, 2026-03-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         The `action` query parameter is `update`, or `updateAdditionalRoles` for a member's additional patrol/section roles.
       tags: [ Members ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-03-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -7836,12 +7851,12 @@ paths:
   "/ext/customdata/?action=getData":
     get:
       summary: Get custom data groups and values
-      description: "Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Custom Data ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -7876,7 +7891,13 @@ paths:
         - name: "varname_filter[]"
           in: query
           required: false
-          description: "Column variable name to include; repeat per name. The literal `null` (as `varname_filter`) when not filtering."
+          description: "Column variable name to include; repeat per name."
+          schema:
+            type: string
+        - name: varname_filter
+          in: query
+          required: false
+          description: "The literal `null` when not filtering."
           schema:
             type: string
         - name: "hidden_groups[]"
@@ -8276,14 +8297,14 @@ paths:
     post:
       summary: Update a contact group's values
       description: |-
-        Request: observed in captured traffic, 2026-01-18. Response: observed in captured traffic, 2026-01-18.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         `update` — bulk update using `data[field]=value` pairs (e.g. contact details).
       tags: [ Custom Data ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-01-18"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -8372,14 +8393,14 @@ paths:
     post:
       summary: Update a custom column's value
       description: |-
-        Request: observed in captured traffic, 2026-03-05. Response: observed in captured traffic, 2026-03-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         `updateColumn` — update a single custom data column by `column_id`.
       tags: [ Custom Data ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-03-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -9773,14 +9794,14 @@ paths:
     get:
       summary: Get newsletter configuration for a section
       description: |-
-        Request: observed in captured traffic, 2026-03-05. Response: observed in captured traffic, 2026-03-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Returns the email/newsletter configuration for a section, including available events and patrols that can be used as recipient filters when composing emails. Also indicates whether the section has a newsletter slug configured and if it is live. Other actions return delivery reports; `getSentEmailContent` returns the sent email as a document.
       tags: [ Email ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-03-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -11308,7 +11329,7 @@ paths:
     get:
       summary: Get programme details
       description: |-
-        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Programme endpoints share this path with different `action` values.
         Use `getProgrammeSummary` for term overview, `getProgramme` for details,
@@ -11319,7 +11340,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -11376,7 +11397,7 @@ paths:
     get:
       summary: Get a term's programme summary
       description: |-
-        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Programme endpoints share this path with different `action` values.
         Use `getProgrammeSummary` for term overview, `getProgramme` for details,
@@ -11387,7 +11408,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -14059,14 +14080,16 @@ paths:
     get:
       summary: List available badges
       description: |-
-        Request: observed in captured traffic, 2026-03-05. Response: observed in captured traffic, 2026-03-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-03-05.
 
         `getAvailableBadges` — returns the list of badges available for a section and type.
       tags: [ Badges ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-03-05"
+        observed_on:
+          request: "2026-10-07"
+          response: "2026-03-05"
       parameters:
         - name: action
           in: query
@@ -14163,7 +14186,7 @@ paths:
             enum: [ "y" ]
       responses:
         "200":
-          description: "Badge records, available badges or column details (see `action`); `printBadge` returns a document to download instead of JSON."
+          description: "With `payload=1`, the envelope around a badge array. Without `payload`, a bare `{ identifier, label, items }` (as `BadgeItemsResponse`), not wrapped."
           content:
             "application/json":
               schema:
@@ -14376,13 +14399,14 @@ paths:
     get:
       summary: List a badge's columns
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         `getColumnsForBadge` — returns a badge's requirement columns.
       tags: [ Badges ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -14630,15 +14654,16 @@ paths:
     post:
       summary: Link a badge to an item
       description: |-
-        Request: inferred from the web app's code. Response: inferred from the web app's code.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Write actions on badge records; the `action` query parameter selects one.
         `awardBadge` and `overrideCompletion` are typically sent together: `overrideCompletion` sets the
         completion level, `awardBadge` records the award.
       tags: [ Badges ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -22271,7 +22296,7 @@ paths:
     get:
       summary: Get risk assessments
       description: |-
-        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         Risk assessments attach to a meeting, activity or event, identified by
         `type` and `associated_id`. `getCategories`, `getHazards` and `getHarms`
@@ -22281,7 +22306,7 @@ paths:
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -23202,12 +23227,12 @@ paths:
   "/v3/risk_assessments/{sectionId}/categories":
     get:
       summary: Show programme risk assessment categories
-      description: "Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Risk Assessments ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: sectionId
           in: path
@@ -42272,6 +42297,501 @@ paths:
         default:
           $ref: "#/components/responses/V3Error"
       operationId: post_v3_chat_topics_By_topicId_status
+  "/ext/generic/comments/uploads/?action=commitTemp":
+    post:
+      summary: Attach temporary uploads to the saved record
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ commitTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                associated_type:
+                  type: string
+                  description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+                associated_id:
+                  type: string
+                id:
+                  type: string
+                path:
+                  type: string
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_commitTemp
+  "/ext/generic/comments/uploads/?action=config":
+    get:
+      summary: Widget limits and endpoint names
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ config ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: associated_type
+          in: query
+          required: false
+          description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+          schema:
+            type: string
+        - name: associated_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_config
+  "/ext/generic/comments/uploads/?action=manifest":
+    get:
+      summary: List uploaded files
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ manifest ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: associated_type
+          in: query
+          required: false
+          description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+          schema:
+            type: string
+        - name: associated_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_manifest
+  "/ext/generic/comments/uploads/?action=partPut":
+    post:
+      summary: Upload one chunk of a large file
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ partPut ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: associated_type
+          in: query
+          required: false
+          description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+          schema:
+            type: string
+        - name: associated_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The chunk.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_partPut
+  "/ext/generic/comments/uploads/?action=put":
+    post:
+      summary: Upload a file, or the last chunk of one
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ put ]
+        - name: completePut
+          in: query
+          required: false
+          description: Upload GUID that finishes a chunked upload.
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: false
+          description: Total file size in bytes.
+          schema:
+            type: string
+        - name: _bypass_service_worker
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "1" ]
+        - name: section_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: associated_type
+          in: query
+          required: false
+          description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+          schema:
+            type: string
+        - name: associated_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: temp
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ "true", "false" ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_put
+  "/ext/generic/comments/uploads/?action=putTemp":
+    post:
+      summary: Upload a file for a record that is not saved yet
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ putTemp ]
+      requestBody:
+        required: true
+        content:
+          "multipart/form-data":
+            schema:
+              type: object
+              properties:
+                qqfile:
+                  type: string
+                  format: binary
+                  description: The file.
+                section_id:
+                  type: string
+                associated_type:
+                  type: string
+                  description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+                associated_id:
+                  type: string
+                id:
+                  type: string
+                path:
+                  type: string
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+              required: [ qqfile ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_putTemp
+  "/ext/generic/comments/uploads/?action=revertTemp":
+    post:
+      summary: Discard temporary uploads
+      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      tags: [ Comments ]
+      x-source:
+        request: inferred
+        response: inferred
+      parameters:
+        - name: action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [ revertTemp ]
+      requestBody:
+        content:
+          "application/x-www-form-urlencoded":
+            schema:
+              type: object
+              properties:
+                section_id:
+                  type: string
+                associated_type:
+                  type: string
+                  description: "Kind of record commented on, as in `/v3/comments/{associatedType}/...`."
+                associated_id:
+                  type: string
+                id:
+                  type: string
+                path:
+                  type: string
+                temp:
+                  type: string
+                  enum: [ "true", "false" ]
+      responses:
+        "200":
+          description: Successful response.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  error:
+                    type: object
+                    nullable: true
+                    description: "`null` on success."
+                  data:
+                    $ref: "#/components/schemas/UploadWidgetResult"
+                  meta:
+                    type: object
+                    nullable: true
+        default:
+          $ref: "#/components/responses/ExtError"
+      operationId: ext_generic_comments_uploads_revertTemp
   "/v3/comments/safeguarding/{safeguardingId}/add":
     post:
       summary: Add a safeguarding record comment
@@ -42327,11 +42847,12 @@ paths:
   "/v3/comments/{associatedType}/{associatedId}/add/":
     post:
       summary: Add a comment
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Comments ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: associatedType
           in: path
@@ -42389,11 +42910,12 @@ paths:
   "/v3/comments/{associatedType}/{associatedId}/list":
     get:
       summary: List comments on a record
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Comments ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: associatedType
           in: path
@@ -42588,14 +43110,14 @@ paths:
     get:
       summary: List form completions
       description: |-
-        Request: observed in captured traffic, 2026-10-05. Response: observed in captured traffic, 2026-10-05.
+        Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07.
 
         The group dashboard calls this with form IDs `1` and `3` plus `section_ids` and `after`.
       tags: [ Forms ]
       x-source:
         request: observed
         response: observed
-        observed_on: "2026-10-05"
+        observed_on: "2026-10-07"
       parameters:
         - name: formId
           in: path
@@ -42677,11 +43199,12 @@ paths:
       operationId: get_v3_forms_By_formId
     post:
       summary: Start a form completion
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Forms ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: formId
           in: path
@@ -42736,11 +43259,12 @@ paths:
   "/v3/forms/{formId}/{completionId}":
     get:
       summary: Get a form completion
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Forms ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: formId
           in: path
@@ -42799,11 +43323,12 @@ paths:
       operationId: get_v3_forms_By_formId_By_completionId
     post:
       summary: Save one field of a form completion
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Forms ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: formId
           in: path
@@ -42939,11 +43464,12 @@ paths:
   "/v3/forms/{formId}/{completionId}/delete":
     post:
       summary: Delete a form completion
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Forms ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: formId
           in: path
@@ -64315,11 +64841,12 @@ paths:
   "/ext/settings/patrols/?action=get":
     get:
       summary: List patrols
-      description: "Request: inferred from the web app's code. Response: inferred from the web app's code."
+      description: "Request: observed in captured traffic, 2026-10-07. Response: observed in captured traffic, 2026-10-07."
       tags: [ Settings ]
       x-source:
-        request: inferred
-        response: inferred
+        request: observed
+        response: observed
+        observed_on: "2026-10-07"
       parameters:
         - name: action
           in: query
@@ -66731,6 +67258,10 @@ components:
     BadgeItemsResponse:
       type: object
       properties:
+        identifier:
+          type: string
+        label:
+          type: string
         items:
           type: array
           items:
@@ -67785,7 +68316,7 @@ components:
       description: Named setup records (availability types, instructor types, price types, question groups or session types).
     CensusAggregateCategory:
       type: object
-      description: Value (for example an age or religion) to counts by gender.
+      description: "Value (for example an age or religion) to counts by gender. Gender keys can include `\"\"`, and `Total` has the single value `\"\"`."
       additionalProperties:
         type: object
         properties:
@@ -68011,10 +68542,23 @@ components:
             full_name:
               type: string
             photo_url:
-              type: string
+              description: "`false` when the user has no photo."
+              anyOf:
+                - type: string
+                - type: boolean
           additionalProperties: true
+        section_id:
+          type: integer
+        associated_type:
+          type: string
+        associated_id:
+          type: string
         comment:
           type: string
+        number_likes:
+          type: integer
+        has_uploads:
+          type: boolean
         created_at:
           type: string
         updated_at:
@@ -68112,6 +68656,22 @@ components:
           enum: [ "yes", "no" ]
         order:
           type: string
+        display_in_advanced_view:
+          type: string
+        display_if_empty:
+          type: string
+        hide_from_group_display:
+          type: string
+        force_read_only:
+          type: string
+        special_permissions:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        orig_label:
+          type: string
         config:
           type: object
           additionalProperties: true
@@ -68139,9 +68699,12 @@ components:
         group_id:
           type: integer
         config:
-          nullable: true
-          type: object
-          additionalProperties: true
+          description: "Empty string on some groups, e.g. `standard_fields`."
+          anyOf:
+            - type: object
+              nullable: true
+              additionalProperties: true
+            - type: string
         group_type:
           type: string
         identifier:
@@ -70900,8 +71463,35 @@ components:
         properties:
           id:
             type: integer
+          form_id:
+            type: integer
+          section_id:
+            type: integer
           title:
             type: string
+          associated_type:
+            type: string
+            nullable: true
+          associated_id:
+            type: string
+            nullable: true
+          state:
+            type: string
+            nullable: true
+          delete_at:
+            type: string
+            nullable: true
+          created_by:
+            type: integer
+          updated_by:
+            type: integer
+          created_at:
+            type: string
+          updated_at:
+            type: string
+          deleted_at:
+            type: string
+            nullable: true
           group_name:
             type: string
           section_name:
@@ -70914,32 +71504,63 @@ components:
     FormCompletionResponse:
       type: object
       properties:
+        id:
+          type: integer
+        form_id:
+          type: integer
         title:
           type: string
         section_id:
           type: integer
+        associated_type:
+          type: string
+          nullable: true
+        associated_id:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
         created_by:
           type: object
           nullable: true
           additionalProperties: true
+        created_at:
+          type: string
         created_at_local_datetime:
           type: string
         updated_by:
           type: object
           nullable: true
           additionalProperties: true
+        updated_at:
+          type: string
         updated_at_local_datetime:
           type: string
         delete_at:
           type: string
+          nullable: true
+        deleted_at:
+          type: string
+          nullable: true
         values:
           type: array
           items:
             type: object
             properties:
+              id:
+                type: integer
+              form_id:
+                type: integer
+              form_completion_id:
+                type: integer
               form_field_id:
                 type: integer
               data: { }
+              created_at:
+                type: string
+              updated_at:
+                type: string
             additionalProperties: true
       additionalProperties: true
     FormResponse:
@@ -70947,16 +71568,55 @@ components:
       additionalProperties: true
     FormUpdateResponse:
       type: object
+      description: "The whole completion, without `values`."
       properties:
+        id:
+          type: integer
+        form_id:
+          type: integer
+        section_id:
+          type: integer
+        title:
+          type: string
+        associated_type:
+          type: string
+          nullable: true
+        associated_id:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        delete_at:
+          type: string
+          nullable: true
+        created_by:
+          type: object
+          nullable: true
+          additionalProperties: true
+        created_at:
+          type: string
+        created_at_local_datetime:
+          type: string
         updated_by:
           type: object
           nullable: true
           properties:
             full_name:
               type: string
+            photo_url:
+              description: "`false` when the user has no photo."
+              anyOf:
+                - type: string
+                - type: boolean
           additionalProperties: true
+        updated_at:
+          type: string
         updated_at_local_datetime:
           type: string
+        deleted_at:
+          type: string
+          nullable: true
       additionalProperties: true
     GenericBookingsResponse:
       type: object
@@ -72117,49 +72777,35 @@ components:
     MemberStatusResponseData:
       description: "Payload; shape depends on the endpoint."
     MemberTransfers:
-      type: object
-      properties:
-        status:
-          type: boolean
-        error:
-          type: object
-          nullable: true
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              direction:
-                type: string
-                enum: [ from, to ]
-              member_id: { }
-              section_id: { }
-              firstname:
-                type: string
-              lastname:
-                type: string
-              photo_guid:
-                type: string
-              type:
-                type: string
-              date:
-                type: string
-              mode:
-                type: string
-              section_name:
-                type: object
-                additionalProperties: true
-              section_long:
-                type: string
-            additionalProperties: true
-        meta:
-          type: array
-          items:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          direction:
+            type: string
+            enum: [ from, to ]
+          member_id: { }
+          section_id: { }
+          firstname:
+            type: string
+          lastname:
+            type: string
+          photo_guid:
+            type: string
+          type:
+            type: string
+          date:
+            type: string
+          mode:
+            type: string
+          section_name:
             type: object
             additionalProperties: true
-      additionalProperties: true
+          section_long:
+            type: string
+        additionalProperties: true
     MembersList:
       type: object
       properties:
@@ -74413,6 +75059,14 @@ components:
           type: string
         name:
           type: string
+        sectionid:
+          type: string
+        active:
+          type: string
+        points:
+          type: string
+        census_costs:
+          type: boolean
       additionalProperties: true
     SettingsPatrolsResponse:
       type: object

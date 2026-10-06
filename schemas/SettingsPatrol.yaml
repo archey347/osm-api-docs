@@ -4,4 +4,12 @@ properties:
     type: string
   name:
     type: string
+  sectionid:
+    type: string
+  active:
+    type: string
+  points:
+    type: string
+  census_costs:
+    type: boolean
 additionalProperties: true

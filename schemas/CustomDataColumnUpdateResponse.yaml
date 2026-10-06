@@ -22,6 +22,22 @@ properties:
     enum: [ "yes", "no" ]
   order:
     type: string
+  display_in_advanced_view:
+    type: string
+  display_if_empty:
+    type: string
+  hide_from_group_display:
+    type: string
+  force_read_only:
+    type: string
+  special_permissions:
+    type: string
+  permissions:
+    type: array
+    items:
+      type: string
+  orig_label:
+    type: string
   config:
     type: object
     additionalProperties: true

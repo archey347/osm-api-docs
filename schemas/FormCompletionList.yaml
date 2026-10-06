@@ -4,8 +4,35 @@ items:
   properties:
     id:
       type: integer
+    form_id:
+      type: integer
+    section_id:
+      type: integer
     title:
       type: string
+    associated_type:
+      type: string
+      nullable: true
+    associated_id:
+      type: string
+      nullable: true
+    state:
+      type: string
+      nullable: true
+    delete_at:
+      type: string
+      nullable: true
+    created_by:
+      type: integer
+    updated_by:
+      type: integer
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    deleted_at:
+      type: string
+      nullable: true
     group_name:
       type: string
     section_name:

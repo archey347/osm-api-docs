@@ -1,5 +1,5 @@
 type: object
-description: Value (for example an age or religion) to counts by gender.
+description: "Value (for example an age or religion) to counts by gender. Gender keys can include `\"\"`, and `Total` has the single value `\"\"`."
 additionalProperties:
   type: object
   properties:

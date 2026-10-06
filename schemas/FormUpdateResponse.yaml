@@ -1,12 +1,51 @@
 type: object
+description: The whole completion, without `values`.
 properties:
+  id:
+    type: integer
+  form_id:
+    type: integer
+  section_id:
+    type: integer
+  title:
+    type: string
+  associated_type:
+    type: string
+    nullable: true
+  associated_id:
+    type: string
+    nullable: true
+  state:
+    type: string
+    nullable: true
+  delete_at:
+    type: string
+    nullable: true
+  created_by:
+    type: object
+    nullable: true
+    additionalProperties: true
+  created_at:
+    type: string
+  created_at_local_datetime:
+    type: string
   updated_by:
     type: object
     nullable: true
     properties:
       full_name:
         type: string
+      photo_url:
+        description: "`false` when the user has no photo."
+        anyOf:
+          - type: string
+          - type: boolean
     additionalProperties: true
+  updated_at:
+    type: string
   updated_at_local_datetime:
     type: string
+  deleted_at:
+    type: string
+    nullable: true
 additionalProperties: true

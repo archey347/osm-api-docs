@@ -8,7 +8,9 @@ tags: [ Badges ]
 source:
   request: observed
   response: observed
-  observed_on: 2026-03-05
+  observed_on:
+    request: 2026-10-07
+    response: 2026-03-05
 query:
   section:
     type: string
@@ -62,6 +64,7 @@ response:
   schema:
     $ref: BadgeRecordsResponse
   envelope: true
+  description: "With `payload=1`, the envelope around a badge array. Without `payload`, a bare `{ identifier, label, items }` (as `BadgeItemsResponse`), not wrapped."
   examples:
     availableBadges:
       summary: getAvailableBadges with payload=1

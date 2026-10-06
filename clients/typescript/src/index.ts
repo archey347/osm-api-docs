@@ -264,10 +264,14 @@ export const BadgeHomeworkSettingsResponse = php(z.looseObject({ enabled: lax(z.
 export type BadgeHomeworkSettingsResponse = z.output<typeof BadgeHomeworkSettingsResponse>;
 export const BadgeImageResponse = php(z.looseObject({ img: lax(z.string()) }));
 export type BadgeImageResponse = z.output<typeof BadgeImageResponse>;
-export const BadgeItemsResponse = php(z.looseObject({ items: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
+export const BadgeItemsResponse = php(z.looseObject({ identifier: lax(z.string()), label: lax(z.string()), items: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
 export type BadgeItemsResponse = z.output<typeof BadgeItemsResponse>;
+export const BadgeItemsResponseStrict = php(z.looseObject({ identifier: z.string().optional(), label: z.string().optional(), items: z.array(php(z.record(z.string(), z.unknown()))).optional() }));
+export type BadgeItemsResponseStrict = z.output<typeof BadgeItemsResponseStrict>;
 export const BadgeLinkResponseData = php(z.looseObject({ relation_id: z.unknown().optional(), column_id: z.unknown().optional() }));
 export type BadgeLinkResponseData = z.output<typeof BadgeLinkResponseData>;
+export const BadgeLinkResponseDataStrict = php(z.looseObject({ relation_id: z.unknown().optional(), column_id: z.unknown().optional() }));
+export type BadgeLinkResponseDataStrict = z.output<typeof BadgeLinkResponseDataStrict>;
 export const BadgeModuleInfoResponse = php(z.looseObject({ modules: lax(z.array(php(z.looseObject({ module_letter: lax(z.string()), custom_columns: z.unknown().optional(), completed_into_column_id: z.unknown().optional(), numeric_into_column_id: z.unknown().optional() })))), config: lax(php(z.record(z.string(), z.unknown()))), has_points: lax(z.boolean()) }));
 export type BadgeModuleInfoResponse = z.output<typeof BadgeModuleInfoResponse>;
 export const BadgeOtherSectionsResponse = z.array(php(z.looseObject({ column_id: z.unknown().optional(), column_name: lax(z.string()), section_name: lax(z.string()), data: z.unknown().optional() })));
@@ -360,8 +364,12 @@ export const CampsiteTypeList = z.array(php(z.looseObject({ id: lax(z.number()),
 export type CampsiteTypeList = z.output<typeof CampsiteTypeList>;
 export const CensusAggregateCategory = php(z.record(z.string(), lax(php(z.looseObject({ Male: z.unknown().optional(), Female: z.unknown().optional(), "Self-identify": z.unknown().optional(), "Prefer not to say": z.unknown().optional(), Total: z.unknown().optional() })))));
 export type CensusAggregateCategory = z.output<typeof CensusAggregateCategory>;
+export const CensusAggregateCategoryStrict = php(z.record(z.string(), php(z.looseObject({ Male: z.unknown().optional(), Female: z.unknown().optional(), "Self-identify": z.unknown().optional(), "Prefer not to say": z.unknown().optional(), Total: z.unknown().optional() }))));
+export type CensusAggregateCategoryStrict = z.output<typeof CensusAggregateCategoryStrict>;
 export const CensusAggregates = php(z.looseObject({ Ethnicity: lax(CensusAggregateCategory), Religion: lax(CensusAggregateCategory), Age: lax(CensusAggregateCategory), Disability: lax(CensusAggregateCategory), Total: lax(CensusAggregateCategory) }));
 export type CensusAggregates = z.output<typeof CensusAggregates>;
+export const CensusAggregatesStrict = php(z.looseObject({ Ethnicity: CensusAggregateCategoryStrict.optional(), Religion: CensusAggregateCategoryStrict.optional(), Age: CensusAggregateCategoryStrict.optional(), Disability: CensusAggregateCategoryStrict.optional(), Total: CensusAggregateCategoryStrict.optional() }));
+export type CensusAggregatesStrict = z.output<typeof CensusAggregatesStrict>;
 export const CensusDetails = php(z.looseObject({ identifier: lax(z.string()), items: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
 export type CensusDetails = z.output<typeof CensusDetails>;
 export const CensusDetailsStrict = php(z.looseObject({ identifier: z.string().optional(), items: z.array(php(z.record(z.string(), z.unknown()))).optional() }));
@@ -394,25 +402,29 @@ export const ChatTopicCreateResponse = php(z.looseObject({ id: lax(z.number()) }
 export type ChatTopicCreateResponse = z.output<typeof ChatTopicCreateResponse>;
 export const ChatTopicList = z.array(ChatTopic);
 export type ChatTopicList = z.output<typeof ChatTopicList>;
-export const Comment = php(z.looseObject({ id: lax(z.number()), user_id: lax(z.number()), user: lax(php(z.looseObject({ full_name: lax(z.string()), photo_url: lax(z.string()) }))), comment: lax(z.string()), created_at: lax(z.string()), updated_at: lax(z.string()), local_time: lax(z.string()), engagements: lax(z.array(php(z.looseObject({ action: lax(z.string()) })))) }));
+export const Comment = php(z.looseObject({ id: lax(z.number()), user_id: lax(z.number()), user: lax(php(z.looseObject({ full_name: lax(z.string()), photo_url: lax(z.union([z.string(), z.boolean()])) }))), section_id: lax(z.number()), associated_type: lax(z.string()), associated_id: lax(z.string()), comment: lax(z.string()), number_likes: lax(z.number()), has_uploads: lax(z.boolean()), created_at: lax(z.string()), updated_at: lax(z.string()), local_time: lax(z.string()), engagements: lax(z.array(php(z.looseObject({ action: lax(z.string()) })))) }));
 export type Comment = z.output<typeof Comment>;
 export const CommentListResponse = z.array(Comment);
 export type CommentListResponse = z.output<typeof CommentListResponse>;
+export const CommentStrict = php(z.looseObject({ id: z.number().optional(), user_id: z.number().optional(), user: php(z.looseObject({ full_name: z.string().optional(), photo_url: z.union([z.string(), z.boolean()]).optional() })).optional(), section_id: z.number().optional(), associated_type: z.string().optional(), associated_id: z.string().optional(), comment: z.string().optional(), number_likes: z.number().optional(), has_uploads: z.boolean().optional(), created_at: z.string().optional(), updated_at: z.string().optional(), local_time: z.string().optional(), engagements: z.array(php(z.looseObject({ action: z.string().optional() }))).optional() }));
+export type CommentStrict = z.output<typeof CommentStrict>;
+export const CommentListResponseStrict = z.array(CommentStrict);
+export type CommentListResponseStrict = z.output<typeof CommentListResponseStrict>;
 export const CustomDataAvailableColumns = php(z.looseObject({ items: lax(z.array(php(z.looseObject({ column_id: z.unknown().optional(), name: lax(z.string()), disabled: lax(z.boolean()) })))) }));
 export type CustomDataAvailableColumns = z.output<typeof CustomDataAvailableColumns>;
 export const CustomDataColumn = php(z.looseObject({ column_id: lax(z.number()), type: lax(z.string()), required: lax(z.string()), display_in_advanced_view: lax(z.string()), display_if_empty: lax(z.string()), hide_from_group_display: lax(z.string()), config: lax(php(z.record(z.string(), z.unknown()))), varname: lax(z.string()), label: lax(z.string()), value: z.unknown().optional(), is_core: lax(z.string()), order: lax(z.string()), force_read_only: lax(z.string()), special_permissions: lax(z.string()), permissions: lax(z.array(z.string())), orig_label: lax(z.string()) }));
 export type CustomDataColumn = z.output<typeof CustomDataColumn>;
 export const CustomDataColumnStrict = php(z.looseObject({ column_id: z.number().optional(), type: z.string().optional(), required: z.string().optional(), display_in_advanced_view: z.string().optional(), display_if_empty: z.string().optional(), hide_from_group_display: z.string().optional(), config: php(z.record(z.string(), z.unknown())).optional(), varname: z.string().optional(), label: z.string().optional(), value: z.unknown().optional(), is_core: z.string().optional(), order: z.string().optional(), force_read_only: z.string().optional(), special_permissions: z.string().optional(), permissions: z.array(z.string()).optional(), orig_label: z.string().optional() }));
 export type CustomDataColumnStrict = z.output<typeof CustomDataColumnStrict>;
-export const CustomDataColumnUpdateResponse = php(z.looseObject({ column_id: lax(z.number()), type: lax(z.string()), required: lax(z.string()), varname: lax(z.string()), label: lax(z.string()), value: lax(z.string()), is_core: lax(z.string()), order: lax(z.string()), config: lax(php(z.record(z.string(), z.unknown()))) }));
+export const CustomDataColumnUpdateResponse = php(z.looseObject({ column_id: lax(z.number()), type: lax(z.string()), required: lax(z.string()), varname: lax(z.string()), label: lax(z.string()), value: lax(z.string()), is_core: lax(z.string()), order: lax(z.string()), display_in_advanced_view: lax(z.string()), display_if_empty: lax(z.string()), hide_from_group_display: lax(z.string()), force_read_only: lax(z.string()), special_permissions: lax(z.string()), permissions: lax(z.array(z.string())), orig_label: lax(z.string()), config: lax(php(z.record(z.string(), z.unknown()))) }));
 export type CustomDataColumnUpdateResponse = z.output<typeof CustomDataColumnUpdateResponse>;
-export const CustomDataColumnUpdateResponseStrict = php(z.looseObject({ column_id: z.number().optional(), type: z.string().optional(), required: z.enum(["yes", "no"]).optional(), varname: z.string().optional(), label: z.string().optional(), value: z.string().optional(), is_core: z.enum(["yes", "no"]).optional(), order: z.string().optional(), config: php(z.record(z.string(), z.unknown())).optional() }));
+export const CustomDataColumnUpdateResponseStrict = php(z.looseObject({ column_id: z.number().optional(), type: z.string().optional(), required: z.enum(["yes", "no"]).optional(), varname: z.string().optional(), label: z.string().optional(), value: z.string().optional(), is_core: z.enum(["yes", "no"]).optional(), order: z.string().optional(), display_in_advanced_view: z.string().optional(), display_if_empty: z.string().optional(), hide_from_group_display: z.string().optional(), force_read_only: z.string().optional(), special_permissions: z.string().optional(), permissions: z.array(z.string()).optional(), orig_label: z.string().optional(), config: php(z.record(z.string(), z.unknown())).optional() }));
 export type CustomDataColumnUpdateResponseStrict = z.output<typeof CustomDataColumnUpdateResponseStrict>;
 export const CustomDataColumnVisibility = z.array(php(z.looseObject({ group_id: z.unknown().optional(), identifier: lax(z.string()), columns: lax(z.array(php(z.looseObject({ column_id: z.unknown().optional() })))) })));
 export type CustomDataColumnVisibility = z.output<typeof CustomDataColumnVisibility>;
-export const CustomDataGroup = php(z.looseObject({ group_id: lax(z.number()), config: lax(php(z.record(z.string(), z.unknown())).nullable()), group_type: lax(z.string()), identifier: lax(z.string()), name: lax(z.string()), description: lax(z.string()), description_mymember: lax(z.string()), is_considered_core: lax(z.string()), allow_new_columns: lax(z.string()), display: lax(z.string()), columns: lax(z.array(CustomDataColumn)), custom_order: lax(z.number()) }));
+export const CustomDataGroup = php(z.looseObject({ group_id: lax(z.number()), config: lax(z.union([php(z.record(z.string(), z.unknown())).nullable(), z.string()])), group_type: lax(z.string()), identifier: lax(z.string()), name: lax(z.string()), description: lax(z.string()), description_mymember: lax(z.string()), is_considered_core: lax(z.string()), allow_new_columns: lax(z.string()), display: lax(z.string()), columns: lax(z.array(CustomDataColumn)), custom_order: lax(z.number()) }));
 export type CustomDataGroup = z.output<typeof CustomDataGroup>;
-export const CustomDataGroupStrict = php(z.looseObject({ group_id: z.number().optional(), config: php(z.record(z.string(), z.unknown())).nullable().optional(), group_type: z.string().optional(), identifier: z.string().optional(), name: z.string().optional(), description: z.string().optional(), description_mymember: z.string().optional(), is_considered_core: z.string().optional(), allow_new_columns: z.string().optional(), display: z.string().optional(), columns: z.array(CustomDataColumnStrict).optional(), custom_order: z.number().optional() }));
+export const CustomDataGroupStrict = php(z.looseObject({ group_id: z.number().optional(), config: z.union([php(z.record(z.string(), z.unknown())).nullable(), z.string()]).optional(), group_type: z.string().optional(), identifier: z.string().optional(), name: z.string().optional(), description: z.string().optional(), description_mymember: z.string().optional(), is_considered_core: z.string().optional(), allow_new_columns: z.string().optional(), display: z.string().optional(), columns: z.array(CustomDataColumnStrict).optional(), custom_order: z.number().optional() }));
 export type CustomDataGroupStrict = z.output<typeof CustomDataGroupStrict>;
 export const CustomDataNewMemberFields = z.array(php(z.looseObject({ group: lax(z.string()), varname: lax(z.string()), type: lax(z.string()) })));
 export type CustomDataNewMemberFields = z.output<typeof CustomDataNewMemberFields>;
@@ -702,16 +714,22 @@ export const FlexiRecordWriteResult = php(z.looseObject({ status: lax(z.boolean(
 export type FlexiRecordWriteResult = z.output<typeof FlexiRecordWriteResult>;
 export const FlexiRecords = php(z.looseObject({ identifier: lax(z.string()), label: lax(z.string()), items: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
 export type FlexiRecords = z.output<typeof FlexiRecords>;
-export const FormCompletionList = z.array(php(z.looseObject({ id: lax(z.number()), title: lax(z.string()), group_name: lax(z.string()), section_name: lax(z.string()), formatted_created_at: lax(z.string()), formatted_delete_at: lax(z.string()) })));
+export const FormCompletionList = z.array(php(z.looseObject({ id: lax(z.number()), form_id: lax(z.number()), section_id: lax(z.number()), title: lax(z.string()), associated_type: lax(z.string().nullable()), associated_id: lax(z.string().nullable()), state: lax(z.string().nullable()), delete_at: lax(z.string().nullable()), created_by: lax(z.number()), updated_by: lax(z.number()), created_at: lax(z.string()), updated_at: lax(z.string()), deleted_at: lax(z.string().nullable()), group_name: lax(z.string()), section_name: lax(z.string()), formatted_created_at: lax(z.string()), formatted_delete_at: lax(z.string()) })));
 export type FormCompletionList = z.output<typeof FormCompletionList>;
-export const FormCompletionListStrict = z.array(php(z.looseObject({ id: z.number().optional(), title: z.string().optional(), group_name: z.string().optional(), section_name: z.string().optional(), formatted_created_at: z.string().optional(), formatted_delete_at: z.string().optional() })));
+export const FormCompletionListStrict = z.array(php(z.looseObject({ id: z.number().optional(), form_id: z.number().optional(), section_id: z.number().optional(), title: z.string().optional(), associated_type: z.string().nullable().optional(), associated_id: z.string().nullable().optional(), state: z.string().nullable().optional(), delete_at: z.string().nullable().optional(), created_by: z.number().optional(), updated_by: z.number().optional(), created_at: z.string().optional(), updated_at: z.string().optional(), deleted_at: z.string().nullable().optional(), group_name: z.string().optional(), section_name: z.string().optional(), formatted_created_at: z.string().optional(), formatted_delete_at: z.string().optional() })));
 export type FormCompletionListStrict = z.output<typeof FormCompletionListStrict>;
-export const FormCompletionResponse = php(z.looseObject({ title: lax(z.string()), section_id: lax(z.number()), created_by: lax(php(z.record(z.string(), z.unknown())).nullable()), created_at_local_datetime: lax(z.string()), updated_by: lax(php(z.record(z.string(), z.unknown())).nullable()), updated_at_local_datetime: lax(z.string()), delete_at: lax(z.string()), values: lax(z.array(php(z.looseObject({ form_field_id: lax(z.number()), data: z.unknown().optional() })))) }));
+export const FormCompletionResponse = php(z.looseObject({ id: lax(z.number()), form_id: lax(z.number()), title: lax(z.string()), section_id: lax(z.number()), associated_type: lax(z.string().nullable()), associated_id: lax(z.string().nullable()), state: lax(z.string().nullable()), created_by: lax(php(z.record(z.string(), z.unknown())).nullable()), created_at: lax(z.string()), created_at_local_datetime: lax(z.string()), updated_by: lax(php(z.record(z.string(), z.unknown())).nullable()), updated_at: lax(z.string()), updated_at_local_datetime: lax(z.string()), delete_at: lax(z.string().nullable()), deleted_at: lax(z.string().nullable()), values: lax(z.array(php(z.looseObject({ id: lax(z.number()), form_id: lax(z.number()), form_completion_id: lax(z.number()), form_field_id: lax(z.number()), data: z.unknown().optional(), created_at: lax(z.string()), updated_at: lax(z.string()) })))) }));
 export type FormCompletionResponse = z.output<typeof FormCompletionResponse>;
+export const FormCompletionResponseStrict = php(z.looseObject({ id: z.number().optional(), form_id: z.number().optional(), title: z.string().optional(), section_id: z.number().optional(), associated_type: z.string().nullable().optional(), associated_id: z.string().nullable().optional(), state: z.string().nullable().optional(), created_by: php(z.record(z.string(), z.unknown())).nullable().optional(), created_at: z.string().optional(), created_at_local_datetime: z.string().optional(), updated_by: php(z.record(z.string(), z.unknown())).nullable().optional(), updated_at: z.string().optional(), updated_at_local_datetime: z.string().optional(), delete_at: z.string().nullable().optional(), deleted_at: z.string().nullable().optional(), values: z.array(php(z.looseObject({ id: z.number().optional(), form_id: z.number().optional(), form_completion_id: z.number().optional(), form_field_id: z.number().optional(), data: z.unknown().optional(), created_at: z.string().optional(), updated_at: z.string().optional() }))).optional() }));
+export type FormCompletionResponseStrict = z.output<typeof FormCompletionResponseStrict>;
 export const FormResponse = php(z.record(z.string(), z.unknown()));
 export type FormResponse = z.output<typeof FormResponse>;
-export const FormUpdateResponse = php(z.looseObject({ updated_by: lax(php(z.looseObject({ full_name: lax(z.string()) })).nullable()), updated_at_local_datetime: lax(z.string()) }));
+export const FormResponseStrict = php(z.record(z.string(), z.unknown()));
+export type FormResponseStrict = z.output<typeof FormResponseStrict>;
+export const FormUpdateResponse = php(z.looseObject({ id: lax(z.number()), form_id: lax(z.number()), section_id: lax(z.number()), title: lax(z.string()), associated_type: lax(z.string().nullable()), associated_id: lax(z.string().nullable()), state: lax(z.string().nullable()), delete_at: lax(z.string().nullable()), created_by: lax(php(z.record(z.string(), z.unknown())).nullable()), created_at: lax(z.string()), created_at_local_datetime: lax(z.string()), updated_by: lax(php(z.looseObject({ full_name: lax(z.string()), photo_url: lax(z.union([z.string(), z.boolean()])) })).nullable()), updated_at: lax(z.string()), updated_at_local_datetime: lax(z.string()), deleted_at: lax(z.string().nullable()) }));
 export type FormUpdateResponse = z.output<typeof FormUpdateResponse>;
+export const FormUpdateResponseStrict = php(z.looseObject({ id: z.number().optional(), form_id: z.number().optional(), section_id: z.number().optional(), title: z.string().optional(), associated_type: z.string().nullable().optional(), associated_id: z.string().nullable().optional(), state: z.string().nullable().optional(), delete_at: z.string().nullable().optional(), created_by: php(z.record(z.string(), z.unknown())).nullable().optional(), created_at: z.string().optional(), created_at_local_datetime: z.string().optional(), updated_by: php(z.looseObject({ full_name: z.string().optional(), photo_url: z.union([z.string(), z.boolean()]).optional() })).nullable().optional(), updated_at: z.string().optional(), updated_at_local_datetime: z.string().optional(), deleted_at: z.string().nullable().optional() }));
+export type FormUpdateResponseStrict = z.output<typeof FormUpdateResponseStrict>;
 export const GenericContactUsResponse = php(z.looseObject({ resp: lax(z.union([z.boolean(), z.string()])), ticket_only: lax(z.boolean()) }));
 export type GenericContactUsResponse = z.output<typeof GenericContactUsResponse>;
 export const GenericDownloadManifest = php(z.looseObject({ manifest: lax(php(z.record(z.string(), z.unknown()))) }));
@@ -838,9 +856,9 @@ export const MemberStatusResponse = php(z.looseObject({ status: lax(z.boolean())
 export type MemberStatusResponse = z.output<typeof MemberStatusResponse>;
 export const MemberStatusResponseData = z.unknown();
 export type MemberStatusResponseData = z.output<typeof MemberStatusResponseData>;
-export const MemberTransfers = php(z.looseObject({ status: lax(z.boolean()), error: lax(php(z.record(z.string(), z.unknown())).nullable()), data: lax(z.array(php(z.looseObject({ id: lax(z.string()), direction: lax(z.string()), member_id: z.unknown().optional(), section_id: z.unknown().optional(), firstname: lax(z.string()), lastname: lax(z.string()), photo_guid: lax(z.string()), type: lax(z.string()), date: lax(z.string()), mode: lax(z.string()), section_name: lax(php(z.record(z.string(), z.unknown()))), section_long: lax(z.string()) })))), meta: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
+export const MemberTransfers = z.array(php(z.looseObject({ id: lax(z.string()), direction: lax(z.string()), member_id: z.unknown().optional(), section_id: z.unknown().optional(), firstname: lax(z.string()), lastname: lax(z.string()), photo_guid: lax(z.string()), type: lax(z.string()), date: lax(z.string()), mode: lax(z.string()), section_name: lax(php(z.record(z.string(), z.unknown()))), section_long: lax(z.string()) })));
 export type MemberTransfers = z.output<typeof MemberTransfers>;
-export const MemberTransfersStrict = php(z.looseObject({ status: z.boolean().optional(), error: php(z.record(z.string(), z.unknown())).nullable().optional(), data: z.array(php(z.looseObject({ id: z.string().optional(), direction: z.enum(["from", "to"]).optional(), member_id: z.unknown().optional(), section_id: z.unknown().optional(), firstname: z.string().optional(), lastname: z.string().optional(), photo_guid: z.string().optional(), type: z.string().optional(), date: z.string().optional(), mode: z.string().optional(), section_name: php(z.record(z.string(), z.unknown())).optional(), section_long: z.string().optional() }))).optional(), meta: z.array(php(z.record(z.string(), z.unknown()))).optional() }));
+export const MemberTransfersStrict = z.array(php(z.looseObject({ id: z.string().optional(), direction: z.enum(["from", "to"]).optional(), member_id: z.unknown().optional(), section_id: z.unknown().optional(), firstname: z.string().optional(), lastname: z.string().optional(), photo_guid: z.string().optional(), type: z.string().optional(), date: z.string().optional(), mode: z.string().optional(), section_name: php(z.record(z.string(), z.unknown())).optional(), section_long: z.string().optional() })));
 export type MemberTransfersStrict = z.output<typeof MemberTransfersStrict>;
 export const MembersList = php(z.looseObject({ identifier: lax(z.string()), photos: lax(z.boolean()), items: lax(z.array(php(z.record(z.string(), z.unknown())))) }));
 export type MembersList = z.output<typeof MembersList>;
@@ -1056,10 +1074,14 @@ export const SettingsLoginDetailsResponse = php(z.looseObject({ status: lax(z.bo
 export type SettingsLoginDetailsResponse = z.output<typeof SettingsLoginDetailsResponse>;
 export const SettingsParentPersonalDetails = php(z.looseObject({ status: lax(z.boolean()), data: lax(php(z.looseObject({ has_parent_confirmation_field: lax(z.boolean()), parent_contact_changes_notifications: lax(z.boolean()) }))) }));
 export type SettingsParentPersonalDetails = z.output<typeof SettingsParentPersonalDetails>;
-export const SettingsPatrol = php(z.looseObject({ patrolid: lax(z.string()), name: lax(z.string()) }));
+export const SettingsPatrol = php(z.looseObject({ patrolid: lax(z.string()), name: lax(z.string()), sectionid: lax(z.string()), active: lax(z.string()), points: lax(z.string()), census_costs: lax(z.boolean()) }));
 export type SettingsPatrol = z.output<typeof SettingsPatrol>;
+export const SettingsPatrolStrict = php(z.looseObject({ patrolid: z.string().optional(), name: z.string().optional(), sectionid: z.string().optional(), active: z.string().optional(), points: z.string().optional(), census_costs: z.boolean().optional() }));
+export type SettingsPatrolStrict = z.output<typeof SettingsPatrolStrict>;
 export const SettingsPatrolsResponse = php(z.looseObject({ patrols: lax(z.array(SettingsPatrol)), error: lax(php(z.looseObject({ message: lax(z.string()) }))) }));
 export type SettingsPatrolsResponse = z.output<typeof SettingsPatrolsResponse>;
+export const SettingsPatrolsResponseStrict = php(z.looseObject({ patrols: z.array(SettingsPatrolStrict).optional(), error: php(z.looseObject({ message: z.string().optional() })).optional() }));
+export type SettingsPatrolsResponseStrict = z.output<typeof SettingsPatrolsResponseStrict>;
 export const SettingsPreferencesResponse = php(z.looseObject({ ok: lax(z.boolean()), prefs: lax(php(z.record(z.string(), z.unknown()))), incorrect_password: lax(z.boolean()), error: lax(z.string()) }));
 export type SettingsPreferencesResponse = z.output<typeof SettingsPreferencesResponse>;
 export const SettingsStatusResponse = php(z.looseObject({ status: lax(z.boolean()), error: lax(php(z.looseObject({ message: lax(z.string()), code: lax(z.string()) }))), data: z.unknown().optional(), meta: lax(php(z.record(z.string(), z.unknown()))) }));
@@ -1520,7 +1542,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/badges/records/",
         action: "getAvailableBadges",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-03-05","response":"2026-03-05"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-03-05"}},
         params: p<undefined, { section?: "squirrels" | "beavers" | "cubs" | "scouts" | "explorers"; section_id?: string; sectionid?: string; termid?: string; type_id?: "-1" | "1" | "2" | "3" | "4"; payload?: "1"; context?: "none" | "self" | "national"; member_id?: string; mode?: "verbose"; addGroupToName?: "y"; asNumericArray?: "y"; liveOnly?: "y"; no_read_only?: "y" }, undefined>(),
         response: { data: BadgeRecordsResponseStrict, envelope: true, strict: true },
       }),
@@ -1553,9 +1575,9 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/badges/records/",
         action: "getColumnsForBadge",
-        source: {"request":"inferred","response":"inferred"},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { section?: "squirrels" | "beavers" | "cubs" | "scouts" | "explorers"; section_id?: string; sectionid?: string; badge_id?: string; badge_version?: string; editable?: "y"; hidden?: "y"; hideLevelLabels?: "y"; hideSameAs?: "y"; isElsewhere?: "y"; noCustom?: "y"; noHidden?: "y"; none?: "y"; pleaseselect?: "y" }, undefined>(),
-        response: { data: lax(BadgeItemsResponse), envelope: false, strict: false },
+        response: { data: BadgeItemsResponseStrict, envelope: false, strict: true },
       }),
       /** List members eligible for a badge */
       getEligibleMembers: defineCall({
@@ -1586,9 +1608,9 @@ export const OsmApi = {
         method: "POST",
         path: "/ext/badges/records/",
         action: "linkBadgeToItem",
-        source: {"request":"inferred","response":"inferred"},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid?: string }, { sectionid?: string | number; badge_id?: string | number; badge_version?: string | number; section?: string | number; column_id?: string | number; batch?: string; type?: string; id?: string | number; column_data?: string | number; new_column_name?: string | number; picture?: string | number; same_as?: string | number }>(),
-        response: { data: lax(BadgeLinkResponseData), envelope: true, strict: false },
+        response: { data: BadgeLinkResponseDataStrict, envelope: true, strict: true },
       }),
       /** Override a badge completion */
       overrideCompletion: defineCall({
@@ -2097,8 +2119,8 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/customdata/",
       action: "getData",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
-      params: p<undefined, { section_id?: string; associated_id?: string; associated_type?: "member"; associated_is_section?: string; "varname_filter[]"?: string; "hidden_groups[]"?: string; group_order?: string; context?: "members" }, undefined>(),
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
+      params: p<undefined, { section_id?: string; associated_id?: string; associated_type?: "member"; associated_is_section?: string; "varname_filter[]"?: string; varname_filter?: string; "hidden_groups[]"?: string; group_order?: string; context?: "members" }, undefined>(),
       response: { data: CustomDataResponseStrict, envelope: true, strict: true },
     }),
     /** Get extra fields offered when adding a member */
@@ -2198,7 +2220,7 @@ export const OsmApi = {
       method: "POST",
       path: "/ext/customdata/",
       action: "update",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
       params: p<undefined, { section_id?: string }, { associated_type?: string; associated_id?: string; group_id?: string; context?: string; "data[{field}]"?: string }>(),
       response: { data: CustomDataColumnUpdateResponseStrict, envelope: true, strict: true },
     }),
@@ -2209,7 +2231,7 @@ export const OsmApi = {
       method: "POST",
       path: "/ext/customdata/",
       action: "updateColumn",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-03-05","response":"2026-03-05"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
       params: p<undefined, { section_id?: string }, { associated_id?: string; associated_type?: "member"; associated_is_section?: string; group_id?: string; column_id?: number; value?: string; context?: "members" }>(),
       response: { data: CustomDataColumnUpdateResponseStrict, envelope: true, strict: true },
     }),
@@ -4156,6 +4178,90 @@ export const OsmApi = {
     },
   },
   generic: {
+    comments: {
+      uploads: {
+        /** Widget limits and endpoint names */
+        config: defineCall({
+          id: "GET /ext/generic/comments/uploads/?action=config",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/generic/comments/uploads/",
+          action: "config",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** List uploaded files */
+        manifest: defineCall({
+          id: "GET /ext/generic/comments/uploads/?action=manifest",
+          kind: "ext-action",
+          method: "GET",
+          path: "/ext/generic/comments/uploads/",
+          action: "manifest",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }, undefined>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file, or the last chunk of one */
+        put: defineCall({
+          id: "POST /ext/generic/comments/uploads/?action=put",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/generic/comments/uploads/",
+          action: "put",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false"; completePut?: string; size?: string; _bypass_service_worker?: "1" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload one chunk of a large file */
+        partPut: defineCall({
+          id: "POST /ext/generic/comments/uploads/?action=partPut",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/generic/comments/uploads/",
+          action: "partPut",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Upload a file for a record that is not saved yet */
+        putTemp: defineCall({
+          id: "POST /ext/generic/comments/uploads/?action=putTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/generic/comments/uploads/",
+          action: "putTemp",
+          source: {"request":"inferred","response":"inferred"},
+          contentType: "multipart/form-data",
+          params: p<undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }, { qqfile: FileValue }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Attach temporary uploads to the saved record */
+        commitTemp: defineCall({
+          id: "POST /ext/generic/comments/uploads/?action=commitTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/generic/comments/uploads/",
+          action: "commitTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+        /** Discard temporary uploads */
+        revertTemp: defineCall({
+          id: "POST /ext/generic/comments/uploads/?action=revertTemp",
+          kind: "ext-action",
+          method: "POST",
+          path: "/ext/generic/comments/uploads/",
+          action: "revertTemp",
+          source: {"request":"inferred","response":"inferred"},
+          params: p<undefined, undefined, { section_id?: string; associated_type?: string; associated_id?: string; id?: string; path?: string; temp?: "true" | "false" }>(),
+          response: { data: lax(UploadWidgetResult), envelope: true, strict: false },
+        }),
+      },
+    },
     downloads: {
       /** Download a file from the manifest */
       get: defineCall({
@@ -4471,9 +4577,9 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/census/",
         action: "getAggregates",
-        source: {"request":"inferred","response":"inferred"},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid: string; termid: string; patrols?: string }, undefined>(),
-        response: { data: lax(CensusAggregates), envelope: false, strict: false },
+        response: { data: CensusAggregatesStrict, envelope: false, strict: true },
       }),
       /** Get census details */
       getDetails: defineCall({
@@ -4482,7 +4588,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/census/",
         action: "getDetails",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid: string; termid: string }, undefined>(),
         response: { data: CensusDetailsStrict, envelope: false, strict: true },
       }),
@@ -4654,7 +4760,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/contact/",
         action: "getIndividual",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid?: string; termid?: string; scoutid?: string; context?: "members" }, undefined>(),
         response: { data: MemberDetailStrict, envelope: false, strict: true },
       }),
@@ -4676,9 +4782,9 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/members/contact/",
         action: "getMemberTransfers",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-01-18","response":"2026-01-18"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { mode?: string; section_id?: string }, undefined>(),
-        response: { data: MemberTransfersStrict, envelope: false, strict: true },
+        response: { data: MemberTransfersStrict, envelope: true, strict: true },
       }),
       /** List pending parent changes for a section */
       getParentChanges: defineCall({
@@ -4711,7 +4817,7 @@ export const OsmApi = {
         method: "POST",
         path: "/ext/members/contact/",
         action: "update",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-03-05","response":"2026-03-05"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, undefined, { scoutid?: number; column?: "firstname" | "lastname" | "dob" | "started" | "startedsection" | "patrolid" | "patrolleader"; value?: number | string; sectionid?: string; context?: "members"; start_date?: string; end_date?: string; comments?: string; patrolleader?: number; associated_type?: "member"; associated_id?: string; group_id?: "1" | "2" | "3" | "4" | "6"; "data[field]"?: string }>(),
         response: { data: php(z.looseObject({ ok: z.boolean().optional(), meta: php(z.object({ last_updated: z.string().optional(), last_updated_by_name: z.string().optional() })).optional(), error: z.unknown().optional() })), envelope: false, strict: true },
       }),
@@ -6350,7 +6456,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/programme/",
       action: "getProgramme",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
       params: p<undefined, { sectionid?: string; termid?: string; eveningid?: string }, undefined>(),
       response: { data: ProgrammeDetailsStrict, envelope: false, strict: true },
     }),
@@ -6361,7 +6467,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/programme/",
       action: "getProgrammeSummary",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
       params: p<undefined, { sectionid?: string; termid?: string; verbose?: string }, undefined>(),
       response: { data: ProgrammeSummaryStrict, envelope: false, strict: true },
     }),
@@ -7489,7 +7595,7 @@ export const OsmApi = {
       method: "GET",
       path: "/ext/risk_assessments/",
       action: "getRiskAssessment",
-      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+      source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
       params: p<undefined, { section_id?: string; type?: string; associated_id?: string }, undefined>(),
       response: { data: RiskAssessmentListDataStrict, envelope: true, strict: true },
     }),
@@ -7811,7 +7917,7 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/settings/emails/",
         action: "getConfig",
-        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-03-05","response":"2026-03-05"}},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid?: string }, undefined>(),
         response: { data: php(z.looseObject({ found: z.boolean().optional(), result: php(z.object({ sectionid: z.string().optional(), slug: z.string().optional(), numemails: z.string().optional(), live: z.enum(["0", "1"]).optional() })).optional(), events: z.array(php(z.object({ name: z.string().optional(), slug: z.string().optional() }))).optional(), patrols: z.array(php(z.object({ name: z.string().optional(), slug: z.string().optional() }))).optional(), leaders: z.boolean().optional() })), envelope: false, strict: true },
       }),
@@ -8236,9 +8342,9 @@ export const OsmApi = {
         method: "GET",
         path: "/ext/settings/patrols/",
         action: "get",
-        source: {"request":"inferred","response":"inferred"},
+        source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
         params: p<undefined, { sectionid: string }, undefined>(),
-        response: { data: lax(SettingsPatrolsResponse), envelope: false, strict: false },
+        response: { data: SettingsPatrolsResponseStrict, envelope: false, strict: true },
       }),
       /** List patrols */
       getPost: defineCall({
@@ -10225,9 +10331,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "POST",
               path: "/v3/comments/{associatedType}/{associatedId}/add/",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
               params: p<{ associatedType: string; associatedId: string }, { section_id: string }, { comment: string; uploads_guid?: string }>(),
-              response: { data: lax(z.unknown()), envelope: true, strict: false },
+              response: { data: z.unknown(), envelope: true, strict: true },
             }),
           },
           list: {
@@ -10237,9 +10343,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "GET",
               path: "/v3/comments/{associatedType}/{associatedId}/list",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
               params: p<{ associatedType: string; associatedId: string }, { section_id: string; limit?: number }, undefined>(),
-              response: { data: lax(CommentListResponse), envelope: true, strict: false },
+              response: { data: CommentListResponseStrict, envelope: true, strict: true },
             }),
           },
         },
@@ -12031,7 +12137,7 @@ export const OsmApi = {
           kind: "v3-route",
           method: "GET",
           path: "/v3/forms/{formId}",
-          source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+          source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
           params: p<{ formId: string }, { section_id: string; section_ids?: string; state?: string; hierarchy?: "true" | "false"; page?: number; per_page?: number; after?: string }, undefined>(),
           response: { data: FormCompletionListStrict, envelope: true, strict: true },
         }),
@@ -12041,9 +12147,9 @@ export const OsmApi = {
           kind: "v3-route",
           method: "POST",
           path: "/v3/forms/{formId}",
-          source: {"request":"inferred","response":"inferred"},
+          source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
           params: p<{ formId: string }, undefined, { title: string; section_id: string }>(),
-          response: { data: lax(FormResponse), envelope: true, strict: false },
+          response: { data: FormResponseStrict, envelope: true, strict: true },
         }),
         $completionId: {
           core: {
@@ -12065,9 +12171,9 @@ export const OsmApi = {
               kind: "v3-route",
               method: "POST",
               path: "/v3/forms/{formId}/{completionId}/delete",
-              source: {"request":"inferred","response":"inferred"},
+              source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
               params: p<{ formId: string; completionId: string }, undefined, { section_id: string; state?: string | number }>(),
-              response: { data: lax(FormResponse), envelope: true, strict: false },
+              response: { data: FormResponseStrict, envelope: true, strict: true },
             }),
           },
           download: {
@@ -12088,9 +12194,9 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/forms/{formId}/{completionId}",
-            source: {"request":"inferred","response":"inferred"},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
             params: p<{ formId: string; completionId: string }, { section_id: string }, undefined>(),
-            response: { data: lax(FormCompletionResponse), envelope: true, strict: false },
+            response: { data: FormCompletionResponseStrict, envelope: true, strict: true },
           }),
           /** Save one field of a form completion */
           post: defineCall({
@@ -12098,9 +12204,9 @@ export const OsmApi = {
             kind: "v3-route",
             method: "POST",
             path: "/v3/forms/{formId}/{completionId}",
-            source: {"request":"inferred","response":"inferred"},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
             params: p<{ formId: string; completionId: string }, undefined, { section_id: string; field_id: string; data: string | number }>(),
-            response: { data: lax(FormUpdateResponse), envelope: true, strict: false },
+            response: { data: FormUpdateResponseStrict, envelope: true, strict: true },
           }),
           state: {
             /** Change a form completion's state */
@@ -13854,7 +13960,7 @@ export const OsmApi = {
             kind: "v3-route",
             method: "GET",
             path: "/v3/risk_assessments/{sectionId}/categories",
-            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-05","response":"2026-10-05"}},
+            source: {"request":"observed","response":"observed","observedOn":{"request":"2026-10-07","response":"2026-10-07"}},
             params: p<{ sectionId: string }, undefined, undefined>(),
             response: { data: RiskAssessmentCategoriesDataStrict, envelope: true, strict: true },
           }),

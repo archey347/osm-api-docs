@@ -1,6 +1,6 @@
 info:
   title: Online Scout Manager API (Unofficial)
-  version: "0.5.0"
+  version: "0.6.0"
   license:
     name: MIT
     url: https://github.com/archey347/osm-api-docs/blob/main/LICENSE

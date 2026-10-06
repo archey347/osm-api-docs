@@ -39,14 +39,14 @@ Each call is labelled **observed** (seen in real traffic) or **inferred** (from 
 code). Treat inferred calls with more suspicion.
 
 <!-- coverage:start -->
-Label coverage of the 1111 operations in 0.5.0:
+Label coverage of the 1118 operations in 0.6.0:
 
 | | Observed | Inferred | Unknown |
 |---|---|---|---|
-| Request | 53 (5%) | 1058 (95%) | – |
-| Response | 52 (5%) | 1038 (93%) | 21 (2%) |
+| Request | 63 (6%) | 1055 (94%) | – |
+| Response | 62 (6%) | 1035 (93%) | 21 (2%) |
 
-52 (5%) are observed for both request and response. Unknown: the web app never reads the reply.
+62 (6%) are observed for both request and response. Unknown: the web app never reads the reply.
 <!-- coverage:end -->
 
 ## Things to know

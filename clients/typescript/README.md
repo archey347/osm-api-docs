@@ -2,7 +2,7 @@
 
 Unofficial typed client and [zod](https://zod.dev) validators for the
 [Online Scout Manager](https://www.onlinescoutmanager.co.uk) (OSM) API, generated from the
-[osm-api-client](https://github.com/archey347/osm-api-client) spec. Not affiliated with or endorsed by OSM.
+[osm-api-docs](https://github.com/archey347/osm-api-docs) spec. Not affiliated with or endorsed by OSM.
 
 > [!WARNING]
 > OSM's API is undocumented and can change without notice. Many calls are **inferred** from OSM's client-side code
@@ -58,7 +58,7 @@ Calls marked `multipart/form-data` (file uploads) set `multipart: true` on the r
 ## Versioning
 
 The package version matches the spec version (`OSM_API_VERSION`). See the
-[changelog](https://github.com/archey347/osm-api-client/blob/main/CHANGELOG.md).
+[changelog](https://github.com/archey347/osm-api-docs/blob/main/CHANGELOG.md).
 
 ## Licence
 

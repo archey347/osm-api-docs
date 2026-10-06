@@ -7,7 +7,7 @@
   "homepage": "https://scrapbook.archbar.me/osm-api/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/archey347/osm-api-client.git",
+    "url": "git+https://github.com/archey347/osm-api-docs.git",
     "directory": "clients/typescript"
   },
   "type": "module",

@@ -168,7 +168,7 @@ export function allCalls(): AnyCall[] {
   return out;
 }
 
-export const OSM_API_VERSION = "0.5.0";
+export const OSM_API_VERSION = "0.6.0";
 
 // ---- Shared response schemas
 

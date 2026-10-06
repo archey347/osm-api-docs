@@ -1,6 +1,6 @@
 {
   "name": "@archey347/osm-api-client",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Unofficial typed client and zod validators for the Online Scout Manager (OSM) API",
   "keywords": ["online-scout-manager", "onlinescoutmanager", "scouts", "api-client", "openapi", "zod"],
   "license": "MIT",

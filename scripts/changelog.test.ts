@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { bumpVersion, diffSnapshots, levelOf, renderEntry, type Snapshot } from "./changelog.ts";
+import { bumpVersion, checkReleaseVersion, diffSnapshots, levelOf, renderEntry, type Snapshot } from "./changelog.ts";
 
 const call = (over: any = {}) => ({
   kind: "ext-action",
@@ -81,5 +81,20 @@ describe("render", () => {
     expect(out.startsWith("## 1.0.0 - 2026-01-01")).toBe(true);
     expect(out).toContain("### Added");
     expect(out.split("\n").length).toBeLessThanOrEqual(150);
+  });
+});
+
+describe("release version check", () => {
+  test("accepts the minimum bump or more", () => {
+    expect(checkReleaseVersion("0.6.0", "0.7.0", "breaking")).toBeNull();
+    expect(checkReleaseVersion("0.6.0", "0.6.1", "additive")).toBeNull();
+    expect(checkReleaseVersion("0.6.0", "1.0.0", "other")).toBeNull();
+    expect(checkReleaseVersion("0.6.0", "0.6.1", null)).toBeNull();
+  });
+  test("rejects too small a bump, going backwards and odd versions", () => {
+    expect(checkReleaseVersion("0.6.0", "0.6.1", "breaking")).toContain("at least 0.7.0");
+    expect(checkReleaseVersion("0.6.0", "0.6.0", null)).toContain("not after");
+    expect(checkReleaseVersion("0.6.0", "0.5.9", "other")).toContain("not after");
+    expect(checkReleaseVersion("0.6.0", "0.7.0-rc.1", "other")).toContain("not a plain");
   });
 });

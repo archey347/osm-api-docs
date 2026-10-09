@@ -32,8 +32,8 @@ Browse the docs at <https://scrapbook.archbar.me/osm-api>.
 `openapi.yaml` is an OpenAPI 3.0.3 document. Open it in [Redoc](https://redocly.github.io/redoc/),
 [Swagger Editor](https://editor.swagger.io/), Postman or Insomnia, or feed it to a client generator.
 
-For TypeScript there's a typed client with zod validators in [`clients/typescript`](clients/typescript) (not yet on
-npm).
+For TypeScript there's a typed client with zod validators in [`clients/typescript`](clients/typescript), published as
+[`@archey347/osm-api-client`](https://www.npmjs.com/package/@archey347/osm-api-client).
 
 Each call is labelled **observed** (seen in real traffic) or **inferred** (from static analysis of OSM's client-side
 code). Treat inferred calls with more suspicion.

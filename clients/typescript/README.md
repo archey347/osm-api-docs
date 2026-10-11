@@ -58,7 +58,7 @@ Calls marked `multipart/form-data` (file uploads) set `multipart: true` on the r
 ## Versioning
 
 The package version matches the spec version (`OSM_API_VERSION`). See the
-[changelog](https://github.com/archey347/osm-api-docs/blob/main/CHANGELOG.md).
+[release notes](https://github.com/archey347/osm-api-docs/tags), which are the version tags' messages.
 
 ## Licence
 

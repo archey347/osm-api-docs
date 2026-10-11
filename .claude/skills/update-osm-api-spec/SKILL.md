@@ -56,17 +56,12 @@ Commit with a short message with counts, e.g. `Update API docs: 3 new, 2 changed
 
 ## 5. Release (maintainer)
 
-Skip unless the user is the maintainer and asks for a release.
+There is no release step to run. Versions in `main` (`spec-header.yaml`, `package.json`) are no longer bumped; the tag is the version. Every merged PR that changes the documented calls is released by the `Release` workflow: it picks the smallest version the changes allow (breaking: major, additive: minor, else patch; pre-1.0 one level lower), builds and checks everything, creates an annotated `vX.Y.Z` tag on the merged commit with the release notes as its message, and publishes the client to npm. PRs that don't change the spec (README, tooling) don't release.
+
+To preview what merging would release:
 
 ```
-bun run changelog -- --base <ref>
-bun run gen:openapi
-bun run lint
-bun run gen:ts
-bun run coverage
-bun test
+bun run changelog
 ```
 
-`<ref>` is the previous release tag or commit to diff against (default `main` before merging). The changelog script diffs `calls/`, `schemas/`, `templates/` and `kinds.yaml` against it, bumps `spec-header.yaml` and `package.json` (breaking: major, additive: minor, else patch; pre-1.0 one level lower) and prepends an entry to `CHANGELOG.md`. Rerunning against the same ref replaces its entry. No changes: no bump, no entry; say so. If it says the baseline has no `calls/`, write the entry by hand.
-
-Regenerate after the bump so the version reaches `openapi.yaml`. `coverage` counts observed and inferred labels in it and rewrites the table between the `coverage` markers in `README.md`. Then commit and tag. Don't push unless asked.
+It diffs `calls/`, `schemas/`, `templates/` and `kinds.yaml` against the latest `v*` tag (or `--base <ref>`) and prints the next version and the notes. Past notes: `git tag -n99`.

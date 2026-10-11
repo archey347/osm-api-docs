@@ -1,0 +1,98 @@
+name: Release
+
+# Every merge to main that changes the documented calls is released. The changelog
+# script picks the smallest version the changes allow and writes the notes. Only the
+# tag job can write to the repo, and all it does is create that one tag.
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Runs repo code, so it gets read-only access.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+      notes: ${{ steps.plan.outputs.notes }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+      - run: bun install --frozen-lockfile --ignore-scripts
+      - name: Work out the next version
+        id: plan
+        run: |
+          previous=$(git describe --tags --abbrev=0 --match 'v*.*.*')
+          version=$(bun scripts/changelog.ts --base "$previous" --json | jq -r 'if .bump then .version else empty end')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [ -z "$version" ]; then echo "No changes to the documented calls since $previous; nothing to release." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          mkdir -p "$RUNNER_TEMP/release"
+          bun scripts/changelog.ts --base "$previous" --release "$version" --notes "$RUNNER_TEMP/release/notes.md"
+          delimiter="EOF_$(openssl rand -hex 16)"
+          { echo "notes<<$delimiter"; cat "$RUNNER_TEMP/release/notes.md"; echo "$delimiter"; } >> "$GITHUB_OUTPUT"
+          { echo "## v$version"; echo; cat "$RUNNER_TEMP/release/notes.md"; } >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.plan.outputs.version != ''
+        run: |
+          bun run check
+          bun run gen:openapi
+          bun run lint
+          bun run gen:ts
+          bun test
+      - name: Pack the TypeScript client
+        if: steps.plan.outputs.version != ''
+        working-directory: clients/typescript
+        run: |
+          npm ci --ignore-scripts
+          npm pack --pack-destination "$RUNNER_TEMP/release"
+      - if: steps.plan.outputs.version != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release
+          path: ${{ runner.temp }}/release
+
+  tag:
+    # The only job that can write to the repo. It uses no actions, checks out nothing and
+    # runs no repo code: its inputs are the version and the notes, and it creates one
+    # annotated tag on the merged commit through the API.
+    needs: build
+    if: needs.build.outputs.version != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.build.outputs.version }}
+          NOTES: ${{ needs.build.outputs.notes }}
+        run: |
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Bad version: $VERSION" >&2; exit 1; }
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/git/tags" -f tag="v$VERSION" -f message="$(printf '%s\n\n%s' "$VERSION" "$NOTES")" -f object="$GITHUB_SHA" -f type=commit --jq .sha)
+          gh api "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/tags/v$VERSION" -f sha="$sha" > /dev/null
+
+  npm:
+    # npm trusted publishing (OIDC): no npm token is stored anywhere. Runs only once
+    # the tag exists.
+    needs: tag
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm install -g --ignore-scripts npm@11.21.0
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: release
+      - run: npm publish ./*.tgz --access public

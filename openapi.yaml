@@ -75425,10 +75425,11 @@ components:
           type: object
           properties:
             post_login_action:
-              description: "Action to perform after login, or `false` if none."
+              description: "Action to perform after login, or `false` or `null` if none."
               oneOf:
                 - type: boolean
                 - type: string
+                  nullable: true
             theme:
               type: string
               description: "UI theme name (e.g., `blue`)."

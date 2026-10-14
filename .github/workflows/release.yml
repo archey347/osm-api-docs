@@ -81,7 +81,8 @@ jobs:
 
   npm:
     # npm trusted publishing (OIDC): no npm token is stored anywhere. Runs only once
-    # the tag exists.
+    # the tag exists. The trusted publisher may only stage, so a maintainer approves
+    # each release with 2FA (`npm stage approve`).
     needs: tag
     runs-on: ubuntu-latest
     permissions:
@@ -95,4 +96,4 @@ jobs:
       - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           name: release
-      - run: npm publish ./*.tgz --access public
+      - run: npm stage publish ./*.tgz --access public

@@ -56,7 +56,7 @@ Commit with a short message with counts, e.g. `Update API docs: 3 new, 2 changed
 
 ## 5. Release (maintainer)
 
-There is no release step to run. Versions in `main` (`spec-header.yaml`, `package.json`) are no longer bumped; the tag is the version. Every merged PR that changes the documented calls is released by the `Release` workflow: it picks the smallest version the changes allow (breaking: major, additive: minor, else patch; pre-1.0 one level lower), builds and checks everything, creates an annotated `vX.Y.Z` tag on the merged commit with the release notes as its message, and publishes the client to npm. PRs that don't change the spec (README, tooling) don't release.
+There is no release step to run. Versions in `main` (`spec-header.yaml`, `package.json`) are no longer bumped; the tag is the version. Every merged PR that changes the documented calls is released by the `Release` workflow: it picks the smallest version the changes allow (breaking: major, additive: minor, else patch; pre-1.0 one level lower), builds and checks everything, creates an annotated `vX.Y.Z` tag on the merged commit with the release notes as its message, and stages the client on npm for the maintainer to approve with `npm stage approve`. PRs that don't change the spec (README, tooling) don't release.
 
 To preview what merging would release:
 
